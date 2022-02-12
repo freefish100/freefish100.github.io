@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on 自游鱼的鱼</title>
-    <link>//example.org/categories/</link>
-    <description>Recent content in Categories on 自游鱼的鱼</description>
+    <title>Categories on 自游鱼</title>
+    <link>/categories/</link>
+    <description>Recent content in Categories on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="//example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tech</title>
-      <link>//example.org/categories/tech/</link>
+      <link>/categories/tech/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>//example.org/categories/tech/</guid>
+      <guid>/categories/tech/</guid>
       <description></description>
     </item>
     
