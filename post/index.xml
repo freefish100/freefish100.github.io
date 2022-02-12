@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 自游鱼</title>
-    <link>http://example.org/post/</link>
+    <link>//example.org/post/</link>
     <description>Recent content in Posts on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/post/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="//example.org/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>An Example Post</title>
-      <link>http://example.org/post/my-first-post/</link>
+      <link>//example.org/post/my-first-post/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/my-first-post/</guid>
+      <guid>//example.org/post/my-first-post/</guid>
       <description></description>
     </item>
     
     <item>
       <title>我的文章，春天来了</title>
-      <link>http://example.org/post/my-first-post01/</link>
+      <link>//example.org/post/my-first-post01/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/my-first-post01/</guid>
+      <guid>//example.org/post/my-first-post01/</guid>
       <description>我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了</description>
     </item>
     
