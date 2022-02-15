@@ -20,13 +20,18 @@
     <loc>/tags/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/tech/</loc>
+    <loc>/post/my-first-post01/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/my-first-post01/</loc>
+    <loc>/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/%E9%9A%8F%E5%86%99/</loc>
+    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/search/</loc>
   </url>
 </urlset>

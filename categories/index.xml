@@ -6,13 +6,23 @@
     <description>Recent content in Categories on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
     <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tech</title>
-      <link>/categories/tech/</link>
+      <title>技术备忘</title>
+      <link>/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/categories/tech/</guid>
+      <guid>/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>随写</title>
+      <link>/categories/%E9%9A%8F%E5%86%99/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/%E9%9A%8F%E5%86%99/</guid>
       <description></description>
     </item>
     
