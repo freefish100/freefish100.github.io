@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tag1 on 自游鱼</title>
-    <link>/tags/tag1/</link>
+    <link>https://freefish100.github.io/tags/tag1/</link>
     <description>Recent content in tag1 on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>An Example Post</title>
-      <link>/post/my-first-post/</link>
+      <link>https://freefish100.github.io/post/my-first-post/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/my-first-post/</guid>
+      <guid>https://freefish100.github.io/post/my-first-post/</guid>
       <description></description>
     </item>
     
     <item>
       <title>我的文章，春天来了</title>
-      <link>/post/my-first-post01/</link>
+      <link>https://freefish100.github.io/post/my-first-post01/</link>
       <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/my-first-post01/</guid>
+      <guid>https://freefish100.github.io/post/my-first-post01/</guid>
       <description>我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了 </description>
     </item>
     
