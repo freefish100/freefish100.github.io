@@ -7,22 +7,40 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>tag1</title>
-      <link>https://freefish100.github.io/tags/tag1/</link>
-      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      <title>github</title>
+      <link>https://freefish100.github.io/tags/github/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://freefish100.github.io/tags/tag1/</guid>
+      <guid>https://freefish100.github.io/tags/github/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>tag2</title>
-      <link>https://freefish100.github.io/tags/tag2/</link>
-      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      <title>hugo</title>
+      <link>https://freefish100.github.io/tags/hugo/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://freefish100.github.io/tags/tag2/</guid>
+      <guid>https://freefish100.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>优励恩</title>
+      <link>https://freefish100.github.io/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://freefish100.github.io/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>打印机</title>
+      <link>https://freefish100.github.io/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://freefish100.github.io/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/</guid>
       <description></description>
     </item>
     

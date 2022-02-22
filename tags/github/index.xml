@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>自游鱼</title>
-    <link>https://freefish100.github.io/</link>
-    <description>Recent content on 自游鱼</description>
+    <title>github on 自游鱼</title>
+    <link>https://freefish100.github.io/tags/github/</link>
+    <description>Recent content in github on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>优励恩的兄弟MFC-8535DN打印机更换硒鼓</title>
-      <link>https://freefish100.github.io/post/work20220222/</link>
-      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://freefish100.github.io/post/work20220222/</guid>
-      <description>【2022年2月22日】
-兄弟MFC-8535DN因打印出来的纸张有黑边和字影，更换硒鼓后打印效果恢复正常。更换硒鼓后，需要重置硒鼓计数器。 重置硒鼓计数器步骤：
-原硒鼓统计情况：</description>
-    </item>
-    
+    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>部署hugo网站到github</title>
       <link>https://freefish100.github.io/post/js20220222/</link>
@@ -42,15 +31,6 @@ git init 初始化 Git 库
 ls -a 显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件
 git branch -M main 新建一个主分支main
 git remote add origin https://github.com/freefish100/freefish100.github.io.git 将 Git 本地库关联至远程库，如果 [remote &amp;ldquo;origin&amp;rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。</description>
-    </item>
-    
-    <item>
-      <title>博客基本搭建起来了</title>
-      <link>https://freefish100.github.io/post/my-first-post/</link>
-      <pubDate>Tue, 15 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://freefish100.github.io/post/my-first-post/</guid>
-      <description>多天的折腾，博客基本搭建起来了。。。。。</description>
     </item>
     
   </channel>

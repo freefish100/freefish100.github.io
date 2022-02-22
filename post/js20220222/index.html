@@ -3,26 +3,90 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>博客基本搭建起来了 - 自游鱼</title><link rel="apple-touch-icon" href="https://freefish100.github.io/images/icons/icon-180x180.png" sizes="180x180">
+    <title>部署hugo网站到github - 自游鱼</title><link rel="apple-touch-icon" href="https://freefish100.github.io/images/icons/icon-180x180.png" sizes="180x180">
 <link rel="icon" href="https://freefish100.github.io/images/icons/icon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="https://freefish100.github.io/images/icons/icon-16x16.png" sizes="16x16" type="image/png">
 <link rel="icon" href="https://freefish100.github.io/images/icons/favicon.ico">
 <link rel="manifest" href="https://freefish100.github.io/manifest.json">
 <meta name="keywords" content="" />
-<meta name="description" content="多天的折腾，博客基本搭建起来了。。。。。" /><meta itemprop="name" content="博客基本搭建起来了">
-<meta itemprop="description" content="多天的折腾，博客基本搭建起来了。。。。。"><meta itemprop="datePublished" content="2022-02-15T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2022-02-15T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1">
-<meta itemprop="keywords" content="" /><meta property="og:title" content="博客基本搭建起来了" />
-<meta property="og:description" content="多天的折腾，博客基本搭建起来了。。。。。" />
+<meta name="description" content="【2022年2月22日】部署hugo网站到github
+使用Git Bash终端
+第一次开始部署：
+新建一个网站
+hugo new site ffblog 其中 &ldquo;ffblog&rdquo; 是网站文件夹名
+把主题文件放入themes文件夹内
+cd ~/ffblog 进入网站文件夹根目录
+echo theme = &quot;bootstrap&quot; &raquo; config.toml 将主题添加到站点配置，“bootstrap”是主题(文件)名称
+hugo new post/my-first-post.md 新建一篇文章
+hugo server -D 启动 Hugo server，运行本地网站
+cd ~/ffblog 进入网站根目录
+hugo 构建Hugo 网站，默认将生成的静态站点文件保存到 &ldquo;public&rdquo; 目录
+cd ~/ffblog/public 进入public目录，&ldquo;public&rdquo; 文件夹会被转换为 Git 库
+git init 初始化 Git 库
+ls -a 显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件
+git branch -M main 新建一个主分支main
+git remote add origin https://github.com/freefish100/freefish100.github.io.git 将 Git 本地库关联至远程库，如果 [remote &ldquo;origin&rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。" /><meta itemprop="name" content="部署hugo网站到github">
+<meta itemprop="description" content="【2022年2月22日】部署hugo网站到github
+使用Git Bash终端
+第一次开始部署：
+新建一个网站
+hugo new site ffblog 其中 &ldquo;ffblog&rdquo; 是网站文件夹名
+把主题文件放入themes文件夹内
+cd ~/ffblog 进入网站文件夹根目录
+echo theme = &quot;bootstrap&quot; &raquo; config.toml 将主题添加到站点配置，“bootstrap”是主题(文件)名称
+hugo new post/my-first-post.md 新建一篇文章
+hugo server -D 启动 Hugo server，运行本地网站
+cd ~/ffblog 进入网站根目录
+hugo 构建Hugo 网站，默认将生成的静态站点文件保存到 &ldquo;public&rdquo; 目录
+cd ~/ffblog/public 进入public目录，&ldquo;public&rdquo; 文件夹会被转换为 Git 库
+git init 初始化 Git 库
+ls -a 显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件
+git branch -M main 新建一个主分支main
+git remote add origin https://github.com/freefish100/freefish100.github.io.git 将 Git 本地库关联至远程库，如果 [remote &ldquo;origin&rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。"><meta itemprop="datePublished" content="2022-02-22T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-02-22T00:00:00+00:00" />
+<meta itemprop="wordCount" content="180">
+<meta itemprop="keywords" content="hugo,github," /><meta property="og:title" content="部署hugo网站到github" />
+<meta property="og:description" content="【2022年2月22日】部署hugo网站到github
+使用Git Bash终端
+第一次开始部署：
+新建一个网站
+hugo new site ffblog 其中 &ldquo;ffblog&rdquo; 是网站文件夹名
+把主题文件放入themes文件夹内
+cd ~/ffblog 进入网站文件夹根目录
+echo theme = &quot;bootstrap&quot; &raquo; config.toml 将主题添加到站点配置，“bootstrap”是主题(文件)名称
+hugo new post/my-first-post.md 新建一篇文章
+hugo server -D 启动 Hugo server，运行本地网站
+cd ~/ffblog 进入网站根目录
+hugo 构建Hugo 网站，默认将生成的静态站点文件保存到 &ldquo;public&rdquo; 目录
+cd ~/ffblog/public 进入public目录，&ldquo;public&rdquo; 文件夹会被转换为 Git 库
+git init 初始化 Git 库
+ls -a 显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件
+git branch -M main 新建一个主分支main
+git remote add origin https://github.com/freefish100/freefish100.github.io.git 将 Git 本地库关联至远程库，如果 [remote &ldquo;origin&rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://freefish100.github.io/post/my-first-post/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-02-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-15T00:00:00+00:00" />
+<meta property="og:url" content="https://freefish100.github.io/post/js20220222/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-02-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-22T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="博客基本搭建起来了"/>
-<meta name="twitter:description" content="多天的折腾，博客基本搭建起来了。。。。。"/>
+<meta name="twitter:title" content="部署hugo网站到github"/>
+<meta name="twitter:description" content="【2022年2月22日】部署hugo网站到github
+使用Git Bash终端
+第一次开始部署：
+新建一个网站
+hugo new site ffblog 其中 &ldquo;ffblog&rdquo; 是网站文件夹名
+把主题文件放入themes文件夹内
+cd ~/ffblog 进入网站文件夹根目录
+echo theme = &quot;bootstrap&quot; &raquo; config.toml 将主题添加到站点配置，“bootstrap”是主题(文件)名称
+hugo new post/my-first-post.md 新建一篇文章
+hugo server -D 启动 Hugo server，运行本地网站
+cd ~/ffblog 进入网站根目录
+hugo 构建Hugo 网站，默认将生成的静态站点文件保存到 &ldquo;public&rdquo; 目录
+cd ~/ffblog/public 进入public目录，&ldquo;public&rdquo; 文件夹会被转换为 Git 库
+git init 初始化 Git 库
+ls -a 显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件
+git branch -M main 新建一个主分支main
+git remote add origin https://github.com/freefish100/freefish100.github.io.git 将 Git 本地库关联至远程库，如果 [remote &ldquo;origin&rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。"/>
 <meta property="og:image" content="https://freefish100.github.io/true"/>
   <meta name="twitter:image" content="https://freefish100.github.io/true"/><link rel="stylesheet" href="https://freefish100.github.io/css/main.min.507afbe6e4670fa3e961a0b35816b5daeb36029866fd6bd7b9d7871fcf88faa5.css" integrity="sha256-UHr75uRnD6PpYaCzWBa12us2Aphm/WvXudeHH8&#43;I&#43;qU=" crossorigin="anonymous"><link rel="stylesheet" href="https://freefish100.github.io/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
   <body><script>const items=['mode','palette'];items.forEach(function(a){const b=localStorage.getItem('hbs-'+a);b&&document.body.parentElement.setAttribute('data-'+a,b)})</script><header><nav class="navbar top-app-bar top-app-bar-expand-lg fixed-top">
@@ -44,11 +108,11 @@
   </div>
   <div class="offcanvas-body">
     <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Twitter Share Button"
-      target="_blank" href="https://twitter.com/intent/tweet?title=%e5%8d%9a%e5%ae%a2%e5%9f%ba%e6%9c%ac%e6%90%ad%e5%bb%ba%e8%b5%b7%e6%9d%a5%e4%ba%86&url=https%3a%2f%2ffreefish100.github.io%2fpost%2fmy-first-post%2f">
+      target="_blank" href="https://twitter.com/intent/tweet?title=%e9%83%a8%e7%bd%b2hugo%e7%bd%91%e7%ab%99%e5%88%b0github&url=https%3a%2f%2ffreefish100.github.io%2fpost%2fjs20220222%2f">
       <i class="fab fa-fw fa-twitter"></i> Twitter
     </a>
     <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Facebook Share Button"
-      target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ffreefish100.github.io%2fpost%2fmy-first-post%2f">
+      target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ffreefish100.github.io%2fpost%2fjs20220222%2f">
       <i class="fab fa-fw fa-facebook-f"></i> Facebook
     </a>
   </div>
@@ -152,7 +216,7 @@
 <div class="col-lg-8">
   <div class="container"><nav class="row card component" aria-label="breadcrumb">
   <div class="card-body">
-    <ol class="breadcrumb "><li class="breadcrumb-item"><a href="https://freefish100.github.io/">主页</a></li><li class="breadcrumb-item"><a href="https://freefish100.github.io/post/">Posts</a></li><li class="breadcrumb-item active">博客基本搭建起来了</li></ol>
+    <ol class="breadcrumb "><li class="breadcrumb-item"><a href="https://freefish100.github.io/">主页</a></li><li class="breadcrumb-item"><a href="https://freefish100.github.io/post/">Posts</a></li><li class="breadcrumb-item active">部署hugo网站到github</li></ol>
   </div>
 </nav><div class="post-panel-wrapper">
   <div class="d-flex flex-column component rounded post-panel">
@@ -179,18 +243,57 @@
 </div>
 <article class="row card component mb-4 post">
   <div class="card-header ">
-    <h1 class="card-title post-title">博客基本搭建起来了
+    <h1 class="card-title post-title">部署hugo网站到github
 </h1>
   </div>
   <div class="card-body"><div class="post-meta">
-  <span class="post-date" title="创建于 2022-02-15 08:00:00 &#43;0800 CST。">
-    2022-02-15
-  </span><span class="post-taxonomies"><a href="https://freefish100.github.io/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge post-taxonomy">日常随写</a></span>
+  <span class="post-date" title="创建于 2022-02-22 08:00:00 &#43;0800 CST。">
+    2022-02-22
+  </span><span class="post-taxonomies"><a href="https://freefish100.github.io/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge post-taxonomy">技术摘录</a><a href="https://freefish100.github.io/tags/hugo/" class="badge post-taxonomy">hugo</a><a href="https://freefish100.github.io/tags/github/" class="badge post-taxonomy">github</a></span>
 </div>
-<div class="post-content mb-3"><p>多天的折腾，博客基本搭建起来了。。。。。</p>
+<div class="post-content mb-3"><p>【2022年2月22日】部署hugo网站到github<br>
+使用Git Bash终端<br>
+第一次开始部署：<br>
+新建一个网站<br>
+hugo new site ffblog  其中 &ldquo;ffblog&rdquo; 是网站文件夹名<br>
+把主题文件放入themes文件夹内<br>
+cd ~/ffblog   进入网站文件夹根目录<br>
+echo theme = &quot;bootstrap&quot; &raquo; config.toml  将主题添加到站点配置，“bootstrap”是主题(文件)名称<br>
+hugo new post/my-first-post.md  新建一篇文章<br>
+hugo server -D   启动 Hugo server，运行本地网站<br>
+cd ~/ffblog  进入网站根目录<br>
+hugo  构建Hugo 网站，默认将生成的静态站点文件保存到 &ldquo;public&rdquo; 目录<br>
+cd ~/ffblog/public  进入public目录，&ldquo;public&rdquo; 文件夹会被转换为 Git 库<br>
+git init 初始化 Git 库<br>
+ls -a  显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件<br>
+git branch -M main 新建一个主分支main<br>
+git remote add origin <a href="https://github.com/freefish100/freefish100.github.io.git" target="_blank" rel="noopener noreferrer">https://github.com/freefish100/freefish100.github.io.git</a>   将 Git 本地库关联至远程库，如果 [remote &ldquo;origin&rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。<br>
+(如果之前建过库的，要把库删除，重新建一个库，建库时不要勾选“Add a README file&quot;,否则在推送时可能会报错，需使用 git pull &ndash;rebase origin main ，然后再 git push -u origin main)<br>
+cat .git/config  查看关联配置信息<br>
+如果 [remote &ldquo;origin&rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库<br>
+git status 查看文件当前修改状态，准备提交修改的文件至本地库<br>
+git add .   添加所有修改过的文件。你也可以只添加某个文件<br>
+git commit -m &ldquo;Add a new post&rdquo;   其中&quot;Add a new post&quot; 是 commit message<br>
+git push -u origin main   将修改的文件推送至远程库<br>
+部署完成</p>
+<p>更新内容<br>
+cd ~/ffblog  进入网站根目录<br>
+hugo  构建Hugo 网站，默认将生成的静态站点文件保存到 &ldquo;public&rdquo; 目录<br>
+cd ~/ffblog/public  进入public目录，&ldquo;public&rdquo; 文件夹会被转换为 Git 库<br>
+git init<br>
+git remote add origin <a href="https://github.com/freefish100/freefish100.github.io.git" target="_blank" rel="noopener noreferrer">https://github.com/freefish100/freefish100.github.io.git</a><br>
+git status 查看文件当前修改状态，准备提交修改的文件至本地库<br>
+git add .   添加所有修改过的文件。你也可以只添加某个文件<br>
+git commit -m &ldquo;Add a new post&rdquo;   其中&quot;Add a new post&quot; 是 commit message<br>
+git push -u origin main   将修改的文件推送至远程库<br>
+更新内容完成</p>
 </div></div>
-  <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-next">
-    <a href="https://freefish100.github.io/post/js20220222/">部署hugo网站到github
+  <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
+    <i class="fas fa-fw fa-chevron-left"></i>
+    <a href="https://freefish100.github.io/post/my-first-post/">博客基本搭建起来了
+</a>
+  </div><div class="post-nav post-next">
+    <a href="https://freefish100.github.io/post/work20220222/">优励恩的兄弟MFC-8535DN打印机更换硒鼓
 </a>
     <i class="fas fa-fw fa-chevron-right"></i>
   </div></div></div>
