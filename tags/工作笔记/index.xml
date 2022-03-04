@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记 on 自游鱼</title>
-    <link>https://freefish100.github.io/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+    <link>https://freefish100.github.io/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 工作笔记 on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 02 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>工作笔记备忘(不定时更新)</title>
       <link>https://freefish100.github.io/post/work20220302/</link>
@@ -19,17 +19,6 @@
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
 https://almalinux.org/zh-hans/</description>
-    </item>
-    
-    <item>
-      <title>优励恩的兄弟MFC-8535DN打印机更换硒鼓</title>
-      <link>https://freefish100.github.io/post/work20220222/</link>
-      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://freefish100.github.io/post/work20220222/</guid>
-      <description>【2022年2月22日】
-兄弟MFC-8535DN因打印出来的纸张有黑边和字影，更换硒鼓后打印效果恢复正常。更换硒鼓后，需要重置硒鼓计数器。 重置硒鼓计数器步骤：
-原硒鼓统计情况：</description>
     </item>
     
   </channel>
