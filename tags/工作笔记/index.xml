@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作笔记 on 自游鱼</title>
-    <link>https://freefish100.github.io/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+    <link>https://blog.coinfans.cc/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 工作笔记 on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 02 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>工作笔记备忘(不定时更新)</title>
-      <link>https://freefish100.github.io/post/work20220302/</link>
+      <link>https://blog.coinfans.cc/post/work20220302/</link>
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://freefish100.github.io/post/work20220302/</guid>
+      <guid>https://blog.coinfans.cc/post/work20220302/</guid>
       <description>【2022年3月4日更新】
 可以替代Centos的发行版本推荐： 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/

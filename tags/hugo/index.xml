@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hugo on 自游鱼</title>
-    <link>https://freefish100.github.io/tags/hugo/</link>
+    <link>https://blog.coinfans.cc/tags/hugo/</link>
     <description>Recent content in hugo on 自游鱼</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>部署hugo网站到github</title>
-      <link>https://freefish100.github.io/post/js20220222/</link>
+      <link>https://blog.coinfans.cc/post/js20220222/</link>
       <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://freefish100.github.io/post/js20220222/</guid>
+      <guid>https://blog.coinfans.cc/post/js20220222/</guid>
       <description>【2022年2月22日】部署hugo网站到github
 使用Git Bash终端
 第一次开始部署：
