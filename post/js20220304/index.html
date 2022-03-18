@@ -12,7 +12,7 @@
 <meta name="description" content="Markdown 语法教程" /><meta itemprop="name" content="Markdown 语法教程">
 <meta itemprop="description" content="Markdown 语法教程"><meta itemprop="datePublished" content="2022-03-04T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-04T00:00:00+00:00" />
-<meta itemprop="wordCount" content="60">
+<meta itemprop="wordCount" content="154">
 <meta itemprop="keywords" content="markdown,备忘," /><meta property="og:title" content="Markdown 语法教程" />
 <meta property="og:description" content="Markdown 语法教程" />
 <meta property="og:type" content="article" />
@@ -24,7 +24,7 @@
 <meta name="twitter:title" content="Markdown 语法教程"/>
 <meta name="twitter:description" content="Markdown 语法教程"/>
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/>
-  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://blog.coinfans.cc/css/main.min.507afbe6e4670fa3e961a0b35816b5daeb36029866fd6bd7b9d7871fcf88faa5.css" integrity="sha256-UHr75uRnD6PpYaCzWBa12us2Aphm/WvXudeHH8&#43;I&#43;qU=" crossorigin="anonymous"><link rel="stylesheet" href="https://blog.coinfans.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://blog.coinfans.cc/css/main.min.0166e20cf9a8c749090476957db05bfd1fd8ffd875197c285f090f4eff6a912c.css" integrity="sha256-AWbiDPmox0kJBHaVfbBb/R/Y/9h1GXwoXwkPTv9qkSw=" crossorigin="anonymous"><link rel="stylesheet" href="https://blog.coinfans.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
   <body><script>const items=['mode','palette'];items.forEach(function(a){const b=localStorage.getItem('hbs-'+a);b&&document.body.parentElement.setAttribute('data-'+a,b)})</script><header><nav class="navbar top-app-bar top-app-bar-expand-lg fixed-top">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -76,6 +76,17 @@
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" id="modeSwitcher">
       </div>
+    </div>
+  </form>
+</section>
+
+<section class="setting">
+  <form class="font-size-switcher-form row">
+    <div class="col-auto">
+      <label for="fontSize" class="form-label"><i class="fas fa-fw fa-font"></i> 字体大小</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <input type="range" class="form-range" min="-2" max="2" id="fontSize">
     </div>
   </form>
 </section>
@@ -215,11 +226,88 @@
 要同时用粗体和斜体突出显示文本，请在单词或短语的前后各添加三个星号。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各添加三个星号，中间不要带空格。例如：</p>
 <pre tabindex="0"><code>我在学习***Markdown***语法
 </code></pre><p>输出结果：我在学习<em><strong>Markdown</strong></em>语法</p>
+<h3 id="markdown-引用语法">Markdown 引用语法<a class="anchor ms-1" href="#markdown-引用语法"><i class="fas fa-link"></i></a></h3>
+<p>要创建块引用，请在段落前添加一个 &gt; 符号<br>
+<code>&gt;正在学习Markdown的引用语法。</code><br>
+输出效果：</p>
+<blockquote>
+<p>正在学习Markdown的引用语法。</p>
+</blockquote>
+<p>多个段落的块引用：块引用可以包含多个段落。为段落之间的空白行添加一个 &gt; 符号</p>
+<pre tabindex="0"><code>&gt;正在学习Markdown的引用语法。
+&gt;  
+&gt;正在学习Markdown的引用语法。
+</code></pre><p>输出效果：</p>
+<blockquote>
+<p>正在学习Markdown的引用语法。</p>
+<p>正在学习Markdown的引用语法。</p>
+</blockquote>
+<h3 id="markdown-列表语法">Markdown 列表语法<a class="anchor ms-1" href="#markdown-列表语法"><i class="fas fa-link"></i></a></h3>
+<p><strong>有序列表</strong><br>
+要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点，然后一个空格，最后是列表内容项。数字不必按数学顺序排列，但是列表应当以数字 1 起始。 缩进一个或多个列表项可创建嵌套列表，在列表数字前面加三个或四个空格， 即可嵌套。</p>
+<pre tabindex="0"><code>1. 有序列表一
+2. 有序列表二
+3. 有序列表三
+4. 有序列表四  
+1. 有序列表五
+1. 有序列表六
+1. 有序列表七
+   1. 嵌套列表一
+   2. 嵌套列表二
+   3. 嵌套列表三
+</code></pre><p>输出效果：</p>
+<ol>
+<li>有序列表一</li>
+<li>有序列表二</li>
+<li>有序列表三</li>
+<li>有序列表四</li>
+<li>有序列表五</li>
+<li>有序列表六</li>
+<li>有序列表七
+<ol>
+<li>嵌套列表一</li>
+<li>嵌套列表二</li>
+<li>嵌套列表三</li>
+</ol>
+</li>
+</ol>
+<p><strong>无序列表</strong><br>
+要创建无序列表，请在每个列表项前面添加破折号 (-)、星号 (*) 或加号 (+)，然后加一个空格 。加三个空格，缩进一个或多个列表项可创建嵌套列表。</p>
+<pre tabindex="0"><code>- 有序列表一
+- 有序列表二
+- 有序列表三
+- 有序列表四  
+- 有序列表五
+- 有序列表六
+- 有序列表七
+   - 嵌套列表一
+   - 嵌套列表二
+   - 嵌套列表三  
+</code></pre><p>输出效果：</p>
+<ul>
+<li>有序列表一</li>
+<li>有序列表二</li>
+<li>有序列表三</li>
+<li>有序列表四</li>
+<li>有序列表五</li>
+<li>有序列表六</li>
+<li>有序列表七
+<ul>
+<li>嵌套列表一</li>
+<li>嵌套列表二</li>
+<li>嵌套列表三</li>
+</ul>
+</li>
+</ul>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
     <i class="fas fa-fw fa-chevron-left"></i>
     <a href="https://blog.coinfans.cc/post/work20220302/">工作笔记备忘(不定时更新)
 </a>
+  </div><div class="post-nav post-next">
+    <a href="https://blog.coinfans.cc/post/js20220317/">部署hugo网站到github
+</a>
+    <i class="fas fa-fw fa-chevron-right"></i>
   </div></div></div>
 </article><section class="related-posts row card component">
     <div class="card-header">
@@ -255,6 +343,8 @@
         <li><a href="#markdown-段落">Markdown 段落</a></li>
         <li><a href="#markdown-换行语法">Markdown 换行语法</a></li>
         <li><a href="#markdown-强调语法">Markdown 强调语法</a></li>
+        <li><a href="#markdown-引用语法">Markdown 引用语法</a></li>
+        <li><a href="#markdown-列表语法">Markdown 列表语法</a></li>
       </ul>
     </li>
   </ul>
@@ -279,6 +369,15 @@
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://blog.coinfans.cc/post/js20220318b/">Windows11 Win11操作配置技巧
+</a>
+      </li><li>
+        <a href="https://blog.coinfans.cc/post/js20220318/">更改 ESXi Server 管理 IP 地址
+</a>
+      </li><li>
+        <a href="https://blog.coinfans.cc/post/js20220317/">部署hugo网站到github
+</a>
+      </li><li>
         <a href="https://blog.coinfans.cc/post/js20220304/">Markdown 语法教程
 </a>
       </li><li>
@@ -305,9 +404,9 @@
         </h2>
       </div>
       <div class="card-body">
-        <div class="py-2"><a href="https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
-            工作笔记</a><a href="https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge rounded post-taxonomy" title="技术摘录">
-            技术摘录</a><a href="https://blog.coinfans.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge rounded post-taxonomy" title="日常随写">
+        <div class="py-2"><a href="https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge rounded post-taxonomy" title="技术摘录">
+            技术摘录</a><a href="https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
+            工作笔记</a><a href="https://blog.coinfans.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge rounded post-taxonomy" title="日常随写">
             日常随写</a></div>
       </div>
     </section><section class="tags-taxonomies row card component">
@@ -317,16 +416,17 @@
         </h2>
       </div>
       <div class="card-body">
-        <div class="py-2"><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
-            备忘</a><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
+        <div class="py-2"><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
             github</a><a href="https://blog.coinfans.cc/tags/hugo/" class="badge rounded post-taxonomy" title="hugo">
-            hugo</a><a href="https://blog.coinfans.cc/tags/markdown/" class="badge rounded post-taxonomy" title="markdown">
-            markdown</a><a href="https://blog.coinfans.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/" class="badge rounded post-taxonomy" title="优励恩">
-            优励恩</a><a href="https://blog.coinfans.cc/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/" class="badge rounded post-taxonomy" title="在线网站">
-            在线网站</a><a href="https://blog.coinfans.cc/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" class="badge rounded post-taxonomy" title="实用网站">
-            实用网站</a><a href="https://blog.coinfans.cc/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
-            工作笔记</a><a href="https://blog.coinfans.cc/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" class="badge rounded post-taxonomy" title="打印机">
-            打印机</a></div>
+            hugo</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://blog.coinfans.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            ESXi</a><a href="https://blog.coinfans.cc/tags/markdown/" class="badge rounded post-taxonomy" title="markdown">
+            markdown</a><a href="https://blog.coinfans.cc/tags/vcenter/" class="badge rounded post-taxonomy" title="Vcenter">
+            Vcenter</a><a href="https://blog.coinfans.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
+            VMware</a><a href="https://blog.coinfans.cc/tags/win11/" class="badge rounded post-taxonomy" title="win11">
+            win11</a><a href="https://blog.coinfans.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            windows11</a><a href="https://blog.coinfans.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/" class="badge rounded post-taxonomy" title="优励恩">
+            优励恩</a></div>
       </div>
     </section>
     

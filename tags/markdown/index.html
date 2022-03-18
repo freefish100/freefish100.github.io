@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="markdown"/>
 <meta name="twitter:description" content="电脑技术"/>
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/>
-  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="alternate" type="application/rss+xml" href="https://blog.coinfans.cc/tags/markdown/index.xml" title="自游鱼" /><link rel="stylesheet" href="https://blog.coinfans.cc/css/main.min.507afbe6e4670fa3e961a0b35816b5daeb36029866fd6bd7b9d7871fcf88faa5.css" integrity="sha256-UHr75uRnD6PpYaCzWBa12us2Aphm/WvXudeHH8&#43;I&#43;qU=" crossorigin="anonymous"><link rel="stylesheet" href="https://blog.coinfans.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="alternate" type="application/rss+xml" href="https://blog.coinfans.cc/tags/markdown/index.xml" title="自游鱼" /><link rel="stylesheet" href="https://blog.coinfans.cc/css/main.min.0166e20cf9a8c749090476957db05bfd1fd8ffd875197c285f090f4eff6a912c.css" integrity="sha256-AWbiDPmox0kJBHaVfbBb/R/Y/9h1GXwoXwkPTv9qkSw=" crossorigin="anonymous"><link rel="stylesheet" href="https://blog.coinfans.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
   <body><script>const items=['mode','palette'];items.forEach(function(a){const b=localStorage.getItem('hbs-'+a);b&&document.body.parentElement.setAttribute('data-'+a,b)})</script><header><nav class="navbar top-app-bar top-app-bar-expand-lg fixed-top">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -71,6 +71,17 @@
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" id="modeSwitcher">
       </div>
+    </div>
+  </form>
+</section>
+
+<section class="setting">
+  <form class="font-size-switcher-form row">
+    <div class="col-auto">
+      <label for="fontSize" class="form-label"><i class="fas fa-fw fa-font"></i> 字体大小</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <input type="range" class="form-range" min="-2" max="2" id="fontSize">
     </div>
   </form>
 </section>
@@ -194,6 +205,15 @@ Markdown 段落 要创建段落，请使...</p><div><a class="btn btn-sm btn-pri
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://blog.coinfans.cc/post/js20220318b/">Windows11 Win11操作配置技巧
+</a>
+      </li><li>
+        <a href="https://blog.coinfans.cc/post/js20220318/">更改 ESXi Server 管理 IP 地址
+</a>
+      </li><li>
+        <a href="https://blog.coinfans.cc/post/js20220317/">部署hugo网站到github
+</a>
+      </li><li>
         <a href="https://blog.coinfans.cc/post/js20220304/">Markdown 语法教程
 </a>
       </li><li>
@@ -220,9 +240,9 @@ Markdown 段落 要创建段落，请使...</p><div><a class="btn btn-sm btn-pri
         </h2>
       </div>
       <div class="card-body">
-        <div class="py-2"><a href="https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
-            工作笔记</a><a href="https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge rounded post-taxonomy" title="技术摘录">
-            技术摘录</a><a href="https://blog.coinfans.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge rounded post-taxonomy" title="日常随写">
+        <div class="py-2"><a href="https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge rounded post-taxonomy" title="技术摘录">
+            技术摘录</a><a href="https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
+            工作笔记</a><a href="https://blog.coinfans.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge rounded post-taxonomy" title="日常随写">
             日常随写</a></div>
       </div>
     </section><section class="tags-taxonomies row card component">
@@ -232,16 +252,17 @@ Markdown 段落 要创建段落，请使...</p><div><a class="btn btn-sm btn-pri
         </h2>
       </div>
       <div class="card-body">
-        <div class="py-2"><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
-            备忘</a><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
+        <div class="py-2"><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
             github</a><a href="https://blog.coinfans.cc/tags/hugo/" class="badge rounded post-taxonomy" title="hugo">
-            hugo</a><a href="https://blog.coinfans.cc/tags/markdown/" class="badge rounded post-taxonomy" title="markdown">
-            markdown</a><a href="https://blog.coinfans.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/" class="badge rounded post-taxonomy" title="优励恩">
-            优励恩</a><a href="https://blog.coinfans.cc/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/" class="badge rounded post-taxonomy" title="在线网站">
-            在线网站</a><a href="https://blog.coinfans.cc/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" class="badge rounded post-taxonomy" title="实用网站">
-            实用网站</a><a href="https://blog.coinfans.cc/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
-            工作笔记</a><a href="https://blog.coinfans.cc/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" class="badge rounded post-taxonomy" title="打印机">
-            打印机</a></div>
+            hugo</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://blog.coinfans.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            ESXi</a><a href="https://blog.coinfans.cc/tags/markdown/" class="badge rounded post-taxonomy" title="markdown">
+            markdown</a><a href="https://blog.coinfans.cc/tags/vcenter/" class="badge rounded post-taxonomy" title="Vcenter">
+            Vcenter</a><a href="https://blog.coinfans.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
+            VMware</a><a href="https://blog.coinfans.cc/tags/win11/" class="badge rounded post-taxonomy" title="win11">
+            win11</a><a href="https://blog.coinfans.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            windows11</a><a href="https://blog.coinfans.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/" class="badge rounded post-taxonomy" title="优励恩">
+            优励恩</a></div>
       </div>
     </section>
     
