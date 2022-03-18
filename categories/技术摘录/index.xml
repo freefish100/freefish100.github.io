@@ -27,8 +27,7 @@
       <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/post/js20220318/</guid>
-      <description>文章来源：https://kb.vmware.com/s/article/2084629?lang=zh_CN
-更改 ESXi Server 管理 IP 地址 在更改 ESXi Server 管理 IP 地址之前，请确保：
+      <description>更改 ESXi Server 管理 IP 地址 在更改 ESXi Server 管理 IP 地址之前，请确保：
  新的 IP 地址和所需网络设置就绪。 已在群集中禁用高可用性 (HA)，以防止故障切换事件。有关详细信息，请参见 Disabling VMware High Availability (HA) (1008025)。 如果锁定模式启用，则禁用该模式。更多信息，请参见Enabling or disabling Lockdown mode on an ESXi host ESXi 主机处于维护模式，因为该主机在更改 IP 地址期间可能会断开连接。  要更改 ESXi Server 管理 IP 地址，请执行以下操作：
  更改 ESXi Server 管理 IP 地址：
 使用 DCUI 更改 ESXi Server 管理 IP 地址：  登录到 ESXi 的直接控制台用户界面。 选择“配置管理网络”，并按 Enter 键 从“配置管理网络选项”菜单中，选择“IPv4 配置”或“IPv6 配置”，并按 Enter 键 设置新的 IPv4 或 IPv6 配置，然后按 Enter 键 按 Esc 键退出 DCUI 时会弹出警示“配置管理网络: 确认” 按 Y 以应用更改并重新启动管理网络。</description>
@@ -76,9 +75,7 @@ git branch -M main
       <pubDate>Fri, 04 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/post/js20220304/</guid>
-      <description>Markdown官方教程
-https://markdown.com.cn/
-Markdown 基本语法 Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。 它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。 因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。
+      <description>Markdown 基本语法 Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。 它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。 因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。
 Markdown 标题语法 要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题 () (例如：### My Header)。
 Markdown 段落 要创建段落，请使用空白行将一行或多行文本进行分隔。不要用空格（spaces）或制表符（ tabs）缩进段落。
 Markdown 换行语法 在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(&amp;lt;br&amp;gt;)。 几乎每个 Markdown 应用程序都支持两个或多个空格进行换行，称为 结尾空格（trailing whitespace) 的方式，但这是有争议的，因为很难在编辑器中直接看到空格，并且很多人在每个句子后面都会有意或无意地添加两个空格。由于这个原因，你可能要使用除结尾空格以外的其它方式来换行。幸运的是，几乎每个 Markdown 应用程序都支持另一种换行方式：HTML 的 标签。 为了兼容性，请在行尾添加“结尾空格”或 HTML 的 &amp;lt;br&amp;gt; 标签来实现换行。
@@ -94,31 +91,6 @@ Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 
 输出效果：
  正在学习Markdown的引用语法。
  多个段落的块引用：块引用可以包含多个段落。为段落之间的空白行添加一个 &amp;gt; 符号</description>
-    </item>
-    
-    <item>
-      <title>部署hugo网站到github</title>
-      <link>https://blog.coinfans.cc/post/js20220222/</link>
-      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.coinfans.cc/post/js20220222/</guid>
-      <description>【2022年2月22日】部署hugo网站到github
-使用Git Bash终端
-第一次开始部署：
-新建一个网站
-hugo new site ffblog 其中 &amp;ldquo;ffblog&amp;rdquo; 是网站文件夹名
-把主题文件放入themes文件夹内
-cd ~/ffblog 进入网站文件夹根目录
-echo theme = &amp;quot;bootstrap&amp;quot; &amp;raquo; config.toml 将主题添加到站点配置，“bootstrap”是主题(文件)名称
-hugo new post/my-first-post.md 新建一篇文章
-hugo server -D 启动 Hugo server，运行本地网站
-cd ~/ffblog 进入网站根目录
-hugo 构建Hugo 网站，默认将生成的静态站点文件保存到 &amp;ldquo;public&amp;rdquo; 目录
-cd ~/ffblog/public 进入public目录，&amp;ldquo;public&amp;rdquo; 文件夹会被转换为 Git 库
-git init 初始化 Git 库
-ls -a 显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件
-git branch -M main 新建一个主分支main
-git remote add origin https://github.com/freefish100/freefish100.github.io.git 将 Git 本地库关联至远程库，如果 [remote &amp;ldquo;origin&amp;rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。</description>
     </item>
     
   </channel>

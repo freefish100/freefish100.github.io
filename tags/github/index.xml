@@ -44,30 +44,5 @@ git branch -M main
 ☞将 Git 本地库关联至远程库，如果 [remote &amp;ldquo;origin&amp;rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库</description>
     </item>
     
-    <item>
-      <title>部署hugo网站到github</title>
-      <link>https://blog.coinfans.cc/post/js20220222/</link>
-      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.coinfans.cc/post/js20220222/</guid>
-      <description>【2022年2月22日】部署hugo网站到github
-使用Git Bash终端
-第一次开始部署：
-新建一个网站
-hugo new site ffblog 其中 &amp;ldquo;ffblog&amp;rdquo; 是网站文件夹名
-把主题文件放入themes文件夹内
-cd ~/ffblog 进入网站文件夹根目录
-echo theme = &amp;quot;bootstrap&amp;quot; &amp;raquo; config.toml 将主题添加到站点配置，“bootstrap”是主题(文件)名称
-hugo new post/my-first-post.md 新建一篇文章
-hugo server -D 启动 Hugo server，运行本地网站
-cd ~/ffblog 进入网站根目录
-hugo 构建Hugo 网站，默认将生成的静态站点文件保存到 &amp;ldquo;public&amp;rdquo; 目录
-cd ~/ffblog/public 进入public目录，&amp;ldquo;public&amp;rdquo; 文件夹会被转换为 Git 库
-git init 初始化 Git 库
-ls -a 显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件
-git branch -M main 新建一个主分支main
-git remote add origin https://github.com/freefish100/freefish100.github.io.git 将 Git 本地库关联至远程库，如果 [remote &amp;ldquo;origin&amp;rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库。</description>
-    </item>
-    
   </channel>
 </rss>

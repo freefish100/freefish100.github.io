@@ -12,7 +12,7 @@
 <meta name="description" content="部署hugo网站到github" /><meta itemprop="name" content="部署hugo网站到github">
 <meta itemprop="description" content="部署hugo网站到github"><meta itemprop="datePublished" content="2022-03-17T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-17T00:00:00+00:00" />
-<meta itemprop="wordCount" content="275">
+<meta itemprop="wordCount" content="280">
 <meta itemprop="keywords" content="hugo,github," /><meta property="og:title" content="部署hugo网站到github" />
 <meta property="og:description" content="部署hugo网站到github" />
 <meta property="og:type" content="article" />
@@ -265,7 +265,8 @@
 fatal: unable to access &lsquo;<a href="https://github.com/%28github" target="_blank" rel="noopener noreferrer">https://github.com/(github</a>的ID号)/(github的ID号).github.iot/': OpenSSL SSL_read: Connection was reset, errno 10054<br>
 错误原因可能是网络不稳定，连接超时造成的，如果你试了多次还是报这个错误，建议你执行下面的命令：<br>
 git config &ndash;global http.sslVerify &ldquo;false&rdquo;<br>
-这个命令用来修改设置，解除 SSL 验证。</p>
+这个命令用来修改设置，解除 SSL 验证。解除SSL时VPN软件建议使用全局代理。然后VPN断开，使用非全局再连接，然后再push。总之就是全局和非全局重复切换，多试几次。<br>
+git push -u origin main</p>
 <p>如果遇到类似Failed to connect to github.com port 443 after 21049 ms: Timed out的报错信息 <br>
 fatal: unable to access &lsquo;<a href="https://github.com/%28github" target="_blank" rel="noopener noreferrer">https://github.com/(github</a>的ID号)/(github的ID号).github.io.git/': Failed to connect to github.com port 443 after 21049 ms: Timed out<br>
 错误原因可能是网络不稳定，连接超时造成的，可以VPN软件不开全局代理，重复执行push多几次<br>
@@ -286,19 +287,7 @@ git push -u origin main</p>
 </a>
     <i class="fas fa-fw fa-chevron-right"></i>
   </div></div></div>
-</article><section class="related-posts row card component">
-    <div class="card-header">
-      <h2 class="card-title">相关文章</h2>
-    </div>
-    <div class="card-body">
-      <ul class="post-list"><li>
-          <a href="https://blog.coinfans.cc/post/js20220222/">部署hugo网站到github
-</a>
-          <span class="float-end post-date">2022-02-22
-</span>
-        </li></ul>
-    </div>
-  </section><div class="card component row post-comments" id="post-comments">
+</article><div class="card component row post-comments" id="post-comments">
   <div class="card-header">
     <h2 class="card-title">评论</h2>
   </div>
@@ -347,9 +336,6 @@ git push -u origin main</p>
         <a href="https://blog.coinfans.cc/post/work20220222/">优励恩的兄弟MFC-8535DN打印机更换硒鼓
 </a>
       </li><li>
-        <a href="https://blog.coinfans.cc/post/js20220222/">部署hugo网站到github
-</a>
-      </li><li>
         <a href="https://blog.coinfans.cc/post/my-first-post/">博客基本搭建起来了
 </a>
       </li></ul>
@@ -373,11 +359,11 @@ git push -u origin main</p>
         </h2>
       </div>
       <div class="card-body">
-        <div class="py-2"><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
-            github</a><a href="https://blog.coinfans.cc/tags/hugo/" class="badge rounded post-taxonomy" title="hugo">
-            hugo</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+        <div class="py-2"><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
             备忘</a><a href="https://blog.coinfans.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
-            ESXi</a><a href="https://blog.coinfans.cc/tags/markdown/" class="badge rounded post-taxonomy" title="markdown">
+            ESXi</a><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
+            github</a><a href="https://blog.coinfans.cc/tags/hugo/" class="badge rounded post-taxonomy" title="hugo">
+            hugo</a><a href="https://blog.coinfans.cc/tags/markdown/" class="badge rounded post-taxonomy" title="markdown">
             markdown</a><a href="https://blog.coinfans.cc/tags/vcenter/" class="badge rounded post-taxonomy" title="Vcenter">
             Vcenter</a><a href="https://blog.coinfans.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
             VMware</a><a href="https://blog.coinfans.cc/tags/win11/" class="badge rounded post-taxonomy" title="win11">
