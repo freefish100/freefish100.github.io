@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>centos on 自游鱼</title>
+    <link>https://blog.coinfans.cc/tags/centos/</link>
+    <description>Recent content in centos on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
+    <lastBuildDate>Fri, 01 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux CentOS 命令摘录备忘</title>
+      <link>https://blog.coinfans.cc/post/js20220401/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220401/</guid>
+      <description>可用 pwd命令查看用户的当前目录
+压缩、解压
+tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）
+tar -xvf file.tar 解包到当前目录
+tar -xvf file.tar -C dir 把文件解压到指定目录中
+zip 压缩后文件名 源文件
+zip -r 压缩后目录名 原目录
+unzip file.zip -d dir 解压到指定目录
+gunzip file1.gz 解压 file1.gz
+gzip file1 压缩 file1
+gzip -9 file 最大程度压缩文件
+文件、目录、文件夹和文件大小 rm -f file 强制删除文件，不提示
+rm [文件名] 删除文件
+rm -r dir 递归删除其文件和文件夹
+rm -rf dir 强制删除文件夹及其内容，不提示
+mv dir/file dir 将文件或者文件夹移动到指定目录
+mv -t dir file 将文件或者文件夹移动到指定目录
+mkdir dir dir2 创建两个文件夹</description>
+    </item>
+    
+  </channel>
+</rss>

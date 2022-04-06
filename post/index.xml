@@ -7,7 +7,65 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 18 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别</title>
+      <link>https://blog.coinfans.cc/post/js20220402/</link>
+      <pubDate>Sat, 02 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220402/</guid>
+      <description>10Gb iSCSI 光纤与 8Gb/16Gb 的光纤两者有什么区别呢？我们可以把 10Gb iSCSI 光纤视为10Gb 的光纤以太网卡，将 8Gb/16Gb 光纤视为光纤 HBA 卡，这样去对比两者的区别就容易得多了，首先两者使用的 SFP（Small form Factor Pluggable）模块不可以通用，也就是说存储产品中的 8Gb/16GB SFP 模块与 10Gb的SFP 模块不能混用。
+在早期的 SAN（存储区域网络）存储系统中，服务器与交换机的数据传输是通过光纤进行的，因为服务器是把 SCSI（Small Computer System Interface小型计算机系统接口）指令传输到存储设备上，不能走普通以太网的 TCP/IP 协议，所以需要使用 FC 传输，因此这种 SAN 就叫 FC-SAN，而后期出现了用 IP 协议封装的 SAN，可以完全走普通 LAN 网络，因此叫做 IP-SAN，其中最典型的就是现在热门的 ISCSI。
+这两种方式都需要对数据块进行繁重的读包解包操作，因此高性能的 SAN 系统是需要在服务器上安装一块专门负责解包工作以减轻处理器负担的卡，这种卡就叫 HBA 卡（Host Bus Adapter，即主机总线适配器），它除了执行解包工作外当然还可以提供一个光纤接口（如果是 iSCSI HBA 卡就是提供普通的 RJ45 接口）以用于跟对应的交换机连接；另外，HBA 卡物理上也可以把它当作网卡一样插在服务器的 PCI-E 插槽上，因此这种设备的用法非常像一块网卡，很多人也就把它跟普通网卡或普通的光纤网卡混淆了。当然，有的 iSCSI HBA 卡就可以当作普通网卡来用，不过从价格上考虑这是非常奢侈，以至于我们很少见到 ISCSI HBA 卡，通常客户都是使用 iSCSI_Initiator 软件加服务器板载网卡进行搭配使用。
+HBA 的常规定义就是连接主机 I/O 总线和计算机内存系统的 I/O 适配器。按照这个定义，像显卡就是连接视频总线和内存，网卡就是连接网络总线和内存，SCSI 或者 FC 卡就是连接 SCSI 或者 FC 总线和内存的，它们都是 HBA。HBA 卡有 FC HBA、SAS HBA、iSCSI HBA 将来还有其他 HBA 卡。</description>
+    </item>
+    
+    <item>
+      <title>Linux CentOS 命令摘录备忘</title>
+      <link>https://blog.coinfans.cc/post/js20220401/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220401/</guid>
+      <description>可用 pwd命令查看用户的当前目录
+压缩、解压
+tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）
+tar -xvf file.tar 解包到当前目录
+tar -xvf file.tar -C dir 把文件解压到指定目录中
+zip 压缩后文件名 源文件
+zip -r 压缩后目录名 原目录
+unzip file.zip -d dir 解压到指定目录
+gunzip file1.gz 解压 file1.gz
+gzip file1 压缩 file1
+gzip -9 file 最大程度压缩文件
+文件、目录、文件夹和文件大小 rm -f file 强制删除文件，不提示
+rm [文件名] 删除文件
+rm -r dir 递归删除其文件和文件夹
+rm -rf dir 强制删除文件夹及其内容，不提示
+mv dir/file dir 将文件或者文件夹移动到指定目录
+mv -t dir file 将文件或者文件夹移动到指定目录
+mkdir dir dir2 创建两个文件夹</description>
+    </item>
+    
+    <item>
+      <title>Linux Ubuntu 命令摘录备忘</title>
+      <link>https://blog.coinfans.cc/post/js20220401b/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220401b/</guid>
+      <description>可用 pwd命令查看用户的当前目录
+  Ubuntu 20.04上配置静态IP地址
+Ubuntu 17.10及更高版本使用Netplan作为默认网络管理工具。 先前的Ubuntu版本使用ifconfig及其配置文件/etc/network/interfaces来配置网络。 Netplan配置文件使用YAML语法编写，文件扩展名为.yaml。 要使用Netplan配置网络接口，您需要为该接口创建YAML描述，然后Netplan会使用所选的渲染器工具生成所需的配置文件。 Netplan支持两个渲染器：NetworkManager和Systemd-networked。NetworkManager主要在台式机上使用，而Systemd-networked在没有GUI的服务器上使用。 在Ubuntu 20.04上，系统使用“predictable network interface names(可预测的网络接口名称)”标识网络接口。设置静态IP地址的第一步是识别要配置的以太网接口的名称。 为此，请使用 ip link 命令， 该命令将打印所有可用网络接口的列表。
+  Netplan配置文件存储在/etc/netplan目录中。 您可能会在此目录中找到一个或多个YAML文件。 文件的名称可能因安装程序而异。 通常，文件名为01-netcfg.yaml，50-cloud-init.yaml或NN_interfaceName.yaml，但在您的系统中可能有所不同。 如果您的Ubuntu云实例配置有cloud-init，则需要将其禁用。 为此，请创建以下文件：
+network: {config: disabled}
+sudo vim /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+要在网络接口上分配静态IP地址，请使用文本编辑器，打开YAML配置文件：
+cd /etc/netplan
+ls 列出YAML配置文件，比如01-netcfg.yaml
+sudo vi 01-netcfg.yaml 进入YAML配置文件，进行修改
+network: version: 2 renderer: networkd ethernets: ens3: dhcp4: yes 在更改配置之前，简要说明一下代码。每个Netplan Yaml文件都以network键开头，该键至少包含两个必需元素。 第一个必需元素是网络配置格式的版本version，第二个是设备类型。 设备类型可以是ethernets，bonds，bridges或vlans。 上面的配置还有一行renderer类型的行。 如果您以服务器模式安装Ubuntu，则开箱即用，networkd作为renderer渲染器的后端。
+network: ethernets: ens160: addresses: [192.168.1.45/24] dhcp4: no optional: true gateway4: 192.</description>
+    </item>
+    
     <item>
       <title>Windows11 Win11操作配置技巧</title>
       <link>https://blog.coinfans.cc/post/js20220318b/</link>

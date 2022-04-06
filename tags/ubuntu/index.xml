@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu  on 自游鱼</title>
+    <link>https://blog.coinfans.cc/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu  on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
+    <lastBuildDate>Fri, 01 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Ubuntu 命令摘录备忘</title>
+      <link>https://blog.coinfans.cc/post/js20220401b/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220401b/</guid>
+      <description>可用 pwd命令查看用户的当前目录
+  Ubuntu 20.04上配置静态IP地址
+Ubuntu 17.10及更高版本使用Netplan作为默认网络管理工具。 先前的Ubuntu版本使用ifconfig及其配置文件/etc/network/interfaces来配置网络。 Netplan配置文件使用YAML语法编写，文件扩展名为.yaml。 要使用Netplan配置网络接口，您需要为该接口创建YAML描述，然后Netplan会使用所选的渲染器工具生成所需的配置文件。 Netplan支持两个渲染器：NetworkManager和Systemd-networked。NetworkManager主要在台式机上使用，而Systemd-networked在没有GUI的服务器上使用。 在Ubuntu 20.04上，系统使用“predictable network interface names(可预测的网络接口名称)”标识网络接口。设置静态IP地址的第一步是识别要配置的以太网接口的名称。 为此，请使用 ip link 命令， 该命令将打印所有可用网络接口的列表。
+  Netplan配置文件存储在/etc/netplan目录中。 您可能会在此目录中找到一个或多个YAML文件。 文件的名称可能因安装程序而异。 通常，文件名为01-netcfg.yaml，50-cloud-init.yaml或NN_interfaceName.yaml，但在您的系统中可能有所不同。 如果您的Ubuntu云实例配置有cloud-init，则需要将其禁用。 为此，请创建以下文件：
+network: {config: disabled}
+sudo vim /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+要在网络接口上分配静态IP地址，请使用文本编辑器，打开YAML配置文件：
+cd /etc/netplan
+ls 列出YAML配置文件，比如01-netcfg.yaml
+sudo vi 01-netcfg.yaml 进入YAML配置文件，进行修改
+network: version: 2 renderer: networkd ethernets: ens3: dhcp4: yes 在更改配置之前，简要说明一下代码。每个Netplan Yaml文件都以network键开头，该键至少包含两个必需元素。 第一个必需元素是网络配置格式的版本version，第二个是设备类型。 设备类型可以是ethernets，bonds，bridges或vlans。 上面的配置还有一行renderer类型的行。 如果您以服务器模式安装Ubuntu，则开箱即用，networkd作为renderer渲染器的后端。
+network: ethernets: ens160: addresses: [192.168.1.45/24] dhcp4: no optional: true gateway4: 192.</description>
+    </item>
+    
+  </channel>
+</rss>
