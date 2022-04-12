@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决Ubuntu的Vi方向键出现乱码</title>
+      <link>https://blog.coinfans.cc/post/js20220412/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220412/</guid>
+      <description>新装的系统，只装了vi未装vim，在使用vi时方向键出现问题都是字母，如下可解决：
+cp /etc/vim/vimrc ~/.vimrc
+或者：
+sudo apt-get install vim
+重启终端即可。
+来源 https://blog.csdn.net/qq_34975710/article/details/104423974</description>
+    </item>
+    
     <item>
       <title>ESXI 虚拟交换机配置 Trunk 端口组 VLan</title>
       <link>https://blog.coinfans.cc/post/js20220411/</link>
@@ -32,6 +46,10 @@ Linux Window10 VNC远程访问ubuntu20.04
 https://www.cxyzjd.com/article/qq_33343767/112431846
 Ubuntu20.04防火墙设置简易教程
 https://cloud.tencent.com/developer/article/1711744
+deepin-wine GitHub主页
+https://github.com/zq1997/deepin-wine
+deepin-wine支持软件列表
+https://deepin-wine.i-m.dev/
 Markdown 语法官方教程
 https://markdown.com.cn/
 Windows </description>

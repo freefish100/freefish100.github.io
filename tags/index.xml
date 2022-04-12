@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://blog.coinfans.cc/tags/linux/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu </title>
+      <link>https://blog.coinfans.cc/tags/ubuntu/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>ESXi</title>
       <link>https://blog.coinfans.cc/tags/esxi/</link>
@@ -68,24 +86,6 @@
       <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/tags/centos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://blog.coinfans.cc/tags/linux/</link>
-      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.coinfans.cc/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu </title>
-      <link>https://blog.coinfans.cc/tags/ubuntu/</link>
-      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.coinfans.cc/tags/ubuntu/</guid>
       <description></description>
     </item>
     

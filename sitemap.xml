@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.coinfans.cc/categories/</loc>
-    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/tags/linux/</loc>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/post/</loc>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/tags/</loc>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/tags/ubuntu/</loc>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</loc>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/</loc>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/post/js20220412/</loc>
+    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/tags/esxi/</loc>
     <lastmod>2022-04-11T00:00:00+00:00</lastmod>
@@ -11,16 +32,7 @@
     <loc>https://blog.coinfans.cc/post/js20220411/</loc>
     <lastmod>2022-04-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.coinfans.cc/post/</loc>
-    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.coinfans.cc/tags/</loc>
-    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.coinfans.cc/tags/vmware/</loc>
-    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</loc>
     <lastmod>2022-04-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/post/rc20220411/</loc>
@@ -35,9 +47,6 @@
     <loc>https://blog.coinfans.cc/tags/%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5/</loc>
     <lastmod>2022-04-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.coinfans.cc/</loc>
-    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.coinfans.cc/tags/hba%E5%8D%A1/</loc>
     <lastmod>2022-04-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -50,16 +59,10 @@
     <loc>https://blog.coinfans.cc/tags/centos/</loc>
     <lastmod>2022-04-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.coinfans.cc/tags/linux/</loc>
-    <lastmod>2022-04-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.coinfans.cc/post/js20220401/</loc>
     <lastmod>2022-04-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/post/js20220401b/</loc>
-    <lastmod>2022-04-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.coinfans.cc/tags/ubuntu/</loc>
     <lastmod>2022-04-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/tags/vcenter/</loc>
