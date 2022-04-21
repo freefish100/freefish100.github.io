@@ -23,14 +23,20 @@ deepin-wine GitHub主页
 https://github.com/zq1997/deepin-wine
 deepin-wine支持软件列表
 https://deepin-wine.i-m.dev/
+ubuntu20.04使用wine安装微信卸载微信 https://blog.csdn.net/qq_25272679/article/details/113633441
 Ubuntu20.04使用阿里云源安装Docker
 https://www.jianshu.com/p/da1c7dc4217a
 ubuntu使用docker安装微信
-https://segmentfault.com/a/1190000040674722 https://ugirc.blog.csdn.net/article/details/109487664
+https://segmentfault.com/a/1190000040674722
+https://ugirc.blog.csdn.net/article/details/109487664
 ubuntu执行.sh文件几种方式区别
 https://blog.csdn.net/u012336923/article/details/50474692
-centos7安装时加载RAID磁盘阵列卡驱动 https://www.linuxprobe.com/centos7-raid-install.html https://blog.csdn.net/u014389734/article/details/94005885 https://blog.csdn.net/weixin_33910305/article/details/116850746
-Windows </description>
+centos7安装时加载RAID磁盘阵列卡驱动
+https://www.linuxprobe.com/centos7-raid-install.html
+https://blog.csdn.net/u014389734/article/details/94005885
+https://blog.csdn.net/weixin_33910305/article/details/116850746
+Windows SQLServer2019+WSFC高可用部署
+https://blog.csdn.net/shy871/article/details/117041269</description>
     </item>
     
   </channel>

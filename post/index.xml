@@ -69,14 +69,20 @@ deepin-wine GitHub主页
 https://github.com/zq1997/deepin-wine
 deepin-wine支持软件列表
 https://deepin-wine.i-m.dev/
+ubuntu20.04使用wine安装微信卸载微信 https://blog.csdn.net/qq_25272679/article/details/113633441
 Ubuntu20.04使用阿里云源安装Docker
 https://www.jianshu.com/p/da1c7dc4217a
 ubuntu使用docker安装微信
-https://segmentfault.com/a/1190000040674722 https://ugirc.blog.csdn.net/article/details/109487664
+https://segmentfault.com/a/1190000040674722
+https://ugirc.blog.csdn.net/article/details/109487664
 ubuntu执行.sh文件几种方式区别
 https://blog.csdn.net/u012336923/article/details/50474692
-centos7安装时加载RAID磁盘阵列卡驱动 https://www.linuxprobe.com/centos7-raid-install.html https://blog.csdn.net/u014389734/article/details/94005885 https://blog.csdn.net/weixin_33910305/article/details/116850746
-Windows </description>
+centos7安装时加载RAID磁盘阵列卡驱动
+https://www.linuxprobe.com/centos7-raid-install.html
+https://blog.csdn.net/u014389734/article/details/94005885
+https://blog.csdn.net/weixin_33910305/article/details/116850746
+Windows SQLServer2019+WSFC高可用部署
+https://blog.csdn.net/shy871/article/details/117041269</description>
     </item>
     
     <item>
@@ -240,15 +246,20 @@ https://almalinux.org/zh-hans/</description>
       <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/post/rc20220223/</guid>
-      <description>【2022年4月7日】
-微软Windows密钥管理服务 (KMS) 客户端激活和通用批量许可证密钥 (GVLK)，Windows全系列。安装产品密钥命令 &amp;quot; slmgr /ipk 密钥 &amp;ldquo;， 如 slmgr /ipk D2N9P-3P6X9-2R39C-7RTCD-MDVJX
+      <description>【2022年4月20日】
+  Windows/Office 各版本镜像下载
+https://msdn.itellyou.cn/
+http://www.imsdn.cn/
+https://hellowindows.cn/
+  微软Windows密钥管理服务 (KMS) 客户端激活和通用批量许可证密钥 (GVLK)，Windows全系列。安装产品密钥命令 &amp;quot; slmgr /ipk 密钥 &amp;ldquo;， 如 slmgr /ipk D2N9P-3P6X9-2R39C-7RTCD-MDVJX
 https://docs.microsoft.com/zh-cn/windows-server/get-started/kms-client-activation-keys
-在线文件转换器Convertio。Convertio是一个在线文件格式转换工具网站，可以转换的类型有：文档、图像、音频、视频、电子书、字体等等。
+  在线文件转换器Convertio。Convertio是一个在线文件格式转换工具网站，可以转换的类型有：文档、图像、音频、视频、电子书、字体等等。
 https://convertio.co/zh/
-MuseTransfer是一款极简有趣的大文件传输工具，无需下载客户端，甚至无需注册，打开网页即可全速上传或下载超大文件。
+  MuseTransfer是一款极简有趣的大文件传输工具，无需下载客户端，甚至无需注册，打开网页即可全速上传或下载超大文件。
 https://musetransfer.com/
-Markdown 语法官方教程
-https://markdown.com.cn/</description>
+  Markdown 语法官方教程
+https://markdown.com.cn/
+  </description>
     </item>
     
     <item>
