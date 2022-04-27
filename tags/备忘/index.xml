@@ -38,11 +38,12 @@ Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/post/work20220302/</guid>
-      <description>【2022年3月4日更新】
-可以替代Centos的发行版本推荐： 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
+      <description>【2022年4月21日更新】
+可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
-https://almalinux.org/zh-hans/</description>
+https://almalinux.org/zh-hans/
+戴尔DELL设备相关  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。 DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。 DELL 14G INTEL平台服务器BIOS设置详解 Precision 3650 塔式机规格参数 在RAID控制器10中分配/取消分配设置热备盘  </description>
     </item>
     
   </channel>
