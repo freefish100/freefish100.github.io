@@ -7,7 +7,36 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 12 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>穿梭云应用服务启动服务的步骤和命令</title>
+      <link>https://blog.coinfans.cc/post/work20220505/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/work20220505/</guid>
+      <description>SSH端口12233，cs
+重启项目步骤：
+ 进入data目录：
+cd /data 订单系统，启动命令：  nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;amp; 服务器重启后的步骤：
+如果遇到SSH连接不上，需登录网页后台，打开命令页面，手动启动网卡：
+systemctl start NetworkManager
+可设置下次网卡自动启动：
+systemctl enable NetworkManager
+查看防火墙状态，需关闭防火墙
+systemctl status firewalld
+关闭防火墙
+systemctl stop firewalld
+ 第一步数据库 启动mysql数据库，命令：
+service mysqld start
+查看数据库启动状态，正常应该有active(runnign)字样
+service mysqld status
+启动mongodb数据库，命令：
+cd /usr/local/mongo/service/bin
+./mongod -f mongo.conf 第二步，启动nginx和redis Nginx启动命令：
+/usr/sbin/nginx -s reload
+（或者systemctl start nginx.service 或者 systemctl start nginx）</description>
+    </item>
+    
     <item>
       <title>解决Ubuntu的Vi方向键出现乱码</title>
       <link>https://blog.coinfans.cc/post/js20220412/</link>
@@ -28,8 +57,8 @@ sudo apt-get install vim
       <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/post/js20220401/</guid>
-      <description>可用 pwd命令查看用户的当前目录
-压缩、解压
+      <description>可用 pwd 命令查看用户的当前目录
+** sudo -i 命令可切换成root用户 压缩、解压
 tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）
 tar -xvf file.tar 解包到当前目录
 tar -xvf file.tar -C dir 把文件解压到指定目录中
@@ -39,13 +68,12 @@ unzip file.zip -d dir 解压到指定目录
 gunzip file1.gz 解压 file1.gz
 gzip file1 压缩 file1
 gzip -9 file 最大程度压缩文件
-文件、目录、文件夹和文件大小 rm -f file 强制删除文件，不提示
+文件、目录、文件夹和文件大小
+rm -f file 强制删除文件，不提示
 rm [文件名] 删除文件
 rm -r dir 递归删除其文件和文件夹
-rm -rf dir 强制删除文件夹及其内容，不提示
-mv dir/file dir 将文件或者文件夹移动到指定目录
-mv -t dir file 将文件或者文件夹移动到指定目录
-mkdir dir dir2 创建两个文件夹</description>
+rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示
+mv dir/file dir 将文件或者文件夹移动到指定目录</description>
     </item>
     
     <item>

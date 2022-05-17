@@ -81,8 +81,8 @@ HBA 的常规定义就是连接主机 I/O 总线和计算机内存系统的 I/O 
       <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/post/js20220401/</guid>
-      <description>可用 pwd命令查看用户的当前目录
-压缩、解压
+      <description>可用 pwd 命令查看用户的当前目录
+** sudo -i 命令可切换成root用户 压缩、解压
 tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）
 tar -xvf file.tar 解包到当前目录
 tar -xvf file.tar -C dir 把文件解压到指定目录中
@@ -92,13 +92,12 @@ unzip file.zip -d dir 解压到指定目录
 gunzip file1.gz 解压 file1.gz
 gzip file1 压缩 file1
 gzip -9 file 最大程度压缩文件
-文件、目录、文件夹和文件大小 rm -f file 强制删除文件，不提示
+文件、目录、文件夹和文件大小
+rm -f file 强制删除文件，不提示
 rm [文件名] 删除文件
 rm -r dir 递归删除其文件和文件夹
-rm -rf dir 强制删除文件夹及其内容，不提示
-mv dir/file dir 将文件或者文件夹移动到指定目录
-mv -t dir file 将文件或者文件夹移动到指定目录
-mkdir dir dir2 创建两个文件夹</description>
+rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示
+mv dir/file dir 将文件或者文件夹移动到指定目录</description>
     </item>
     
     <item>

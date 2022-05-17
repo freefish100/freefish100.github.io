@@ -5,6 +5,9 @@
     <loc>https://blog.coinfans.cc/categories/</loc>
     <lastmod>2022-05-05T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://blog.coinfans.cc/tags/linux/</loc>
+    <lastmod>2022-05-05T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.coinfans.cc/post/</loc>
     <lastmod>2022-05-05T00:00:00+00:00</lastmod>
   </url><url>
@@ -14,10 +17,10 @@
     <loc>https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/</loc>
     <lastmod>2022-05-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.coinfans.cc/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-05-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/</loc>
     <lastmod>2022-05-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/post/work20220505/</loc>
@@ -46,9 +49,6 @@
   </url><url>
     <loc>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</loc>
     <lastmod>2022-04-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://blog.coinfans.cc/tags/linux/</loc>
-    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/tags/ubuntu/</loc>
     <lastmod>2022-04-12T00:00:00+00:00</lastmod>
@@ -126,6 +126,9 @@
     <lastmod>2022-03-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/post/work20220302/</loc>
+    <lastmod>2022-03-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.coinfans.cc/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.coinfans.cc/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/</loc>

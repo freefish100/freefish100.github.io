@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>穿梭 on 自游鱼</title>
+    <link>https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/</link>
+    <description>Recent content in 穿梭 on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>穿梭云应用服务启动服务的步骤和命令</title>
+      <link>https://blog.coinfans.cc/post/work20220505/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/work20220505/</guid>
+      <description>SSH端口12233，cs
+重启项目步骤：
+ 进入data目录：
+cd /data 订单系统，启动命令：  nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;amp; 服务器重启后的步骤：
+如果遇到SSH连接不上，需登录网页后台，打开命令页面，手动启动网卡：
+systemctl start NetworkManager
+可设置下次网卡自动启动：
+systemctl enable NetworkManager
+查看防火墙状态，需关闭防火墙
+systemctl status firewalld
+关闭防火墙
+systemctl stop firewalld
+ 第一步数据库 启动mysql数据库，命令：
+service mysqld start
+查看数据库启动状态，正常应该有active(runnign)字样
+service mysqld status
+启动mongodb数据库，命令：
+cd /usr/local/mongo/service/bin
+./mongod -f mongo.conf 第二步，启动nginx和redis Nginx启动命令：
+/usr/sbin/nginx -s reload
+（或者systemctl start nginx.service 或者 systemctl start nginx）</description>
+    </item>
+    
+  </channel>
+</rss>

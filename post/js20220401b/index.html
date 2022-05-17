@@ -12,7 +12,7 @@
 <meta name="description" content="Linux Ubuntu 命令摘录备忘" /><meta itemprop="name" content="Linux Ubuntu 命令摘录备忘">
 <meta itemprop="description" content="Linux Ubuntu 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="263">
+<meta itemprop="wordCount" content="326">
 <meta itemprop="keywords" content="Linux,Ubuntu ," /><meta property="og:title" content="Linux Ubuntu 命令摘录备忘" />
 <meta property="og:description" content="Linux Ubuntu 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -287,6 +287,22 @@ touch test.sh<br>
 编辑.sh文件(有图形界面)<br>
 gedit test.sh<br>
 编辑好后，点“保存&quot;按钮</p>
+<h2 id="ubuntu安装java和切换版本">ubuntu安装java和切换版本<a class="anchor ms-1" href="#ubuntu安装java和切换版本"><i class="fas fa-link"></i></a></h2>
+<p>sudo apt install openjdk-13-jre-headless<br>
+sudo apt install openjdk-17-jre-headless<br>
+以上两行安装两个不同的java版本<br>
+列出所安装的java版本和位置：<br>
+sudo update-alternatives &ndash;list java<br>
+切换java版本：
+sudo update-alternatives &ndash;config java<br>
+然后按提示选择不同的java版本</p>
+<h2 id="ubuntu2004安装docker">ubuntu20.04安装docker<a class="anchor ms-1" href="#ubuntu2004安装docker"><i class="fas fa-link"></i></a></h2>
+<p>在终端中输入docker ，如果没有安装docker，会回显如下内容：<br>
+Command &lsquo;docker&rsquo; not found, but can be installed with:<br>
+sudo snap install docker     # version 20.10.14, or<br>
+sudo apt  install docker.io   # version 20.10.12-0ubuntu2~20.04.1<br>
+按提示运行 sudo snap install docker 或者 sudo apt  install docker.io 来安装docker<br>
+安装完成后，使用 docker &ndash;version 来查看docker的版本</p>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
     <i class="fas fa-fw fa-chevron-left"></i>
@@ -330,6 +346,8 @@ gedit test.sh<br>
     <li><a href="#解决network-is-unreachable问题">解决network is unreachable问题</a></li>
     <li><a href="#ubuntu2004防火墙设置">Ubuntu20.04防火墙设置</a></li>
     <li><a href="#ubuntu创建并编辑sh文件">ubuntu创建并编辑.sh文件</a></li>
+    <li><a href="#ubuntu安装java和切换版本">ubuntu安装java和切换版本</a></li>
+    <li><a href="#ubuntu2004安装docker">ubuntu20.04安装docker</a></li>
   </ul>
 </nav>
   </div>
@@ -417,11 +435,11 @@ gedit test.sh<br>
             ESXi</a><a href="https://blog.coinfans.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
             Ubuntu </a><a href="https://blog.coinfans.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
             VMware</a><a href="https://blog.coinfans.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
-            windows11</a><a href="https://blog.coinfans.cc/tags/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
-            工作笔记</a><a href="https://blog.coinfans.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
+            windows11</a><a href="https://blog.coinfans.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
             centos</a><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
             github</a><a href="https://blog.coinfans.cc/tags/hba%E5%8D%A1/" class="badge rounded post-taxonomy" title="HBA卡 ">
-            HBA卡 </a></div>
+            HBA卡 </a><a href="https://blog.coinfans.cc/tags/hugo/" class="badge rounded post-taxonomy" title="hugo">
+            hugo</a></div>
       </div>
     </section>
     
