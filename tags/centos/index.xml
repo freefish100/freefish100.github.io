@@ -7,7 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 01 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos7/8 Linux 配置网络ip地址 nmtui命令</title>
+      <link>https://blog.coinfans.cc/post/js202200526/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js202200526/</guid>
+      <description>nmcli安装命令：
+yum install NetworkManager
+nmtui安装命令：
+yum install NetworkManager-tui
+这个命令也可以安装：
+yum install NetworkManager-tui;nmtui;
+启动
+systemctl start NetworkManager
+运行nmtui图形界面：
+nmtui
+查看网卡和ip地址 nmcli device show
+如果你想使用旧版的ifconfig作为过渡，可以把它安装回来：
+yum install net-tools
+这个包里面包括了ifconfig, netstat, whois等一些惯用的命令，可以把它装回来方便使用。</description>
+    </item>
+    
     <item>
       <title>Linux CentOS 命令摘录备忘</title>
       <link>https://blog.coinfans.cc/post/js20220401/</link>
@@ -15,7 +37,10 @@
       
       <guid>https://blog.coinfans.cc/post/js20220401/</guid>
       <description>可用 pwd 命令查看用户的当前目录
-** sudo -i 命令可切换成root用户 压缩、解压
+** sudo -i 命令可切换成root用户
+Linux查看设置开机启动的服务列表
+systemctl list-units --type=service
+压缩、解压
 tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）
 tar -xvf file.tar 解包到当前目录
 tar -xvf file.tar -C dir 把文件解压到指定目录中
@@ -29,8 +54,7 @@ gzip -9 file 最大程度压缩文件
 rm -f file 强制删除文件，不提示
 rm [文件名] 删除文件
 rm -r dir 递归删除其文件和文件夹
-rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示
-mv dir/file dir 将文件或者文件夹移动到指定目录</description>
+rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示</description>
     </item>
     
   </channel>

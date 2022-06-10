@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网络配置  on 自游鱼</title>
+    <link>https://blog.coinfans.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
+    <description>Recent content in 网络配置  on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
+    <lastBuildDate>Thu, 26 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos7/8 Linux 配置网络ip地址 nmtui命令</title>
+      <link>https://blog.coinfans.cc/post/js202200526/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js202200526/</guid>
+      <description>nmcli安装命令：
+yum install NetworkManager
+nmtui安装命令：
+yum install NetworkManager-tui
+这个命令也可以安装：
+yum install NetworkManager-tui;nmtui;
+启动
+systemctl start NetworkManager
+运行nmtui图形界面：
+nmtui
+查看网卡和ip地址 nmcli device show
+如果你想使用旧版的ifconfig作为过渡，可以把它安装回来：
+yum install net-tools
+这个包里面包括了ifconfig, netstat, whois等一些惯用的命令，可以把它装回来方便使用。</description>
+    </item>
+    
+  </channel>
+</rss>

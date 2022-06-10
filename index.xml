@@ -7,7 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos7/8 Linux 配置网络ip地址 nmtui命令</title>
+      <link>https://blog.coinfans.cc/post/js202200526/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js202200526/</guid>
+      <description>nmcli安装命令：
+yum install NetworkManager
+nmtui安装命令：
+yum install NetworkManager-tui
+这个命令也可以安装：
+yum install NetworkManager-tui;nmtui;
+启动
+systemctl start NetworkManager
+运行nmtui图形界面：
+nmtui
+查看网卡和ip地址 nmcli device show
+如果你想使用旧版的ifconfig作为过渡，可以把它安装回来：
+yum install net-tools
+这个包里面包括了ifconfig, netstat, whois等一些惯用的命令，可以把它装回来方便使用。</description>
+    </item>
+    
     <item>
       <title>穿梭云应用服务启动服务的步骤和命令</title>
       <link>https://blog.coinfans.cc/post/work20220505/</link>
@@ -144,7 +166,10 @@ HBA 的常规定义就是连接主机 I/O 总线和计算机内存系统的 I/O 
       
       <guid>https://blog.coinfans.cc/post/js20220401/</guid>
       <description>可用 pwd 命令查看用户的当前目录
-** sudo -i 命令可切换成root用户 压缩、解压
+** sudo -i 命令可切换成root用户
+Linux查看设置开机启动的服务列表
+systemctl list-units --type=service
+压缩、解压
 tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）
 tar -xvf file.tar 解包到当前目录
 tar -xvf file.tar -C dir 把文件解压到指定目录中
@@ -158,8 +183,7 @@ gzip -9 file 最大程度压缩文件
 rm -f file 强制删除文件，不提示
 rm [文件名] 删除文件
 rm -r dir 递归删除其文件和文件夹
-rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示
-mv dir/file dir 将文件或者文件夹移动到指定目录</description>
+rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示</description>
     </item>
     
     <item>
@@ -277,7 +301,9 @@ Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
 https://almalinux.org/zh-hans/
-戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。 DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。 DELL 14G INTEL平台服务器BIOS设置详解 Precision 3650 塔式机规格参数 在RAID控制器10中分配/取消分配设置热备盘 Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号 ，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍 Dell EMC PowerEdge 服务器型号列表 PowerEdge 服务器命名约定  Infortrend普安存储设备 </description>
+戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。 DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。 DELL 14G INTEL平台服务器BIOS设置详解 Precision 3650 塔式机规格参数 在RAID控制器10中分配/取消分配设置热备盘 Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号 ，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍 Dell EMC PowerEdge 服务器型号列表 PowerEdge 服务器命名约定 IDRAC9管理口配置
+遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。 T140机器进入S140软阵列
+开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。  Infortrend普安存储设备 </description>
     </item>
     
     <item>

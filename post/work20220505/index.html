@@ -194,7 +194,7 @@
   <div class="card-body"><div class="post-meta">
   <span class="post-date" title="创建于 2022-05-05 08:00:00 &#43;0800 CST。">
     2022-05-05
-  </span><span class="post-taxonomies"><a href="https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge post-taxonomy">工作笔记</a><a href="https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/" class="badge post-taxonomy">穿梭</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge post-taxonomy">备忘</a><a href="https://blog.coinfans.cc/tags/linux/" class="badge post-taxonomy">Linux</a></span>
+  </span><span class="post-taxonomies"><a href="https://blog.coinfans.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge post-taxonomy">工作笔记</a><a href="https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/" class="badge post-taxonomy">穿梭</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge post-taxonomy">备忘</a><a href="https://blog.coinfans.cc/tags/linux/" class="badge post-taxonomy">linux</a></span>
 </div>
 <div class="post-content mb-3"><p>SSH端口12233，cs</p>
 <p><strong>重启项目步骤：</strong></p>
@@ -248,15 +248,15 @@ Redis 启动命令：<br>
 service mysqld start  启动数据库<br>
 service mysqld status 查看数据库启动状态，正常应该有active(runnign)字样</p>
 <p>/usr/sbin/nginx -s reload  启动nginx，用这个命令</p>
-<p>启动如下三个项目：<br>
-cd /data<br>
-nohup java -jar gpoint-mq-admin-1.0.0.jar &amp;<br>
-nohup java -jar jodconverter-web.jar &amp;<br>
-cd /data/pre<br>
-nohup java -jar jodconverter-web.jar &amp;<br>
-cd /data<br>
-nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;</p>
-<p>查看进程内存CPU占用命令：top</p>
+<p>启动如下三个项目：</p>
+<pre tabindex="0"><code>cd /data  
+nohup java -jar gpoint-mq-admin-1.0.0.jar &amp;  
+nohup java -jar jodconverter-web.jar &amp;  
+cd /data/pre  
+nohup java -jar jodconverter-web.jar &amp;  
+cd /data  
+nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;
+</code></pre><p>查看进程内存CPU占用命令：top</p>
 <p>使用 netstat -antlp 查看系统外部链接(什么IP连接使用了哪些进程)</p>
 <p>清理 linux-buff/cache缓存， 释放内存空间<br>
 执行指令：</p>
@@ -274,16 +274,16 @@ systemctl stop firewalld</p>
 <p>打开防火墙<br>
 systemctl start firewalld</p>
 <p>centos7中的防火墙改成了firewall，使用iptables无作用，开放端口的方法如下：<br>
-firewall-cmd &ndash;zone=public &ndash;add-port=80/tcp &ndash;permanent  返回success为成功。<br>
+<code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code>  返回success为成功。<br>
 &ndash;zone 作用域<br>
 &ndash;add-port=80/tcp #添加端口，格式为：端口/通讯协议<br>
 &ndash;permanent #永久生效</p>
 <p>重启防火墙<br>
 systemctl restart firewalld.service</p>
 <p>开放一段端口<br>
-firewall-cmd &ndash;zone=public &ndash;add-port=40000-45000/tcp &ndash;permanent</p>
+<code>firewall-cmd --zone=public --add-port=40000-45000/tcp --permanent</code></p>
 <p>查看开放的端口列表<br>
-firewall-cmd &ndash;zone=public &ndash;list-ports</p>
+<code>firewall-cmd --zone=public --list-ports</code></p>
 <p>查看被监听(Listen)的端口<br>
 netstat -lntp</p>
 <p>检查端口被哪个进程占用<br>
@@ -334,6 +334,10 @@ nohup java -jar 文件名 &amp;</p>
     <i class="fas fa-fw fa-chevron-left"></i>
     <a href="https://blog.coinfans.cc/post/js20220424/">戴尔DELL H330 Raid卡 阵列卡BIOS模式下配置阵列
 </a>
+  </div><div class="post-nav post-next">
+    <a href="https://blog.coinfans.cc/post/js202200526/">Centos7/8 Linux 配置网络ip地址 nmtui命令
+</a>
+    <i class="fas fa-fw fa-chevron-right"></i>
   </div></div></div>
 </article><section class="related-posts row card component">
     <div class="card-header">
@@ -394,6 +398,9 @@ nohup java -jar 文件名 &amp;</p>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://blog.coinfans.cc/post/js202200526/">Centos7/8 Linux 配置网络ip地址 nmtui命令
+</a>
+      </li><li>
         <a href="https://blog.coinfans.cc/post/work20220505/">穿梭云应用服务启动服务的步骤和命令
 </a>
       </li><li>
@@ -420,9 +427,6 @@ nohup java -jar 文件名 &amp;</p>
       </li><li>
         <a href="https://blog.coinfans.cc/post/js20220401b/">Linux Ubuntu 命令摘录备忘
 </a>
-      </li><li>
-        <a href="https://blog.coinfans.cc/post/js20220318b/">Windows11 Win11操作配置技巧
-</a>
       </li></ul>
   </div>
 </section><section class="categories-taxonomies row card component">
@@ -444,14 +448,14 @@ nohup java -jar 文件名 &amp;</p>
         </h2>
       </div>
       <div class="card-body">
-        <div class="py-2"><a href="https://blog.coinfans.cc/tags/linux/" class="badge rounded post-taxonomy" title="Linux">
-            Linux</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
-            备忘</a><a href="https://blog.coinfans.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+        <div class="py-2"><a href="https://blog.coinfans.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
+            linux</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://blog.coinfans.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
+            centos</a><a href="https://blog.coinfans.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
             ESXi</a><a href="https://blog.coinfans.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
             Ubuntu </a><a href="https://blog.coinfans.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
             VMware</a><a href="https://blog.coinfans.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
-            windows11</a><a href="https://blog.coinfans.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
-            centos</a><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
+            windows11</a><a href="https://blog.coinfans.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
             github</a><a href="https://blog.coinfans.cc/tags/hba%E5%8D%A1/" class="badge rounded post-taxonomy" title="HBA卡 ">
             HBA卡 </a><a href="https://blog.coinfans.cc/tags/hugo/" class="badge rounded post-taxonomy" title="hugo">
             hugo</a></div>
