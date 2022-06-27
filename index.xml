@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>硬盘容量十进制与操作系统二进制的换算</title>
+      <link>https://blog.coinfans.cc/post/js20220624/</link>
+      <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220624/</guid>
+      <description>平时我们一般用十进制格式 (base-10) 计算硬盘容量，而操作系统以二进制格式 (base-2)计算的，这两种进制计算出来的容量是明显存在差异的。 Base 10 值称为千兆字节，缩写为 GB，Base 2 称为 Gibibytes，缩写为 GiB。为了确认操作系统中显示的硬盘容量与我们平时日常计算的容量相匹配，应将 GB 转换为 GiB 或将 Base 10 字节转换为 Base 2 字节。
+千兆字节示例：
+500 GB 卷约为 500,000,000,000 字节
+注意： 1 GB = 1^10 字节 = 1,000,000,000 字节
+Gibibytes 示例：
+500 GB 卷约为 500,000,000,000 字节
+注意： 1 GiB = 2^30 字节 = 1,073,741,824 字节
+GB 到 GiB 示例
+500,000,000,000 字节/1,073,741,824 Base 2 字节 = 465.661 GB
+换言之，人工计算的500G约等于系统的465.661G，是系统的0.931322倍。
+那么，1000GB（1TB），在系统中就约显示为 1000GB容量×0.931322系数=931.322G
+10TB=10TB×0.931322=9.31322TB</description>
+    </item>
+    
     <item>
       <title>Centos8/7 激活（启用连接）网卡 NetworkManager网络设置</title>
       <link>https://blog.coinfans.cc/post/js20220623/</link>
@@ -333,7 +353,7 @@ https://rockylinux.org/zh_CN/
 https://almalinux.org/zh-hans/
 戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。 DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。 DELL 14G INTEL平台服务器BIOS设置详解 Precision 3650 塔式机规格参数 在RAID控制器10中分配/取消分配设置热备盘 Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号 ，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍 Dell EMC PowerEdge 服务器型号列表 PowerEdge 服务器命名约定 IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。 T140机器进入S140软阵列
-开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。 BOSS卡介绍(来自戴尔公众号)</description>
+开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。 BOSS卡介绍</description>
     </item>
     
     <item>
@@ -342,7 +362,11 @@ https://almalinux.org/zh-hans/
       <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/post/rc20220223/</guid>
-      <description>【2022年4月29日】
+      <description>【2022年6月27日】
+  [微软Azure云服务平台永久免费和限时免费项目(https://azure.microsoft.com/zh-cn/pricing/free-services/)
+微软Azure文本转语音
+微软Azure语音转文本
+微软Azure语音翻译
   图片在线去背景 https://www.photoroom.com/tools/remove-object-from-photo/
   Chorme谷歌浏览器插件下载CRX搜搜
 https://www.crxsoso.com/
