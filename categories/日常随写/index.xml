@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>日常随写 on 自游鱼的笔记</title>
-    <link>https://blog.coinfans.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/</link>
+    <link>https://note.freezz.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/</link>
     <description>Recent content in 日常随写 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>技术文章链接收录</title>
-      <link>https://blog.coinfans.cc/post/rc20220411/</link>
+      <link>https://note.freezz.cc/post/rc20220411/</link>
       <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/rc20220411/</guid>
+      <guid>https://note.freezz.cc/post/rc20220411/</guid>
       <description>【2022年4月11日】
 Linux Window10 VNC远程访问ubuntu20.04
 https://www.cxyzjd.com/article/qq_33343767/112431846
@@ -43,10 +43,10 @@ http://b.7dell.com/index.php/index.html</description>
     
     <item>
       <title>实用网址收录(不定时更新)</title>
-      <link>https://blog.coinfans.cc/post/rc20220223/</link>
+      <link>https://note.freezz.cc/post/rc20220223/</link>
       <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/rc20220223/</guid>
+      <guid>https://note.freezz.cc/post/rc20220223/</guid>
       <description>【2022年6月27日】
   微软Azure云服务平台永久免费和限时免费项目
 微软Azure文本转语音
@@ -77,10 +77,10 @@ https://markdown.com.cn/
     
     <item>
       <title>博客基本搭建起来了</title>
-      <link>https://blog.coinfans.cc/post/my-first-post/</link>
+      <link>https://note.freezz.cc/post/my-first-post/</link>
       <pubDate>Tue, 15 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/my-first-post/</guid>
+      <guid>https://note.freezz.cc/post/my-first-post/</guid>
       <description>多天的折腾，博客基本搭建起来了。。。。。</description>
     </item>
     

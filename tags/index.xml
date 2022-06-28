@@ -2,261 +2,261 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 自游鱼的笔记</title>
-    <link>https://blog.coinfans.cc/tags/</link>
+    <link>https://note.freezz.cc/tags/</link>
     <description>Recent content in Tags on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>centos</title>
-      <link>https://blog.coinfans.cc/tags/centos/</link>
+      <link>https://note.freezz.cc/tags/centos/</link>
       <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/centos/</guid>
+      <guid>https://note.freezz.cc/tags/centos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>https://blog.coinfans.cc/tags/linux/</link>
+      <link>https://note.freezz.cc/tags/linux/</link>
       <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/linux/</guid>
+      <guid>https://note.freezz.cc/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ubuntu </title>
-      <link>https://blog.coinfans.cc/tags/ubuntu/</link>
+      <link>https://note.freezz.cc/tags/ubuntu/</link>
       <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/ubuntu/</guid>
+      <guid>https://note.freezz.cc/tags/ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>操作系统</title>
-      <link>https://blog.coinfans.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <link>https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     
     <item>
       <title>硬盘容量</title>
-      <link>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</link>
+      <link>https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</guid>
+      <guid>https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网络配置 </title>
-      <link>https://blog.coinfans.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
+      <link>https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>备忘</title>
-      <link>https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/</link>
+      <link>https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/</link>
       <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/</guid>
+      <guid>https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/</guid>
       <description></description>
     </item>
     
     <item>
       <title>穿梭</title>
-      <link>https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/</link>
+      <link>https://note.freezz.cc/tags/%E7%A9%BF%E6%A2%AD/</link>
       <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/</guid>
+      <guid>https://note.freezz.cc/tags/%E7%A9%BF%E6%A2%AD/</guid>
       <description></description>
     </item>
     
     <item>
       <title>raid</title>
-      <link>https://blog.coinfans.cc/tags/raid/</link>
+      <link>https://note.freezz.cc/tags/raid/</link>
       <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/raid/</guid>
+      <guid>https://note.freezz.cc/tags/raid/</guid>
       <description></description>
     </item>
     
     <item>
       <title>阵列卡 </title>
-      <link>https://blog.coinfans.cc/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</link>
+      <link>https://note.freezz.cc/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</link>
       <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</guid>
+      <guid>https://note.freezz.cc/tags/%E9%98%B5%E5%88%97%E5%8D%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>windows11</title>
-      <link>https://blog.coinfans.cc/tags/windows11/</link>
+      <link>https://note.freezz.cc/tags/windows11/</link>
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/windows11/</guid>
+      <guid>https://note.freezz.cc/tags/windows11/</guid>
       <description></description>
     </item>
     
     <item>
       <title>硬盘加密</title>
-      <link>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</link>
+      <link>https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</link>
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</guid>
+      <guid>https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ESXi</title>
-      <link>https://blog.coinfans.cc/tags/esxi/</link>
+      <link>https://note.freezz.cc/tags/esxi/</link>
       <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/esxi/</guid>
+      <guid>https://note.freezz.cc/tags/esxi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VMware</title>
-      <link>https://blog.coinfans.cc/tags/vmware/</link>
+      <link>https://note.freezz.cc/tags/vmware/</link>
       <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/vmware/</guid>
+      <guid>https://note.freezz.cc/tags/vmware/</guid>
       <description></description>
     </item>
     
     <item>
       <title>文章收录</title>
-      <link>https://blog.coinfans.cc/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E5%BD%95/</link>
+      <link>https://note.freezz.cc/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E5%BD%95/</link>
       <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E5%BD%95/</guid>
+      <guid>https://note.freezz.cc/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E5%BD%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网址链接</title>
-      <link>https://blog.coinfans.cc/tags/%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5/</link>
+      <link>https://note.freezz.cc/tags/%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5/</link>
       <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5/</guid>
+      <guid>https://note.freezz.cc/tags/%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HBA卡 </title>
-      <link>https://blog.coinfans.cc/tags/hba%E5%8D%A1/</link>
+      <link>https://note.freezz.cc/tags/hba%E5%8D%A1/</link>
       <pubDate>Sat, 02 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/hba%E5%8D%A1/</guid>
+      <guid>https://note.freezz.cc/tags/hba%E5%8D%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>光纤网卡</title>
-      <link>https://blog.coinfans.cc/tags/%E5%85%89%E7%BA%A4%E7%BD%91%E5%8D%A1/</link>
+      <link>https://note.freezz.cc/tags/%E5%85%89%E7%BA%A4%E7%BD%91%E5%8D%A1/</link>
       <pubDate>Sat, 02 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E5%85%89%E7%BA%A4%E7%BD%91%E5%8D%A1/</guid>
+      <guid>https://note.freezz.cc/tags/%E5%85%89%E7%BA%A4%E7%BD%91%E5%8D%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Vcenter</title>
-      <link>https://blog.coinfans.cc/tags/vcenter/</link>
+      <link>https://note.freezz.cc/tags/vcenter/</link>
       <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/vcenter/</guid>
+      <guid>https://note.freezz.cc/tags/vcenter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>win11</title>
-      <link>https://blog.coinfans.cc/tags/win11/</link>
+      <link>https://note.freezz.cc/tags/win11/</link>
       <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/win11/</guid>
+      <guid>https://note.freezz.cc/tags/win11/</guid>
       <description></description>
     </item>
     
     <item>
       <title>github</title>
-      <link>https://blog.coinfans.cc/tags/github/</link>
+      <link>https://note.freezz.cc/tags/github/</link>
       <pubDate>Thu, 17 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/github/</guid>
+      <guid>https://note.freezz.cc/tags/github/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://blog.coinfans.cc/tags/hugo/</link>
+      <link>https://note.freezz.cc/tags/hugo/</link>
       <pubDate>Thu, 17 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/hugo/</guid>
+      <guid>https://note.freezz.cc/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>markdown</title>
-      <link>https://blog.coinfans.cc/tags/markdown/</link>
+      <link>https://note.freezz.cc/tags/markdown/</link>
       <pubDate>Fri, 04 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/markdown/</guid>
+      <guid>https://note.freezz.cc/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>笔记</title>
-      <link>https://blog.coinfans.cc/tags/%E7%AC%94%E8%AE%B0/</link>
+      <link>https://note.freezz.cc/tags/%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://note.freezz.cc/tags/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>在线网站</title>
-      <link>https://blog.coinfans.cc/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/</link>
+      <link>https://note.freezz.cc/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/</link>
       <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/</guid>
+      <guid>https://note.freezz.cc/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/</guid>
       <description></description>
     </item>
     
     <item>
       <title>实用网站</title>
-      <link>https://blog.coinfans.cc/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/</link>
+      <link>https://note.freezz.cc/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/</link>
       <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/</guid>
+      <guid>https://note.freezz.cc/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/</guid>
       <description></description>
     </item>
     
     <item>
       <title>优励恩</title>
-      <link>https://blog.coinfans.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/</link>
+      <link>https://note.freezz.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/</link>
       <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/</guid>
+      <guid>https://note.freezz.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/</guid>
       <description></description>
     </item>
     
     <item>
       <title>打印机</title>
-      <link>https://blog.coinfans.cc/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/</link>
+      <link>https://note.freezz.cc/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/</link>
       <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/</guid>
+      <guid>https://note.freezz.cc/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/</guid>
       <description></description>
     </item>
     

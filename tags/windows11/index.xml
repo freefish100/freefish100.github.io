@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>windows11 on 自游鱼的笔记</title>
-    <link>https://blog.coinfans.cc/tags/windows11/</link>
+    <link>https://note.freezz.cc/tags/windows11/</link>
     <description>Recent content in windows11 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/windows11/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/windows11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密</title>
-      <link>https://blog.coinfans.cc/post/js20220413/</link>
+      <link>https://note.freezz.cc/post/js20220413/</link>
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/js20220413/</guid>
+      <guid>https://note.freezz.cc/post/js20220413/</guid>
       <description>注重数据保护的 PC 用户应该接触过 Windows 自带的 「BitLocker 驱动器加密」工具，该工具是一项能对磁盘驱动器进行加密保护的安全工具。我们知道升级 Windows 11 系统最重要的条件之一便是具备「TPM 2.0 安全模块」并开启它，在开启 TPM 后 BitLocker 将变为可用状态。
 在部分设备特别是兼容性较好的设备上首次登录 Microsoft 账户时，可能会在未经过你的允许下自动启用 BitLocker。这时候你的硬盘就会被 BitLocker 加密，但因为正常使用过程中数据的读写不受影响。许多用户甚至并没有意识到他们的磁盘已被加密，并且不知道解锁密码。 这无疑是给用户带来了一定的隐患。
 例如当你彻底恢复以及重装系统后，访问加密磁盘的数据就需要先对其进行解密，因为 BitLocker 的安全系数很高，即使重装系统也无法解除加密。 那么这就产生了两个问题：如何确认自己的磁盘是否启用 BitLocker 加密？加密后如何解锁磁盘？
@@ -29,10 +29,10 @@ account.microsoft.com/devices/recoverykey
     
     <item>
       <title>Windows11 Win11操作配置技巧</title>
-      <link>https://blog.coinfans.cc/post/js20220318b/</link>
+      <link>https://note.freezz.cc/post/js20220318b/</link>
       <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/js20220318b/</guid>
+      <guid>https://note.freezz.cc/post/js20220318b/</guid>
       <description>安装winows11时跳过强制联网 方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。
 方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。
 解决Win11右键菜单折叠问题 切换回经典右键菜单 首先Win+X打开Windows powershell（管理员）（PS：现在貌似叫Windows 终端（管理员）） 输入如下内容后回车 reg add &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;rdquo; /f /ve

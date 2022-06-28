@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>硬盘容量 on 自游鱼的笔记</title>
-    <link>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</link>
+    <link>https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</link>
     <description>Recent content in 硬盘容量 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>硬盘容量十进制与操作系统二进制的换算</title>
-      <link>https://blog.coinfans.cc/post/js20220624/</link>
+      <link>https://note.freezz.cc/post/js20220624/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/js20220624/</guid>
+      <guid>https://note.freezz.cc/post/js20220624/</guid>
       <description>平时我们一般用十进制格式 (base-10) 计算硬盘容量，而操作系统以二进制格式 (base-2)计算的，这两种进制计算出来的容量是明显存在差异的。 Base 10 值称为千兆字节，缩写为 GB，Base 2 称为 Gibibytes，缩写为 GiB。为了确认操作系统中显示的硬盘容量与我们平时日常计算的容量相匹配，应将 GB 转换为 GiB 或将 Base 10 字节转换为 Base 2 字节。
 千兆字节示例：
 500 GB 卷约为 500,000,000,000 字节

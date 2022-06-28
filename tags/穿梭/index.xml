@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>穿梭 on 自游鱼的笔记</title>
-    <link>https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/</link>
+    <link>https://note.freezz.cc/tags/%E7%A9%BF%E6%A2%AD/</link>
     <description>Recent content in 穿梭 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/%E7%A9%BF%E6%A2%AD/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/%E7%A9%BF%E6%A2%AD/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>穿梭云应用服务启动服务的步骤和命令</title>
-      <link>https://blog.coinfans.cc/post/work20220505/</link>
+      <link>https://note.freezz.cc/post/work20220505/</link>
       <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/work20220505/</guid>
+      <guid>https://note.freezz.cc/post/work20220505/</guid>
       <description>SSH端口12233，cs
 重启项目步骤：
  进入data目录：

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>操作系统 on 自游鱼的笔记</title>
-    <link>https://blog.coinfans.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
     <description>Recent content in 操作系统 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>硬盘容量十进制与操作系统二进制的换算</title>
-      <link>https://blog.coinfans.cc/post/js20220624/</link>
+      <link>https://note.freezz.cc/post/js20220624/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/js20220624/</guid>
+      <guid>https://note.freezz.cc/post/js20220624/</guid>
       <description>平时我们一般用十进制格式 (base-10) 计算硬盘容量，而操作系统以二进制格式 (base-2)计算的，这两种进制计算出来的容量是明显存在差异的。 Base 10 值称为千兆字节，缩写为 GB，Base 2 称为 Gibibytes，缩写为 GiB。为了确认操作系统中显示的硬盘容量与我们平时日常计算的容量相匹配，应将 GB 转换为 GiB 或将 Base 10 字节转换为 Base 2 字节。
 千兆字节示例：
 500 GB 卷约为 500,000,000,000 字节
@@ -30,10 +30,10 @@ GB 到 GiB 示例
     
     <item>
       <title>Windows11 Win11操作配置技巧</title>
-      <link>https://blog.coinfans.cc/post/js20220318b/</link>
+      <link>https://note.freezz.cc/post/js20220318b/</link>
       <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/js20220318b/</guid>
+      <guid>https://note.freezz.cc/post/js20220318b/</guid>
       <description>安装winows11时跳过强制联网 方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。
 方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。
 解决Win11右键菜单折叠问题 切换回经典右键菜单 首先Win+X打开Windows powershell（管理员）（PS：现在貌似叫Windows 终端（管理员）） 输入如下内容后回车 reg add &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;rdquo; /f /ve

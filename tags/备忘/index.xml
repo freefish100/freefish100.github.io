@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>备忘 on 自游鱼的笔记</title>
-    <link>https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/</link>
+    <link>https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/</link>
     <description>Recent content in 备忘 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>穿梭云应用服务启动服务的步骤和命令</title>
-      <link>https://blog.coinfans.cc/post/work20220505/</link>
+      <link>https://note.freezz.cc/post/work20220505/</link>
       <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/work20220505/</guid>
+      <guid>https://note.freezz.cc/post/work20220505/</guid>
       <description>SSH端口12233，cs
 重启项目步骤：
  进入data目录：
@@ -39,10 +39,10 @@ cd /usr/local/mongo/service/bin
     
     <item>
       <title>Markdown 语法教程</title>
-      <link>https://blog.coinfans.cc/post/js20220304/</link>
+      <link>https://note.freezz.cc/post/js20220304/</link>
       <pubDate>Fri, 04 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/js20220304/</guid>
+      <guid>https://note.freezz.cc/post/js20220304/</guid>
       <description>Markdown 基本语法 Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。 它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。 因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。
 Markdown 标题语法 要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题 () (例如：### My Header)。
 Markdown 段落 要创建段落，请使用空白行将一行或多行文本进行分隔。不要用空格（spaces）或制表符（ tabs）缩进段落。
@@ -63,10 +63,10 @@ Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 
     
     <item>
       <title>工作笔记备忘(不定时更新)</title>
-      <link>https://blog.coinfans.cc/post/work20220302/</link>
+      <link>https://note.freezz.cc/post/work20220302/</link>
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.coinfans.cc/post/work20220302/</guid>
+      <guid>https://note.freezz.cc/post/work20220302/</guid>
       <description>【2022年4月21日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/
