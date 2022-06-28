@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Search on 自游鱼</title>
+    <title>Search on 自游鱼的笔记</title>
     <link>https://blog.coinfans.cc/search/</link>
-    <description>Recent content in Search on 自游鱼</description>
+    <description>Recent content in Search on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright><atom:link href="https://blog.coinfans.cc/search/index.xml" rel="self" type="application/rss+xml" />

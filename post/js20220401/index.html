@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Linux CentOS 命令摘录备忘 - 自游鱼</title><link rel="apple-touch-icon" href="https://blog.coinfans.cc/images/icons/icon-180x180.png" sizes="180x180">
+    <title>Linux CentOS 命令摘录备忘 - 自游鱼的笔记</title><link rel="apple-touch-icon" href="https://blog.coinfans.cc/images/icons/icon-180x180.png" sizes="180x180">
 <link rel="icon" href="https://blog.coinfans.cc/images/icons/icon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="https://blog.coinfans.cc/images/icons/icon-16x16.png" sizes="16x16" type="image/png">
 <link rel="icon" href="https://blog.coinfans.cc/images/icons/favicon.ico">
@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="596">
+<meta itemprop="wordCount" content="617">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -33,7 +33,7 @@
     </button><a class="navbar-brand flex-grow-1 flex-lg-grow-0 text-center text-lg-start mx-auto me-lg-3" href="https://blog.coinfans.cc/"><img class="logo" alt="Logo" src="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp" loading="lazy"
   
    />
-自游鱼的鱼
+自游鱼的笔记
     </a>
     <div class="offcanvas offcanvas-bottom surface" tabindex="-1" id="offcanvasSocialShare" aria-labelledby="offcanvasSocialShare">
   <div class="offcanvas-header">
@@ -221,6 +221,11 @@ mkdir dir dir2 创建两个文件夹<br>
 mkdir -p /tmp/dir 创建多级目录<br>
 cp file file1 将文件file复制一份file1<br>
 cp -a file/dir dir 将文件或者文件夹复制到指定目录</p>
+<p><strong>stat命令  “stat 文件名”</strong><br>
+用来查看某个文件的信息属性。其中可以看到列出来的Access，Modify，Change这三行有三个时间的，分别为atime，mtime和ctime。
+modification time (mtime):该档案的内容数据变更时,就会更新这个时间!内容数据指的是档案的内容,而不是档案属性或权限喔!<br>
+status time (ctime):该档案的状态改变时,就会更新这个时间,举例来说，像是权限与属性被更改了,都会更新这个时间啊。<br>
+access time (atime):  当该档案的内容被取用时,就会更新这个读取时间 (access)。举例来说,我们使用 cat 去读取 /etc/man.config , 就会更新该档案的atime 了。</p>
 <p><strong>centos7 拷贝目录下所有文件包含隐藏文件</strong><br>
 不能这样使用  cp -a /storage/* /home/   使用 *不会拷贝隐藏文件<br>
 正确的做法  cp -a /storage/. /home/</p>
@@ -426,6 +431,9 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://blog.coinfans.cc/post/js20220628/">开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH 
+</a>
+      </li><li>
         <a href="https://blog.coinfans.cc/post/js20220624/">硬盘容量十进制与操作系统二进制的换算
 </a>
       </li><li>
@@ -452,9 +460,6 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
       </li><li>
         <a href="https://blog.coinfans.cc/post/rc20220411/">技术文章链接收录
 </a>
-      </li><li>
-        <a href="https://blog.coinfans.cc/post/js20220402/">存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别
-</a>
       </li></ul>
   </div>
 </section><section class="categories-taxonomies row card component">
@@ -478,10 +483,10 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
       <div class="card-body">
         <div class="py-2"><a href="https://blog.coinfans.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
             linux</a><a href="https://blog.coinfans.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
-            centos</a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            centos</a><a href="https://blog.coinfans.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
+            Ubuntu </a><a href="https://blog.coinfans.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
             备忘</a><a href="https://blog.coinfans.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
-            ESXi</a><a href="https://blog.coinfans.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
-            Ubuntu </a><a href="https://blog.coinfans.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
+            ESXi</a><a href="https://blog.coinfans.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
             VMware</a><a href="https://blog.coinfans.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
             windows11</a><a href="https://blog.coinfans.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
             操作系统</a><a href="https://blog.coinfans.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">

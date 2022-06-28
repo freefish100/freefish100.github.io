@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>技术摘录 on 自游鱼</title>
+    <title>技术摘录 on 自游鱼的笔记</title>
     <link>https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</link>
-    <description>Recent content in 技术摘录 on 自游鱼</description>
+    <description>Recent content in 技术摘录 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH </title>
+      <link>https://blog.coinfans.cc/post/js20220628/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/post/js20220628/</guid>
+      <description>查看SSH是否安装：
+输入命令：rpm -qa | grep ssh
+注：若没安装SSH则可输入：yum install openssh-server安装。
+启动SSH服务
+输入命令：systemctl start sshd 或者 service sshd start 来启动SSH服务
+重启后可输入：netstat -antp | grep sshd 查看是否启动22端口（可略）
+设置SSH服务为开机启动
+输入命令：systemctl enable ssh 或者 chkconfig sshd on 即可。
+注：若是chkconfig sshd off则禁止SSH开机启动。
+使用SSD终端进行远程连接，比如Xshell，FinalShell
+点击新建连接图标，在主机框输入IP。然后根据提示输入登录的用户名密码。
+注：网络要通，账号密码要对。
+Ubuntu 20.04上启用SSH
+默认情况下，首次安装Ubuntu时，不允许通过SSH进行远程访问。以root 用户或具有sudo特权的用户执行以下步骤，以在Ubuntu系统上安装并启用SSH：
+安装openssh-server软件包：
+sudo apt update
+sudo apt install openssh-server
+安装完成后，SSH服务将自动启动。您可以通过键入以下命令来验证SSH是否正在运行：
+sudo systemctl status ssh
+按q返回到命令行提示符。 防火墙放行SSH。Ubuntu随附了一个名为UFW的防火墙配置工具，查看防火墙状态：
+sudo ufw status verbose
+启用ubuntu ufw防火墙： sudo ufw enable
+sudo ufw default deny 运行以上两条命令后，开启了防火墙，并在系统启动时自动开启。</description>
+    </item>
+    
     <item>
       <title>硬盘容量十进制与操作系统二进制的换算</title>
       <link>https://blog.coinfans.cc/post/js20220624/</link>

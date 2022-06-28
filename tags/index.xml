@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 自游鱼</title>
+    <title>Tags on 自游鱼的笔记</title>
     <link>https://blog.coinfans.cc/tags/</link>
-    <description>Recent content in Tags on 自游鱼</description>
+    <description>Recent content in Tags on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.coinfans.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>centos</title>
+      <link>https://blog.coinfans.cc/tags/centos/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://blog.coinfans.cc/tags/linux/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu </title>
+      <link>https://blog.coinfans.cc/tags/ubuntu/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.coinfans.cc/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>操作系统</title>
       <link>https://blog.coinfans.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
@@ -23,24 +50,6 @@
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>centos</title>
-      <link>https://blog.coinfans.cc/tags/centos/</link>
-      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.coinfans.cc/tags/centos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://blog.coinfans.cc/tags/linux/</link>
-      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.coinfans.cc/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -104,15 +113,6 @@
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://blog.coinfans.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu </title>
-      <link>https://blog.coinfans.cc/tags/ubuntu/</link>
-      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.coinfans.cc/tags/ubuntu/</guid>
       <description></description>
     </item>
     
