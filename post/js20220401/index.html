@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="617">
+<meta itemprop="wordCount" content="673">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -220,6 +220,8 @@ mv -t dir file 将文件或者文件夹移动到指定目录<br>
 mkdir dir dir2 创建两个文件夹<br>
 mkdir -p /tmp/dir 创建多级目录<br>
 cp file file1 将文件file复制一份file1<br>
+cp -r /home/a /www/b 复制文件夹到另一个文件夹<br>
+cp -r * /dir 递归复制当前路径下的全部目录及其子目录内的所有内容到另一个目录<br>
 cp -a file/dir dir 将文件或者文件夹复制到指定目录</p>
 <p><strong>stat命令  “stat 文件名”</strong><br>
 用来查看某个文件的信息属性。其中可以看到列出来的Access，Modify，Change这三行有三个时间的，分别为atime，mtime和ctime。
@@ -233,6 +235,8 @@ access time (atime):  当该档案的内容被取用时,就会更新这个读取
 cd .. 返回上一级目录<br>
 cd ../.. 返回上两级目录<br>
 cd / 返回根目录<br>
+cd或cd ~ 返回home目录<br>
+cd - 目录名 返回指定的目录<br>
 ls 列举出当前目录中所有文件<br>
 ls -a 列举出当前目录中所有文件，包括隐藏文件<br>
 ls -l 显示文件的详细信息<br>
@@ -297,21 +301,21 @@ iwconfig   用于查看无线网络<br>
 uname -a<br>
 uname -r<br>
 cat /proc/version</p>
-<p>查看主机名和信息：<br>
+<p>**查看主机名和信息：<br>
 hostnamectl</p>
-<p>修改主机名：<br>
+<p>**修改主机名：<br>
 hostnamectl set-hostname somename<br>
 用hostnamectl设置主机名会立刻生效并且存入配置文件，重启系统不会被重置，不必再修改配置文件。</p>
-<p>查看linux系统版本号的四种命令：<br>
+<p>**查看linux系统版本号的四种命令：<br>
 cat /etc/redhat-release<br>
 rpm -q centos-release<br>
 lsb_release -a  如果提示找不到这个命令，可以 yum install redhat-lsb -y 安装后再使用。<br>
 cat /etc/issue</p>
-<p>查询服务器的架构，在命令行中输入：arch 进行查询<br>
+<p>**查询服务器的架构，在命令行中输入：arch 进行查询<br>
 输出结果：x86_64 代表 amd64 ; aarch64 代表 arm64</p>
-<p>查看开放的端口
+<p>**查看开放的端口
 netstat -aptn</p>
-<p>查看端口占用情况<br>
+<p>*<em>查看端口占用情况<br>
 netstat<br>
 netstat -tunlp 用于显示 tcp，udp 的端口和进程等相关情况。<br>
 netstat 查看端口占用语法格式：<br>
@@ -323,7 +327,7 @@ netstat -tunlp | grep 端口号<br>
 -p 显示建立相关链接的程序名<br>
 例如查看 8000 端口的情况，使用以下命令：<br>
 netstat -tunlp | grep 8000<br>
-tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      26993/nodejs<br>
+tcp        0      0 0.0.0.0:8000            0.0.0.0:</em>               LISTEN      26993/nodejs<br>
 更多命令：<br>
 netstat -ntlp   //查看当前所有tcp端口<br>
 netstat -ntulp | grep 80   //查看所有80端口使用情况<br>
@@ -333,7 +337,7 @@ kill<br>
 kill -9 PID<br>
 如上实例，我们看到 8000 端口对应的 PID 为 26993，使用以下命令杀死进程：<br>
 kill -9 26993</p>
-<p>lshw  查看硬件信息<br>
+<p>**lshw  查看硬件信息<br>
 lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。
 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
 lscpu 可以列出本机的 CPU 的相关信息。
@@ -358,6 +362,16 @@ linux 下查看Apache版本 httpd  -v<br>
 linux 下查看Nginx版本 nginx -v<br>
 linux 下查看PHP版本  php -v<br>
 linux 下查看mysql版本 mysql -V （大写的V）</p>
+<p><strong>systemd 语法</strong><br>
+systemctl [command] [unit]（配置的应用名称）<br>
+command可选项<br>
+start：启动指定的unit， 如 systemctl start nginx<br>
+stop：关闭指定的unit， 如 systemctl stop nginx<br>
+restart：重启指定unit， 如 systemctl restart nginx<br>
+reload：重载指定unit， 如 systemctl reload nginx<br>
+enable：系统开机时自动启动指定unit，前提是配置文件中有相关配置， 如 systemctl enable nginx<br>
+disable：开机时不自动运行指定unit，如 systemctl disable nginx<br>
+status：查看指定unit当前运行状态，如 systemctl status nginx</p>
 <p><strong>查看日志</strong><br>
 Systemd是Linux系统工具，Systemd拥有强大的解决与系统日志记录功能-systemd-journald。日志目录一般是在/var/log/journal，记录的是二进制文件，我们可以通过journalctl进行查看。<br>
 显示所有日志：journalctl<br>
