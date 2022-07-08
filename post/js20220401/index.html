@@ -301,9 +301,9 @@ iwconfig   用于查看无线网络<br>
 uname -a<br>
 uname -r<br>
 cat /proc/version</p>
-<p>**查看主机名和信息：<br>
+<p><strong>查看主机名和信息：</strong><br>
 hostnamectl</p>
-<p>**修改主机名：<br>
+<p><strong>修改主机名：</strong><br>
 hostnamectl set-hostname somename<br>
 用hostnamectl设置主机名会立刻生效并且存入配置文件，重启系统不会被重置，不必再修改配置文件。</p>
 <p>**查看linux系统版本号的四种命令：<br>
@@ -311,11 +311,11 @@ cat /etc/redhat-release<br>
 rpm -q centos-release<br>
 lsb_release -a  如果提示找不到这个命令，可以 yum install redhat-lsb -y 安装后再使用。<br>
 cat /etc/issue</p>
-<p>**查询服务器的架构，在命令行中输入：arch 进行查询<br>
+<p><strong>查询服务器的架构，在命令行中输入：arch 进行查询</strong><br>
 输出结果：x86_64 代表 amd64 ; aarch64 代表 arm64</p>
-<p>**查看开放的端口
+<p><strong>查看开放的端口</strong><br>
 netstat -aptn</p>
-<p>*<em>查看端口占用情况<br>
+<p><strong>查看端口占用情况</strong><br>
 netstat<br>
 netstat -tunlp 用于显示 tcp，udp 的端口和进程等相关情况。<br>
 netstat 查看端口占用语法格式：<br>
@@ -327,7 +327,7 @@ netstat -tunlp | grep 端口号<br>
 -p 显示建立相关链接的程序名<br>
 例如查看 8000 端口的情况，使用以下命令：<br>
 netstat -tunlp | grep 8000<br>
-tcp        0      0 0.0.0.0:8000            0.0.0.0:</em>               LISTEN      26993/nodejs<br>
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      26993/nodejs<br>
 更多命令：<br>
 netstat -ntlp   //查看当前所有tcp端口<br>
 netstat -ntulp | grep 80   //查看所有80端口使用情况<br>
@@ -337,7 +337,7 @@ kill<br>
 kill -9 PID<br>
 如上实例，我们看到 8000 端口对应的 PID 为 26993，使用以下命令杀死进程：<br>
 kill -9 26993</p>
-<p>**lshw  查看硬件信息<br>
+<p><strong>lshw  查看硬件信息</strong><br>
 lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。
 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
 lscpu 可以列出本机的 CPU 的相关信息。
@@ -346,7 +346,7 @@ lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
 lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。
 df 命令可以列出不同分区的大小，使用情况，使用率，挂载点等信息，加上 -h 选项可以以 k, M, G 等单位表示大小，否则默认是字节，不容易阅读。<br>
 free 命令可以查看系统中使用的、闲置的和 RAM 的总体数量，一般带上 -m 参数。</p>
-<p>su 用户名 切换用户登录。<br>
+<p><strong>su 用户名 切换用户登录。</strong><br>
 sudo 获取root权限。
 poweroff 关机。<br>
 shutdown -h now 关机。<br>
