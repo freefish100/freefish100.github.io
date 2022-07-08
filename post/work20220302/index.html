@@ -26,7 +26,7 @@ https://almalinux.org/zh-hans/
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。 T140机器进入S140软阵列
 开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。 BOSS卡介绍"><meta itemprop="datePublished" content="2022-03-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="106">
+<meta itemprop="wordCount" content="113">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
 <meta property="og:description" content="【2022年4月21日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
@@ -266,6 +266,7 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。</li>
 <a href="https://mp.weixin.qq.com/s/5Ez1jd_HEV221T4_aPi-6A" target="_blank" rel="noopener noreferrer">14G服务器如何在IDRAC下更新固件</a></li>
 <li>IDRAC管理页面中，SSD硬盘的“剩余额定写入耐久性”，是指SSD硬盘的损耗情况。SSD写寿命限制：是指，对于达到写寿命上限的SSD，视为设备损耗， 0% 是上限，到0% 就是SSD的写入寿命快到了，这种没有保修了。</li>
 <li><a href="https://www.dell.com/support/manuals/zh-cn/poweredge-r740/idrac_3.31.31.31_ug/%E4%BD%BF%E7%94%A8-idrac-web-%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0%E5%9B%BA%E4%BB%B6?guid=guid-609b681d-830b-420c-9935-4e2ab054d54e&amp;lang=zh-cn" target="_blank" rel="noopener noreferrer">Integrated Dell Remote Access Controller 9 版本 3.31.31.31 用户指南（IDRAC9 固件更新步骤）</a></li>
+<li>H350 H355 H345 阵列卡支持raid 0,1,10，不支持做 raid5 。</li>
 </ul>
 <h2 id="infortrend普安存储设备">Infortrend普安存储设备<a class="anchor ms-1" href="#infortrend普安存储设备"><i class="fas fa-link"></i></a></h2>
 </div></div>
