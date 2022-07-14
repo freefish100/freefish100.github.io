@@ -370,11 +370,11 @@ lsusb 列出与本机相连的所有 USB 设备的信息。默认情况下，只
 lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
 lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。<br>
 df 命令可以列出不同分区的大小，使用情况，使用率，挂载点等信息，加上 -h 选项可以以 k, M, G 等单位表示大小，否则默认是字节，不容易阅读。<br>
-dmidecode -t bios 查看BIOS信息<br>
 列出网卡设备<br>
 使用 ifconfig -a  命令查看；<br>
 使用 lspci | grep -i &ldquo;eth&rdquo; 或 lspci | grep -i net 命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
-iwconfig   用于查看无线网络</p>
+iwconfig   用于查看无线网络 <br>
+dmidecode -t bios 查看BIOS信息。</p>
 <p><strong>su 用户名 切换用户登录。</strong><br>
 sudo 获取root权限。
 poweroff 关机。<br>
