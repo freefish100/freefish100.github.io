@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="673">
+<meta itemprop="wordCount" content="773">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -300,8 +300,30 @@ iwconfig   用于查看无线网络<br>
 查看linux内核版本号的三种命令：<br>
 uname -a<br>
 uname -r<br>
-cat /proc/version</p>
-<p><strong>查看主机名和信息：</strong><br>
+cat /proc/version
+查看正在运行的服务：<br>
+systemctl | grep running<br>
+查看指定服务运行状态：<br>
+systemctl | grep apache2<br>
+查看进程<br>
+ps aux #以简单的列表形式显示出进程信息<br>
+a ： 显示当前终端下的所有进程信息，包括其他用户的进程<br>
+u ：以用户为主的进程状态<br>
+x ：通常与 a 这个参数一起使用，显示当前用户在所有终端下的进程信息<br>
+ps -elf #以长格式显示系统的进程信息，并包含更丰富的内容<br>
+-e：显示系统内所有的进程信息<br>
+-l ：使用长格式显示进程信息<br>
+-f ：使用完整的格式显示进程信息<br>
+ps命令常配合管道命令 | 和查找命令 grep 同时执行来查看特定进程，如：
+ps -ef | grep caddy
+top 命令将会在当前终端以全屏交互式的界面显示进程排名，及时跟踪CPU、内存等系统资源占用情况，默认情况下每三秒刷新一次，其作用类似于windows系统中的任务管理器。<br>
+top -Hp <!-- raw HTML omitted -->查看进程详细信息获取目标线程的CPU使用情况</p>
+<p>jstack 命令是JDK工具之一，使用该命令可以打印正在运行中 Java 进程的栈信息。
+首先使用 jps命令查看需要打印线程栈的java进程号；
+再链接到某个进程号(如82)上，使用下面命令：
+jstack 82
+可以看到控制台打印出了线程的信息以及线程对应的堆栈信息。</p>
+<p>：<strong>查看主机名和信息：</strong><br>
 hostnamectl</p>
 <p><strong>修改主机名：</strong><br>
 hostnamectl set-hostname somename<br>
@@ -372,6 +394,22 @@ reload：重载指定unit， 如 systemctl reload nginx<br>
 enable：系统开机时自动启动指定unit，前提是配置文件中有相关配置， 如 systemctl enable nginx<br>
 disable：开机时不自动运行指定unit，如 systemctl disable nginx<br>
 status：查看指定unit当前运行状态，如 systemctl status nginx</p>
+<p><strong>查看用户登录记录</strong><br>
+who 命令：显示当前当登录的用户的信息<br>
+w 命令：显示登录的用户及其当前执行的任务<br>
+users 命令：显示当前当登录的用户的用户名<br>
+last 命令：显示当前与过去登录系统的用户的信息<br>
+lastb 命令：显示所有登录系统失败的用户的信息<br>
+lastlog 命令：显示用户最后一次登录的信息<br>
+ac 命令：显示用户连接时间的统计数据。ac -d 显示每天的总的连接时间，ac -p 显示每个用户的总的连接时间。<br>
+who、w 和 users 等命令通过 utmp(/var/run/utmp) 文件查询当前登录用户的信息。<br>
+last 和 ac 命令通过 wtmp(/var/log/wtmp) 文件查询当前与过去登录系统的用户的信息。<br>
+lastb 命令通过 btmp(/var/log/btmp) 文件查询所有登录系统失败的用户的信息。<br>
+lastlog 命令通过 lastlog(/var/log/lastlog) 文件查询用户最后一次登录的信息。</p>
+<p><strong>查看过往历史中使用过的命令：</strong><br>
+history<br>
+后面加数字可以查看相应的历史命令数量，如果要查看最近10条运行过的命令：
+history 10</p>
 <p><strong>查看日志</strong><br>
 Systemd是Linux系统工具，Systemd拥有强大的解决与系统日志记录功能-systemd-journald。日志目录一般是在/var/log/journal，记录的是二进制文件，我们可以通过journalctl进行查看。<br>
 显示所有日志：journalctl<br>
@@ -445,6 +483,9 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220713/">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/js20220628/">开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH 
 </a>
       </li><li>
@@ -470,9 +511,6 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
 </a>
       </li><li>
         <a href="https://note.freezz.cc/post/js20220411/">ESXI 虚拟交换机配置 Trunk 端口组 VLan
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/rc20220411/">技术文章链接收录
 </a>
       </li></ul>
   </div>

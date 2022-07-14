@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明</title>
+      <link>https://note.freezz.cc/post/js20220713/</link>
+      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220713/</guid>
+      <description>NTFS 是 Windows NT 系列操作系统支持的磁盘文件系统格式，它是一个特别为网络和磁盘配额、文件加密等管理安全特性设计的文件系统。 而 Linux 内核中新进入主线支持的 NTFS3 驱动是一个功能齐全的 NTFS 驱动程序，该驱动程序适用于最高的 NTFS 3.1 版本。
+最初，Linux 内核没有 NTFS 的原生支持，后来对 NTFS 的支持也仅提供了只读功能。来自 Tuxera 的 NTFS-3G 是之前主流的解决方案，但在实际使用中也存在一些问题。 NTFS-3G 是借助 Linux 的用户空间文件系统（FUSE）模块在用户层实现的一个对 NTFS 支持的文件系统，其对 NTFS 的访问逻辑代码都是在用户层代码实现的。 在 NTFS3 出现之前，Linux 上使用 NTFS 主要问题还是缺乏稳定且功能齐全的读/写支持。2020 年，Paragon 软件公司做出了一个惊人的决定： 尝试将之前只提供给商业客户的 NTFS3 驱动程序贡献到 Linux 主线。最终，在经过多轮审核和修改之后，Linux 内核 5.15 合并了 Paragon 提供的 NTFS3 内核驱动， 它拥有更高的性能和更多的特性：
+ 该驱动程序实现了对 NTFS 文件系统中的正常、稀疏和压缩文件的读/写支持。 支持本地日志回放。 支持已挂载的 NTFS 卷的 NFS 导出。 支持文件和文件夹的权限管理。  使用 NTFS3 驱动挂载 NTFS 卷：使用 NTFS3 驱动挂载时使用的文件系统类型是 ntfs3。</description>
+    </item>
+    
     <item>
       <title>开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH </title>
       <link>https://note.freezz.cc/post/js20220628/</link>
