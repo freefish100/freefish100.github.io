@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="773">
+<meta itemprop="wordCount" content="809">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -292,20 +292,20 @@ ifup eth0 启用 ‘eth0’ 网络设备<br>
 使用 nmtui 可以调出图形界面设置网络参数<br>
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.<br>
 列出网卡设备<br>
-使用“ifconfig -a”  命令查看；<br>
-使用“lspci | grep -i &lsquo;eth&rsquo;”或“lspci | grep -i net”命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
+使用 ifconfig -a  命令查看；<br>
+使用 lspci | grep -i &ldquo;eth&rdquo; 或 lspci | grep -i net 命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
 iwconfig   用于查看无线网络<br>
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</p>
 <p><strong>系统相关</strong><br>
 查看linux内核版本号的三种命令：<br>
 uname -a<br>
 uname -r<br>
-cat /proc/version
-查看正在运行的服务：<br>
+cat /proc/version</p>
+<p>查看正在运行的服务：<br>
 systemctl | grep running<br>
 查看指定服务运行状态：<br>
-systemctl | grep apache2<br>
-查看进程<br>
+systemctl | grep apache2</p>
+<p>查看进程<br>
 ps aux #以简单的列表形式显示出进程信息<br>
 a ： 显示当前终端下的所有进程信息，包括其他用户的进程<br>
 u ：以用户为主的进程状态<br>
@@ -363,11 +363,18 @@ kill -9 26993</p>
 lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。
 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
 lscpu 可以列出本机的 CPU 的相关信息。
+free 可以查看系统中使用的、闲置的和 RAM 的总体数量，可带参数 -m 或 -g，来以不同的单位显示容量 <br>
+free -m 以MB为单位查看内存<br>
+free -g 以GB为单位查看内存<br>
 lsusb 列出与本机相连的所有 USB 设备的信息。默认情况下，只列出概要信息，使用 -v 选项可以列出每一个 USB 口的详细信息。<br>
 lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
-lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。
+lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。<br>
 df 命令可以列出不同分区的大小，使用情况，使用率，挂载点等信息，加上 -h 选项可以以 k, M, G 等单位表示大小，否则默认是字节，不容易阅读。<br>
-free 命令可以查看系统中使用的、闲置的和 RAM 的总体数量，一般带上 -m 参数。</p>
+dmidecode -t bios 查看BIOS信息<br>
+列出网卡设备<br>
+使用 ifconfig -a  命令查看；<br>
+使用 lspci | grep -i &ldquo;eth&rdquo; 或 lspci | grep -i net 命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
+iwconfig   用于查看无线网络</p>
 <p><strong>su 用户名 切换用户登录。</strong><br>
 sudo 获取root权限。
 poweroff 关机。<br>
