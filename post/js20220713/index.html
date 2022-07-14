@@ -219,7 +219,7 @@ mount -t ntfs3 /dev/sdxY /mnt<br>
 mount -t ntfs3 -o iocharset=utf8,umask=22,prealloc /dev/sdxY /mnt<br>
 这里的 iocharset=utf8,umask=22,prealloc 挂载参数，详见后文解释。</p>
 <p>开机自动挂载
-如需在开机时自动挂载，可编辑 /etc/fstab 文件，添加如下行：
+如需在开机时自动挂载，可编辑 /etc/fstab 文件，添加如下行：<br>
 UUID=**** /data ntfs3 iocharset=utf8,umask=0,prealloc 0 0<br>
 其中 UUID=**** 是指定卷（分区）的 UUID。使用 UUID 的好处在于它们与磁盘挂载顺序无关。
 如果你在 BIOS 中改变了你的存储设备顺序，或是重新拔插了存储设备，或是一些 BIOS 可能会随机地改变存储设备的顺序，那么用 UUID 来表示指定卷（分区）会更有效。
@@ -303,6 +303,10 @@ UUID=**** /data ntfs3 iocharset=utf8,umask=0,prealloc 0 0<br>
     <i class="fas fa-fw fa-chevron-left"></i>
     <a href="https://note.freezz.cc/post/js20220628/">开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH 
 </a>
+  </div><div class="post-nav post-next">
+    <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+    <i class="fas fa-fw fa-chevron-right"></i>
   </div></div></div>
 </article><section class="related-posts row card component">
     <div class="card-header">
@@ -373,6 +377,9 @@ UUID=**** /data ntfs3 iocharset=utf8,umask=0,prealloc 0 0<br>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/js20220713/">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明
 </a>
       </li><li>
@@ -398,9 +405,6 @@ UUID=**** /data ntfs3 iocharset=utf8,umask=0,prealloc 0 0<br>
 </a>
       </li><li>
         <a href="https://note.freezz.cc/post/js20220412/">解决Ubuntu的Vi方向键出现乱码
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220411/">ESXI 虚拟交换机配置 Trunk 端口组 VLan
 </a>
       </li></ul>
   </div>

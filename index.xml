@@ -7,7 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>命令的形式列出各个linux系统已经安装的软件包</title>
+      <link>https://note.freezz.cc/post/js20220714/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220714/</guid>
+      <description>在 Arch Linux 中使用 pacman 显示已安装的包 Pacman是 Arch Linux 及其衍生产品（如 EndeavourOS 和 Manjaro Linux）的默认包管理器。要列出Arch Linux 及其衍生产品中使用pacman显示所有已安装软件包，如下：
+pacman -Q
+如果要逐页查看输出，请将输出通过管道传输到more命令
+pacman -Q | more
+仅列出显式安装的软件包和版本：
+pacman -Qe
+要仅列出 Arch Linux 中已安装软件包的总数，请将pacman输出通过管道传输到wc命令：
+pacman -Q | wc -l 会回显一个数字的，就是安装包的总数量
+在Alpine Linux中使用apk命令获取已安装包列表 Apk是 Alpine Package Manager 的缩写，是 Alpine Linux 的默认包管理器。在 Alpine Linux 中查看已安装包列表的命令是：
+apk info
+如果要查看已安装的软件包列表以及版本号和软件包描述，请使用-vv如下标志：
+apk info -vv
+要仅列出 Alpine Linux 中所有已安装软件包的总数，请将apk info输出通过管道发送到wc如下命令：
+apk info | wc -l
+在 Debian、Ubuntu 中使用 apt 命令查找已安装的包 Apt为 Debian、Ubuntu 和其他基于 Debian 的系统中的包管理系统提供了高级命令行界面。要在 Debian、Ubuntu、Linux Mint 和其他基于 DEB 的系统中显示已安装软件包的列表， 请运行：</description>
+    </item>
+    
     <item>
       <title>使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明</title>
       <link>https://note.freezz.cc/post/js20220713/</link>
