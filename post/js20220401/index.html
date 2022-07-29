@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="816">
+<meta itemprop="wordCount" content="877">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -251,8 +251,12 @@ blkid 查看分区的UUID信息</p>
 <p><strong>查看当前目录下各个文件及目录占用空间大小</strong><br>
 du -sh *    按K、M、G为单位显示<br>
 du -s *       按兆字节为单位显示<br>
-du -sh * | sort -rn     从大到小的方式排序<br>
-参数-s表示只显示每个参数总的大小，参数-h表示打印人类可读大小。</p>
+du -sh * | sort -rn     参数-r 从大到小的方式排序<br>
+参数-s表示只显示每个参数总的大小，参数-h表示打印人类可读大小。
+查看上GB的目录并且排序,可以用这个命令：<br>
+du -h &ndash;max-depth=1 |grep &lsquo;G&rsquo; |sort<br>
+如果删除大文件，df -h查看磁盘空间并没有释放，那么就是被删除的文件关联的进程还在执行，那么需要我们将相关进程kill掉或重启，可以用这个命令来查看进程
+lsof |grep delete</p>
 <p><strong>查找大小范围的文件</strong><br>
 <code>find -type f -size +100M -exec du -h {} \;</code>   查找大于100M的文件(命令含分号)<br>
 <code>find -type f -size +1G -exec du -h {} \;</code>   查找大于1G的文件(命令含分号)</p>
@@ -422,6 +426,23 @@ lastlog 命令通过 lastlog(/var/log/lastlog) 文件查询用户最后一次登
 history<br>
 后面加数字可以查看相应的历史命令数量，如果要查看最近10条运行过的命令：
 history 10</p>
+<p><strong>挂载NTFS格式的U盘</strong><br>
+安装阿里云yum源<br>
+wget -O /etc/yum.repos.d/epel.repo <a href="http://mirrors.aliyun.com/repo/epel-7.repo" target="_blank" rel="noopener noreferrer">http://mirrors.aliyun.com/repo/epel-7.repo</a><br>
+安装ntfs-3g<br>
+yum install ntfs-3g -y<br>
+创建挂载目录<br>
+mkdir /mnt/u<br>
+挂载NTFS格式的U盘<br>
+mount -t ntfs-3g /dev/sdc1 /mnt/u<br>
+可加参数 -o iocharset=cp936，设定字符集：<br>
+mount -t vfat -o iocharset=utf8,codepage=uft8 /dev/sdb1 /mnt/usb<br>
+mount -t vfat -o iocharset=cp936,codepage=936 /dev/sdb1 /mnt/usb<br>
+cp936是指简体中文，cp950是指繁体中文<br>
+检查是否挂载成功<br>
+df -hl  查看挂载信息
+挂载fat格式的U盘：<br>
+mount -t vfat /dev/sdb1 /mnt/</p>
 <p><strong>查看日志</strong><br>
 Systemd是Linux系统工具，Systemd拥有强大的解决与系统日志记录功能-systemd-journald。日志目录一般是在/var/log/journal，记录的是二进制文件，我们可以通过journalctl进行查看。<br>
 显示所有日志：journalctl<br>
@@ -473,6 +494,9 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
     </div>
     <div class="card-body">
       <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+        </li><li>
           <a href="https://note.freezz.cc/post/rc20220411/">技术文章链接收录
 </a>
         </li><li>
@@ -484,9 +508,6 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
         </li><li>
           <a href="https://note.freezz.cc/post/work20220302/">工作笔记备忘(不定时更新)
 </a>
-        </li><li>
-          <a href="https://note.freezz.cc/post/rc20220223/">实用网址收录(不定时更新)
-</a>
         </li></ul>
     </div>
   </section><section class="recent-posts row card component">
@@ -495,6 +516,9 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
 </a>
       </li><li>
@@ -521,9 +545,6 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
       </li><li>
         <a href="https://note.freezz.cc/post/js20220413/">windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密
 </a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220412/">解决Ubuntu的Vi方向键出现乱码
-</a>
       </li></ul>
   </div>
 </section><section class="categories-taxonomies row card component">
@@ -548,10 +569,10 @@ journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
         <div class="py-2"><a href="https://note.freezz.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
             linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
             centos</a><a href="https://note.freezz.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
-            Ubuntu </a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
-            备忘</a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            Ubuntu </a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
             ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
-            VMware</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            VMware</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
             windows11</a><a href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
             操作系统</a><a href="https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">
             网络配置 </a><a href="https://note.freezz.cc/tags/github/" class="badge rounded post-taxonomy" title="github">

@@ -26,7 +26,7 @@ https://almalinux.org/zh-hans/
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。 T140机器进入S140软阵列
 开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。 BOSS卡介绍"><meta itemprop="datePublished" content="2022-03-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="113">
+<meta itemprop="wordCount" content="117">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
 <meta property="og:description" content="【2022年4月21日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
@@ -267,8 +267,13 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。</li>
 <li>IDRAC管理页面中，SSD硬盘的“剩余额定写入耐久性”，是指SSD硬盘的损耗情况。SSD写寿命限制：是指，对于达到写寿命上限的SSD，视为设备损耗， 0% 是上限，到0% 就是SSD的写入寿命快到了，这种没有保修了。</li>
 <li><a href="https://www.dell.com/support/manuals/zh-cn/poweredge-r740/idrac_3.31.31.31_ug/%E4%BD%BF%E7%94%A8-idrac-web-%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0%E5%9B%BA%E4%BB%B6?guid=guid-609b681d-830b-420c-9935-4e2ab054d54e&amp;lang=zh-cn" target="_blank" rel="noopener noreferrer">Integrated Dell Remote Access Controller 9 版本 3.31.31.31 用户指南（IDRAC9 固件更新步骤）</a></li>
 <li>H350 H355 H345 阵列卡支持raid 0,1,10，不支持做 raid5 。</li>
+<li>IDRAC9开启IPMI：IDRAC&ndash;设置&ndash;连接性&ndash;网络&ndash;IPMI 设置&ndash;选择“已启用”。</li>
 </ul>
 <h2 id="infortrend普安存储设备">Infortrend普安存储设备<a class="anchor ms-1" href="#infortrend普安存储设备"><i class="fas fa-link"></i></a></h2>
+<ul>
+<li>目前的型号，支持单只硬盘的最大容量是18T。</li>
+<li>存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。</li>
+</ul>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
     <i class="fas fa-fw fa-chevron-left"></i>
@@ -307,6 +312,9 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。</li>
     </div>
     <div class="card-body">
       <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+        </li><li>
           <a href="https://note.freezz.cc/post/rc20220411/">技术文章链接收录
 </a>
         </li><li>
@@ -318,9 +326,6 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。</li>
         </li><li>
           <a href="https://note.freezz.cc/post/work20220302/">工作笔记备忘(不定时更新)
 </a>
-        </li><li>
-          <a href="https://note.freezz.cc/post/rc20220223/">实用网址收录(不定时更新)
-</a>
         </li></ul>
     </div>
   </section><section class="recent-posts row card component">
@@ -329,6 +334,9 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。</li>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
 </a>
       </li><li>
@@ -355,9 +363,6 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。</li>
       </li><li>
         <a href="https://note.freezz.cc/post/js20220413/">windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密
 </a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220412/">解决Ubuntu的Vi方向键出现乱码
-</a>
       </li></ul>
   </div>
 </section><section class="categories-taxonomies row card component">
@@ -382,10 +387,10 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。</li>
         <div class="py-2"><a href="https://note.freezz.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
             linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
             centos</a><a href="https://note.freezz.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
-            Ubuntu </a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
-            备忘</a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            Ubuntu </a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
             ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
-            VMware</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            VMware</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
             windows11</a><a href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
             操作系统</a><a href="https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">
             网络配置 </a><a href="https://note.freezz.cc/tags/github/" class="badge rounded post-taxonomy" title="github">

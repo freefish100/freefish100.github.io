@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 14 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ESXi</title>
+      <link>https://note.freezz.cc/tags/esxi/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/esxi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VMware</title>
+      <link>https://note.freezz.cc/tags/vmware/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/vmware/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>centos</title>
       <link>https://note.freezz.cc/tags/centos/</link>
@@ -113,24 +131,6 @@
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ESXi</title>
-      <link>https://note.freezz.cc/tags/esxi/</link>
-      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/esxi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VMware</title>
-      <link>https://note.freezz.cc/tags/vmware/</link>
-      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/vmware/</guid>
       <description></description>
     </item>
     
