@@ -205,7 +205,7 @@
 <p>默认地，在未做更改的情况下，虚拟机往往是使用的 VLAN ID 为 0 的网络。当我们需要虚拟机间的网卡能接收到携带任何 VLAN tag 的数据包时，就需要设置 trunk 网络！</p>
 <p>ESXI 设置 Trunk 网络（端口组）
 首先，登录到 ESXI 控制台（本文是 ESXI 7.0），依次选择：网络 -&gt; 端口组 -&gt; 添加端口组<br>
-<img class="img-fluid" alt="" src="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/20220411a.jpg" loading="lazy"
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/20220411a.jpg" loading="lazy"
   
    />
 
@@ -213,7 +213,7 @@
 注意，VLAN ID 必须是 4095，只有该 ID 才是 Trunk 模式（允许任何 VLAN 包通过）
 保存后，Trunk 网络就创建好了！</p>
 <p>接下来，配置虚拟机网卡，使其使用该 Trunk 网络
-<img class="img-fluid" alt="" src="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/20220411b.jpg" loading="lazy"
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/20220411b.jpg" loading="lazy"
   
    />
 
