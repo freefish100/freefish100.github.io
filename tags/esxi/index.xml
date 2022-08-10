@@ -7,16 +7,48 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Fri, 29 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/esxi/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/esxi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法</title>
+      <link>https://note.freezz.cc/post/js20220810/</link>
+      <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220810/</guid>
+      <description>ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法
+  点开ESXI主机的”网络“，新建一个虚拟交换机
+已经看到新增的”虚拟交换机“了
+  点开ESXI主机的”网络“，新建一个&amp;quot;端口组&amp;quot;
+  点开ESXI主机的”网络“，新建一个”VMkernel网卡“
+  点开ESXI主机的”存储“&amp;ndash;”适配器“&amp;ndash;&amp;ldquo;软件iSCSI&amp;rdquo;
+上图“名称和别名”的IQN号要记下，到在存储主机上添加IQN时要用到的。
+  进入存储主机管理页面，“设置”&amp;ndash;“访问”&amp;ndash;“通道和网络” ，设置主机通道的工作模式，按实际情况来选择，这里选择“iSCSI 10 Gbps”为例
+  线缆连接好ESXI主机服务器和GS1012R2存储的相应的端口
+  进入存储主机管理页面，“设置”&amp;ndash;“访问”&amp;ndash;“通道和网络” ，编辑好上面步骤2对应的通道端口，比如图中的”通道1“
+  把存储中的卷映射到主机（事先要创建好卷，这里略过）
+下面添加主机IQN
+点击“确定”后，如下图，点击“下一步”
+点击“关闭”按钮，返回到创建映射主机页面
+这里显示选择的的“ESXI”，就是上面建立的主机IQN，“ESXI”是主机的别名
+  点开ESXI主机的”存储“&amp;ndash;”设备“，点击”重新扫描“，再点击”刷新“，如无意外，就可以看到连接的存储了
+  注意：ESXi会把远程添加的存储当作远程磁盘，所以它期望有两条或以上路径可以到达它，如果没有找到，它会将其视为“已降级”。
+解决步骤如下：
+  点开ESXI主机的”网络“，新建一个虚拟交换机
+  点开ESXI主机的”网络“，新建一个端口组
+  点开ESXI主机的”网络“，新建一个VMkernel网卡
+  点开ESXI主机的”存储“&amp;ndash;”适配器“，选中那张iSCSI适配器，点”配置iSCSI“，”添加端口绑定“
+  点击选中刚才添加的VMkernel网卡
+添加完成后的状态
+ 点开ESXI主机的”存储“&amp;ndash;”设备“，点击”重新扫描“，再点击”刷新“，就可以正常显示存储
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;  </description>
+    </item>
+    
     <item>
       <title>VMware ESXI vCenter 备忘笔记</title>
       <link>https://note.freezz.cc/post/js20220729/</link>
       <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/post/js20220729/</guid>
-      <description>VMware-ESXi-6.7.0许可证
-0A65P-00HD0-3Z5M1-M097M-22P7H
-&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..
+      <description>&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..
 网卡信息查询
 查看所有网卡：
 esxcfg-nics -l
@@ -38,7 +70,8 @@ esxcli software vib install -d {OFFLINE_BUNDLE}
 &amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;
 esxi6.5开启开启嵌套虚拟化
 Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep &amp;lsquo;(vmx|svm)&amp;rsquo; /proc/cpuinfo
-另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。</description>
+另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。
+要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：</description>
     </item>
     
     <item>
