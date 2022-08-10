@@ -12,7 +12,7 @@
 <meta name="description" content="ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法" /><meta itemprop="name" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法">
 <meta itemprop="description" content="ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法"><meta itemprop="datePublished" content="2022-08-10T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-08-10T00:00:00+00:00" />
-<meta itemprop="wordCount" content="33">
+<meta itemprop="wordCount" content="37">
 <meta itemprop="keywords" content="ESXI,VMware," /><meta property="og:title" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法" />
 <meta property="og:description" content="ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法" />
 <meta property="og:type" content="article" />
@@ -411,9 +411,15 @@
   
    />
 
-
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</li>
+</li>
 </ul>
+<p>最后，还需要在ESXI主机中再配置一下iSCSI，多添加一条”动态目标“。因为普安infortrend GS1012R2是双控制器的，每个控制器都有各自的通道，比如上面的控制器接线图，ESXI服务器分别接了控制器A的通道1端口(设置的ip是192.168.1.31) 和 控制器B的通道1端口(设置的ip是192.168.1.32)，这样可以双路径通讯，如果其中一个控制器或者链路出现故障，会自动切换到另外一个控制器和链路。添加完成后，如下图：<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/098aeb11dac373b2b432fa5f73c1c48f.png" loading="lazy"
+  
+   />
+
+
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</p>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
     <i class="fas fa-fw fa-chevron-left"></i>
