@@ -7,7 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 14 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos修改硬盘分区大小,把home分区部分容量分配给根分区</title>
+      <link>https://note.freezz.cc/post/js20220812/</link>
+      <pubDate>Fri, 12 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220812/</guid>
+      <description>执行df -h查看硬盘使用情况，先看下有没有未分配的磁盘，如果有的话可以把未分配的空间直接分过去，这里都已经使用了，需要从home中分出空间给根目录
+  备份home目录文件
+cp -r /home/ homebak/
+  使用 umount /home 卸载home分区，并 df -h 查看是否成功。如果提示目标忙，则用fuser -m -v -i -k /home 干掉进程，然后再执行umount /home
+再执行 df -h 查看分区挂载情况：
+这里的显示已经没有了/home，已成功卸载了home分区
+  删除home分区（删除home所在lv）：lvremove /dev/mapper/centos-home
+  给根目录对应的/dev/mapper/centos-root增加5G空间：lvextend -L +5G /dev/mapper/centos-root
+  扩容拓展根分区文件系统 xfs_growfs /dev/mapper/centos-root
+  重建home（重建home的lv）。先执行 fdisk -l 查看总量减去已分配的剩下的就是可以分配的大小，不够的话会有提示
+或者执行 vgdisplay 命令，显示LVM卷组的信息，查看到可用的分配容量
+这里显示可用的分配容量为5G。执行 lvcreate -L 5G -n home centos -y 重建home。其中“centos”是home所处的卷组名称（vgdisplay命令可以查看卷组名称），加参数y， 是因为执行时有可能会提示是否擦除xfs签名，加-y 就是擦除xfs签名。
+创建home文件系统，执行 mkfs.xfs /dev/centos/home</description>
+    </item>
+    
     <item>
       <title>命令的形式列出各个linux系统已经安装的软件包</title>
       <link>https://note.freezz.cc/post/js20220714/</link>

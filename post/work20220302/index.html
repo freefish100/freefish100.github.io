@@ -9,59 +9,59 @@
 <link rel="icon" href="https://note.freezz.cc/images/icons/favicon.ico">
 <link rel="manifest" href="https://note.freezz.cc/manifest.json">
 <meta name="keywords" content="" />
-<meta name="description" content="【2022年4月21日更新】
+<meta name="description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
 https://almalinux.org/zh-hans/
 戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL 14G INTEL平台服务器BIOS设置详解
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Precision 3650 塔式机规格参数
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 在RAID控制器10中分配/取消分配设置热备盘
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL 14G INTEL平台服务器BIOS设置详解
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Precision 3650 塔式机规格参数
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 在RAID控制器10中分配/取消分配设置热备盘
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
 ，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Dell EMC PowerEdge 服务器型号列表
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Dell EMC PowerEdge 服务器型号列表
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. PowerEdge 服务器命名约定
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. IDRAC9管理口配置
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。" /><meta itemprop="name" content="工作笔记备忘(不定时更新)">
-<meta itemprop="description" content="【2022年4月21日更新】
+<meta itemprop="description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
 https://almalinux.org/zh-hans/
 戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL 14G INTEL平台服务器BIOS设置详解
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Precision 3650 塔式机规格参数
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 在RAID控制器10中分配/取消分配设置热备盘
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL 14G INTEL平台服务器BIOS设置详解
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Precision 3650 塔式机规格参数
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 在RAID控制器10中分配/取消分配设置热备盘
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
 ，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Dell EMC PowerEdge 服务器型号列表
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Dell EMC PowerEdge 服务器型号列表
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. PowerEdge 服务器命名约定
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. IDRAC9管理口配置
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。"><meta itemprop="datePublished" content="2022-03-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="141">
+<meta itemprop="wordCount" content="142">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
-<meta property="og:description" content="【2022年4月21日更新】
+<meta property="og:description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
 https://almalinux.org/zh-hans/
 戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL 14G INTEL平台服务器BIOS设置详解
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Precision 3650 塔式机规格参数
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 在RAID控制器10中分配/取消分配设置热备盘
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL 14G INTEL平台服务器BIOS设置详解
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Precision 3650 塔式机规格参数
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 在RAID控制器10中分配/取消分配设置热备盘
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
 ，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Dell EMC PowerEdge 服务器型号列表
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Dell EMC PowerEdge 服务器型号列表
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. PowerEdge 服务器命名约定
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. IDRAC9管理口配置
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://note.freezz.cc/post/work20220302/" /><meta property="article:section" content="post" />
@@ -70,22 +70,22 @@ https://almalinux.org/zh-hans/
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="工作笔记备忘(不定时更新)"/>
-<meta name="twitter:description" content="【2022年4月21日更新】
+<meta name="twitter:description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
 https://almalinux.org/zh-hans/
 戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DELL 14G INTEL平台服务器BIOS设置详解
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Precision 3650 塔式机规格参数
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 在RAID控制器10中分配/取消分配设置热备盘
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. DELL 14G INTEL平台服务器BIOS设置详解
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Precision 3650 塔式机规格参数
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 在RAID控制器10中分配/取消分配设置热备盘
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
 ，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. Dell EMC PowerEdge 服务器型号列表
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. Dell EMC PowerEdge 服务器型号列表
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. PowerEdge 服务器命名约定
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. IDRAC9管理口配置
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。"/>
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/>
   <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://note.freezz.cc/css/main.min.0166e20cf9a8c749090476957db05bfd1fd8ffd875197c285f090f4eff6a912c.css" integrity="sha256-AWbiDPmox0kJBHaVfbBb/R/Y/9h1GXwoXwkPTv9qkSw=" crossorigin="anonymous"><link rel="stylesheet" href="https://note.freezz.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
@@ -262,7 +262,7 @@ https://almalinux.org/zh-hans/
     2022-03-02
   </span><span class="post-taxonomies"><a href="https://note.freezz.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge post-taxonomy">工作笔记</a><a href="https://note.freezz.cc/tags/%E7%AC%94%E8%AE%B0/" class="badge post-taxonomy">笔记</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge post-taxonomy">备忘</a></span>
 </div>
-<div class="post-content mb-3"><p>【2022年4月21日更新】</p>
+<div class="post-content mb-3"><p>【2022年8月12日更新】</p>
 <h2 id="可以替代centos的发行版本推荐">可以替代Centos的发行版本推荐<a class="anchor ms-1" href="#可以替代centos的发行版本推荐"><i class="fas fa-link"></i></a></h2>
 <p>1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。<br>
 <a href="https://rockylinux.org/zh_CN/" target="_blank" rel="noopener noreferrer">https://rockylinux.org/zh_CN/</a><br>
@@ -272,66 +272,67 @@ AlmaLinux OS<br>
 <h2 id="戴尔dell设备">戴尔DELL设备<a class="anchor ms-1" href="#戴尔dell设备"><i class="fas fa-link"></i></a></h2>
 <ul>
 <li>DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://mp.weixin.qq.com/s/wUm_QBeqyW6ML4wXzZvtPw?linkId=102404759" target="_blank" rel="noopener noreferrer">DELL 14G INTEL平台服务器BIOS设置详解</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://dl.dell.com/content/manual17127189-precision-3650-%E5%A1%94%E5%BC%8F%E6%9C%BA-%E8%AE%BE%E7%BD%AE%E5%92%8C%E8%A7%84%E6%A0%BC.pdf?language=zh-cn&amp;ps=true" target="_blank" rel="noopener noreferrer">Precision 3650 塔式机规格参数</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://mp.weixin.qq.com/s/pbBV4DuyMUgeB45uopaBTw" target="_blank" rel="noopener noreferrer">在RAID控制器10中分配/取消分配设置热备盘</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://mp.weixin.qq.com/s/5FBZodduA_WaurAN1StLiA" target="_blank" rel="noopener noreferrer">Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法</a>（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(<a href="https://upload.dell.com/" target="_blank" rel="noopener noreferrer">https://upload.dell.com/</a>)这个链接，其中“Service tag“填写机器服务号<br>
 ，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://mp.weixin.qq.com/s/TMfHSG3A7wWaACH2rk24KQ" target="_blank" rel="noopener noreferrer">服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://www.dell.com/support/kbdoc/zh-cn/000143479/list-of-poweredge-models-and-generation" target="_blank" rel="noopener noreferrer">Dell EMC PowerEdge 服务器型号列表</a><br>
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
 <li><a href="https://www.dell.com/support/kbdoc/zh-cn/000137343/%E5%A6%82%E4%BD%95%E5%B0%86-dell-poweredge-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BD%92%E5%B1%9E" target="_blank" rel="noopener noreferrer">PowerEdge 服务器命名约定</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://mp.weixin.qq.com/s/MOgTPNRRSA4l34Mm_DxsJw" target="_blank" rel="noopener noreferrer">IDRAC9管理口配置</a><br>
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置：
 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。
 IDRAC Enterprise版本推荐使用Dedicated连接方式。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>T140机器进入S140软阵列<br>
 开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode
 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>BOSS卡介绍<br>
 <a href="https://www.dell.com/support/kbdoc/zh-cn/000131634/14g%e6%9c%8d%e5%8a%a1%e5%99%a8boss%e7%9a%84%e5%9f%ba%e6%9c%ac%e4%bb%8b%e7%bb%8d%e5%92%8c%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95" target="_blank" rel="noopener noreferrer">14G服务器BOSS的基本介绍和配置方法</a><br>
 <a href="https://mp.weixin.qq.com/s/CM5-R7Ao7EETkDy8Z0AV3g" target="_blank" rel="noopener noreferrer">BOSS卡全接触(1)</a><br>
 <a href="https://mp.weixin.qq.com/s/BRr3hxLCQSc_951f3E3l9w" target="_blank" rel="noopener noreferrer">BOSS卡全接触(2)</a><br>
 <a href="https://mp.weixin.qq.com/s/MPQz9m3D1TMUmx1xx-WoAg" target="_blank" rel="noopener noreferrer">BOSS卡全接触(3)</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>IDRAC页面查看物理硬盘状况，会有“外来”、“就绪”、“联机”等几种状态。外来，是指硬盘有拔插，或者新加入的；就绪，是指新硬盘状态，没有进行任何配置；联机，是指硬盘已配置使用的。<br>
 <a href="https://mp.weixin.qq.com/s/NsAVdtmWthXhd8a3JG2L3Q" target="_blank" rel="noopener noreferrer">BIOS中导入外来盘教程（先确认没有硬盘故障）</a><br>
 <a href="https://www.dellemc-solution.com/light-reading/desc.html?id=150747" target="_blank" rel="noopener noreferrer">IDRAC中把新硬盘加入原来的阵列做扩容教程(事先要做好数据备份)</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://mp.weixin.qq.com/s/QBDhu-SUgAUdV9z_dQting" target="_blank" rel="noopener noreferrer">PowerEdge服务器重置BIOS</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>更新固件的两种方法：<br>
 <a href="https://mp.weixin.qq.com/s/6NultA1aaoDD-rb9XaMF1A" target="_blank" rel="noopener noreferrer">F10 LifeCycle下升级固件</a><br>
 <a href="https://mp.weixin.qq.com/s/5Ez1jd_HEV221T4_aPi-6A" target="_blank" rel="noopener noreferrer">14G服务器如何在IDRAC下更新固件</a><br>
 更新BIOS和更新IDRAC操作方法一样，只是上传的文件不一样，更新BIOS时上传BIOS文件，更新IDRAC时上传IDRAC文件。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>IDRAC管理页面中，SSD硬盘的“剩余额定写入耐久性”，是指SSD硬盘的损耗情况。SSD写寿命限制：是指，对于达到写寿命上限的SSD，视为设备损耗， 0% 是上限，到0% 就是SSD的写入寿命快到了，这种没有保修了。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li><a href="https://www.dell.com/support/manuals/zh-cn/poweredge-r740/idrac_3.31.31.31_ug/%E4%BD%BF%E7%94%A8-idrac-web-%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0%E5%9B%BA%E4%BB%B6?guid=guid-609b681d-830b-420c-9935-4e2ab054d54e&amp;lang=zh-cn" target="_blank" rel="noopener noreferrer">Integrated Dell Remote Access Controller 9 版本 3.31.31.31 用户指南（IDRAC9 固件更新步骤）</a><br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>H350 H355 H345 阵列卡支持raid 0,1,10，不支持做 raid5 。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>IDRAC9开启IPMI：IDRAC&ndash;设置&ndash;连接性&ndash;网络&ndash;IPMI 设置&ndash;选择“已启用”。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 <li>R740或者同类型型号的服务器，单个CPU建议安装的内存数量是1、2、4、6这样，安装顺序是A1，A2，A3，&hellip;&hellip;。
-双CPU建议安装的内存数量是2、4、8、12这样，安装顺序是A1，B1，A2，B2，&hellip;&hellip;，
-就是A通道和B通道各自的内存数量相同并且A、B通道各自的内存数量为偶数量（内存总共是2条的情况除外），容量大的内存优先插在最前面的通道。这是DELL官方所建议的最佳内存插法。类型相同、容量不同的内存，可以同时使用，一般不会有会问题，具体以上机测试为准。<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+2个CPU的建议安装的内存数量是2、4、8、12这样，安装顺序是A1，B1，A2，B2，&hellip;&hellip;，
+就是A通道和B通道各自的内存数量相同并且A、B通道各自的内存数量为偶数量（内存总共是2条的情况除外）。容量大的内存优先插在前面的通道，例如2个CPU情况下，32G的安装在A1，16G的安装在B1。这是DELL官方所建议的最佳内存插法。<br>
+2个CPU至少要2根内存，A通道和B通道各自都要有1根，A1、B1这样的安装方式。类型相同、容量不同的内存，可以同时使用，一般不会有会问题，具体以上机测试为准。<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</li>
 </ul>
 <h2 id="infortrend普安存储设备">Infortrend普安存储设备<a class="anchor ms-1" href="#infortrend普安存储设备"><i class="fas fa-link"></i></a></h2>
 <ul>
-<li>目前的型号，支持单只硬盘的最大容量是18T。</li>
+<li>目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月）</li>
 <li>存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。</li>
 </ul>
 </div></div>
@@ -397,6 +398,9 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。<br>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220812/">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/js20220810/">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法
 </a>
       </li><li>
@@ -422,9 +426,6 @@ IDRAC Enterprise版本推荐使用Dedicated连接方式。<br>
 </a>
       </li><li>
         <a href="https://note.freezz.cc/post/work20220505/">穿梭云应用服务启动服务的步骤和命令
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220424/">戴尔DELL H330 Raid卡 阵列卡BIOS模式下配置阵列
 </a>
       </li></ul>
   </div>
