@@ -49,8 +49,7 @@
       <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/post/js20220729/</guid>
-      <description>&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..
-网卡信息查询
+      <description>网卡信息查询
 查看所有网卡：
 esxcfg-nics -l
 查看更详细的网上信息：
@@ -72,7 +71,8 @@ esxcli software vib install -d {OFFLINE_BUNDLE}
 esxi6.5开启开启嵌套虚拟化
 Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep &amp;lsquo;(vmx|svm)&amp;rsquo; /proc/cpuinfo
 另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。
-要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：</description>
+要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：
+使用 vSphere Client 登录到 ESXi/ESX 主机或 vCenter Server。在清单中选择 ESXi/ESX 主机。单击配置选项卡。在“硬件”部分，单击网络。单击要启用混杂模式的虚拟交换机的属性。 选择要修改的虚拟交换机或端口组，然后单击编辑。单击安全选项卡。从“混杂模式”下拉菜单中，单击接受。</description>
     </item>
     
     <item>

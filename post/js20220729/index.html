@@ -12,7 +12,7 @@
 <meta name="description" content="VMware ESXI vCenter 备忘笔记" /><meta itemprop="name" content="VMware ESXI vCenter 备忘笔记">
 <meta itemprop="description" content="VMware ESXI vCenter 备忘笔记"><meta itemprop="datePublished" content="2022-07-29T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-07-29T00:00:00+00:00" />
-<meta itemprop="wordCount" content="249">
+<meta itemprop="wordCount" content="248">
 <meta itemprop="keywords" content="ESXI,VMware," /><meta property="og:title" content="VMware ESXI vCenter 备忘笔记" />
 <meta property="og:description" content="VMware ESXI vCenter 备忘笔记" />
 <meta property="og:type" content="article" />
@@ -196,8 +196,7 @@
     2022-07-29
   </span><span class="post-taxonomies"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge post-taxonomy">技术摘录</a><a href="https://note.freezz.cc/tags/esxi/" class="badge post-taxonomy">ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge post-taxonomy">VMware</a></span>
 </div>
-<div class="post-content mb-3"><p>&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..<br>
-<strong>网卡信息查询</strong><br>
+<div class="post-content mb-3"><p><strong>网卡信息查询</strong><br>
 查看所有网卡：<br>
 esxcfg-nics -l<br>
 查看更详细的网上信息：<br>
@@ -328,7 +327,7 @@ das.usedefaultisolationaddress<br>
 备注：从vsphere5.0开始HA加入了数据存储检测信号的功能，此功能的作用是当HA群集中首选主机无法通过管理网络与从属主机通信时，首选主机将使用数据存储检测信号来判断该从属主机是网络隔离还是出现故障（首选主机通过管理网络和数据存储检测信号检测从属主机状态），若从属主机停止数据存储检测信号，则认定从属主机发生故障，并将其所载虚拟机在别处启动；</p>
 <p><strong>ESXI主机报错收集：</strong></p>
 <ul>
-<li>将虚拟网卡添加到 iSCSI 适配器报错处理
+<li>将虚拟网卡添加到 iSCSI 适配器报错处理<br>
 键：haTask-ha-host-vim.host.IscsiManager.bindVnic-1920719847<br>
 描述：将虚拟网卡添加到 iSCSI 适配器<br>
 状况：失败 - VMkernel 虚拟网卡适配器 vmk0 具有多个物理上行链路。<br>

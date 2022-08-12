@@ -86,7 +86,7 @@ ip addr
 或 ip address show
 Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这样才能访问网络。
 启用网卡连接connection（相当于ifup）
-mncli d 查看网上接口信息
+nmcli d 查看网上接口信息
 nmcli c up ethX(enoX) 激活打开网卡连接，ethX(enoX)为网卡接口名称
 停止网卡连接connection（相当于ifdown）
 nmcli c down ethX(enoX)
