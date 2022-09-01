@@ -1,0 +1,465 @@
+<!doctype html><html lang="zh-cn"
+  >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Centos修改硬盘分区大小,把home分区部分容量分配给根分区 - 自游鱼的笔记</title><link rel="apple-touch-icon" href="https://note.freezz.cc/images/icons/icon-180x180.png" sizes="180x180">
+<link rel="icon" href="https://note.freezz.cc/images/icons/icon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://note.freezz.cc/images/icons/icon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="https://note.freezz.cc/images/icons/favicon.ico">
+<link rel="manifest" href="https://note.freezz.cc/manifest.json">
+<meta name="keywords" content="" />
+<meta name="description" content="Centos修改硬盘分区大小,把home分区部分容量分配给根分区" /><meta itemprop="name" content="Centos修改硬盘分区大小,把home分区部分容量分配给根分区">
+<meta itemprop="description" content="Centos修改硬盘分区大小,把home分区部分容量分配给根分区"><meta itemprop="datePublished" content="2022-08-12T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-08-12T00:00:00+00:00" />
+<meta itemprop="wordCount" content="117">
+<meta itemprop="keywords" content="linux,centos," /><meta property="og:title" content="Centos修改硬盘分区大小,把home分区部分容量分配给根分区" />
+<meta property="og:description" content="Centos修改硬盘分区大小,把home分区部分容量分配给根分区" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://note.freezz.cc/post/js20220812/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-12T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos修改硬盘分区大小,把home分区部分容量分配给根分区"/>
+<meta name="twitter:description" content="Centos修改硬盘分区大小,把home分区部分容量分配给根分区"/>
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/>
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://note.freezz.cc/css/main.min.507afbe6e4670fa3e961a0b35816b5daeb36029866fd6bd7b9d7871fcf88faa5.css" integrity="sha256-UHr75uRnD6PpYaCzWBa12us2Aphm/WvXudeHH8&#43;I&#43;qU=" crossorigin="anonymous"><link rel="stylesheet" href="https://note.freezz.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
+  <body><script>const items=['mode','palette'];items.forEach(function(a){const b=localStorage.getItem('hbs-'+a);b&&document.body.parentElement.setAttribute('data-'+a,b)})</script><header><nav class="navbar top-app-bar top-app-bar-expand-lg fixed-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button><a class="navbar-brand flex-grow-1 flex-lg-grow-0 text-center text-lg-start mx-auto me-lg-3" href="https://note.freezz.cc/"><img class="logo" alt="Logo" src="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp" loading="lazy"
+  
+   />
+自游鱼的笔记
+    </a>
+    <div class="offcanvas offcanvas-bottom surface" tabindex="-1" id="offcanvasSocialShare" aria-labelledby="offcanvasSocialShare">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title">Share</h3>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body">
+    <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Twitter Share Button"
+      target="_blank" href="https://twitter.com/intent/tweet?title=Centos%e4%bf%ae%e6%94%b9%e7%a1%ac%e7%9b%98%e5%88%86%e5%8c%ba%e5%a4%a7%e5%b0%8f%2c%e6%8a%8ahome%e5%88%86%e5%8c%ba%e9%83%a8%e5%88%86%e5%ae%b9%e9%87%8f%e5%88%86%e9%85%8d%e7%bb%99%e6%a0%b9%e5%88%86%e5%8c%ba&url=https%3a%2f%2fnote.freezz.cc%2fpost%2fjs20220812%2f">
+      <i class="fab fa-fw fa-twitter"></i> Twitter
+    </a>
+    <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Facebook Share Button"
+      target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fnote.freezz.cc%2fpost%2fjs20220812%2f">
+      <i class="fab fa-fw fa-facebook-f"></i> Facebook
+    </a>
+  </div>
+</div>
+    <button class="navbar-settings" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSettings"
+  aria-controls="offcanvasSettings" aria-label="Toggle settings">
+  <i class="fas fa-ellipsis-v"></i>
+</button>
+
+<div class="offcanvas offcanvas-end surface h-100" tabindex="-1" id="offcanvasSettings" aria-labelledby="offcanvasSettings">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title">设置</h3>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+
+<section class="setting">
+  <form class="row">
+    <div class="col-auto">
+      <label><i class="fas fa-fw fa-adjust"></i> 模式</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="modeSwitcher">
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="setting">
+  <form class="font-size-switcher-form row">
+    <div class="col-auto">
+      <label for="fontSize" class="form-label"><i class="fas fa-fw fa-font"></i> 字体大小</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <input type="range" class="form-range" min="-2" max="2" id="fontSize">
+    </div>
+  </form>
+</section>
+
+
+<section class="setting palettes">
+  <form class="row">
+    <div class="col-auto">
+      <label><i class="fas fa-fw fa-palette"></i> 配色</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <a id="btnPalette" class="btn btn-sm btn-outline-primary" role="button" aria-label="palettePicker">
+        <i class="fas fa-eye-dropper"></i>
+      </a>
+    </div>
+  </form>
+  <div class="mt-2 d-flex justify-content-between visually-hidden" id="palettePicker"><button type="button" id="palette-blue" aria-label="蓝色"
+        class="btn btn-sm w-100 palette" data-palette="blue">
+      </button><button type="button" id="palette-blue-gray" aria-label="蓝灰色"
+        class="btn btn-sm w-100 palette" data-palette="blue-gray">
+      </button><button type="button" id="palette-brown" aria-label="棕色"
+        class="btn btn-sm w-100 palette" data-palette="brown">
+      </button><button type="button" id="palette-cyan" aria-label="青色"
+        class="btn btn-sm w-100 palette" data-palette="cyan">
+      </button><button type="button" id="palette-green" aria-label="绿色"
+        class="btn btn-sm w-100 palette" data-palette="green">
+      </button><button type="button" id="palette-indigo" aria-label="靛青色"
+        class="btn btn-sm w-100 palette" data-palette="indigo">
+      </button><button type="button" id="palette-orange" aria-label="橙色"
+        class="btn btn-sm w-100 palette" data-palette="orange">
+      </button><button type="button" id="palette-pink" aria-label="粉色"
+        class="btn btn-sm w-100 palette" data-palette="pink">
+      </button><button type="button" id="palette-purple" aria-label="紫色"
+        class="btn btn-sm w-100 palette" data-palette="purple">
+      </button><button type="button" id="palette-red" aria-label="红色"
+        class="btn btn-sm w-100 palette" data-palette="red">
+      </button><button type="button" id="palette-teal" aria-label="蓝绿色"
+        class="btn btn-sm w-100 palette" data-palette="teal">
+      </button><button type="button" id="palette-yellow" aria-label="黄色"
+        class="btn btn-sm w-100 palette" data-palette="yellow">
+      </button></div>
+</section>
+<section class="setting actions d-flex justify-content-around mt-auto overflow-auto">
+  <a role="button" class="action action-go-back" href="javascript: window.history.back();">
+    <span class="action-icon"><i class="fas fa-2x fa-arrow-left"></i></span> 返回
+  </a>
+  <a role="button" class="action action-reload-page">
+    <span class="action-icon"><i class="fas fa-2x fa-redo-alt"></i></span> 刷新
+  </a>
+  <a role="button" class="action action-copy-url">
+    <span class="action-icon"><i class="fas fa-2x fa-link"></i></span> 复制链接
+  </a><a class="action action-social-share" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSocialShare"
+    aria-controls="offcanvasSocialShare" aria-label="Toggle social share">
+    <span class="action-icon"><i class="fas fa-2x fa-share-alt"></i></span> 分享
+  </a></section>
+
+</div>
+</div>
+
+    <div class="collapse navbar-collapse" tabindex="-1" id="navbarSupportedContent" aria-labelledby="navbarSupportedContent">
+      <form class="search-bar my-1" action="https://note.freezz.cc/search">
+  <div class="input-group input-group-sm">
+    <span class="btn btn-search disabled position-absolute left-0"><i class="fas fa-fw fa-search"></i></span>
+    <input class="form-control rounded-pill" name="q" type="search" aria-label="Search">
+  </div>
+</form>
+      <ul class="navbar-nav ms-auto"></ul>
+    </div>
+  </div>
+</nav>
+</header>
+<main role="main" class="container">
+      <div class="row content">
+<div class="col-lg-8">
+  <div class="container"><nav class="row card component" aria-label="breadcrumb">
+  <div class="card-body">
+    <ol class="breadcrumb "><li class="breadcrumb-item"><a href="https://note.freezz.cc/">主页</a></li><li class="breadcrumb-item"><a href="https://note.freezz.cc/post/">Posts</a></li><li class="breadcrumb-item active">Centos修改硬盘分区大小,把home分区部分容量分配给根分区</li></ol>
+  </div>
+</nav><div class="post-panel-wrapper">
+  <div class="d-flex flex-column component rounded post-panel">
+    
+    <a class="action action-panel-toggler" role="button" title="Panel toggler">
+      <i class="fas fa-fw fa-chevron-circle-down"></i>
+    </a>
+    <a id="sidebarToggler" class="action d-none d-lg-block" role="button" title="Sidebar toggler">
+  <i class="fas fa-fw fa-expand-alt" data-fa-transform="rotate-45"></i>
+</a>
+
+    
+
+    
+    
+    <a class="action" href="#post-comments" role="button" aria-label="Comments" title="Comments">
+  <i class="fas fa-fw fa-comments"></i>
+</a>
+    
+    
+  </div>
+</div>
+<article class="row card component mb-4 post">
+  <div class="card-header ">
+    <h1 class="card-title post-title">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
+</h1>
+  </div>
+  <div class="card-body"><div class="post-meta">
+  <span class="post-date" title="创建于 2022-08-12 08:00:00 &#43;0800 CST。">
+    2022-08-12
+  </span><span class="post-taxonomies"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge post-taxonomy">技术摘录</a><a href="https://note.freezz.cc/tags/linux/" class="badge post-taxonomy">linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge post-taxonomy">centos</a></span>
+</div>
+<div class="post-content mb-3"><ul>
+<li>
+<p>执行df -h查看硬盘使用情况，先看下有没有未分配的磁盘，如果有的话可以把未分配的空间直接分过去，这里都已经使用了，需要从home中分出空间给根目录<br>
+<img class="img-fluid" alt="64937c1cc29c2d7e4118304f0cec0d82.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/64937c1cc29c2d7e4118304f0cec0d82.png" loading="lazy"
+  
+   />
+
+</p>
+</li>
+<li>
+<p>备份home目录文件<br>
+cp -r /home/ homebak/<br>
+<img class="img-fluid" alt="62bbe8a82dbf69545c89318f46e7069f.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/62bbe8a82dbf69545c89318f46e7069f.png" loading="lazy"
+  
+   />
+
+</p>
+</li>
+<li>
+<p>使用 umount /home 卸载home分区，并 df -h 查看是否成功。如果提示目标忙，则用fuser -m -v -i -k /home 干掉进程，然后再执行umount /home<br>
+<img class="img-fluid" alt="65f13ab6ee3f7baa147f5c34ec4ae527.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/65f13ab6ee3f7baa147f5c34ec4ae527.png" loading="lazy"
+  
+   />
+
+<br>
+再执行 df -h 查看分区挂载情况：<br>
+<img class="img-fluid" alt="6ad5a40d356ba8d22e4b8c6070504cbc.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/6ad5a40d356ba8d22e4b8c6070504cbc.png" loading="lazy"
+  
+   />
+
+<br>
+这里的显示已经没有了/home，已成功卸载了home分区</p>
+</li>
+<li>
+<p>删除home分区（删除home所在lv）：lvremove /dev/mapper/centos-home<br>
+<img class="img-fluid" alt="43207e8b8ddebe1182ad501a49bb86cf.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/43207e8b8ddebe1182ad501a49bb86cf.png" loading="lazy"
+  
+   />
+
+</p>
+</li>
+<li>
+<p>给根目录对应的/dev/mapper/centos-root增加5G空间：lvextend -L +5G /dev/mapper/centos-root<br>
+<img class="img-fluid" alt="9b6d31c20bc6061cba580de8a123c662.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/9b6d31c20bc6061cba580de8a123c662.png" loading="lazy"
+  
+   />
+
+</p>
+</li>
+<li>
+<p>扩容拓展根分区文件系统 xfs_growfs /dev/mapper/centos-root<br>
+<img class="img-fluid" alt="35870bf2005d5ee7693a79d2c1dd3be6.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/35870bf2005d5ee7693a79d2c1dd3be6.png" loading="lazy"
+  
+   />
+
+</p>
+<p><img class="img-fluid" alt="acf07bfeef086b7fe8fef6be88d3e6dc.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/acf07bfeef086b7fe8fef6be88d3e6dc.png" loading="lazy"
+  
+   />
+
+</p>
+</li>
+<li>
+<p>重建home（重建home的lv）。先执行 fdisk -l 查看总量减去已分配的剩下的就是可以分配的大小，不够的话会有提示<br>
+<img class="img-fluid" alt="90aba7f9535a4c6a02304360ebde6038.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/90aba7f9535a4c6a02304360ebde6038.png" loading="lazy"
+  
+   />
+
+<br>
+或者执行 <strong>vgdisplay</strong> 命令，显示LVM卷组的信息，查看到可用的分配容量<br>
+<img class="img-fluid" alt="89c8d056860e76ad81a6ec01e9af8843.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/89c8d056860e76ad81a6ec01e9af8843.png" loading="lazy"
+  
+   />
+
+<br>
+这里显示可用的分配容量为5G。执行 lvcreate -L 5G -n home centos -y 重建home。其中“centos”是home所处的卷组名称（vgdisplay命令可以查看卷组名称），加参数y， 是因为执行时有可能会提示是否擦除xfs签名，加-y 就是擦除xfs签名。<br>
+创建home文件系统，执行 mkfs.xfs /dev/centos/home<br>
+如果出现如下提示：<br>
+mkfs.xfs: /dev/centos/home appears to contain an existing filesystem (xfs_external_log).<br>
+mkfs.xfs: Use the -f option to force overwrite.<br>
+则要加参数 -f 强制覆盖<br>
+mkfs.xfs -f /dev/centos/home<br>
+<img class="img-fluid" alt="59fecdf7cffad69e948daacf9ab8828c.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/59fecdf7cffad69e948daacf9ab8828c.png" loading="lazy"
+  
+   />
+
+</p>
+</li>
+<li>
+<p>重新挂载，执行 mount /dev/centos/home /home<br>
+<img class="img-fluid" alt="fdc1b01c2b41f6c3b0ca621b9eab32c0.png" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/fdc1b01c2b41f6c3b0ca621b9eab32c0.png" loading="lazy"
+  
+   />
+
+</p>
+</li>
+</ul>
+<p>…………………………….<br>
+基本的逻辑卷管理概念：<br>
+PV（Physical Volume）- 物理卷<br>
+物理卷在逻辑卷管理中处于最底层，它可以是实际物理硬盘上的分区，也可以是整个物理硬盘，也可以是raid设备。</p>
+<p>VG（Volumne Group）- 卷组<br>
+卷组建立在物理卷之上，一个卷组中至少要包括一个物理卷，在卷组建立之后可动态添加物理卷到卷组中。一个逻辑卷管理系统工程中可以只有一个卷组，也可以拥有多个卷组。</p>
+<p>LV（Logical Volume）- 逻辑卷<br>
+逻辑卷建立在卷组之上，卷组中的未分配空间可以用于建立新的逻辑卷，逻辑卷建立后可以动态地扩展和缩小空间。系统中的多个逻辑卷可以属于同一个卷组，也可以属于不同的多个卷组</p>
+<p>PE（Physical Extent）- 物理块</p>
+<p>LVM 默认使用4MB的PE区块，而LVM的LV最多仅能含有65534个PE (lvm1 的格式)，因此默认的LVM的LV最大容量为4M*65534/(1024M/G)=256G。PE是整个LVM 最小的储存区块，也就是说，其实我们的资料都是由写入PE 来处理的。 简单的说，这个PE 就有点像文件系统里面的block 大小。所以调整PE 会影响到LVM 的最大容量！不过，在 CentOS 6.x 以后，由于直接使用 lvm2 的各项格式功能，因此这个限制已经不存在了。</p>
+</div></div>
+  <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
+    <i class="fas fa-fw fa-chevron-left"></i>
+    <a href="https://note.freezz.cc/post/js202200810/">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法
+</a>
+  </div><div class="post-nav post-next">
+    <a href="https://note.freezz.cc/post/js20220901a/">Linux Centos7 firewall防火墙的基本操作
+</a>
+    <i class="fas fa-fw fa-chevron-right"></i>
+  </div></div></div>
+</article><section class="related-posts row card component">
+    <div class="card-header">
+      <h2 class="card-title">相关文章</h2>
+    </div>
+    <div class="card-body">
+      <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+          <span class="float-end post-date">2022-07-14
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220713/">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明
+</a>
+          <span class="float-end post-date">2022-07-13
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220628/">开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH 
+</a>
+          <span class="float-end post-date">2022-06-28
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220623/">Centos8/7 激活（启用连接）网卡 NetworkManager网络设置
+</a>
+          <span class="float-end post-date">2022-06-23
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js202200526/">Centos7/8 Linux 配置网络ip地址 nmtui命令
+</a>
+          <span class="float-end post-date">2022-05-26
+</span>
+        </li></ul>
+    </div>
+  </section><div class="card component row post-comments" id="post-comments">
+  <div class="card-header">
+    <h2 class="card-title">评论</h2>
+  </div>
+  <div class="card-body"></div>
+</div></div>
+</div><aside class="col-lg-4 sidebar d-flex">
+  <div class="container d-flex flex-column">
+    
+    <section class="featured-posts row card component">
+    <div class="card-header">
+      <h2 class="card-title">精选文章</h2>
+    </div>
+    <div class="card-body">
+      <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/rc20220411/">技术文章链接收录
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220401/">Linux CentOS 命令摘录备忘
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220401b/">Linux Ubuntu 命令摘录备忘
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/work20220302/">工作笔记备忘(不定时更新)
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/rc20220223/">实用网址收录(不定时更新)
+</a>
+        </li></ul>
+    </div>
+  </section><section class="recent-posts row card component">
+  <div class="card-header">
+    <h2 class="card-title">最近文章</h2>
+  </div>
+  <div class="card-body">
+    <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220901a/">Linux Centos7 firewall防火墙的基本操作
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220812/">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js202200810/">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220713/">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220628/">开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH 
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220624/">硬盘容量十进制与操作系统二进制的换算
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220623/">Centos8/7 激活（启用连接）网卡 NetworkManager网络设置
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js202200526/">Centos7/8 Linux 配置网络ip地址 nmtui命令
+</a>
+      </li></ul>
+  </div>
+</section><section class="categories-taxonomies row card component">
+      <div class="card-header">
+        <h2 class="card-title">
+          <a href="https://note.freezz.cc/categories">分类</a>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="py-2"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge rounded post-taxonomy" title="技术摘录">
+            技术摘录</a><a href="https://note.freezz.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
+            工作笔记</a><a href="https://note.freezz.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge rounded post-taxonomy" title="日常随写">
+            日常随写</a></div>
+      </div>
+    </section><section class="tags-taxonomies row card component">
+      <div class="card-header">
+        <h2 class="card-title">
+          <a href="https://note.freezz.cc/tags">标签</a>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="py-2"><a href="https://note.freezz.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
+            linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
+            centos</a><a href="https://note.freezz.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
+            Ubuntu </a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
+            VMware</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            windows11</a><a href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
+            操作系统</a><a href="https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">
+            网络配置 </a><a href="https://note.freezz.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
+            github</a></div>
+      </div>
+    </section>
+    
+  </div>
+</aside>
+</div>
+    </main><footer class="footer mt-auto py-3 text-center container"><nav class="social-links nav justify-content-center mb-2"></nav>
+<div class="copyright mb-2">
+  Copyright © 2021-2022 FreeFish. All Rights Reserved.
+</div>
+<div class="powered-by mb-2">
+  Powered by <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> and the <a href="https://github.com/razonyang/hugo-theme-bootstrap" target="_blank" rel="noopener noreferrer">Bootstrap</a> theme.
+</div></footer>
+<script src="https://note.freezz.cc/js/main.16ff2fd276f6cc84e428f8fb174ea2bc526d384e52d30cde66d9fb051a952810.js" integrity="sha256-Fv8v0nb2zITkKPj7F06ivFJtOE5S0wzeZtn7BRqVKBA=" crossorigin="anonymous" defer></script><script src="https://note.freezz.cc/js/icons.min.8ddcaafc364ff0296c2209c5495287f0de039b852da9b24847f94c198b7639b6.js" integrity="sha256-jdyq/DZP8ClsIgnFSVKH8N4Dm4UtqbJIR/lMGYt2ObY=" crossorigin="anonymous" defer></script>
+<script src="https://note.freezz.cc/js/viewer.min.652118a9fbf3403cdfde4026209f97ace22f9e334f0b45a33431a221b3db46a8.js" integrity="sha256-ZSEYqfvzQDzf3kAmIJ&#43;XrOIvnjNPC0WjNDGiIbPbRqg=" crossorigin="anonymous" defer></script>
+</body>
+</html>

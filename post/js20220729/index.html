@@ -1,0 +1,471 @@
+<!doctype html><html lang="zh-cn"
+  >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VMware ESXI vCenter 备忘笔记 - 自游鱼的笔记</title><link rel="apple-touch-icon" href="https://note.freezz.cc/images/icons/icon-180x180.png" sizes="180x180">
+<link rel="icon" href="https://note.freezz.cc/images/icons/icon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://note.freezz.cc/images/icons/icon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="https://note.freezz.cc/images/icons/favicon.ico">
+<link rel="manifest" href="https://note.freezz.cc/manifest.json">
+<meta name="keywords" content="" />
+<meta name="description" content="VMware ESXI vCenter 备忘笔记" /><meta itemprop="name" content="VMware ESXI vCenter 备忘笔记">
+<meta itemprop="description" content="VMware ESXI vCenter 备忘笔记"><meta itemprop="datePublished" content="2022-07-29T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-07-29T00:00:00+00:00" />
+<meta itemprop="wordCount" content="248">
+<meta itemprop="keywords" content="ESXi,VMware," /><meta property="og:title" content="VMware ESXI vCenter 备忘笔记" />
+<meta property="og:description" content="VMware ESXI vCenter 备忘笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://note.freezz.cc/post/js20220729/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VMware ESXI vCenter 备忘笔记"/>
+<meta name="twitter:description" content="VMware ESXI vCenter 备忘笔记"/>
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/>
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://note.freezz.cc/css/main.min.507afbe6e4670fa3e961a0b35816b5daeb36029866fd6bd7b9d7871fcf88faa5.css" integrity="sha256-UHr75uRnD6PpYaCzWBa12us2Aphm/WvXudeHH8&#43;I&#43;qU=" crossorigin="anonymous"><link rel="stylesheet" href="https://note.freezz.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
+  <body><script>const items=['mode','palette'];items.forEach(function(a){const b=localStorage.getItem('hbs-'+a);b&&document.body.parentElement.setAttribute('data-'+a,b)})</script><header><nav class="navbar top-app-bar top-app-bar-expand-lg fixed-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button><a class="navbar-brand flex-grow-1 flex-lg-grow-0 text-center text-lg-start mx-auto me-lg-3" href="https://note.freezz.cc/"><img class="logo" alt="Logo" src="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp" loading="lazy"
+  
+   />
+自游鱼的笔记
+    </a>
+    <div class="offcanvas offcanvas-bottom surface" tabindex="-1" id="offcanvasSocialShare" aria-labelledby="offcanvasSocialShare">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title">Share</h3>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body">
+    <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Twitter Share Button"
+      target="_blank" href="https://twitter.com/intent/tweet?title=VMware%20ESXI%20vCenter%20%e5%a4%87%e5%bf%98%e7%ac%94%e8%ae%b0&url=https%3a%2f%2fnote.freezz.cc%2fpost%2fjs20220729%2f">
+      <i class="fab fa-fw fa-twitter"></i> Twitter
+    </a>
+    <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Facebook Share Button"
+      target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fnote.freezz.cc%2fpost%2fjs20220729%2f">
+      <i class="fab fa-fw fa-facebook-f"></i> Facebook
+    </a>
+  </div>
+</div>
+    <button class="navbar-settings" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSettings"
+  aria-controls="offcanvasSettings" aria-label="Toggle settings">
+  <i class="fas fa-ellipsis-v"></i>
+</button>
+
+<div class="offcanvas offcanvas-end surface h-100" tabindex="-1" id="offcanvasSettings" aria-labelledby="offcanvasSettings">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title">设置</h3>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+
+<section class="setting">
+  <form class="row">
+    <div class="col-auto">
+      <label><i class="fas fa-fw fa-adjust"></i> 模式</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="modeSwitcher">
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="setting">
+  <form class="font-size-switcher-form row">
+    <div class="col-auto">
+      <label for="fontSize" class="form-label"><i class="fas fa-fw fa-font"></i> 字体大小</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <input type="range" class="form-range" min="-2" max="2" id="fontSize">
+    </div>
+  </form>
+</section>
+
+
+<section class="setting palettes">
+  <form class="row">
+    <div class="col-auto">
+      <label><i class="fas fa-fw fa-palette"></i> 配色</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <a id="btnPalette" class="btn btn-sm btn-outline-primary" role="button" aria-label="palettePicker">
+        <i class="fas fa-eye-dropper"></i>
+      </a>
+    </div>
+  </form>
+  <div class="mt-2 d-flex justify-content-between visually-hidden" id="palettePicker"><button type="button" id="palette-blue" aria-label="蓝色"
+        class="btn btn-sm w-100 palette" data-palette="blue">
+      </button><button type="button" id="palette-blue-gray" aria-label="蓝灰色"
+        class="btn btn-sm w-100 palette" data-palette="blue-gray">
+      </button><button type="button" id="palette-brown" aria-label="棕色"
+        class="btn btn-sm w-100 palette" data-palette="brown">
+      </button><button type="button" id="palette-cyan" aria-label="青色"
+        class="btn btn-sm w-100 palette" data-palette="cyan">
+      </button><button type="button" id="palette-green" aria-label="绿色"
+        class="btn btn-sm w-100 palette" data-palette="green">
+      </button><button type="button" id="palette-indigo" aria-label="靛青色"
+        class="btn btn-sm w-100 palette" data-palette="indigo">
+      </button><button type="button" id="palette-orange" aria-label="橙色"
+        class="btn btn-sm w-100 palette" data-palette="orange">
+      </button><button type="button" id="palette-pink" aria-label="粉色"
+        class="btn btn-sm w-100 palette" data-palette="pink">
+      </button><button type="button" id="palette-purple" aria-label="紫色"
+        class="btn btn-sm w-100 palette" data-palette="purple">
+      </button><button type="button" id="palette-red" aria-label="红色"
+        class="btn btn-sm w-100 palette" data-palette="red">
+      </button><button type="button" id="palette-teal" aria-label="蓝绿色"
+        class="btn btn-sm w-100 palette" data-palette="teal">
+      </button><button type="button" id="palette-yellow" aria-label="黄色"
+        class="btn btn-sm w-100 palette" data-palette="yellow">
+      </button></div>
+</section>
+<section class="setting actions d-flex justify-content-around mt-auto overflow-auto">
+  <a role="button" class="action action-go-back" href="javascript: window.history.back();">
+    <span class="action-icon"><i class="fas fa-2x fa-arrow-left"></i></span> 返回
+  </a>
+  <a role="button" class="action action-reload-page">
+    <span class="action-icon"><i class="fas fa-2x fa-redo-alt"></i></span> 刷新
+  </a>
+  <a role="button" class="action action-copy-url">
+    <span class="action-icon"><i class="fas fa-2x fa-link"></i></span> 复制链接
+  </a><a class="action action-social-share" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSocialShare"
+    aria-controls="offcanvasSocialShare" aria-label="Toggle social share">
+    <span class="action-icon"><i class="fas fa-2x fa-share-alt"></i></span> 分享
+  </a></section>
+
+</div>
+</div>
+
+    <div class="collapse navbar-collapse" tabindex="-1" id="navbarSupportedContent" aria-labelledby="navbarSupportedContent">
+      <form class="search-bar my-1" action="https://note.freezz.cc/search">
+  <div class="input-group input-group-sm">
+    <span class="btn btn-search disabled position-absolute left-0"><i class="fas fa-fw fa-search"></i></span>
+    <input class="form-control rounded-pill" name="q" type="search" aria-label="Search">
+  </div>
+</form>
+      <ul class="navbar-nav ms-auto"></ul>
+    </div>
+  </div>
+</nav>
+</header>
+<main role="main" class="container">
+      <div class="row content">
+<div class="col-lg-8">
+  <div class="container"><nav class="row card component" aria-label="breadcrumb">
+  <div class="card-body">
+    <ol class="breadcrumb "><li class="breadcrumb-item"><a href="https://note.freezz.cc/">主页</a></li><li class="breadcrumb-item"><a href="https://note.freezz.cc/post/">Posts</a></li><li class="breadcrumb-item active">VMware ESXI vCenter 备忘笔记</li></ol>
+  </div>
+</nav><div class="post-panel-wrapper">
+  <div class="d-flex flex-column component rounded post-panel">
+    
+    <a class="action action-panel-toggler" role="button" title="Panel toggler">
+      <i class="fas fa-fw fa-chevron-circle-down"></i>
+    </a>
+    <a id="sidebarToggler" class="action d-none d-lg-block" role="button" title="Sidebar toggler">
+  <i class="fas fa-fw fa-expand-alt" data-fa-transform="rotate-45"></i>
+</a>
+
+    
+
+    
+    
+    <a class="action" href="#post-comments" role="button" aria-label="Comments" title="Comments">
+  <i class="fas fa-fw fa-comments"></i>
+</a>
+    
+    
+  </div>
+</div>
+<article class="row card component mb-4 post">
+  <div class="card-header ">
+    <h1 class="card-title post-title">VMware ESXI vCenter 备忘笔记
+</h1>
+  </div>
+  <div class="card-body"><div class="post-meta">
+  <span class="post-date" title="创建于 2022-07-29 08:00:00 &#43;0800 CST。">
+    2022-07-29
+  </span><span class="post-taxonomies"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge post-taxonomy">技术摘录</a><a href="https://note.freezz.cc/tags/esxi/" class="badge post-taxonomy">ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge post-taxonomy">VMware</a></span>
+</div>
+<div class="post-content mb-3"><p><strong>网卡信息查询</strong><br>
+查看所有网卡：<br>
+esxcfg-nics -l<br>
+查看更详细的网上信息：<br>
+esxcli network nic list<br>
+查看对应网卡驱动和固件，如下查看vmnic0对应的驱动和固件：<br>
+esxcli network nic get -n vmnic0<br>
+显示网卡的VID，DID 等信息：<br>
+vmkchdev -l | grep vmnic0<br>
+然后去VMware网站查询兼容情况，如果不兼容，去对应硬件厂商找到对应固件更新。各硬件厂商更新fireware方式略有不同，具体联系对应硬件厂商。 VMware网站下载对应的网卡驱动，会得到一个zip压缩包，解压缩后有两个文件，一个vib格式，一个zip格式。用如下命令更新： esxcli software vib install -v {VIBFILE}<br>
+或<br>
+esxcli software vib install -d {OFFLINE_BUNDLE}<br>
+(注：如果执行安装后提示could not find a trusted signer，可以在命令后添加参数 –no-sig-check) 建议使用第一种更新方式，注意，vib存放路径用完整路径。之后重启主机。<br>
+……………………………………………<br>
+<strong>给虚拟机添加USB设备，例如U盘</strong><br>
+1、把USB设备插入到物理主机<br>
+2、编辑虚拟机设置–添加其它其他设备–USB设备–保存设置。<br>
+注：同一个USB设备，同时只能添加到一台虚拟机中。在虚拟机中删除该USB设备后，才能添加到其它虚拟机中。<br>
+……………………………………………<br>
+<strong>esxi6.5开启开启嵌套虚拟化</strong><br>
+Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo<br>
+另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。<br>
+要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：<br>
+使用 vSphere Client 登录到 ESXi/ESX 主机或 vCenter Server。在清单中选择 ESXi/ESX 主机。单击配置选项卡。在“硬件”部分，单击网络。单击要启用混杂模式的虚拟交换机的属性。 选择要修改的虚拟交换机或端口组，然后单击编辑。单击安全选项卡。从“混杂模式”下拉菜单中，单击接受。</p>
+<p>配置虚拟机开机自启动 导航器–&gt;主机–&gt;管理–&gt;系统–&gt;自动启动中将已启用设置为&quot;是&quot;，然后返回到虚拟机列表页面，右击需要自动启动的某个虚拟机–自动启动–启用。 默认情况下启动和停止延迟都是120秒，默认动作是关机，不等待停止信号。即开机后等待120秒后启动虚拟机，关机也是等待120秒，避免宿主机启动时压力过大。停止操作和等待检测信号需要连用，意思是宿主机关机时给虚拟机发出关机的信号，并等待120秒使虚机关机，120秒后虚机仍未完成关机动作则不等待，断电。</p>
+<p><strong>VMware OVF Tool导出主虚拟主机</strong><br>
+虚拟主机先关机 进入VMware OVF Tool的安装目录，在地址栏中运行cmd<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/OVFTool2022072901.jpg" loading="lazy"
+  
+   />
+
+</p>
+<p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/OVFTool2022072902.jpg" loading="lazy"
+  
+   />
+
+</p>
+<p>输入如下命令格式：<br>
+ovftool.exe vi://root:@192.168.1.41/CentOS8_192.168.1.49 c:\ovf\CentOS8_192.168.1.49<br>
+其中“192.168.1.41”是虚拟机的IP地址，“CentOS8_192.168.1.49”是虚拟机名称，“c:\ovf\”是要复制到的路径。 回车后，输入ESXI管理员密码，等待导出完成即可。<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/OVFTool2022072903.png" loading="lazy"
+  
+   />
+
+</p>
+<p><strong>许可证</strong><br>
+VMware-ESXi-6.7.0<br>
+0A65P-00HD0-3Z5M1-M097M-22P7H<br>
+VMware vCenter/vSphere/vSan/Esxi/7.0<br>
+<strong>VMware vSphere 7.x</strong><br>
+vSphere ESXi 7.0 Enterprise Plus<br>
+JJ2WR-25L9P-H71A8-6J20P-C0K3F<br>
+HN2X0-0DH5M-M78Q1-780HH-CN214<br>
+JH09A-2YL84-M7EC8-FL0K2-3N2J2<br>
+……………………………<br>
+<strong>vCenter 7.0 Standard</strong><br>
+104HH-D4343-07879-MV08K-2D2H2<br>
+406DK-FWHEH-075K8-XAC06-0JH08<br>
+…………………………<br>
+<strong>VSAN 7.0 Enterprise Plus</strong><br>
+HN0D8-AAJ1Q-07D00-6U924-CX224<br>
+50008-221DH-M7E99-A9CKM-A1030<br>
+HN0NH-62051-H75E9-P38RM-0H870<br>
+…………………………….<br>
+<strong>vSphere 6 Enterprise</strong><br>
+5Y04A-8934J-M85P1-3K37H-9P04D<br>
+JA2NH-2Z191-08501-NCAX2-2VK4F<br>
+0F2T2-DCK93-M88M8-7J9E4-16RJ0<br>
+NU0EK-05100-M80N9-501N2-8G81D</p>
+<p>要迁移磁盘大于 2TB 的虚拟机，源和目标 ESXi 主机必须为版本 6.0 或更高版本。ESXI的嵌套，CPU要开启硬件虚拟化。物理主机需要把网络端口组设置安全策略为混杂模式，否则嵌套的虚拟机的网络会不通。<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/vm2022072904.jpg" loading="lazy"
+  
+   />
+
+<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/vm2022072905.jpg" loading="lazy"
+  
+   />
+
+<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/vm2022072906.jpg" loading="lazy"
+  
+   />
+
+</p>
+<p>VMware vSphere Hypervisor (ESXi) 与 VMware vCenter Server 对应的支持版本，绿色的就是支持的。 <img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/vm2022072907.jpg" loading="lazy"
+  
+   />
+
+</p>
+<p><strong>集群报错处理：</strong><br>
+数据中心启用HA后 HA代理报错<br>
+问题一 ：此主机上的vsphere HA无法访问隔离地址<br>
+在每台ESXi主机上 的 网络配置 默认网关都配置的 管理IP 的一个网关，如果之前设置的默认网关IP地址ping不通，只能修改HA高级属性的默认配置了。<br>
+一般默认隔离地址是管理IP对应的网关，如果没有网关，也可以通过高级设置指定某具体ip地址作为隔离地址。<br>
+das.isolationaddress[1]<br>
+//设置为需要的网关地址，可以设置10个隔离地址<br>
+das.usedefaultisolationaddress<br>
+//设置为false<br>
+即可。</p>
+<p>问题二 ：此主机上的vsphere HA检测信号数据存储（少于2个）<br>
+两个或多个主机做HA，需要存储系统提供vMotion的心跳信号。VMware默认是两个心跳信号才确定执行vMotion。如果你只有一台存储，或者 只分了存储上的1个LUN，就会出现上面这个提示。如果想关闭这个提示，可以进行如下操作：ESXi对只有一个DataStore的警告提示：<br>
+1、选择HA-配置-vSphere HA-高级选项。 2、在选项窗口输入das.ignoreinsufficienthbdatastore，在数值窗口输入true 即可。<br>
+………………………………..<br>
+当集群中只有一台esxi时，集群会提示HA故障切换资源不足。<br>
+群集显示红色警告因为只添加了一台主机，无法实现群集功能，当你把两台Esxi 都添加进来后，这个提示就自动消失了！<br>
+……………………………..<br>
+“此主机当前没有管理网络冗余&quot;, “该主机的vSphere HA检测信号数据存储数目为0，少于要求数目:2“<br>
+首先这是两个报警<br>
+1、此主机当前没有管理网络冗余<br>
+报警原因：因为我当前主机所使用的是单网卡，所有没有多余的管理网络去冗余；<br>
+解决方法：进入vcenter—选择群集—编辑设置—Vsphere HA—高级选项—键入das.ignoreRedundantNetWarning，在值中输入true—确定—右键群集中主机—重新配置vsphere HA–报警消失。<br>
+2、该主机的vSphere HA检测信号数据存储数目为0，少于要求数目:2<br>
+报警原因：因为只有个物理网卡、且被管理网络占用，所以HA数据存储检测信号所检测到的数据存储数目为0<br>
+解决方法:进入vcenter—选择群集—编辑设置—Vsphere HA—高级选项—键入das.ignoreinsufficienthbdatastore，在值中输入true—确定—无需重新配置vsphere HA，稍等自动报警消失。<br>
+备注：从vsphere5.0开始HA加入了数据存储检测信号的功能，此功能的作用是当HA群集中首选主机无法通过管理网络与从属主机通信时，首选主机将使用数据存储检测信号来判断该从属主机是网络隔离还是出现故障（首选主机通过管理网络和数据存储检测信号检测从属主机状态），若从属主机停止数据存储检测信号，则认定从属主机发生故障，并将其所载虚拟机在别处启动；</p>
+<p><strong>ESXI主机报错收集：</strong></p>
+<ul>
+<li>将虚拟网卡添加到 iSCSI 适配器报错处理<br>
+键：haTask-ha-host-vim.host.IscsiManager.bindVnic-1920719847<br>
+描述：将虚拟网卡添加到 iSCSI 适配器<br>
+状况：失败 - VMkernel 虚拟网卡适配器 vmk0 具有多个物理上行链路。<br>
+错误：VMkernel 网络适配器 vmk0 与多个物理网络适配器相关联。要使用 VMkernel 网络适配器进行 iSCSI 端口绑定，必须只将其与一个物理网络适配器相关联。<br>
+解决方法：要使用 VMkernel 网络适配器进行 iSCSI 端口绑定，必须将此虚拟网卡只与一个物理网络适配器相关联，就是每个虚拟交换机下，只添加一个上行链路。</li>
+</ul>
+<p><strong>VMware vCenter Server 设置HA和DRS功能</strong><br>
+1、 启动HA功能<br>
+标注：前面虽然虽然启用HA功能，因为没有添加任何主机，群集会自动把HA的功能关闭，所以，现在需要手动开启。<br>
+2、选择 “打开vSpherer HA”和 “启用Proactive HA”功能<br>
+HA功能响应机制设置<br>
+一台VMware EXSI主机发生故障时自动迁移到另外一台VMware EXSI主机上，但是自动迁移虚拟机过程中会重启虚拟机系统。<br>
+3、配置DRS功能<br>
+DRS功能暂时先设置成手动，如果选择全自动会影响本教程HA功能测试。 原因是全自动DRS功能会自动检查两台VMware EXSI主机上的虚拟机资源利用率， 如果一台VMware EXSI主机资源利用率过高，会自动把虚拟机重新启动迁移到另外一台VMware EXSI主机上。</p>
+</div></div>
+  <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
+    <i class="fas fa-fw fa-chevron-left"></i>
+    <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+  </div><div class="post-nav post-next">
+    <a href="https://note.freezz.cc/post/js202200810/">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法
+</a>
+    <i class="fas fa-fw fa-chevron-right"></i>
+  </div></div></div>
+</article><section class="related-posts row card component">
+    <div class="card-header">
+      <h2 class="card-title">相关文章</h2>
+    </div>
+    <div class="card-body">
+      <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220318/">更改 ESXi Server 管理 IP 地址
+</a>
+          <span class="float-end post-date">2022-03-18
+</span>
+        </li></ul>
+    </div>
+  </section><div class="card component row post-comments" id="post-comments">
+  <div class="card-header">
+    <h2 class="card-title">评论</h2>
+  </div>
+  <div class="card-body"></div>
+</div></div>
+</div><aside class="col-lg-4 sidebar d-flex">
+  <div class="container d-flex flex-column">
+    
+    <section class="featured-posts row card component">
+    <div class="card-header">
+      <h2 class="card-title">精选文章</h2>
+    </div>
+    <div class="card-body">
+      <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/rc20220411/">技术文章链接收录
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220401/">Linux CentOS 命令摘录备忘
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220401b/">Linux Ubuntu 命令摘录备忘
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/work20220302/">工作笔记备忘(不定时更新)
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/rc20220223/">实用网址收录(不定时更新)
+</a>
+        </li></ul>
+    </div>
+  </section><section class="recent-posts row card component">
+  <div class="card-header">
+    <h2 class="card-title">最近文章</h2>
+  </div>
+  <div class="card-body">
+    <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220901a/">Linux Centos7 firewall防火墙的基本操作
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220812/">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js202200810/">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220713/">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220628/">开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH 
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220624/">硬盘容量十进制与操作系统二进制的换算
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220623/">Centos8/7 激活（启用连接）网卡 NetworkManager网络设置
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js202200526/">Centos7/8 Linux 配置网络ip地址 nmtui命令
+</a>
+      </li></ul>
+  </div>
+</section><section class="categories-taxonomies row card component">
+      <div class="card-header">
+        <h2 class="card-title">
+          <a href="https://note.freezz.cc/categories">分类</a>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="py-2"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge rounded post-taxonomy" title="技术摘录">
+            技术摘录</a><a href="https://note.freezz.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
+            工作笔记</a><a href="https://note.freezz.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge rounded post-taxonomy" title="日常随写">
+            日常随写</a></div>
+      </div>
+    </section><section class="tags-taxonomies row card component">
+      <div class="card-header">
+        <h2 class="card-title">
+          <a href="https://note.freezz.cc/tags">标签</a>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="py-2"><a href="https://note.freezz.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
+            linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
+            centos</a><a href="https://note.freezz.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
+            Ubuntu </a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
+            VMware</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            windows11</a><a href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
+            操作系统</a><a href="https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">
+            网络配置 </a><a href="https://note.freezz.cc/tags/github/" class="badge rounded post-taxonomy" title="github">
+            github</a></div>
+      </div>
+    </section>
+    
+  </div>
+</aside>
+</div>
+    </main><footer class="footer mt-auto py-3 text-center container"><nav class="social-links nav justify-content-center mb-2"></nav>
+<div class="copyright mb-2">
+  Copyright © 2021-2022 FreeFish. All Rights Reserved.
+</div>
+<div class="powered-by mb-2">
+  Powered by <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> and the <a href="https://github.com/razonyang/hugo-theme-bootstrap" target="_blank" rel="noopener noreferrer">Bootstrap</a> theme.
+</div></footer>
+<script src="https://note.freezz.cc/js/main.16ff2fd276f6cc84e428f8fb174ea2bc526d384e52d30cde66d9fb051a952810.js" integrity="sha256-Fv8v0nb2zITkKPj7F06ivFJtOE5S0wzeZtn7BRqVKBA=" crossorigin="anonymous" defer></script><script src="https://note.freezz.cc/js/icons.min.8ddcaafc364ff0296c2209c5495287f0de039b852da9b24847f94c198b7639b6.js" integrity="sha256-jdyq/DZP8ClsIgnFSVKH8N4Dm4UtqbJIR/lMGYt2ObY=" crossorigin="anonymous" defer></script>
+<script src="https://note.freezz.cc/js/viewer.min.652118a9fbf3403cdfde4026209f97ace22f9e334f0b45a33431a221b3db46a8.js" integrity="sha256-ZSEYqfvzQDzf3kAmIJ&#43;XrOIvnjNPC0WjNDGiIbPbRqg=" crossorigin="anonymous" defer></script>
+</body>
+</html>

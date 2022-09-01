@@ -12,7 +12,7 @@
 <meta name="description" content="Windows11 Win11操作配置技巧" /><meta itemprop="name" content="Windows11 Win11操作配置技巧">
 <meta itemprop="description" content="Windows11 Win11操作配置技巧"><meta itemprop="datePublished" content="2022-03-18T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-18T00:00:00+00:00" />
-<meta itemprop="wordCount" content="29">
+<meta itemprop="wordCount" content="40">
 <meta itemprop="keywords" content="windows11,win11,操作系统," /><meta property="og:title" content="Windows11 Win11操作配置技巧" />
 <meta property="og:description" content="Windows11 Win11操作配置技巧" />
 <meta property="og:type" content="article" />
@@ -24,7 +24,7 @@
 <meta name="twitter:title" content="Windows11 Win11操作配置技巧"/>
 <meta name="twitter:description" content="Windows11 Win11操作配置技巧"/>
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/>
-  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://note.freezz.cc/css/main.min.0166e20cf9a8c749090476957db05bfd1fd8ffd875197c285f090f4eff6a912c.css" integrity="sha256-AWbiDPmox0kJBHaVfbBb/R/Y/9h1GXwoXwkPTv9qkSw=" crossorigin="anonymous"><link rel="stylesheet" href="https://note.freezz.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://note.freezz.cc/css/main.min.507afbe6e4670fa3e961a0b35816b5daeb36029866fd6bd7b9d7871fcf88faa5.css" integrity="sha256-UHr75uRnD6PpYaCzWBa12us2Aphm/WvXudeHH8&#43;I&#43;qU=" crossorigin="anonymous"><link rel="stylesheet" href="https://note.freezz.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
   <body><script>const items=['mode','palette'];items.forEach(function(a){const b=localStorage.getItem('hbs-'+a);b&&document.body.parentElement.setAttribute('data-'+a,b)})</script><header><nav class="navbar top-app-bar top-app-bar-expand-lg fixed-top">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -201,6 +201,12 @@
 <div class="post-content mb-3"><h2 id="安装winows11时跳过强制联网">安装winows11时跳过强制联网<a class="anchor ms-1" href="#安装winows11时跳过强制联网"><i class="fas fa-link"></i></a></h2>
 <p>方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。<br>
 方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。</p>
+<h2 id="windows11离线解包系统">windows11离线解包系统：<a class="anchor ms-1" href="#windows11离线解包系统"><i class="fas fa-link"></i></a></h2>
+<p>1、先拔出网线（断网），电脑开机。<br>
+2、当进入到选择国家、或者要求联网、或者要求输入微软账号中的任何一个页面时，同时按下 ctrl+shift+F3 这三个组合键，系统自动重启。<br>
+3、重启完成进入桌面后，会自动弹出一个系统工具对话窗口的，直接点击窗口下的“确定”按钮，系统会再次自动重启。<br>
+4、当重启进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&quot;C:\Windows\System32&gt;&ldquo;的后面输入oobebypassnro.cmd 然后按回车键，系统会再一次自动重启。<br>
+5、当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。</p>
 <h2 id="解决win11右键菜单折叠问题">解决Win11右键菜单折叠问题<a class="anchor ms-1" href="#解决win11右键菜单折叠问题"><i class="fas fa-link"></i></a></h2>
 <p>切换回经典右键菜单
 首先Win+X打开Windows powershell（管理员）（PS：现在貌似叫Windows 终端（管理员））
@@ -238,6 +244,7 @@ reg delete &ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2
     <nav id="TableOfContents">
   <ul>
     <li><a href="#安装winows11时跳过强制联网">安装winows11时跳过强制联网</a></li>
+    <li><a href="#windows11离线解包系统">windows11离线解包系统：</a></li>
     <li><a href="#解决win11右键菜单折叠问题">解决Win11右键菜单折叠问题</a></li>
   </ul>
 </nav>
@@ -248,6 +255,9 @@ reg delete &ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2
     </div>
     <div class="card-body">
       <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+        </li><li>
           <a href="https://note.freezz.cc/post/rc20220411/">技术文章链接收录
 </a>
         </li><li>
@@ -270,6 +280,21 @@ reg delete &ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20220901a/">Linux Centos7 firewall防火墙的基本操作
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220812/">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js202200810/">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/js20220713/">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明
 </a>
       </li><li>
@@ -283,21 +308,6 @@ reg delete &ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2
 </a>
       </li><li>
         <a href="https://note.freezz.cc/post/js202200526/">Centos7/8 Linux 配置网络ip地址 nmtui命令
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/work20220505/">穿梭云应用服务启动服务的步骤和命令
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220424/">戴尔DELL H330 Raid卡 阵列卡BIOS模式下配置阵列
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220413/">windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220412/">解决Ubuntu的Vi方向键出现乱码
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220411/">ESXI 虚拟交换机配置 Trunk 端口组 VLan
 </a>
       </li></ul>
   </div>
@@ -323,10 +333,10 @@ reg delete &ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2
         <div class="py-2"><a href="https://note.freezz.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
             linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
             centos</a><a href="https://note.freezz.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
-            Ubuntu </a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
-            备忘</a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            Ubuntu </a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
             ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
-            VMware</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            VMware</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
             windows11</a><a href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
             操作系统</a><a href="https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">
             网络配置 </a><a href="https://note.freezz.cc/tags/github/" class="badge rounded post-taxonomy" title="github">

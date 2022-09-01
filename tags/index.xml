@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>centos</title>
       <link>https://note.freezz.cc/tags/centos/</link>
-      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/centos/</guid>
       <description></description>
@@ -20,16 +20,43 @@
     <item>
       <title>linux</title>
       <link>https://note.freezz.cc/tags/linux/</link>
-      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>防火墙</title>
+      <link>https://note.freezz.cc/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ESXi</title>
+      <link>https://note.freezz.cc/tags/esxi/</link>
+      <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/esxi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VMware</title>
+      <link>https://note.freezz.cc/tags/vmware/</link>
+      <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/vmware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ubuntu </title>
       <link>https://note.freezz.cc/tags/ubuntu/</link>
-      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/ubuntu/</guid>
       <description></description>
@@ -113,24 +140,6 @@
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ESXi</title>
-      <link>https://note.freezz.cc/tags/esxi/</link>
-      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/esxi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VMware</title>
-      <link>https://note.freezz.cc/tags/vmware/</link>
-      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/vmware/</guid>
       <description></description>
     </item>
     

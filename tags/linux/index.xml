@@ -7,7 +7,86 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Centos7 firewall防火墙的基本操作</title>
+      <link>https://note.freezz.cc/post/js20220901a/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220901a/</guid>
+      <description>Centos7中使用firewalld来作为防火墙，其底层调用的命令仍然是iptables等命令，但是在配置上发生了较大的变化。 Centos7中有两个位置存放了firewall的配置文件，一个是/etc/firewalld，一个是/usr/lib/firewalld，前者是用户配置目录，后者是系统配置目录。/usr/lib/firewalld目录中存放的是firewalld提供的一些默认和备份的配置文件，一般不随意改变，/etc/firewalld目录下才是用户配置的真正生效的配置文件，只有在/etc/firewalld目录不存在或该目录下不存在配置文件的情况下/usr/lib/firewalld目录下的配置文件才会生效。
+zone的概念
+zone定义了防火墙对某个连接、网口（interface）或源地址的信任等级，我们可以把他理解为防火墙对不同的连接（connection）、网口（interface）或源地址（source address）划分到不同的zone当中，而不同的zone定义了不同的规则，因此防火墙可以针对不同的连接、网口（interface）或源地址做出不同的行为。例如，我们将10.12.18.201这个地址划分到zone1中，将10.12.18.202这个地址划分到zone2中，然后zone1中定义的规则为：允许访问3306端口，其余的端口都拒绝访问；zone2中定义的规则为：拒绝访问3306端口，其余的端口都允许访问。那么10.12.18.201就仅能访问本机的3306端口，10.12.18.202就仅不能访问本机的3306端口。每个zone的防火墙规则是通过/etc/firewalld/zones目录下的xml配置文件来配置的。 zone和connection、interface、source address之间是一对多的关系，即一个connection、interface或source address仅能划分到一个zone中，而一个zone中可以包含多个connection、interface或source address。
+对于一个接受到的请求具体使用哪个zone，firewalld是通过三种方法来判断的：
+1、source，也就是源地址
+2、interface，接收请求的网卡
+3、firewalld.conf中配置的默认zone
+这三个的优先级按顺序依次降低，也就是说如果按照source可以找到就不会再按interface去查找，如果前两个都找不到才会使用第三个，也就是学生在前面给大家讲过的在firewalld.conf中配置的默认zone。
+预定义的zone
+Centos7中firewalld为用户预定义了9个zone，分别为drop，block，public，external，dmz，work，home，internal，trusted。这9个zone的配置文件在/usr/lib/firewalld/zones目录下，通过查看他们的配置文件可以得知这9个zone的规则是怎么样的。
+drop：任何传入本机的网络数据包都会被丢弃，并且不会回复，只允许本机对外访问其他服务器。
+block：任何传入本机的网络连接请求都会被拒绝，并且会回复一条拒绝访问的消息。
+public：用于本机处于公共网络环境的场景下，仅接受特定的连接请求，如仅接受某些特定的IP的连接请求，或仅对外部开放特定的某些端口。Centos 7 默认的public.xml文件中仅开放用于ssh连接请求的22端口和dhcpv6-client服务的546端口。
+external：与public类似，Centos 7 默认仅开放用于ssh连接请求的22端口。
+dmz：与external一样，Centos 7 默认也是仅开放用于ssh连接请求的22端口。
+work：用于工作网络环境场景下，信任大部分的其他的计算机不会对本机进行攻击。Centos 7 默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，以及IPP协议的631端口。
+home：用于家庭网络环境，信任网络上的其他计算机不会攻击本机。Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。
+internal：与home一样，Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。 trusted：所有对本机的网络连接请求都会被接受。
+（注：如果更改的防火墙配置，记得要执行 firewall-cmd &amp;ndash;reload 重新加载一次才会生效。）
+  查看与公共区域关联的防火墙规则或服务 firewall-cmd &amp;ndash;list-all
+  查看与某个区域关联的防火墙规则或服务，例如查看block这个区域
+firewall-cmd &amp;ndash;zone=block &amp;ndash;list-all
+  将某个source(IP地址)划分到某个zone的命令如下： firewall-cmd [&amp;ndash;permanent] [&amp;ndash;zone=zone] &amp;ndash;add-source=source
+例如：
+firewall-cmd &amp;ndash;permanent &amp;ndash;zone=trusted &amp;ndash;add-source=192.168.5.112
+这条命令会将192.168.5.112这个ip划分到trusted这个zone，–permanent参数会将该配置写入trusted这个zone的配置文件trusted.xml中，使其永久生效。如果不加–permanent，则只会临时生效，重启防火墙或者调用firewall-cmd &amp;ndash;reload重新加载配置文件会使得该项配置失效。
+  将某个网口（interface）划分到某个zone的命令如下： firewall-cmd [&amp;ndash;permanent] [&amp;ndash;zone=zone] &amp;ndash;add-interface=interface 例如： firewall-cmd &amp;ndash;permanent &amp;ndash;zone=block &amp;ndash;add-interface=ens33 这条命令会将ens33这个网口划分到block这个zone，这样其他机器访问本机的ens33网口时就会默认走这个zone。 如果某个连接请求没有划分到任何一个zone，那么就会走默认的zone，Centos7 默认情况下，默认zone为public。可以通过以下命令查看或者修改默认zone。 获取默认的zone： firewall-cmd &amp;ndash;get-default-zone 修改默认的zone： firewall-cmd &amp;ndash;permanent &amp;ndash;set-default-zone=[zone]</description>
+    </item>
+    
+    <item>
+      <title>Centos修改硬盘分区大小,把home分区部分容量分配给根分区</title>
+      <link>https://note.freezz.cc/post/js20220812/</link>
+      <pubDate>Fri, 12 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220812/</guid>
+      <description>执行df -h查看硬盘使用情况，先看下有没有未分配的磁盘，如果有的话可以把未分配的空间直接分过去，这里都已经使用了，需要从home中分出空间给根目录
+  备份home目录文件
+cp -r /home/ homebak/
+  使用 umount /home 卸载home分区，并 df -h 查看是否成功。如果提示目标忙，则用fuser -m -v -i -k /home 干掉进程，然后再执行umount /home
+再执行 df -h 查看分区挂载情况：
+这里的显示已经没有了/home，已成功卸载了home分区
+  删除home分区（删除home所在lv）：lvremove /dev/mapper/centos-home
+  给根目录对应的/dev/mapper/centos-root增加5G空间：lvextend -L +5G /dev/mapper/centos-root
+  扩容拓展根分区文件系统 xfs_growfs /dev/mapper/centos-root
+  重建home（重建home的lv）。先执行 fdisk -l 查看总量减去已分配的剩下的就是可以分配的大小，不够的话会有提示
+或者执行 vgdisplay 命令，显示LVM卷组的信息，查看到可用的分配容量
+这里显示可用的分配容量为5G。执行 lvcreate -L 5G -n home centos -y 重建home。其中“centos”是home所处的卷组名称（vgdisplay命令可以查看卷组名称），加参数y， 是因为执行时有可能会提示是否擦除xfs签名，加-y 就是擦除xfs签名。
+创建home文件系统，执行 mkfs.xfs /dev/centos/home</description>
+    </item>
+    
+    <item>
+      <title>命令的形式列出各个linux系统已经安装的软件包</title>
+      <link>https://note.freezz.cc/post/js20220714/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220714/</guid>
+      <description>在 Arch Linux 中使用 pacman 显示已安装的包 Pacman是 Arch Linux 及其衍生产品（如 EndeavourOS 和 Manjaro Linux）的默认包管理器。要列出Arch Linux 及其衍生产品中使用pacman显示所有已安装软件包，如下：
+pacman -Q
+如果要逐页查看输出，请将输出通过管道传输到more命令
+pacman -Q | more
+仅列出显式安装的软件包和版本：
+pacman -Qe
+要仅列出 Arch Linux 中已安装软件包的总数，请将pacman输出通过管道传输到wc命令：
+pacman -Q | wc -l 会回显一个数字的，就是安装包的总数量
+在Alpine Linux中使用apk命令获取已安装包列表 Apk是 Alpine Package Manager 的缩写，是 Alpine Linux 的默认包管理器。在 Alpine Linux 中查看已安装包列表的命令是：
+apk info
+如果要查看已安装的软件包列表以及版本号和软件包描述，请使用-vv如下标志：
+apk info -vv
+要仅列出 Alpine Linux 中所有已安装软件包的总数，请将apk info输出通过管道发送到wc如下命令：
+apk info | wc -l
+在 Debian、Ubuntu 中使用 apt 命令查找已安装的包 Apt为 Debian、Ubuntu 和其他基于 Debian 的系统中的包管理系统提供了高级命令行界面。要在 Debian、Ubuntu、Linux Mint 和其他基于 DEB 的系统中显示已安装软件包的列表， 请运行：</description>
+    </item>
+    
     <item>
       <title>使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明</title>
       <link>https://note.freezz.cc/post/js20220713/</link>

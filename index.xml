@@ -7,7 +7,153 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 13 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Centos7 firewall防火墙的基本操作</title>
+      <link>https://note.freezz.cc/post/js20220901a/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220901a/</guid>
+      <description>Centos7中使用firewalld来作为防火墙，其底层调用的命令仍然是iptables等命令，但是在配置上发生了较大的变化。 Centos7中有两个位置存放了firewall的配置文件，一个是/etc/firewalld，一个是/usr/lib/firewalld，前者是用户配置目录，后者是系统配置目录。/usr/lib/firewalld目录中存放的是firewalld提供的一些默认和备份的配置文件，一般不随意改变，/etc/firewalld目录下才是用户配置的真正生效的配置文件，只有在/etc/firewalld目录不存在或该目录下不存在配置文件的情况下/usr/lib/firewalld目录下的配置文件才会生效。
+zone的概念
+zone定义了防火墙对某个连接、网口（interface）或源地址的信任等级，我们可以把他理解为防火墙对不同的连接（connection）、网口（interface）或源地址（source address）划分到不同的zone当中，而不同的zone定义了不同的规则，因此防火墙可以针对不同的连接、网口（interface）或源地址做出不同的行为。例如，我们将10.12.18.201这个地址划分到zone1中，将10.12.18.202这个地址划分到zone2中，然后zone1中定义的规则为：允许访问3306端口，其余的端口都拒绝访问；zone2中定义的规则为：拒绝访问3306端口，其余的端口都允许访问。那么10.12.18.201就仅能访问本机的3306端口，10.12.18.202就仅不能访问本机的3306端口。每个zone的防火墙规则是通过/etc/firewalld/zones目录下的xml配置文件来配置的。 zone和connection、interface、source address之间是一对多的关系，即一个connection、interface或source address仅能划分到一个zone中，而一个zone中可以包含多个connection、interface或source address。
+对于一个接受到的请求具体使用哪个zone，firewalld是通过三种方法来判断的：
+1、source，也就是源地址
+2、interface，接收请求的网卡
+3、firewalld.conf中配置的默认zone
+这三个的优先级按顺序依次降低，也就是说如果按照source可以找到就不会再按interface去查找，如果前两个都找不到才会使用第三个，也就是学生在前面给大家讲过的在firewalld.conf中配置的默认zone。
+预定义的zone
+Centos7中firewalld为用户预定义了9个zone，分别为drop，block，public，external，dmz，work，home，internal，trusted。这9个zone的配置文件在/usr/lib/firewalld/zones目录下，通过查看他们的配置文件可以得知这9个zone的规则是怎么样的。
+drop：任何传入本机的网络数据包都会被丢弃，并且不会回复，只允许本机对外访问其他服务器。
+block：任何传入本机的网络连接请求都会被拒绝，并且会回复一条拒绝访问的消息。
+public：用于本机处于公共网络环境的场景下，仅接受特定的连接请求，如仅接受某些特定的IP的连接请求，或仅对外部开放特定的某些端口。Centos 7 默认的public.xml文件中仅开放用于ssh连接请求的22端口和dhcpv6-client服务的546端口。
+external：与public类似，Centos 7 默认仅开放用于ssh连接请求的22端口。
+dmz：与external一样，Centos 7 默认也是仅开放用于ssh连接请求的22端口。
+work：用于工作网络环境场景下，信任大部分的其他的计算机不会对本机进行攻击。Centos 7 默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，以及IPP协议的631端口。
+home：用于家庭网络环境，信任网络上的其他计算机不会攻击本机。Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。
+internal：与home一样，Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。 trusted：所有对本机的网络连接请求都会被接受。
+（注：如果更改的防火墙配置，记得要执行 firewall-cmd &amp;ndash;reload 重新加载一次才会生效。）
+  查看与公共区域关联的防火墙规则或服务 firewall-cmd &amp;ndash;list-all
+  查看与某个区域关联的防火墙规则或服务，例如查看block这个区域
+firewall-cmd &amp;ndash;zone=block &amp;ndash;list-all
+  将某个source(IP地址)划分到某个zone的命令如下： firewall-cmd [&amp;ndash;permanent] [&amp;ndash;zone=zone] &amp;ndash;add-source=source
+例如：
+firewall-cmd &amp;ndash;permanent &amp;ndash;zone=trusted &amp;ndash;add-source=192.168.5.112
+这条命令会将192.168.5.112这个ip划分到trusted这个zone，–permanent参数会将该配置写入trusted这个zone的配置文件trusted.xml中，使其永久生效。如果不加–permanent，则只会临时生效，重启防火墙或者调用firewall-cmd &amp;ndash;reload重新加载配置文件会使得该项配置失效。
+  将某个网口（interface）划分到某个zone的命令如下： firewall-cmd [&amp;ndash;permanent] [&amp;ndash;zone=zone] &amp;ndash;add-interface=interface 例如： firewall-cmd &amp;ndash;permanent &amp;ndash;zone=block &amp;ndash;add-interface=ens33 这条命令会将ens33这个网口划分到block这个zone，这样其他机器访问本机的ens33网口时就会默认走这个zone。 如果某个连接请求没有划分到任何一个zone，那么就会走默认的zone，Centos7 默认情况下，默认zone为public。可以通过以下命令查看或者修改默认zone。 获取默认的zone： firewall-cmd &amp;ndash;get-default-zone 修改默认的zone： firewall-cmd &amp;ndash;permanent &amp;ndash;set-default-zone=[zone]</description>
+    </item>
+    
+    <item>
+      <title>Centos修改硬盘分区大小,把home分区部分容量分配给根分区</title>
+      <link>https://note.freezz.cc/post/js20220812/</link>
+      <pubDate>Fri, 12 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220812/</guid>
+      <description>执行df -h查看硬盘使用情况，先看下有没有未分配的磁盘，如果有的话可以把未分配的空间直接分过去，这里都已经使用了，需要从home中分出空间给根目录
+  备份home目录文件
+cp -r /home/ homebak/
+  使用 umount /home 卸载home分区，并 df -h 查看是否成功。如果提示目标忙，则用fuser -m -v -i -k /home 干掉进程，然后再执行umount /home
+再执行 df -h 查看分区挂载情况：
+这里的显示已经没有了/home，已成功卸载了home分区
+  删除home分区（删除home所在lv）：lvremove /dev/mapper/centos-home
+  给根目录对应的/dev/mapper/centos-root增加5G空间：lvextend -L +5G /dev/mapper/centos-root
+  扩容拓展根分区文件系统 xfs_growfs /dev/mapper/centos-root
+  重建home（重建home的lv）。先执行 fdisk -l 查看总量减去已分配的剩下的就是可以分配的大小，不够的话会有提示
+或者执行 vgdisplay 命令，显示LVM卷组的信息，查看到可用的分配容量
+这里显示可用的分配容量为5G。执行 lvcreate -L 5G -n home centos -y 重建home。其中“centos”是home所处的卷组名称（vgdisplay命令可以查看卷组名称），加参数y， 是因为执行时有可能会提示是否擦除xfs签名，加-y 就是擦除xfs签名。
+创建home文件系统，执行 mkfs.xfs /dev/centos/home</description>
+    </item>
+    
+    <item>
+      <title>ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法</title>
+      <link>https://note.freezz.cc/post/js202200810/</link>
+      <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js202200810/</guid>
+      <description>ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法
+  点开ESXI主机的”网络“，新建一个虚拟交换机
+已经看到新增的”虚拟交换机“了
+  点开ESXI主机的”网络“，新建一个&amp;quot;端口组&amp;quot;
+  点开ESXI主机的”网络“，新建一个”VMkernel网卡“
+  点开ESXI主机的”存储“–”适配器“–“软件iSCSI”
+上图“名称和别名”的IQN号要记下，到在存储主机上添加IQN时要用到的。
+  进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，设置主机通道的工作模式，按实际情况来选择，这里选择“iSCSI 10 Gbps”为例
+  线缆连接好ESXI主机服务器和GS1012R2存储的相应的端口
+  进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，编辑好上面步骤2对应的通道端口，比如图中的”通道1“
+  把存储中的卷映射到主机（事先要创建好卷，这里略过）
+下面添加主机IQN
+点击“确定”后，如下图，点击“下一步”
+点击“关闭”按钮，返回到创建映射主机页面
+这里显示选择的的“ESXI”，就是上面建立的主机IQN，“ESXI”是主机的别名
+  点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，如无意外，就可以看到连接的存储了
+  注意：ESXi会把远程添加的存储当作远程磁盘，所以它期望有两条或以上路径可以到达它，如果没有找到，它会将其视为“已降级”。
+解决步骤如下：
+  点开ESXI主机的”网络“，新建一个虚拟交换机
+  点开ESXI主机的”网络“，新建一个端口组
+  点开ESXI主机的”网络“，新建一个VMkernel网卡
+  点开ESXI主机的”存储“–”适配器“，选中那张iSCSI适配器，点”配置iSCSI“，”添加端口绑定“
+  点击选中刚才添加的VMkernel网卡
+添加完成后的状态
+ 点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，就可以正常显示存储
+  最后，还需要在ESXI主机中再配置一下iSCSI，多添加一条”动态目标“。因为普安infortrend GS1012R2是双控制器的，每个控制器都有各自的通道，比如上面的控制器接线图，ESXI服务器分别接了控制器A的通道1端口(设置的ip是192.168.1.31) 和 控制器B的通道1端口(设置的ip是192.168.1.32)，这样可以双路径通讯，如果其中一个控制器或者链路出现故障，会自动切换到另外一个控制器和链路。添加完成后，如下图：
+………………………………………………………………………</description>
+    </item>
+    
+    <item>
+      <title>VMware ESXI vCenter 备忘笔记</title>
+      <link>https://note.freezz.cc/post/js20220729/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220729/</guid>
+      <description>网卡信息查询
+查看所有网卡：
+esxcfg-nics -l
+查看更详细的网上信息：
+esxcli network nic list
+查看对应网卡驱动和固件，如下查看vmnic0对应的驱动和固件：
+esxcli network nic get -n vmnic0
+显示网卡的VID，DID 等信息：
+vmkchdev -l | grep vmnic0
+然后去VMware网站查询兼容情况，如果不兼容，去对应硬件厂商找到对应固件更新。各硬件厂商更新fireware方式略有不同，具体联系对应硬件厂商。 VMware网站下载对应的网卡驱动，会得到一个zip压缩包，解压缩后有两个文件，一个vib格式，一个zip格式。用如下命令更新： esxcli software vib install -v {VIBFILE}
+或
+esxcli software vib install -d {OFFLINE_BUNDLE}
+(注：如果执行安装后提示could not find a trusted signer，可以在命令后添加参数 –no-sig-check) 建议使用第一种更新方式，注意，vib存放路径用完整路径。之后重启主机。
+……………………………………………
+给虚拟机添加USB设备，例如U盘
+1、把USB设备插入到物理主机
+2、编辑虚拟机设置–添加其它其他设备–USB设备–保存设置。
+注：同一个USB设备，同时只能添加到一台虚拟机中。在虚拟机中删除该USB设备后，才能添加到其它虚拟机中。
+……………………………………………
+esxi6.5开启开启嵌套虚拟化
+Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo
+另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。
+要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：
+使用 vSphere Client 登录到 ESXi/ESX 主机或 vCenter Server。在清单中选择 ESXi/ESX 主机。单击配置选项卡。在“硬件”部分，单击网络。单击要启用混杂模式的虚拟交换机的属性。 选择要修改的虚拟交换机或端口组，然后单击编辑。单击安全选项卡。从“混杂模式”下拉菜单中，单击接受。</description>
+    </item>
+    
+    <item>
+      <title>命令的形式列出各个linux系统已经安装的软件包</title>
+      <link>https://note.freezz.cc/post/js20220714/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20220714/</guid>
+      <description>在 Arch Linux 中使用 pacman 显示已安装的包 Pacman是 Arch Linux 及其衍生产品（如 EndeavourOS 和 Manjaro Linux）的默认包管理器。要列出Arch Linux 及其衍生产品中使用pacman显示所有已安装软件包，如下：
+pacman -Q
+如果要逐页查看输出，请将输出通过管道传输到more命令
+pacman -Q | more
+仅列出显式安装的软件包和版本：
+pacman -Qe
+要仅列出 Arch Linux 中已安装软件包的总数，请将pacman输出通过管道传输到wc命令：
+pacman -Q | wc -l 会回显一个数字的，就是安装包的总数量
+在Alpine Linux中使用apk命令获取已安装包列表 Apk是 Alpine Package Manager 的缩写，是 Alpine Linux 的默认包管理器。在 Alpine Linux 中查看已安装包列表的命令是：
+apk info
+如果要查看已安装的软件包列表以及版本号和软件包描述，请使用-vv如下标志：
+apk info -vv
+要仅列出 Alpine Linux 中所有已安装软件包的总数，请将apk info输出通过管道发送到wc如下命令：
+apk info | wc -l
+在 Debian、Ubuntu 中使用 apt 命令查找已安装的包 Apt为 Debian、Ubuntu 和其他基于 Debian 的系统中的包管理系统提供了高级命令行界面。要在 Debian、Ubuntu、Linux Mint 和其他基于 DEB 的系统中显示已安装软件包的列表， 请运行：</description>
+    </item>
+    
     <item>
       <title>使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明</title>
       <link>https://note.freezz.cc/post/js20220713/</link>
@@ -306,6 +452,11 @@ network: ethernets: ens160: addresses: [192.168.1.45/24] dhcp4: no optional: tru
       <guid>https://note.freezz.cc/post/js20220318b/</guid>
       <description>安装winows11时跳过强制联网 方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。
 方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。
+windows11离线解包系统： 1、先拔出网线（断网），电脑开机。
+2、当进入到选择国家、或者要求联网、或者要求输入微软账号中的任何一个页面时，同时按下 ctrl+shift+F3 这三个组合键，系统自动重启。
+3、重启完成进入桌面后，会自动弹出一个系统工具对话窗口的，直接点击窗口下的“确定”按钮，系统会再次自动重启。
+4、当重启进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobebypassnro.cmd 然后按回车键，系统会再一次自动重启。
+5、当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。
 解决Win11右键菜单折叠问题 切换回经典右键菜单 首先Win+X打开Windows powershell（管理员）（PS：现在貌似叫Windows 终端（管理员）） 输入如下内容后回车 reg add &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;rdquo; /f /ve
 然后 Win+E 打开Windows资源管理器，再 Ctrl+Shift+Esc，任务管理器重启Windows资源管理器（重启电脑也可以）， 完成。
 如需重新恢复到新版右键菜单（没人会这么干吧） reg delete &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&amp;rdquo; /f 选择想要的类型，粘贴后回车。</description>
@@ -389,14 +540,23 @@ Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 
       <pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/post/work20220302/</guid>
-      <description>【2022年4月21日更新】
+      <description>【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
 https://rockylinux.org/zh_CN/
 2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS
 https://almalinux.org/zh-hans/
-戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。 DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。 DELL 14G INTEL平台服务器BIOS设置详解 Precision 3650 塔式机规格参数 在RAID控制器10中分配/取消分配设置热备盘 Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号 ，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍 Dell EMC PowerEdge 服务器型号列表 PowerEdge 服务器命名约定 IDRAC9管理口配置
-遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。 T140机器进入S140软阵列
-开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。 BOSS卡介绍</description>
+戴尔DELL设备  DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
+…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+…………………………………. DELL 14G INTEL平台服务器BIOS设置详解
+…………………………………. Precision 3650 塔式机规格参数
+…………………………………. 在RAID控制器10中分配/取消分配设置热备盘
+…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
+…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+…………………………………. Dell EMC PowerEdge 服务器型号列表
+……………….. PowerEdge 服务器命名约定
+…………………………………. IDRAC9管理口配置
+遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。</description>
     </item>
     
     <item>
