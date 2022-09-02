@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>技术备忘 on 自游鱼</title>
-    <link>https://freefish100.github.io/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</link>
-    <description>Recent content in 技术备忘 on 自游鱼</description>
+    <title>技术备忘 on 自游鱼的笔记</title>
+    <link>https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</link>
+    <description>Recent content in 技术备忘 on 自游鱼的笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://freefish100.github.io/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>我的文章，春天来了</title>
-      <link>https://freefish100.github.io/post/my-first-post01/</link>
-      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      <title>Linux Centos 防火墙firewall配置只允许特定ip访问</title>
+      <link>https://note.freezz.cc/post/js20220901b/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://freefish100.github.io/post/my-first-post01/</guid>
-      <description>我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了我的文章，春天来了 </description>
+      <guid>https://note.freezz.cc/post/js20220901b/</guid>
+      <description>本实例情况如下： 服务器的80端口，需要配置为只有允许的ip才可以访问，其它未经允许的ip不能访问。
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..
+1. 启用防火墙，首先查看防火墙状态，看防火墙是否已开启
+#查看防火墙状态
+systemctl status firewalld
+如果返回绿色active代表服务已启动。如果未启动，要开启防火墙并设置开机启动.
+#开启防火墙
+systemctl start firewalld
+#开机启动
+systemctl enable firewalld
+2. 关闭端口访问
+确保端口关闭。如果有已开放则要关闭端口，因为此处端口如果开放，是所有ip都可以进行访问。如果端口未开启则无需关闭。
+#查询打开的端口
+firewall-cmd --zone=public --list-ports
+#关闭端口80
+firewall-cmd --zone=public --remove-port=80/tcp --permanent
+#重新载入一下防火墙设置，使设置生效
+firewall-cmd --reload
+#查询打开的端口
+firewall-cmd --zone=public --list-ports
+3. 开放指定的ip访问服务器的80端口
+#允许ip192.168.1.111访问80端口
+firewall-cmd --permanent --add-rich-rule=&amp;quot;rule family=&amp;quot;ipv4&amp;quot; source address=&amp;quot;192.168.1.111&amp;quot; port protocol=&amp;quot;tcp&amp;quot; port=&amp;quot;80&amp;quot; accept&amp;quot; 如果是开放一个网段，就把ip改成ip网段：
+firewall-cmd --permanent --add-rich-rule=&amp;quot;rule family=&amp;quot;ipv4&amp;quot; source address=&amp;quot;192.168.1.0/24&amp;quot; port protocol=&amp;quot;tcp&amp;quot; port=&amp;quot;80&amp;quot; accept&amp;quot; #重新载入一下防火墙设置，使设置生效
+firewall-cmd --reload
+#查看已设置规则
+firewall-cmd --zone=public --list-rich-rules
+到此，firewall配置只允许特定ip访问的步骤完成。
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;</description>
     </item>
     
   </channel>
