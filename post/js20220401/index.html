@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="920">
+<meta itemprop="wordCount" content="952">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -385,8 +385,20 @@ free -m 以MB为单位查看内存<br>
 free -g 以GB为单位查看内存<br>
 lsusb 列出与本机相连的所有 USB 设备的信息。默认情况下，只列出概要信息，使用 -v 选项可以列出每一个 USB 口的详细信息。<br>
 lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
-lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。<br>
-df 命令可以列出不同分区的大小，使用情况，使用率，挂载点等信息，加上 -h 选项可以以 k, M, G 等单位表示大小，否则默认是字节，不容易阅读。<br>
+lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。</p>
+<p>查看显卡信息：</p>
+<ul>
+<li><code>lspci | grep VGA</code><br>
+更详细的显卡信息可使用 <code>lshw -C video</code></li>
+<li>如果知道是Nvidia的显卡，可使用 <code>lspci | grep -i nvidia</code><br>
+这样会回显类似信息如下：<br>
+“00:02.0 VGA compatible controller:NVIDIA Corporation Device 2236（rev a1）”<br>
+其中2236 就是Nvidia显卡的型号对应的标识ID，其对应的具体型号，可到下面网址查询<br>
+<a href="http://pci-ids.ucw.cz/read/PC/" target="_blank" rel="noopener noreferrer">http://pci-ids.ucw.cz/read/PC/</a><br>
+网页拉到最尾，在搜索框中输入显卡的ID标识进行查询。</li>
+<li>还可以使用命令 <code>nvidia-smi -L</code> 直接查看Nvidia显卡的型号。</li>
+</ul>
+<p>df 命令可以列出不同分区的大小，使用情况，使用率，挂载点等信息，加上 -h 选项可以以 k, M, G 等单位表示大小，否则默认是字节，不容易阅读。<br>
 列出网卡设备<br>
 使用 ifconfig -a 命令查看；<br>
 使用 lspci | grep -i “eth” 或 lspci | grep -i net 命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
