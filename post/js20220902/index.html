@@ -12,7 +12,7 @@
 <meta name="description" content="windows 2012/win2016/win2019配置多用户访问远程桌面" /><meta itemprop="name" content="windows2012/win2016/win2019配置多用户访问远程桌面">
 <meta itemprop="description" content="windows 2012/win2016/win2019配置多用户访问远程桌面"><meta itemprop="datePublished" content="2022-09-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-09-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="85">
+<meta itemprop="wordCount" content="89">
 <meta itemprop="keywords" content="windows,远程桌面," /><meta property="og:title" content="windows2012/win2016/win2019配置多用户访问远程桌面" />
 <meta property="og:description" content="windows 2012/win2016/win2019配置多用户访问远程桌面" />
 <meta property="og:type" content="article" />
@@ -241,7 +241,23 @@
 
 </p>
 <p>安装过程中，系统会自动重启重启登录系统后，右下角会弹窗提示，远程桌面授权只有120天的有效期，需要向微软采购激活。本文为了测试，将按照下面的操作方式，跳过120天的限制。</p>
-<p>2.修改注册表打开【注册表编辑器】，进入表项：HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod将这个注册表项删除，会提示没有权限进行删除，需要添加权限。在【GracePeriod】表项上，右键-【权限】</p>
+<p>2.修改注册表打开【注册表编辑器】，进入表项：HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod将这个注册表项删除</p>
+<p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/20220914a.jpg" loading="lazy"
+  
+   />
+
+</p>
+<p>如果提示没有权限进行删除，需要添加权限。在【GracePeriod】表项上，右键-【权限】</p>
+<p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/20220914c.png" loading="lazy"
+  
+   />
+
+</p>
+<p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/20220914b.jpg" loading="lazy"
+  
+   />
+
+</p>
 <p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/yczm08.png" loading="lazy"
   
    />
@@ -255,7 +271,7 @@
 </p>
 <p>此时，再次删除【GracePeriod】表项，将可以删除。</p>
 <p>3.调整操作系统时间将操作系统的时间调整为未来的某个时间，例如2099年12月31日调整完时间后，重启操作系统，将时间调整为正确的时间即可。</p>
-<p>**4.**运行gpedit.msc打开组策略：
+<p>4.运行gpedit.msc打开组策略：
 计算机配置-&gt;管理模板-&gt;Windows 组件-&gt;远程桌面服务-&gt;远程桌面会话主机-&gt;连接，在右边窗口找到 “将远程桌面服务的用户限制到单独的远程桌面会话” 选项，编辑为 “已禁用”。找到 “限制连接的数量” ，编辑为 “已启用”，“允许的RD最大连接数”填写一个数值，比如100或1000，如果打算无限制连接数量，则填写999999  </p>
 <p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/yczm10.png" loading="lazy"
   
@@ -267,7 +283,7 @@
    />
 
 </p>
-<p>启用 【设置已中断会话的时间限制】为5分钟，表示用户断开连接5分钟后，将删除会话。可通过任务管理器查看到。</p>
+<p>启用 【设置已中断会话的时间限制】为5分钟，表示用户断开连接5分钟后，将删除会话。可通过任务管理器查看到，或者运行cmd，执行 <code>query user</code> 命令也可查看正在连接的会话。</p>
 <p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/yczm12.png" loading="lazy"
   
    />
