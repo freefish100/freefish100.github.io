@@ -12,7 +12,7 @@
 <meta name="description" content="Windows11 Win11操作配置技巧" /><meta itemprop="name" content="Windows11 Win11操作配置技巧">
 <meta itemprop="description" content="Windows11 Win11操作配置技巧"><meta itemprop="datePublished" content="2022-03-18T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-18T00:00:00+00:00" />
-<meta itemprop="wordCount" content="40">
+<meta itemprop="wordCount" content="46">
 <meta itemprop="keywords" content="windows11,win11,操作系统," /><meta property="og:title" content="Windows11 Win11操作配置技巧" />
 <meta property="og:description" content="Windows11 Win11操作配置技巧" />
 <meta property="og:type" content="article" />
@@ -200,7 +200,9 @@
 </div>
 <div class="post-content mb-3"><h2 id="安装winows11时跳过强制联网">安装winows11时跳过强制联网<a class="anchor ms-1" href="#安装winows11时跳过强制联网"><i class="fas fa-link"></i></a></h2>
 <p>方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。<br>
-方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。</p>
+方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。
+以上方法只适合22H2之前的版本，如果是22H2的版本，侧需如下方法来跳过强制联网和微软账号：<br>
+第一启动前，要先断网，然后开机，当进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&quot;C:\Windows\System32&gt;&ldquo;的后面输入oobe\bypassnro.cmd 然后按回车键，系统自动重启。  当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。</p>
 <h2 id="windows11离线解包系统">windows11离线解包系统：<a class="anchor ms-1" href="#windows11离线解包系统"><i class="fas fa-link"></i></a></h2>
 <p>1、先拔出网线（断网），电脑开机。<br>
 2、当进入到选择国家、或者要求联网、或者要求输入微软账号中的任何一个页面时，同时按下 ctrl+shift+F3 这三个组合键，系统自动重启。<br>

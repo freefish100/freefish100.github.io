@@ -561,7 +561,8 @@ network: ethernets: ens160: addresses: [192.168.1.45/24] dhcp4: no optional: tru
       
       <guid>https://note.freezz.cc/post/js20220318b/</guid>
       <description>安装winows11时跳过强制联网 方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。
-方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。
+方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。 以上方法只适合22H2之前的版本，如果是22H2的版本，侧需如下方法来跳过强制联网和微软账号：
+第一启动前，要先断网，然后开机，当进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobe\bypassnro.cmd 然后按回车键，系统自动重启。 当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。
 windows11离线解包系统： 1、先拔出网线（断网），电脑开机。
 2、当进入到选择国家、或者要求联网、或者要求输入微软账号中的任何一个页面时，同时按下 ctrl+shift+F3 这三个组合键，系统自动重启。
 3、重启完成进入桌面后，会自动弹出一个系统工具对话窗口的，直接点击窗口下的“确定”按钮，系统会再次自动重启。
@@ -692,15 +693,17 @@ https://www.seagate.com/cn/zh/internal-hard-drives/raid-calculator/ （希捷科
 https://msdn.itellyou.cn/
 http://www.imsdn.cn/
 https://hellowindows.cn/
+windows11官网iso镜像下载
+https://www.microsoft.com/zh-cn/software-download/windows11
+windows10官网iso镜像下载
+https://www.microsoft.com/zh-cn/software-download/windows10
   微软Windows密钥管理服务 (KMS) 客户端激活和通用批量许可证密钥 (GVLK)，Windows全系列。安装产品密钥命令 &amp;quot; slmgr /ipk 密钥 &amp;ldquo;， 如 slmgr /ipk D2N9P-3P6X9-2R39C-7RTCD-MDVJX
 https://docs.microsoft.com/zh-cn/windows-server/get-started/kms-client-activation-keys
   在线文件转换器Convertio。Convertio是一个在线文件格式转换工具网站，可以转换的类型有：文档、图像、音频、视频、电子书、字体等等。
 https://convertio.co/zh/
   MuseTransfer是一款极简有趣的大文件传输工具，无需下载客户端，甚至无需注册，打开网页即可全速上传或下载超大文件。
 https://musetransfer.com/
-  Markdown 语法官方教程
-https://markdown.com.cn/
-  </description>
+  Markdown 语法官方教程</description>
     </item>
     
     <item>

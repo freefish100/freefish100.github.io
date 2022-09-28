@@ -44,7 +44,7 @@ https://almalinux.org/zh-hans/
 …………………………………. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。"><meta itemprop="datePublished" content="2022-03-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="189">
+<meta itemprop="wordCount" content="242">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
 <meta property="og:description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
@@ -330,24 +330,38 @@ AlmaLinux OS<br>
 </ul>
 <ul>
 <li>台式PC机，CPU的温度如果在80、90度都属于正常的温度范围内的，电脑出厂有自带的温度保护，一旦超过温度阈值（一般是100度），电脑会自动关机保护硬件的。<br>
-如果觉得不放心，可以自行检测下硬件，方法如下：</li>
+如果觉得不放心，可以自行检测下硬件，方法如下：<br>
+1.接上充电线，电脑关机后，稍等15s，轻按电源按钮开机后，马上连续按f12，点Diagnostics选项,回车进入硬件检测。<br>
+2.出现屏幕彩条显示界面并可能伴随警报音，出现提示请立即按 Y 键继续检测。<br>
+3.如果有出现错误代码报错，请拍照留存，然后选择Y继续检测。 <br>
+4.如果出现“No problems have been found&hellip;”等信息窗口， 选择【N 】 结束基础检测。<br>
+5.点击右下角的箭头进入下一页，将右侧上方的system  health、Event Log以及configuration，三个界面拍照留存。<br>
+第三方软件监测是在系统下测试，很多参数获取也是基于系统环境的， 因此不能作为硬件真实性能的依据。机器CPU温度在100度以下是正常的。<br>
+“my dell”是出厂预装的软件，没有的话，可从如下网址下载安装包（安装时需要联网）：</li>
 </ul>
-<ol>
-<li>接上充电线，电脑关机后，稍等15s，轻按电源按钮开机后，马上连续按f12，点Diagnostics选项,回车进入硬件检测。</li>
-<li>出现屏幕彩条显示界面并可能伴随警报音，出现提示请立即按 Y 键继续检测。</li>
-<li>如果有出现错误代码报错，请拍照留存，然后选择Y继续检测。</li>
-<li>如果出现“No problems have been found&hellip;”等信息窗口， 选择【N 】 结束基础检测。</li>
-<li>点击右下角的箭头进入下一页，将右侧上方的system  health、Event Log以及configuration，三个界面拍照留存。</li>
-</ol>
-<p>第三方软件监测是在系统下测试，很多参数获取也是基于系统环境的， 因此不能作为硬件真实性能的依据。机器CPU温度在100度以下是正常的。<br>
-“my dell”是出厂预装的软件，没有的话，可从如下网址下载安装包（安装时需要联网）：</p>
 <pre tabindex="0"><code>http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/bae0b052-f950-4f03-bd4e-a43f7bb48693?P1=1662090982&amp;P2=404&amp;P3=2&amp;P4=Sh3senCuRyA5zcVwOA%2fEkC026HY5Y9rSQTKRKlQHqxBXuUm6AdgTe1mQKln%2bjTU6tMJO2VOAxXjAOhl5dC%2fXyQ%3d%3d
 </code></pre><p>电脑的BIOS驱动老旧也有可能导致散热跟不上，可以更新下BIOS，更新后要重启。<br>
+………………………………….<br>
+Dell Support Live Image Version 3.0
+Support Live Image 3.0是一种CentOS 7.4映像，包含一系列适用于Dell PowerEdge服务器、Dell PowerEdge C服务器和Dell PowerVault存储系统的实用程序和诊断工具。它可以为这些工具提供一种环境，以便对与硬件相关的问题进行故障排除并收集系统配置信息。诊断测试的结果和配置信息将发送至技术支持团队，以识别和解决问题。<br>
+<a href="https://www.dell.com/support/home/zh-cn/drivers/driversdetails?driverid=c31j4" target="_blank" rel="noopener noreferrer">下载Dell Support Live Image Version 3.0</a><br>
 ………………………………….</p>
+<ul>
+<li>H330是没有缓存的，不含高速缓存（或高速缓存已禁用）的 RAID 控制器强制其他 I/O 等待，直到上一个 I/O 完成为止。此外，由于数据保护功能的缘故，RAID 功能会产生大量开销。除了冗余计算（奇偶校验或镜像）之外，写 I/O 还一定伴有多个读 I/O。由于在写入完成之前需要多次从每个驱动器执行读取，因此 RAID 5 写入会产生最大的开销。在没有高速缓存的情况下，阵列的写入性能可能会下降到低于标准 SATA 端口的写入性能（约 30MB/s）的速度<br>
+………………………………….</li>
+</ul>
 <h2 id="infortrend普安存储设备">Infortrend普安存储设备<a class="anchor ms-1" href="#infortrend普安存储设备"><i class="fas fa-link"></i></a></h2>
 <ul>
 <li>目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月）</li>
 <li>存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。</li>
+</ul>
+<ul>
+<li>DS系列：物理硬盘&ndash;&gt;逻辑卷&ndash;&gt;逻辑磁盘&ndash;&gt;分区。（服务器主机映射分区，最终使用的是分区）<br>
+<strong>iSCSI映射步骤：</strong><br>
+1、存储主页&ndash;&gt;设置通道的ip地址，比如192.168.1.10<br>
+2、服务器主机打开ISCSI程序&ndash;&gt;“目标”&ndash;&gt;填写目标ip地址(即上面通道的ip地址)&ndash;&gt;点击&quot;快速连接&quot;。连接成功后，会在&quot;存储主页&quot;&ndash;&gt;&ldquo;通道&rdquo;&ndash;&gt;点击&quot;扫描端口信息&quot;&ndash;&gt;&ldquo;添加&quot;页面，可看到服务器主机的 IQN号。<br>
+3、&ldquo;存储主页&rdquo;&ndash;&gt;&ldquo;分区&rdquo;(下面的具体分区)&ndash;&gt;&ldquo;主机 LUN 映射&rdquo;&ndash;&gt;&ldquo;创建&rdquo;&ndash;&gt;&ldquo;自定义主机 LUN 映射配置&rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&quot;使用扩展的主机 LUN 功能&rdquo;，&ldquo;配置iSCSI启动程序别名&rdquo;&ndash;&gt;&ldquo;添加&quot;服务器主机IQN。</li>
+<li>GS系列：卷</li>
 </ul>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
