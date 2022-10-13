@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="962">
+<meta itemprop="wordCount" content="973">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -325,6 +325,34 @@ cat /etc/redhat-release<br>
 rpm -q centos-release<br>
 lsb_release -a 如果提示找不到这个命令，可以 yum install redhat-lsb -y 安装后再使用。<br>
 cat /etc/issue</p>
+<p><strong>查看主机名和信息：</strong><br>
+hostnamectl</p>
+<p><strong>修改主机名：</strong><br>
+hostnamectl set-hostname somename<br>
+用hostnamectl设置主机名会立刻生效并且存入配置文件，重启系统不会被重置，不必再修改配置文件。</p>
+<p><strong>查询服务器的架构，在命令行中输入：arch 进行查询</strong><br>
+输出结果：x86_64 代表 amd64 ; aarch64 代表 arm64</p>
+<p><strong>lshw 查看硬件信息</strong><br>
+lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
+lscpu 可以列出本机的 CPU 的相关信息。 free 可以查看系统中使用的、闲置的和 RAM 的总体数量，可带参数 -m 或 -g，来以不同的单位显示容量<br>
+free -m 以MB为单位查看内存<br>
+free -g 以GB为单位查看内存<br>
+lsusb 列出与本机相连的所有 USB 设备的信息。默认情况下，只列出概要信息，使用 -v 选项可以列出每一个 USB 口的详细信息。<br>
+lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
+lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。<br>
+lscpu 查看CPU信息。CPU信息记录在 /proc/cpuinfo 中，也可以使用 cat cat /proc/cpuinfo | grep ^cpu 来查看。</p>
+<p>查看显卡信息：</p>
+<ul>
+<li><code>lspci | grep VGA</code><br>
+更详细的显卡信息可使用 <code>lshw -C video</code></li>
+<li>如果知道是Nvidia的显卡，可使用 <code>lspci | grep -i nvidia</code><br>
+这样会回显类似信息如下：<br>
+“00:02.0 VGA compatible controller:NVIDIA Corporation Device 2236（rev a1）”<br>
+其中2236 就是Nvidia显卡的型号对应的标识ID，其对应的具体型号，可到下面网址查询<br>
+<a href="http://pci-ids.ucw.cz/read/PC/" target="_blank" rel="noopener noreferrer">http://pci-ids.ucw.cz/read/PC/</a><br>
+网页拉到最尾，在搜索框中输入显卡的ID标识进行查询。</li>
+<li>还可以使用命令 <code>nvidia-smi -L</code> 直接查看Nvidia显卡的型号。</li>
+</ul>
 <p>查看正在运行的服务：<br>
 systemctl | grep running<br>
 查看指定服务运行状态：<br>
@@ -350,13 +378,6 @@ top命令后，输入大写的P<br>
 top命令后，输入大写的M</li>
 </ul>
 <p>jstack 命令是JDK工具之一，使用该命令可以打印正在运行中 Java 进程的栈信息。 首先使用 jps命令查看需要打印线程栈的java进程号； 再链接到某个进程号(如82)上，使用下面命令： jstack 82 可以看到控制台打印出了线程的信息以及线程对应的堆栈信息。</p>
-<p><strong>查看主机名和信息：</strong><br>
-hostnamectl</p>
-<p><strong>修改主机名：</strong><br>
-hostnamectl set-hostname somename<br>
-用hostnamectl设置主机名会立刻生效并且存入配置文件，重启系统不会被重置，不必再修改配置文件。</p>
-<p><strong>查询服务器的架构，在命令行中输入：arch 进行查询</strong><br>
-输出结果：x86_64 代表 amd64 ; aarch64 代表 arm64</p>
 <p><strong>查看开放的端口</strong><br>
 netstat -aptn</p>
 <p><strong>查看端口占用情况</strong><br>
@@ -381,26 +402,6 @@ kill<br>
 kill -9 PID<br>
 如上实例，我们看到 8000 端口对应的 PID 为 26993，使用以下命令杀死进程：<br>
 kill -9 26993</p>
-<p><strong>lshw 查看硬件信息</strong><br>
-lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
-lscpu 可以列出本机的 CPU 的相关信息。 free 可以查看系统中使用的、闲置的和 RAM 的总体数量，可带参数 -m 或 -g，来以不同的单位显示容量<br>
-free -m 以MB为单位查看内存<br>
-free -g 以GB为单位查看内存<br>
-lsusb 列出与本机相连的所有 USB 设备的信息。默认情况下，只列出概要信息，使用 -v 选项可以列出每一个 USB 口的详细信息。<br>
-lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
-lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。</p>
-<p>查看显卡信息：</p>
-<ul>
-<li><code>lspci | grep VGA</code><br>
-更详细的显卡信息可使用 <code>lshw -C video</code></li>
-<li>如果知道是Nvidia的显卡，可使用 <code>lspci | grep -i nvidia</code><br>
-这样会回显类似信息如下：<br>
-“00:02.0 VGA compatible controller:NVIDIA Corporation Device 2236（rev a1）”<br>
-其中2236 就是Nvidia显卡的型号对应的标识ID，其对应的具体型号，可到下面网址查询<br>
-<a href="http://pci-ids.ucw.cz/read/PC/" target="_blank" rel="noopener noreferrer">http://pci-ids.ucw.cz/read/PC/</a><br>
-网页拉到最尾，在搜索框中输入显卡的ID标识进行查询。</li>
-<li>还可以使用命令 <code>nvidia-smi -L</code> 直接查看Nvidia显卡的型号。</li>
-</ul>
 <p>df 命令可以列出不同分区的大小，使用情况，使用率，挂载点等信息，加上 -h 选项可以以 k, M, G 等单位表示大小，否则默认是字节，不容易阅读。<br>
 列出网卡设备<br>
 使用 ifconfig -a 命令查看；<br>
