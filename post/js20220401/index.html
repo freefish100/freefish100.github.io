@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="973">
+<meta itemprop="wordCount" content="996">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -293,9 +293,18 @@ find -name 文件夹名称 -depth</p>
 ip addr 显示当前ip地址<br>
 ifdown eth0 禁用 ‘eth0’ 网络设备<br>
 ifup eth0 启用 ‘eth0’ 网络设备<br>
-使用 nmtui 可以调出图形界面设置网络参数<br>
-Cenos7、8的网卡配置文件路径：<br>
+使用 nmtui 可以调出图形界面设置网络参数</p>
+<p>Cenos7、8的网卡配置文件路径：<br>
 /etc/sysconfig/network-scripts<br>
+如果配置静态ip，则修改如下配置：<br>
+BOOTPROTO=static //引导协议：dhcp自动获取、static静态、none不指定<br>
+ONBOOT=yes //开机自动激活网卡<br>
+IPADDR=192.168.1.110 // 静态ip<br>
+GATEWAY=192.168.1.1 // 网关地址<br>
+NETMASK=255.255.255.0 // 子网掩码<br>
+DNS1=192.168.1.1 // DNS地址<br>
+DNS2=8.8.8.8<br>
+然后 systemctl restart network 重启网络服务
 ……………………………………<br>
 Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这样才能访问网络。<br>
 启用网卡连接connection（相当于ifup）：<br>

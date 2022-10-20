@@ -44,7 +44,7 @@ https://almalinux.org/zh-hans/
 …………………………………. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。"><meta itemprop="datePublished" content="2022-03-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="242">
+<meta itemprop="wordCount" content="307">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
 <meta property="og:description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
@@ -349,6 +349,15 @@ Support Live Image 3.0是一种CentOS 7.4映像，包含一系列适用于Dell P
 <ul>
 <li>H330是没有缓存的，不含高速缓存（或高速缓存已禁用）的 RAID 控制器强制其他 I/O 等待，直到上一个 I/O 完成为止。此外，由于数据保护功能的缘故，RAID 功能会产生大量开销。除了冗余计算（奇偶校验或镜像）之外，写 I/O 还一定伴有多个读 I/O。由于在写入完成之前需要多次从每个驱动器执行读取，因此 RAID 5 写入会产生最大的开销。在没有高速缓存的情况下，阵列的写入性能可能会下降到低于标准 SATA 端口的写入性能（约 30MB/s）的速度<br>
 ………………………………….</li>
+<li>R740/R630等系列服务器，异常断电后，报avago efi sas driver错误的处理方法：<br>
+异常断电后，系统可能会启动不了，在BIOS开机自检中，会提示无法识别RAID控制器，类似如下提示信息：<br>
+avago efi sas driver:<br>
+unhealthy status reorted by this uefi driver without specific error message.<br>
+uefi0116: one or more boot drivers have reported issue.<br>
+check the driver health menu in bootmanager for details. <br>
+处理方法是重新断开电源，等待BBU(RAID控制器的备份单元)放电完成，再重新开机。<br>
+参考DELL链接链接：<a href="https://www.dell.com/support/kbdoc/zh-cn/000141398/%E5%A6%82%E4%BD%95-%E5%AF%B9-dell-poweredge-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%B8%8A-%E7%9A%84-perc-%E6%8E%A7%E5%88%B6%E5%99%A8-%E4%B8%8A-%E7%9A%84-%E5%86%85%E5%AD%98-%E6%88%96-%E7%94%B5%E6%B1%A0-%E9%94%99%E8%AF%AF-%E8%BF%9B%E8%A1%8C-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86#PERCError" target="_blank" rel="noopener noreferrer">对Dell PowerEdge服务器上的PERC控制器上的内存或电池错误进行故障诊断</a><br>
+网上搜索到的链接：<a href="https://dasandata.tistory.com/entry/Dell-R740-%EC%84%9C%EB%B2%84-%EC%A0%95%EC%A0%84-%ED%9B%84-UEFI0116-Avago-MegaRAID-FW-Fault-MFI-Register-0xF0FF8302-%EB%B6%80%ED%8C%85-%EB%B6%88%EA%B0%80" target="_blank" rel="noopener noreferrer">UEFI 0116 Avago MegaRAID 故障</a></li>
 </ul>
 <h2 id="infortrend普安存储设备">Infortrend普安存储设备<a class="anchor ms-1" href="#infortrend普安存储设备"><i class="fas fa-link"></i></a></h2>
 <ul>
@@ -363,6 +372,16 @@ Support Live Image 3.0是一种CentOS 7.4映像，包含一系列适用于Dell P
 3、&ldquo;存储主页&rdquo;&ndash;&gt;&ldquo;分区&rdquo;(下面的具体分区)&ndash;&gt;&ldquo;主机 LUN 映射&rdquo;&ndash;&gt;&ldquo;创建&rdquo;&ndash;&gt;&ldquo;自定义主机 LUN 映射配置&rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&quot;使用扩展的主机 LUN 功能&rdquo;，&ldquo;配置iSCSI启动程序别名&rdquo;&ndash;&gt;&ldquo;添加&quot;服务器主机IQN。</li>
 <li>GS系列：卷</li>
 </ul>
+<h2 id="synology群晖nas设备">synology群晖NAS设备<a class="anchor ms-1" href="#synology群晖nas设备"><i class="fas fa-link"></i></a></h2>
+<ul>
+<li>局域网搜索群晖NAS设备<br>
+<a href="https://finds.synology.com/" target="_blank" rel="noopener noreferrer">https://finds.synology.com/</a></li>
+</ul>
+<h2 id="杂七杂八记录">杂七杂八记录<a class="anchor ms-1" href="#杂七杂八记录"><i class="fas fa-link"></i></a></h2>
+<p><strong>谷歌翻译不能用的解决方案</strong>(<a href="https://hcfy.app/blog/2022/09/28/ggg" target="_blank" rel="noopener noreferrer">https://hcfy.app/blog/2022/09/28/ggg</a>)<br>
+1、打开 <a href="https://tool.chinaz.com/speedtest/translate.google.cn" target="_blank" rel="noopener noreferrer">https://tool.chinaz.com/speedtest/translate.google.cn</a>，从表格中找到【解析 IP】这一列，只要后面的【HTTP 状态】是 200，那就是可用的 IP 地址，选一个即可。<br>
+2、将 IP 地址写入 hosts 文件中：C:\Windows\System32\drivers\etc\hosts，在文件末尾加一行180.163.151.34 translate.googleapis.com
+上面的IP180.163.151.34不一定一直能用，如果不能用，就要按步骤1的来换一个。</p>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
     <i class="fas fa-fw fa-chevron-left"></i>
@@ -392,6 +411,8 @@ Support Live Image 3.0是一种CentOS 7.4映像，包含一系列适用于Dell P
     <li><a href="#可以替代centos的发行版本推荐">可以替代Centos的发行版本推荐</a></li>
     <li><a href="#戴尔dell设备">戴尔DELL设备</a></li>
     <li><a href="#infortrend普安存储设备">Infortrend普安存储设备</a></li>
+    <li><a href="#synology群晖nas设备">synology群晖NAS设备</a></li>
+    <li><a href="#杂七杂八记录">杂七杂八记录</a></li>
   </ul>
 </nav>
   </div>
