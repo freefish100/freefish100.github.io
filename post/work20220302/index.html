@@ -44,7 +44,7 @@ https://almalinux.org/zh-hans/
 …………………………………. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。"><meta itemprop="datePublished" content="2022-03-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="307">
+<meta itemprop="wordCount" content="311">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
 <meta property="og:description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
@@ -357,7 +357,10 @@ uefi0116: one or more boot drivers have reported issue.<br>
 check the driver health menu in bootmanager for details. <br>
 处理方法是重新断开电源，等待BBU(RAID控制器的备份单元)放电完成，再重新开机。<br>
 参考DELL链接链接：<a href="https://www.dell.com/support/kbdoc/zh-cn/000141398/%E5%A6%82%E4%BD%95-%E5%AF%B9-dell-poweredge-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%B8%8A-%E7%9A%84-perc-%E6%8E%A7%E5%88%B6%E5%99%A8-%E4%B8%8A-%E7%9A%84-%E5%86%85%E5%AD%98-%E6%88%96-%E7%94%B5%E6%B1%A0-%E9%94%99%E8%AF%AF-%E8%BF%9B%E8%A1%8C-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86#PERCError" target="_blank" rel="noopener noreferrer">对Dell PowerEdge服务器上的PERC控制器上的内存或电池错误进行故障诊断</a><br>
-网上搜索到的链接：<a href="https://dasandata.tistory.com/entry/Dell-R740-%EC%84%9C%EB%B2%84-%EC%A0%95%EC%A0%84-%ED%9B%84-UEFI0116-Avago-MegaRAID-FW-Fault-MFI-Register-0xF0FF8302-%EB%B6%80%ED%8C%85-%EB%B6%88%EA%B0%80" target="_blank" rel="noopener noreferrer">UEFI 0116 Avago MegaRAID 故障</a></li>
+网上搜索到的链接：<a href="https://dasandata.tistory.com/entry/Dell-R740-%EC%84%9C%EB%B2%84-%EC%A0%95%EC%A0%84-%ED%9B%84-UEFI0116-Avago-MegaRAID-FW-Fault-MFI-Register-0xF0FF8302-%EB%B6%80%ED%8C%85-%EB%B6%88%EA%B0%80" target="_blank" rel="noopener noreferrer">UEFI 0116 Avago MegaRAID 故障</a><br>
+………………………………….</li>
+<li><a href="https://www.dell.com/support/manuals/zh-cn/poweredge-r740/per740_ism_pub/%E7%BA%BF%E7%BC%86%E5%B8%83%E7%BA%BF?guid=guid-a7a59d5f-0226-4fac-a6a9-25e6d3bda2ad&amp;lang=zh-cn" target="_blank" rel="noopener noreferrer">R740硬盘背板与主板和阵列卡(适配器PERC)的线缆布线图</a>。
+此系列服务器阵列卡上的硬盘可以不做阵列，把硬盘设置为NON-RAID模式，操作系统可以识别到NON-RAID模式的硬盘。如果硬盘配置为RAID模式，就必须做阵列，否则操作系统识别不了硬盘。另外，可以不加阵列卡，通过线缆直接与主板的SATA接口相连。内部线缆接头不能热插拔。</li>
 </ul>
 <h2 id="infortrend普安存储设备">Infortrend普安存储设备<a class="anchor ms-1" href="#infortrend普安存储设备"><i class="fas fa-link"></i></a></h2>
 <ul>
@@ -371,6 +374,7 @@ check the driver health menu in bootmanager for details. <br>
 2、服务器主机打开ISCSI程序&ndash;&gt;“目标”&ndash;&gt;填写目标ip地址(即上面通道的ip地址)&ndash;&gt;点击&quot;快速连接&quot;。连接成功后，会在&quot;存储主页&quot;&ndash;&gt;&ldquo;通道&rdquo;&ndash;&gt;点击&quot;扫描端口信息&quot;&ndash;&gt;&ldquo;添加&quot;页面，可看到服务器主机的 IQN号。<br>
 3、&ldquo;存储主页&rdquo;&ndash;&gt;&ldquo;分区&rdquo;(下面的具体分区)&ndash;&gt;&ldquo;主机 LUN 映射&rdquo;&ndash;&gt;&ldquo;创建&rdquo;&ndash;&gt;&ldquo;自定义主机 LUN 映射配置&rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&quot;使用扩展的主机 LUN 功能&rdquo;，&ldquo;配置iSCSI启动程序别名&rdquo;&ndash;&gt;&ldquo;添加&quot;服务器主机IQN。</li>
 <li>GS系列：卷</li>
+<li>电脑连接存储com口使用的波特率为38400.</li>
 </ul>
 <h2 id="synology群晖nas设备">synology群晖NAS设备<a class="anchor ms-1" href="#synology群晖nas设备"><i class="fas fa-link"></i></a></h2>
 <ul>

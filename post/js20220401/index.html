@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="996">
+<meta itemprop="wordCount" content="1088">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -227,6 +227,12 @@ cp -a file/dir dir 将文件或者文件夹复制到指定目录</p>
 用来查看某个文件的信息属性。其中可以看到列出来的Access，Modify，Change这三行有三个时间的，分别为atime，mtime和ctime。 modification time (mtime):该档案的内容数据变更时,就会更新这个时间!内容数据指的是档案的内容,而不是档案属性或权限喔!<br>
 status time (ctime):该档案的状态改变时,就会更新这个时间,举例来说，像是权限与属性被更改了,都会更新这个时间啊。<br>
 access time (atime): 当该档案的内容被取用时,就会更新这个读取时间 (access)。举例来说,我们使用 cat 去读取 /etc/man.config , 就会更新该档案的atime 了。</p>
+<p><strong>查看文件容量大小</strong><br>
+du -h 文件名称<br>
+如果对一个目录执行du，du会递归列出目录中的所有文件，并显示其大小，同时也会显示目录中所有文件的大小。<br>
+du -h 文件夹名称<br>
+查看某个目录下(文件夹)下所有文件占用空间的总大小
+du -sh 目录(或文件夹名称)</p>
 <p><strong>centos7 拷贝目录下所有文件包含隐藏文件</strong><br>
 不能这样使用 cp -a /storage/* /home/ 使用 *不会拷贝隐藏文件<br>
 正确的做法 cp -a /storage/. /home/</p>
@@ -341,6 +347,33 @@ hostnamectl set-hostname somename<br>
 用hostnamectl设置主机名会立刻生效并且存入配置文件，重启系统不会被重置，不必再修改配置文件。</p>
 <p><strong>查询服务器的架构，在命令行中输入：arch 进行查询</strong><br>
 输出结果：x86_64 代表 amd64 ; aarch64 代表 arm64</p>
+<p><strong>MYSQL相关</strong><br>
+查看MYSQL版本信息：<br>
+mysql -V<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;
+登录mysql数据库：<br>
+mysql -u 用户名 -p 然后按提示输入密码<br>
+连接到远程主机上的MYSQL：<br>
+mysql -h ip地址 -u 用户名 -p密码<br>
+退出mysql命令 ：exit<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+show databases; //显示数据库列表（包括英文的分号） <br>
+use 数据库名称;  //打开数据库（包括英文的分号）<br>
+show 数据表名称; //显示数据表（包括英文的分号）<br>
+describe 表名; //显示数据表的结构(简写：desc 表名;) <br>
+备份数据库存命令(在linux命令行中，不用进入mysql&gt;提示符)：<br>
+mysqldump -u 用户名 -p 要备份的数据库名称 &gt; 备份出来的数据库名称.sql;<br>
+比如：
+mysqldump -u admin -p vm_data_20211216 &gt; vm_data_20211216_bak20221026.sql;<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..<br>
+恢复数据库：<br>
+可以创建一个新的数据库，也可以不创建。在mysql命令行下，可以使用“select user,host from mysql.user;”查看用户列表，用有权限的用户登录mysql，比如root用户，密码是数据库的密码，不是系统密码 <br>
+mysql -u root -p; <br>
+create database 新建的数据库名称;<br>
+exit 退出mysql命令行<br>
+mysql -u root -p 刚才新建的数据库名称 &lt; 刚才备份出来的数据库名称.sql;<br>
+mysql -u root -p vm_data_20211216_01 &lt; vm_data_20211216_bak20221026.sql;<br>
+备份时，要注意备份出来的文件所在的目录路径，恢复时最好是进入文件所在的路径进行操作。</p>
 <p><strong>lshw 查看硬件信息</strong><br>
 lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
 lscpu 可以列出本机的 CPU 的相关信息。 free 可以查看系统中使用的、闲置的和 RAM 的总体数量，可带参数 -m 或 -g，来以不同的单位显示容量<br>
