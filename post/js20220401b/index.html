@@ -12,7 +12,7 @@
 <meta name="description" content="Linux Ubuntu 命令摘录备忘" /><meta itemprop="name" content="Linux Ubuntu 命令摘录备忘">
 <meta itemprop="description" content="Linux Ubuntu 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="326">
+<meta itemprop="wordCount" content="371">
 <meta itemprop="keywords" content="Linux,Ubuntu ," /><meta property="og:title" content="Linux Ubuntu 命令摘录备忘" />
 <meta property="og:description" content="Linux Ubuntu 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -200,6 +200,34 @@
 </div>
 <div class="post-content mb-3"><h2 id="查看用户的当前目录">查看用户的当前目录<a class="anchor ms-1" href="#查看用户的当前目录"><i class="fas fa-link"></i></a></h2>
 <p>pwd</p>
+<p>查看ubuntu版本：<br>
+lsb_release -a
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</p>
+<h2 id="ubuntu-2204上配置静态ip地址">Ubuntu 22.04上配置静态IP地址：<a class="anchor ms-1" href="#ubuntu-2204上配置静态ip地址"><i class="fas fa-link"></i></a></h2>
+<p>配置文件路径<br>
+/etc/netplan<br>
+以下是文件内容(配置项冒号后面有一个空格，注意缩行)：</p>
+<pre tabindex="0"><code># This is the network config written by 'subiquity'  
+network:  
+  ethernets:  
+    ens160:  
+      dhcp4: no  
+      addresses:  
+      - 192.168.1.112/24 //设置ip和子网掩码  
+      routes:  
+       - to: default  
+         via: 192.168.1.1 //设置网关  
+      nameservers: //设置DNS  
+       addresses: [202.96.128.166,8.8.8.8]  
+  version: 2  
+</code></pre><p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/ubuntu_2204_setip_2022112101.jpg" loading="lazy"
+  
+   />
+
+<br>
+保存文件后，重新启动网络服务：<br>
+sudo netplan apply
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</p>
 <h2 id="ubuntu-2004上配置静态ip地址">Ubuntu 20.04上配置静态IP地址<a class="anchor ms-1" href="#ubuntu-2004上配置静态ip地址"><i class="fas fa-link"></i></a></h2>
 <p>Ubuntu 17.10及更高版本使用Netplan作为默认网络管理工具。 先前的Ubuntu版本使用ifconfig及其配置文件/etc/network/interfaces来配置网络。
 Netplan配置文件使用YAML语法编写，文件扩展名为.yaml。 要使用Netplan配置网络接口，您需要为该接口创建YAML描述，然后Netplan会使用所选的渲染器工具生成所需的配置文件。
@@ -342,6 +370,7 @@ sudo apt  install docker.io   # version 20.10.12-0ubuntu2~20.04.1<br>
     <nav id="TableOfContents">
   <ul>
     <li><a href="#查看用户的当前目录">查看用户的当前目录</a></li>
+    <li><a href="#ubuntu-2204上配置静态ip地址">Ubuntu 22.04上配置静态IP地址：</a></li>
     <li><a href="#ubuntu-2004上配置静态ip地址">Ubuntu 20.04上配置静态IP地址</a></li>
     <li><a href="#解决network-is-unreachable问题">解决network is unreachable问题</a></li>
     <li><a href="#ubuntu2004防火墙设置">Ubuntu20.04防火墙设置</a></li>
