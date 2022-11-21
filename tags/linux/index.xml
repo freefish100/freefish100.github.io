@@ -284,11 +284,13 @@ unzip file.zip -d dir 解压到指定目录
 gunzip file1.gz 解压 file1.gz
 gzip file1 压缩 file1
 gzip -9 file 最大程度压缩文件
+tar比较常用的使用方式：
+打包压缩：&amp;ldquo;tar -czvf 压缩包名称.tar.gz 要打包的目录”
+解压缩：&amp;ldquo;tar -xzvf 压缩包名称.tar.gz&amp;rdquo;
 文件、目录、文件夹和文件大小
-rm -f file 强制删除文件，不提示
+rm -f file 参数-f用来强制删除文件，不提示
 rm [文件名] 删除文件
-rm -r dir 递归删除其文件和文件夹
-rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示</description>
+rm -r dir 递归删除其文件和文件夹，就是删除目录是要加上参数-r，否则删除不了 rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示</description>
     </item>
     
     <item>

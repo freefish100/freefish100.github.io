@@ -44,7 +44,7 @@ https://almalinux.org/zh-hans/
 …………………………………. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。"><meta itemprop="datePublished" content="2022-03-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="311">
+<meta itemprop="wordCount" content="413">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
 <meta property="og:description" content="【2022年8月12日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
@@ -360,7 +360,30 @@ check the driver health menu in bootmanager for details. <br>
 网上搜索到的链接：<a href="https://dasandata.tistory.com/entry/Dell-R740-%EC%84%9C%EB%B2%84-%EC%A0%95%EC%A0%84-%ED%9B%84-UEFI0116-Avago-MegaRAID-FW-Fault-MFI-Register-0xF0FF8302-%EB%B6%80%ED%8C%85-%EB%B6%88%EA%B0%80" target="_blank" rel="noopener noreferrer">UEFI 0116 Avago MegaRAID 故障</a><br>
 ………………………………….</li>
 <li><a href="https://www.dell.com/support/manuals/zh-cn/poweredge-r740/per740_ism_pub/%E7%BA%BF%E7%BC%86%E5%B8%83%E7%BA%BF?guid=guid-a7a59d5f-0226-4fac-a6a9-25e6d3bda2ad&amp;lang=zh-cn" target="_blank" rel="noopener noreferrer">R740硬盘背板与主板和阵列卡(适配器PERC)的线缆布线图</a>。
-此系列服务器阵列卡上的硬盘可以不做阵列，把硬盘设置为NON-RAID模式，操作系统可以识别到NON-RAID模式的硬盘。如果硬盘配置为RAID模式，就必须做阵列，否则操作系统识别不了硬盘。另外，可以不加阵列卡，通过线缆直接与主板的SATA接口相连。内部线缆接头不能热插拔。</li>
+此系列服务器阵列卡上的硬盘可以不做阵列，把硬盘设置为NON-RAID模式，操作系统可以识别到NON-RAID模式的硬盘。如果硬盘配置为RAID模式，就必须做阵列，否则操作系统识别不了硬盘。另外，可以不加阵列卡，通过线缆直接与主板的SATA接口相连。内部线缆接头不能热插拔。<br>
+………………………………….</li>
+<li>重置和耗尽Dell PowerEdge服务器的电量<br>
+硬重置：由于某些组件在关机后仍然通电，并且服务器在您重置时不重新启动（例如 iDRAC）。我们建议在重启服务器做了断电重启后，仍然不能解决问题或某些组件没有响应时执行硬重置。<br>
+1.关闭服务器电源。<br>
+2.断开服务器与所有电源线、网线的连接。<br>
+3.连续按住电源按钮至少 10 秒钟。<br>
+4.将电源线和网线重新插入系统。<br>
+5.等待大约 2 分钟，才打开服务器电源，以便让 iDRAC 有时间进行初始化。<br>
+6.打开系统电源。
+………………………………….<br>
+PowerEdge R740 系统支持集成 Matrox G200eW3 图形控制器支持的视频分辨率：<br>
+分辨率	刷新率 (HZ)	颜色深度（位）<br>
+1024 x 768	60	8、16、32<br>
+1280 x 800	60	8、16、32<br>
+1280 x 1024	60	8、16、32<br>
+1360 x 768	60	8、16、32<br>
+1440 x 900	60	8、16、32<br>
+1600 x 900	60	8、16、32<br>
+1600 x 1200	60	8、16、32<br>
+1680 x 1050	60	8、16、32<br>
+1920 x 1080	60	8、16、32<br>
+1920 x 1200	60	8、16、32<br>
+注: 1920 x 1080 和 1920 x 1200 分辨率仅受降低清屏模式支持。</li>
 </ul>
 <h2 id="infortrend普安存储设备">Infortrend普安存储设备<a class="anchor ms-1" href="#infortrend普安存储设备"><i class="fas fa-link"></i></a></h2>
 <ul>
@@ -380,6 +403,11 @@ check the driver health menu in bootmanager for details. <br>
 <ul>
 <li>局域网搜索群晖NAS设备<br>
 <a href="https://finds.synology.com/" target="_blank" rel="noopener noreferrer">https://finds.synology.com/</a></li>
+</ul>
+<h2 id="windows">Windows<a class="anchor ms-1" href="#windows"><i class="fas fa-link"></i></a></h2>
+<ul>
+<li>打开移动硬盘U盘提示：“无法访问，磁盘结构损坏且无法读取”的解决方法：<br>
+以管理员身份运行cmd，输入命令 &quot; chkdsk 盘符: /f &quot; 等待命令运行结束，如果还不行，继续执行命令 &quot; chkdsk 盘符: /r &quot; 。</li>
 </ul>
 <h2 id="杂七杂八记录">杂七杂八记录<a class="anchor ms-1" href="#杂七杂八记录"><i class="fas fa-link"></i></a></h2>
 <p><strong>谷歌翻译不能用的解决方案</strong>(<a href="https://hcfy.app/blog/2022/09/28/ggg" target="_blank" rel="noopener noreferrer">https://hcfy.app/blog/2022/09/28/ggg</a>)<br>
@@ -416,6 +444,7 @@ check the driver health menu in bootmanager for details. <br>
     <li><a href="#戴尔dell设备">戴尔DELL设备</a></li>
     <li><a href="#infortrend普安存储设备">Infortrend普安存储设备</a></li>
     <li><a href="#synology群晖nas设备">synology群晖NAS设备</a></li>
+    <li><a href="#windows">Windows</a></li>
     <li><a href="#杂七杂八记录">杂七杂八记录</a></li>
   </ul>
 </nav>

@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1088">
+<meta itemprop="wordCount" content="1227">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -210,19 +210,24 @@ unzip file.zip -d dir 解压到指定目录<br>
 gunzip file1.gz 解压 file1.gz<br>
 gzip file1 压缩 file1<br>
 gzip -9 file 最大程度压缩文件</p>
+<p>tar比较常用的使用方式：<br>
+打包压缩：&ldquo;tar -czvf 压缩包名称.tar.gz 要打包的目录”<br>
+解压缩：&ldquo;tar -xzvf 压缩包名称.tar.gz&rdquo;</p>
 <p><strong>文件、目录、文件夹和文件大小</strong><br>
-rm -f file 强制删除文件，不提示<br>
+rm -f file 参数-f用来强制删除文件，不提示<br>
 rm [文件名] 删除文件<br>
-rm -r dir 递归删除其文件和文件夹<br>
+rm -r dir 递归删除其文件和文件夹，就是删除目录是要加上参数-r，否则删除不了 <br>
 rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示<br>
 mv dir/file dir 将文件或者文件夹移动到指定目录<br>
 mv -t dir file 将文件或者文件夹移动到指定目录<br>
 mkdir dir dir2 创建两个文件夹<br>
 mkdir -p /tmp/dir 创建多级目录<br>
-cp file file1 将文件file复制一份file1<br>
+cp file file1 将文件file复制一份并命令为file1<br>
 cp -r /home/a /www/b 复制文件夹到另一个文件夹<br>
-cp -r * /dir 递归复制当前路径下的全部目录及其子目录内的所有内容到另一个目录<br>
-cp -a file/dir dir 将文件或者文件夹复制到指定目录</p>
+cp -r * /dir 递归复制当前路径下的全部目录及其子目录内的所有内容到另一个目录，参数-r 为递归持续复制 <br>
+cp -a file/dir dir 将文件或者文件夹复制到指定目录<br>
+cp有如下几个参数：-p保留原始文件的属性，-d若对象为“链接文件”，则保留该“链接文件”的属性，-r递归持续复制（用于目录）,-i若目标文件存在则询问是否覆盖，-a相当于-pdr（p、d、r 为上述参数）<br>
+使用cp命令在复制目录时要加上-r 参数</p>
 <p><strong>stat命令 “stat 文件名”</strong><br>
 用来查看某个文件的信息属性。其中可以看到列出来的Access，Modify，Change这三行有三个时间的，分别为atime，mtime和ctime。 modification time (mtime):该档案的内容数据变更时,就会更新这个时间!内容数据指的是档案的内容,而不是档案属性或权限喔!<br>
 status time (ctime):该档案的状态改变时,就会更新这个时间,举例来说，像是权限与属性被更改了,都会更新这个时间啊。<br>
@@ -245,6 +250,7 @@ cd - 目录名 返回指定的目录<br>
 ls 列举出当前目录中所有文件<br>
 ls -a 列举出当前目录中所有文件，包括隐藏文件<br>
 ls -l 显示文件的详细信息<br>
+ls -ld 查看目录(文件夹)的属性信息<br>
 ls -lrt 按时时间排序显示文件<br>
 pwd 显示当前路径</p>
 <p><strong>查看硬盘分区情况</strong><br>
@@ -295,6 +301,23 @@ xargs是把前面的输出作为后面的参数，如果多行输出，就多次
 <code>find . -maxdepth 1 -regex &quot;.*ws.*&quot; -exec rm -rf {} \;</code></p>
 <p>查找文件夹<br>
 find -name 文件夹名称 -depth</p>
+<p>whereis 命令用于按照名称快速查找搜索二进制程序（命令）、源代码以及帮助文件所对应的位置，语法格式为“whereis 命令名称”<br>
+如：whereis cd</p>
+<p>which 命令用于按照指定名称快速搜索二进制程序（命令）所对应的位置，语法格式为“which 命令名称”<br>
+如：which cd  会返回cd这个命令所在的目录路径</p>
+<p>查看文本文件内容：<br>
+cat 命令用于查看纯文本文件（内容较少的），可以参数-n来显示行号<br>
+more 命令用于查看纯文本文件（内容较多的），more命令会在最下面使用百分比的形式来提示您已经阅读了多少内容，还可以使用空格键或回车键向下翻页<br>
+head 命令用于查看纯文本文件的前 N 行，比如要查看文本中前 10 行的内容：head -n 10 文件名称<br>
+tail 命令用于查看纯文本文件的后 N 行或持续刷新文件的最新内容，比如要查看文本内容的最后 10 行：tail -n 10 文件名称<br>
+tail 命令能够持续刷新一个文件的内容，当想要实时查看最新的日志文件时， 可以这样使用：tail -f 文件名称</p>
+<p>stat 命令用于查看文件的具体存储细节和时间等信息。Linux 系统中的文件包含3 种时间状态，分别是 Access Time（内容最后一次被访问的时间，简称为 Atime），Modify Time（内容最后一次被修改的时间，简称为 Mtime）以及 Change Time（文件属性最后一次被修改的时间，简称为 Ctime）。</p>
+<p>touch 命令用于创建空白文件或设置文件的时间，语法格式为“touch [参数] 文件名称”<br>
+如新建一个名称为xxx的文件：<br>
+touch xxx<br>
+使用touch可以修改文件的访问时间和修改时间：<br>
+touch -d &ldquo;2022-11-20 15:50&rdquo; xxx<br>
+参数-d是同时修改“访问时间”和“修改时间”，若只修改“访问时间”，可用参数-a，若只修改“修改时间”，可用参数-m</p>
 <p><strong>网络相关</strong><br>
 ip addr 显示当前ip地址<br>
 ifdown eth0 禁用 ‘eth0’ 网络设备<br>
@@ -350,7 +373,7 @@ hostnamectl set-hostname somename<br>
 <p><strong>MYSQL相关</strong><br>
 查看MYSQL版本信息：<br>
 mysql -V<br>
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
 登录mysql数据库：<br>
 mysql -u 用户名 -p 然后按提示输入密码<br>
 连接到远程主机上的MYSQL：<br>
@@ -373,7 +396,8 @@ create database 新建的数据库名称;<br>
 exit 退出mysql命令行<br>
 mysql -u root -p 刚才新建的数据库名称 &lt; 刚才备份出来的数据库名称.sql;<br>
 mysql -u root -p vm_data_20211216_01 &lt; vm_data_20211216_bak20221026.sql;<br>
-备份时，要注意备份出来的文件所在的目录路径，恢复时最好是进入文件所在的路径进行操作。</p>
+备份时，要注意备份出来的文件所在的目录路径，恢复时最好是进入文件所在的路径进行操作。<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</p>
 <p><strong>lshw 查看硬件信息</strong><br>
 lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
 lscpu 可以列出本机的 CPU 的相关信息。 free 可以查看系统中使用的、闲置的和 RAM 的总体数量，可带参数 -m 或 -g，来以不同的单位显示容量<br>
@@ -436,10 +460,12 @@ netstat -tunlp | grep 端口号<br>
 netstat -tunlp | grep 8000<br>
 tcp 0 0 0.0.0.0:8000 0.0.0.0:* LISTEN 26993/nodejs<br>
 更多命令：<br>
-netstat -ntlp //查看当前所有tcp端口<br>
+netstat -ntlp //查看当前所有tcp端口，n是使用ip地址不使用域名显示，t是显示TCP协议的连接状态，l是仅列出当前正在监听的服务状态，p是显示正在使用的Socket信息(进程名称和进程id)<br>
+netstat -u //查看UDP协议的连接状态
 netstat -ntulp | grep 80 //查看所有80端口使用情况<br>
 netstat -ntulp | grep 3306 //查看所有3306端口使用情况<br>
-kill<br>
+netstat -a</p>
+<p>kill<br>
 在查到端口占用的进程后，如果你要杀掉对应的进程可以使用 kill 命令：<br>
 kill -9 PID<br>
 如上实例，我们看到 8000 端口对应的 PID 为 26993，使用以下命令杀死进程：<br>
@@ -505,6 +531,27 @@ cp936是指简体中文，cp950是指繁体中文<br>
 检查是否挂载成功<br>
 df -hl 查看挂载信息 挂载fat格式的U盘：<br>
 mount -t vfat /dev/sdb1 /mnt/</p>
+<p><strong>查看已安装的软件包</strong><br>
+rpm包<br>
+rpm -qa<br>
+rpm -qa | grep &ldquo;软件包名称&rdquo;<br>
+deb<br>
+dpkg -l<br>
+dpkg -l | grep &ldquo;软件包名称&rdquo;<br>
+yum<br>
+yum list installed<br>
+yum list installed | grep &ldquo;软件包名称&rdquo;<br>
+dnf<br>
+dnf list installed<br>
+dnf list installed | grep &ldquo;软件包名称&rdquo;</p>
+<p>新建用户，查看用户，查看用户id信息和所属的组：<br>
+新建名为user01的用户<br>
+useradd user01<br>
+查看user01用户所属的用户组<br>
+id user01
+列出系统中的用户<br>
+cat /etc/passwd 或者 getent passwd</p>
+<p>sosreport 命令用于收集系统配置及架构信息并输出诊断文档，输入该命令后按回车键执行即可</p>
 <p><strong>查看日志</strong><br>
 Systemd是Linux系统工具，Systemd拥有强大的解决与系统日志记录功能-systemd-journald。日志目录一般是在/var/log/journal，记录的是二进制文件，我们可以通过journalctl进行查看。<br>
 显示所有日志：journalctl<br>
