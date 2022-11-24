@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux(Centos) top命令的使用详解</title>
+      <link>https://note.freezz.cc/post/js20221122/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20221122/</guid>
+      <description>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。
+top参数详解 第一行，任务队列信息，同 uptime 命令的执行结果
+ 系统时间：13:55:50
+运行时间：up 1:47 min,
+当前登录用户数： 1 user
+负载均衡(uptime) load average: 0.00, 0.00, 0.00
+average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值，这里的Load指的出于R(runing)和D(Uninterruptible sleep)的两种状态下的进程数。
+在单核cpu情况下，如果load average 为0.4的表示，其cpu利用率只有40%， load average 为1，表示cpu利用率为100，如果load average 为高于1，比如为2.12，则说明cpu已经超负荷112% (2.12减满负荷1，即为超负荷部分)。
+在多核cpu的机器上，需要将以上的1,5,15的负载除以对应的cpu核数，才好评估对应的cpu的负载情况。比如，一个cpu为40核的机器，其cpu过去一分钟的使用情况是8.26，则8.26/40=0.2065 ，说明cpu使用率只有20% 。
+ 第二行，Tasks — 任务（进程）
+ 总进程:298 total, 运行:1 running, 休眠:297 sleeping, 停止: 0 stopped, 僵尸进程: 0 zombie
+ 第三行，cpu状态信息
+ 0.1%us【user space】— 用户空间占用CPU的百分比。
+0.2%sy【sysctl】— 内核空间占用CPU的百分比。
+0.0%ni【】— 改变过优先级的进程占用CPU的百分比
+99.6%id【idolt】— 空闲CPU百分比
+0.0%wa【wait】— IO等待占用CPU的百分比
+0.0%hi【Hardware IRQ】— 硬中断占用CPU的百分比
+0.0%si【Software Interrupts】— 软中断占用CPU的百分比</description>
+    </item>
+    
     <item>
       <title>Linux Centos 防火墙firewall配置只允许特定ip访问</title>
       <link>https://note.freezz.cc/post/js20220901b/</link>

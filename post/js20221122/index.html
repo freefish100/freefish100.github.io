@@ -1,0 +1,649 @@
+<!doctype html><html lang="zh-cn"
+  >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Linux(Centos) top命令的使用详解 - 自游鱼的笔记</title><link rel="apple-touch-icon" href="https://note.freezz.cc/images/icons/icon-180x180.png" sizes="180x180">
+<link rel="icon" href="https://note.freezz.cc/images/icons/icon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://note.freezz.cc/images/icons/icon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="https://note.freezz.cc/images/icons/favicon.ico">
+<link rel="manifest" href="https://note.freezz.cc/manifest.json">
+<meta name="keywords" content="" />
+<meta name="description" content="Linux(Centos) top命令的使用详解" /><meta itemprop="name" content="Linux(Centos) top命令的使用详解">
+<meta itemprop="description" content="Linux(Centos) top命令的使用详解"><meta itemprop="datePublished" content="2022-11-22T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-11-22T00:00:00+00:00" />
+<meta itemprop="wordCount" content="486">
+<meta itemprop="keywords" content="linux,centos," /><meta property="og:title" content="Linux(Centos) top命令的使用详解" />
+<meta property="og:description" content="Linux(Centos) top命令的使用详解" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://note.freezz.cc/post/js20221122/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-11-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-22T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux(Centos) top命令的使用详解"/>
+<meta name="twitter:description" content="Linux(Centos) top命令的使用详解"/>
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/>
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp"/><link rel="stylesheet" href="https://note.freezz.cc/css/main.min.507afbe6e4670fa3e961a0b35816b5daeb36029866fd6bd7b9d7871fcf88faa5.css" integrity="sha256-UHr75uRnD6PpYaCzWBa12us2Aphm/WvXudeHH8&#43;I&#43;qU=" crossorigin="anonymous"><link rel="stylesheet" href="https://note.freezz.cc/css/viewer.min.3d228794bcedbbfa0412beb8fbc1ec6973202945e42af7004f742a4d7bd620ab.css" integrity="sha256-PSKHlLztu/oEEr64&#43;8HsaXMgKUXkKvcAT3QqTXvWIKs=" crossorigin="anonymous"></head>
+  <body><script>const items=['mode','palette'];items.forEach(function(a){const b=localStorage.getItem('hbs-'+a);b&&document.body.parentElement.setAttribute('data-'+a,b)})</script><header><nav class="navbar top-app-bar top-app-bar-expand-lg fixed-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button><a class="navbar-brand flex-grow-1 flex-lg-grow-0 text-center text-lg-start mx-auto me-lg-3" href="https://note.freezz.cc/"><img class="logo" alt="Logo" src="https://cdn.jsdelivr.net/gh/freefish100/pics@main/img/logo.webp" loading="lazy"
+  
+   />
+自游鱼的笔记
+    </a>
+    <div class="offcanvas offcanvas-bottom surface" tabindex="-1" id="offcanvasSocialShare" aria-labelledby="offcanvasSocialShare">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title">Share</h3>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body">
+    <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Twitter Share Button"
+      target="_blank" href="https://twitter.com/intent/tweet?title=Linux%28Centos%29%20top%e5%91%bd%e4%bb%a4%e7%9a%84%e4%bd%bf%e7%94%a8%e8%af%a6%e8%a7%a3&url=https%3a%2f%2fnote.freezz.cc%2fpost%2fjs20221122%2f">
+      <i class="fab fa-fw fa-twitter"></i> Twitter
+    </a>
+    <a class="btn btn-sm btn-outline-primary social-share-button" rel="noopener noreferrer" aria-label="Facebook Share Button"
+      target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fnote.freezz.cc%2fpost%2fjs20221122%2f">
+      <i class="fab fa-fw fa-facebook-f"></i> Facebook
+    </a>
+  </div>
+</div>
+    <button class="navbar-settings" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSettings"
+  aria-controls="offcanvasSettings" aria-label="Toggle settings">
+  <i class="fas fa-ellipsis-v"></i>
+</button>
+
+<div class="offcanvas offcanvas-end surface h-100" tabindex="-1" id="offcanvasSettings" aria-labelledby="offcanvasSettings">
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title">设置</h3>
+    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-dismiss="offcanvas" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+
+<section class="setting">
+  <form class="row">
+    <div class="col-auto">
+      <label><i class="fas fa-fw fa-adjust"></i> 模式</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="modeSwitcher">
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="setting">
+  <form class="font-size-switcher-form row">
+    <div class="col-auto">
+      <label for="fontSize" class="form-label"><i class="fas fa-fw fa-font"></i> 字体大小</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <input type="range" class="form-range" min="-2" max="2" id="fontSize">
+    </div>
+  </form>
+</section>
+
+
+<section class="setting palettes">
+  <form class="row">
+    <div class="col-auto">
+      <label><i class="fas fa-fw fa-palette"></i> 配色</label>
+    </div>
+    <div class="col-auto ms-auto">
+      <a id="btnPalette" class="btn btn-sm btn-outline-primary" role="button" aria-label="palettePicker">
+        <i class="fas fa-eye-dropper"></i>
+      </a>
+    </div>
+  </form>
+  <div class="mt-2 d-flex justify-content-between visually-hidden" id="palettePicker"><button type="button" id="palette-blue" aria-label="蓝色"
+        class="btn btn-sm w-100 palette" data-palette="blue">
+      </button><button type="button" id="palette-blue-gray" aria-label="蓝灰色"
+        class="btn btn-sm w-100 palette" data-palette="blue-gray">
+      </button><button type="button" id="palette-brown" aria-label="棕色"
+        class="btn btn-sm w-100 palette" data-palette="brown">
+      </button><button type="button" id="palette-cyan" aria-label="青色"
+        class="btn btn-sm w-100 palette" data-palette="cyan">
+      </button><button type="button" id="palette-green" aria-label="绿色"
+        class="btn btn-sm w-100 palette" data-palette="green">
+      </button><button type="button" id="palette-indigo" aria-label="靛青色"
+        class="btn btn-sm w-100 palette" data-palette="indigo">
+      </button><button type="button" id="palette-orange" aria-label="橙色"
+        class="btn btn-sm w-100 palette" data-palette="orange">
+      </button><button type="button" id="palette-pink" aria-label="粉色"
+        class="btn btn-sm w-100 palette" data-palette="pink">
+      </button><button type="button" id="palette-purple" aria-label="紫色"
+        class="btn btn-sm w-100 palette" data-palette="purple">
+      </button><button type="button" id="palette-red" aria-label="红色"
+        class="btn btn-sm w-100 palette" data-palette="red">
+      </button><button type="button" id="palette-teal" aria-label="蓝绿色"
+        class="btn btn-sm w-100 palette" data-palette="teal">
+      </button><button type="button" id="palette-yellow" aria-label="黄色"
+        class="btn btn-sm w-100 palette" data-palette="yellow">
+      </button></div>
+</section>
+<section class="setting actions d-flex justify-content-around mt-auto overflow-auto">
+  <a role="button" class="action action-go-back" href="javascript: window.history.back();">
+    <span class="action-icon"><i class="fas fa-2x fa-arrow-left"></i></span> 返回
+  </a>
+  <a role="button" class="action action-reload-page">
+    <span class="action-icon"><i class="fas fa-2x fa-redo-alt"></i></span> 刷新
+  </a>
+  <a role="button" class="action action-copy-url">
+    <span class="action-icon"><i class="fas fa-2x fa-link"></i></span> 复制链接
+  </a><a class="action action-social-share" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSocialShare"
+    aria-controls="offcanvasSocialShare" aria-label="Toggle social share">
+    <span class="action-icon"><i class="fas fa-2x fa-share-alt"></i></span> 分享
+  </a></section>
+
+</div>
+</div>
+
+    <div class="collapse navbar-collapse" tabindex="-1" id="navbarSupportedContent" aria-labelledby="navbarSupportedContent">
+      <form class="search-bar my-1" action="https://note.freezz.cc/search">
+  <div class="input-group input-group-sm">
+    <span class="btn btn-search disabled position-absolute left-0"><i class="fas fa-fw fa-search"></i></span>
+    <input class="form-control rounded-pill" name="q" type="search" aria-label="Search">
+  </div>
+</form>
+      <ul class="navbar-nav ms-auto"></ul>
+    </div>
+  </div>
+</nav>
+</header>
+<main role="main" class="container">
+      <div class="row content">
+<div class="col-lg-8">
+  <div class="container"><nav class="row card component" aria-label="breadcrumb">
+  <div class="card-body">
+    <ol class="breadcrumb "><li class="breadcrumb-item"><a href="https://note.freezz.cc/">主页</a></li><li class="breadcrumb-item"><a href="https://note.freezz.cc/post/">Posts</a></li><li class="breadcrumb-item active">Linux(Centos) top命令的使用详解</li></ol>
+  </div>
+</nav><div class="post-panel-wrapper">
+  <div class="d-flex flex-column component rounded post-panel">
+    
+    <a class="action action-panel-toggler" role="button" title="Panel toggler">
+      <i class="fas fa-fw fa-chevron-circle-down"></i>
+    </a>
+    <a id="sidebarToggler" class="action d-none d-lg-block" role="button" title="Sidebar toggler">
+  <i class="fas fa-fw fa-expand-alt" data-fa-transform="rotate-45"></i>
+</a>
+
+    
+
+    
+    
+    <a class="action" href="#post-comments" role="button" aria-label="Comments" title="Comments">
+  <i class="fas fa-fw fa-comments"></i>
+</a>
+    <a class="action" href="#postTOC" aria-controls="Table of contents" role="button" title="Table of contents">
+  <i class="fas fa-fw fa-list-alt"></i>
+</a>
+    
+  </div>
+</div>
+<article class="row card component mb-4 post">
+  <div class="card-header ">
+    <h1 class="card-title post-title">Linux(Centos) top命令的使用详解
+</h1>
+  </div>
+  <div class="card-body"><div class="post-meta">
+  <span class="post-date" title="创建于 2022-11-22 08:00:00 &#43;0800 CST。">
+    2022-11-22
+  </span><span class="post-taxonomies"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge post-taxonomy">技术摘录</a><a href="https://note.freezz.cc/tags/linux/" class="badge post-taxonomy">linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge post-taxonomy">centos</a></span>
+</div>
+<div class="post-content mb-3"><p>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。</p>
+<h2 id="top参数详解">top参数详解<a class="anchor ms-1" href="#top参数详解"><i class="fas fa-link"></i></a></h2>
+<p><img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/linnux_top_20221122a0.png" loading="lazy"
+  
+   />
+
+</p>
+<p>第一行，任务队列信息，同 uptime 命令的执行结果</p>
+<blockquote>
+<p>系统时间：13:55:50</p>
+<p>运行时间：up 1:47 min,</p>
+<p>当前登录用户数： 1 user</p>
+<p>负载均衡(uptime) load average: 0.00, 0.00, 0.00</p>
+<p>average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值，这里的Load指的出于R(runing)和D(Uninterruptible sleep)的两种状态下的进程数。<br>
+在单核cpu情况下，如果load average 为0.4的表示，其cpu利用率只有40%， load average 为1，表示cpu利用率为100，如果load average 为高于1，比如为2.12，则说明cpu已经超负荷112% (2.12减满负荷1，即为超负荷部分)。<br>
+在多核cpu的机器上，需要将以上的1,5,15的负载除以对应的cpu核数，才好评估对应的cpu的负载情况。比如，一个cpu为40核的机器，其cpu过去一分钟的使用情况是8.26，则8.26/40=0.2065 ，说明cpu使用率只有20% 。</p>
+</blockquote>
+<p>第二行，Tasks — 任务（进程）</p>
+<blockquote>
+<p>总进程:298 total, 运行:1 running, 休眠:297 sleeping, 停止: 0 stopped, 僵尸进程: 0 zombie</p>
+</blockquote>
+<p>第三行，cpu状态信息</p>
+<blockquote>
+<p>0.1%us【user space】— 用户空间占用CPU的百分比。</p>
+<p>0.2%sy【sysctl】— 内核空间占用CPU的百分比。</p>
+<p>0.0%ni【】— 改变过优先级的进程占用CPU的百分比</p>
+<p>99.6%id【idolt】— 空闲CPU百分比</p>
+<p>0.0%wa【wait】— IO等待占用CPU的百分比</p>
+<p>0.0%hi【Hardware IRQ】— 硬中断占用CPU的百分比</p>
+<p>0.0%si【Software Interrupts】— 软中断占用CPU的百分比</p>
+</blockquote>
+<blockquote>
+<p>在top 命令下，按数字“1”可监控每个逻辑CPU的状况：如图，服务器有8个逻辑CPU，实际上是1个物理CPU。<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/linnux_top_20221122c.png" loading="lazy"
+  
+   />
+
+<br>
+如果不按1，则在top视图里面显示的是所有cpu的平均值。</p>
+</blockquote>
+<p>第四行,内存状态</p>
+<blockquote>
+<p>16265908k total, 3428784k used, 12143088k free, 694036k buffers/cache【缓存的内存量/缓冲的交换区总量】
+（buff/cache ，是在cpu读写硬盘数据时，为了提速在内存中开辟的缓冲(buffer针对写)或缓存区域(cache针对读)）</p>
+</blockquote>
+<p>第五行，swap交换分区信息</p>
+<blockquote>
+<p>8257532k total, 0k used, 8257532k free, 12529992k availe Mem<br>
+（avail mem 是创建新进程时，在不使用swap分区的情况下，能够分配的内存大小。这个大小可能比当前的free还大，这是因为buff/cache中的内存在创建进程时，若需要，也是可以抢占过来的。）</p>
+</blockquote>
+<p>备注：</p>
+<p>可用内存=free + buffer + cached</p>
+<p>对于内存监控，在top里我们要时刻监控第五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用了。</p>
+<p>第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，</p>
+<p>第四行中空闲内存总量（free）是内核还未纳入其管控范围的数量。</p>
+<p>纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在linux上free内存会越来越少，但不用为此担心。</p>
+<p>第六行，空行</p>
+<p>第七行以下：各进程（任务）的状态监控</p>
+<blockquote>
+<p>PID — 进程id
+USER — 进程所有者
+PR — 进程优先级，是内核在调度该进程的优先级priority。 NI会影响PR。
+NI — 进程的nice值。负值表示高优先级，正值表示低优先级。PR 和 NI NI表示进程的Nice值。
+VIRT — 进程使用的虚拟内存总量，单位kb。 VIRT表示进程使用的所有内存大小，包括虚拟使用的swap内存和物理内存，VIRT=SWAP+RES。
+RES — 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA
+SHR — 是当前进程同其它进程共享内存的大小，单位kb，
+S —进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程
+%CPU — 上次更新到现在的CPU时间占用百分比
+%MEM — 进程使用的物理内存百分比
+TIME+ — 进程使用的CPU时间总计，精确到百分之一秒，单位1/100秒
+COMMAND — 进程名称（命令名/命令行）</p>
+</blockquote>
+<p>详解</p>
+<p>VIRT：virtual memory usage 虚拟内存
+1、进程“需要的”虚拟内存大小，包括进程使用的库、代码、数据等
+2、假如进程申请100m的内存，但实际只使用了10m，那么它会增长100m，而不是实际的使用量</p>
+<p>RES：resident memory usage 常驻内存
+1、进程当前使用的内存大小，但不包括swap out
+2、包含其他进程的共享
+3、如果申请100m的内存，实际使用10m，它只增长10m，与VIRT相反
+4、关于库占用内存的情况，它只统计加载的库文件所占内存大小</p>
+<p>SHR：shared memory 共享内存
+1、除了自身进程的共享内存，也包括其他进程的共享内存
+2、虽然进程只使用了几个共享库的函数，但它包含了整个共享库的大小
+3、计算某个进程所占的物理内存大小公式：RES – SHR
+4、swap out后，它将会降下来</p>
+<p>DATA
+1、数据占用的内存。如果top没有显示，按f键可以显示出来。
+2、真正的该程序要求的数据空间，是真正在运行中要使用的。</p>
+<p>在top命令下按以下大写字母，分别按不同的维度进行排序<br>
+M 根据内存使用情况排序<br>
+P 根据CPU使用情况排序<br>
+N 根据进程ID排序<br>
+T 根据进程使用CPU的时间排序</p>
+<p>top 运行中可以通过 top 的内部命令对进程的显示方式进行控制。内部命令如下：
+s – 改变画面更新频率
+l – 关闭或开启第一部分第一行 top 信息的表示
+t – 关闭或开启第一部分第二行 Tasks 和第三行 Cpus 信息的表示
+m – 关闭或开启第一部分第四行 Mem 和 第五行 Swap 信息的表示
+N – 以 PID 的大小的顺序排列表示进程列表
+P – 以 CPU 占用率大小的顺序排列进程列表
+M – 以内存占用率大小的顺序排列进程列表
+h – 显示帮助
+n – 设置在进程列表所显示进程的数量
+q – 退出 top
+s – 改变画面更新周期</p>
+<h2 id="top使用方法">top使用方法<a class="anchor ms-1" href="#top使用方法"><i class="fas fa-link"></i></a></h2>
+<p>使用格式：</p>
+<p>top [-] [d] [p] [q] [c] [C] [S] [s] [n]</p>
+<p>参数说明：</p>
+<p>d：指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。</p>
+<p>p:通过指定监控进程ID来仅仅监控某个进程的状态。</p>
+<p>q:该选项将使top没有任何延迟的进行刷新。如果调用程序有超级用户权限，那么top将以尽可能高的优先级运行。</p>
+<p>S：指定累计模式。</p>
+<p>s：使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。</p>
+<p>i：使top不显示任何闲置或者僵死进程。</p>
+<p>c:显示整个命令行而不只是显示命令名。</p>
+<h2 id="常用命令说明">常用命令说明<a class="anchor ms-1" href="#常用命令说明"><i class="fas fa-link"></i></a></h2>
+<p>Ctrl+L：擦除并且重写屏幕</p>
+<p>K：终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号。一般的终止进程可以使用15信号；如果不能正常结束那就使用信号9强制结束该进程。默认值是信号15。在安全模式中此命令被屏蔽。</p>
+<p>i：忽略闲置和僵死进程。这是一个开关式命令。</p>
+<p>q：退出程序</p>
+<p>r:重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。</p>
+<p>S：切换到累计模式。</p>
+<p>s：改变两次刷新之间的延迟时间。系统将提示用户输入新的时间，单位为s。如果有小数，就换算成m s。输入0值则系统将不断刷新，默认值是5 s。需要注意的是如果设置太小的时间，很可能会引起不断刷新，从而根本来不及看清显示的情况，而且系统负载也会大大增加。</p>
+<p>f或者F：从当前显示中添加或者删除项目。</p>
+<p>o或者O：改变显示项目的顺序</p>
+<p>l：切换显示平均负载和启动时间信息。</p>
+<p>m:切换显示内存信息。</p>
+<p>t:切换显示进程和CPU状态信息。</p>
+<p>c:切换显示命令名称和完整命令行。</p>
+<p>M:根据驻留内存大小进行排序。</p>
+<p>P:根据CPU使用百分比大小进行排序。</p>
+<p>T:根据时间/累计时间进行排序。</p>
+<p>W:将当前设置写入~/.toprc文件中。</p>
+<h2 id="查看多核cpu命令">查看多核CPU命令<a class="anchor ms-1" href="#查看多核cpu命令"><i class="fas fa-link"></i></a></h2>
+<blockquote>
+<p>mpstat -P ALL 和 sar -P ALL<br>
+说明：sar -P ALL &gt; aaa.txt 重定向输出内容到文件aaa.txt<br>
+mpstat -P ALL<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/linnux_top_20221122b.png" loading="lazy"
+  
+   />
+
+<br>
+sar -P ALL<br>
+<img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/linnux_top_20221122d.png" loading="lazy"
+  
+   />
+
+<br>
+输出较多，可grep或者重定向至文件查看</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<h2 id="进程字段排序">进程字段排序<a class="anchor ms-1" href="#进程字段排序"><i class="fas fa-link"></i></a></h2>
+<p>默认进入top时，各进程是按照CPU的占用量来排序的，可通过键盘指令来改变排序字段，比如想监控哪个进程占用MEM最多，一般的使用方法如下：<br>
+1.敲击键盘“b”（打开/关闭加亮效果），可以通过敲击“y”键关闭或打开运行态进程的加亮效果。<br>
+2.敲击键盘“x”（打开/关闭排序列的加亮效果），top默认的排序列是“%CPU”，通过”shift+&gt;”或”shift+&lt;”可以向右或左改变排序列。</p>
+<h2 id="改变进程显示字段">改变进程显示字段<a class="anchor ms-1" href="#改变进程显示字段"><i class="fas fa-link"></i></a></h2>
+<p>1.敲击“f”键，top进入另一个视图，在这里可以编排基本视图中的显示字段。这里列出了所有可在top基本视图中显示的进程字段，有”<em>”并且标注为大写字母的字段是可显示的，没有”</em>”并且是小写字母的字段是不显示的。如果要在基本视图中显示“CODE”和“DATA”两个字段，可以通过敲击“r”和“s”键。</p>
+<h2 id="linux查看物理cpu个数核数逻辑cpu个数">Linux查看物理CPU个数、核数、逻辑CPU个数<a class="anchor ms-1" href="#linux查看物理cpu个数核数逻辑cpu个数"><i class="fas fa-link"></i></a></h2>
+<p>总核数 = 物理CPU个数 X 每颗物理CPU的核数<br>
+总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</p>
+<p>查看物理CPU个数<br>
+<code>cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</code></p>
+<p>查看每个物理CPU中core的个数(即核数)<br>
+<code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code></p>
+<p>查看逻辑CPU的个数<br>
+<code>cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code></p>
+<p>查看CPU信息（型号）<br>
+<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</code></p>
+<p>查看内 存信息<br>
+<code>cat /proc/meminfo</code></p>
+<p>Free 命令,free查看总内存，使用空闲情况<br>
+<code>free -m</code></p>
+<p>              total        used        free      shared  buff/cache   available</p>
+<p>Mem:           7666        4275         680           2        2711        3095</p>
+<p>Swap:             0           0           0</p>
+<p>字段说明：</p>
+<ul>
+<li>
+<p>total：总计物理内存的大小</p>
+</li>
+<li>
+<p>used：已使用多大</p>
+</li>
+<li>
+<p>free：可用有多少</p>
+</li>
+<li>
+<p>Shared：多个进程共享的内存总额</p>
+</li>
+<li>
+<p>Buffers/cached：磁盘缓存的大小</p>
+</li>
+</ul>
+<h2 id="vmstat-命令">Vmstat 命令<a class="anchor ms-1" href="#vmstat-命令"><i class="fas fa-link"></i></a></h2>
+<p>查看CPU使用率、内存情况、IO读写情况</p>
+<p>`$ vmstat</p>
+<p>procs &mdash;&mdash;&mdash;&ndash;memory&mdash;&mdash;&mdash;- &mdash;swap&ndash; &mdash;&ndash;io&mdash;- -system&ndash; &mdash;&mdash;cpu&mdash;&ndash;</p>
+<p> r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</p>
+<p> 3  0      0 706708   1044 2768928    0    0  3822    80    0    0 11  7 78  4  0</p>
+<p>`</p>
+<p>字段说明：</p>
+<p>Procs（进程）：</p>
+<ul>
+<li>
+<p>r: 运行队列中进程数量，这个值也可以判断是否需要增加CPU。（长期大于1）</p>
+</li>
+<li>
+<p>b: 等待IO的进程数量</p>
+</li>
+</ul>
+<p>Memory（内存）：</p>
+<ul>
+<li>
+<p>swpd: 使用虚拟内存大小</p>
+</li>
+<li>
+<p>free: 空闲物理内存大小</p>
+</li>
+<li>
+<p>buff: 用作缓冲的内存大小</p>
+</li>
+<li>
+<p>cache: 用作缓存的内存大小</p>
+</li>
+</ul>
+<p>Swap：</p>
+<ul>
+<li>
+<p>si: 每秒从交换区写到内存的大小，由磁盘调入内存</p>
+</li>
+<li>
+<p>so: 每秒写入交换区的内存大小，由内存调入磁盘</p>
+</li>
+</ul>
+<p>IO：</p>
+<ul>
+<li>
+<p>bi: 每秒读取的块数</p>
+</li>
+<li>
+<p>bo: 每秒写入的块数</p>
+</li>
+</ul>
+<p>系统：</p>
+<ul>
+<li>
+<p>in: 每秒中断数，包括时钟中断。</p>
+</li>
+<li>
+<p>cs: 每秒上下文切换数。</p>
+</li>
+</ul>
+<p>CPU（以百分比表示）：</p>
+<ul>
+<li>
+<p>us: 用户进程执行时间百分比(user time)</p>
+</li>
+<li>
+<p>sy: 内核系统进程执行时间百分比(system time)</p>
+</li>
+<li>
+<p>wa: IO等待时间百分比</p>
+</li>
+<li>
+<p>id: 空闲时间百分比</p>
+</li>
+</ul>
+<p>参考链接：<br>
+<a href="https://mp.weixin.qq.com/s?__biz=MzIxMTA2ODE1OQ==&amp;mid=2651147056&amp;idx=1&amp;sn=84584798bffc0a6bca99e3cfc108019b&amp;chksm=8cab1ea0bbdc97b6251535c83f6daf1d51077412cb891f99ff435a4776410adc3d21722a85de#rd" target="_blank" rel="noopener noreferrer">https://mp.weixin.qq.com/s?__biz=MzIxMTA2ODE1OQ==&mid=2651147056&idx=1&sn=84584798bffc0a6bca99e3cfc108019b&chksm=8cab1ea0bbdc97b6251535c83f6daf1d51077412cb891f99ff435a4776410adc3d21722a85de#rd</a></p>
+<p><a href="https://www.jianshu.com/p/a38cd22b28ad" target="_blank" rel="noopener noreferrer">https://www.jianshu.com/p/a38cd22b28ad</a></p>
+</div></div>
+  <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
+    <i class="fas fa-fw fa-chevron-left"></i>
+    <a href="https://note.freezz.cc/post/js20220904b/">Infortrend普安GS系列存储文件同步，两台存储间文件同步
+</a>
+  </div></div></div>
+</article><section class="related-posts row card component">
+    <div class="card-header">
+      <h2 class="card-title">相关文章</h2>
+    </div>
+    <div class="card-body">
+      <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220901b/">Linux Centos 防火墙firewall配置只允许特定ip访问
+</a>
+          <span class="float-end post-date">2022-09-01
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220901a/">Linux Centos7 firewall防火墙的基本操作
+</a>
+          <span class="float-end post-date">2022-09-01
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220812/">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
+</a>
+          <span class="float-end post-date">2022-08-12
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+          <span class="float-end post-date">2022-07-14
+</span>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220713/">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明
+</a>
+          <span class="float-end post-date">2022-07-13
+</span>
+        </li></ul>
+    </div>
+  </section><div class="card component row post-comments" id="post-comments">
+  <div class="card-header">
+    <h2 class="card-title">评论</h2>
+  </div>
+  <div class="card-body"></div>
+</div></div>
+</div><aside class="col-lg-4 sidebar d-flex">
+  <div class="container d-flex flex-column">
+    
+    <div class="post-toc row mb-4 card component" id="postTOC">
+  <div class="card-header">
+    <h2 class="card-title">目录</h2>
+  </div>
+  <div class="card-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#top参数详解">top参数详解</a></li>
+    <li><a href="#top使用方法">top使用方法</a></li>
+    <li><a href="#常用命令说明">常用命令说明</a></li>
+    <li><a href="#查看多核cpu命令">查看多核CPU命令</a></li>
+    <li><a href="#进程字段排序">进程字段排序</a></li>
+    <li><a href="#改变进程显示字段">改变进程显示字段</a></li>
+    <li><a href="#linux查看物理cpu个数核数逻辑cpu个数">Linux查看物理CPU个数、核数、逻辑CPU个数</a></li>
+    <li><a href="#vmstat-命令">Vmstat 命令</a></li>
+  </ul>
+</nav>
+  </div>
+</div><section class="featured-posts row card component">
+    <div class="card-header">
+      <h2 class="card-title">精选文章</h2>
+    </div>
+    <div class="card-body">
+      <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/rc20220411/">技术文章链接收录
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220401/">Linux CentOS 命令摘录备忘
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/js20220401b/">Linux Ubuntu 命令摘录备忘
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/work20220302/">工作笔记备忘(不定时更新)
+</a>
+        </li><li>
+          <a href="https://note.freezz.cc/post/rc20220223/">实用网址收录(不定时更新)
+</a>
+        </li></ul>
+    </div>
+  </section><section class="recent-posts row card component">
+  <div class="card-header">
+    <h2 class="card-title">最近文章</h2>
+  </div>
+  <div class="card-body">
+    <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20221122/">Linux(Centos) top命令的使用详解
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220904b/">Infortrend普安GS系列存储文件同步，两台存储间文件同步
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220904/">联想 x3650 M5 服务器不停机不重启加装硬盘并配置阵列
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220902/">windows2012/win2016/win2019配置多用户访问远程桌面
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220901b/">Linux Centos 防火墙firewall配置只允许特定ip访问
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220901a/">Linux Centos7 firewall防火墙的基本操作
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220812/">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js202200810/">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
+</a>
+      </li><li>
+        <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
+</a>
+      </li></ul>
+  </div>
+</section><section class="categories-taxonomies row card component">
+      <div class="card-header">
+        <h2 class="card-title">
+          <a href="https://note.freezz.cc/categories">分类</a>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="py-2"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge rounded post-taxonomy" title="技术摘录">
+            技术摘录</a><a href="https://note.freezz.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="工作笔记">
+            工作笔记</a><a href="https://note.freezz.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/" class="badge rounded post-taxonomy" title="日常随写">
+            日常随写</a><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" class="badge rounded post-taxonomy" title="技术笔记">
+            技术笔记</a><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="技术备忘">
+            技术备忘</a></div>
+      </div>
+    </section><section class="tags-taxonomies row card component">
+      <div class="card-header">
+        <h2 class="card-title">
+          <a href="https://note.freezz.cc/tags">标签</a>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="py-2"><a href="https://note.freezz.cc/tags/linux/" class="badge rounded post-taxonomy" title="linux">
+            linux</a><a href="https://note.freezz.cc/tags/centos/" class="badge rounded post-taxonomy" title="centos">
+            centos</a><a href="https://note.freezz.cc/tags/ubuntu/" class="badge rounded post-taxonomy" title="Ubuntu ">
+            Ubuntu </a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
+            ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
+            VMware</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
+            备忘</a><a href="https://note.freezz.cc/tags/raid/" class="badge rounded post-taxonomy" title="raid">
+            raid</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
+            windows11</a><a href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
+            操作系统</a><a href="https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">
+            网络配置 </a></div>
+      </div>
+    </section>
+    
+  </div>
+</aside>
+</div>
+    </main><footer class="footer mt-auto py-3 text-center container"><nav class="social-links nav justify-content-center mb-2"></nav>
+<div class="copyright mb-2">
+  Copyright © 2021-2022 FreeFish. All Rights Reserved.
+</div>
+<div class="powered-by mb-2">
+  Powered by <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> and the <a href="https://github.com/razonyang/hugo-theme-bootstrap" target="_blank" rel="noopener noreferrer">Bootstrap</a> theme.
+</div></footer>
+<script src="https://note.freezz.cc/js/main.16ff2fd276f6cc84e428f8fb174ea2bc526d384e52d30cde66d9fb051a952810.js" integrity="sha256-Fv8v0nb2zITkKPj7F06ivFJtOE5S0wzeZtn7BRqVKBA=" crossorigin="anonymous" defer></script><script src="https://note.freezz.cc/js/icons.min.8ddcaafc364ff0296c2209c5495287f0de039b852da9b24847f94c198b7639b6.js" integrity="sha256-jdyq/DZP8ClsIgnFSVKH8N4Dm4UtqbJIR/lMGYt2ObY=" crossorigin="anonymous" defer></script>
+<script src="https://note.freezz.cc/js/viewer.min.652118a9fbf3403cdfde4026209f97ace22f9e334f0b45a33431a221b3db46a8.js" integrity="sha256-ZSEYqfvzQDzf3kAmIJ&#43;XrOIvnjNPC0WjNDGiIbPbRqg=" crossorigin="anonymous" defer></script>
+</body>
+</html>
