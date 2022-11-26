@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1227">
+<meta itemprop="wordCount" content="1448">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -355,9 +355,56 @@ iwconfig 用于查看无线网络<br>
 uname -a<br>
 uname -r<br>
 cat /proc/version</p>
-<p>hostnamectl 查看linux系统版本号和内核版本号<br>
-dmidecode -s system-product-name 查看机器的型号<br>
-dmidecode -s system-serial-number 查看机器的序列号</p>
+<p><code>hostnamectl</code> 查看linux系统版本号和内核版本号</p>
+<p>查看物理CPU个数、核数、逻辑CPU个数<br>
+总核数 = 物理CPU个数 X 每颗物理CPU的核数<br>
+总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</p>
+<p>查看物理CPU的数量<br>
+<code>cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</code>
+查看单个物理CPU中core的个数(即核数)<br>
+<code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code>
+查看逻辑CPU的个数<br>
+<code>cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code>
+查看CPU信息
+<code>cat /proc/cpuinfo | head -20</code><br>
+查看CPU信息（型号）<br>
+<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</code><br>
+查看CPU主频<br>
+<code>cat /proc/cpuinfo |grep MHz|uniq</code></p>
+<p>查看内存硬件信息:<br>
+<code>dmidecode -t memory | head -45 | tail -24</code><br>
+查询内存条数：<br>
+<code>dmidecode -t 17 | grep &quot;Size.*MB&quot; | wc -l</code><br>
+查看现有内存数量和内存大小：<br>
+<code>dmidecode | grep -A16 &quot;Memory Device&quot; | grep &quot;Size&quot; | sed 's/^[ \t]*//'</code><br>
+查看最大支持内存容量：<br>
+<code>dmidecode|grep -P 'Maximum\s+Capacity'</code><br>
+或者<br>
+<code>dmidecode | grep &quot;Maximum Capacity&quot; | sed  &quot;s/^[ \t]*//&quot;</code><br>
+查看内存槽数、那个槽位插了内存，大小是多少：<br>
+<code>dmidecode|grep -P -A5 &quot;Memory\s+Device&quot;|grep Size|grep -v Range</code><br>
+查看槽位上内存的速率，没插就是unknown：<br>
+<code>dmidecode | grep -A16 &quot;Memory Device&quot; | grep 'Speed'</code><br>
+下面这边命令可查看内存的插槽数量(Number Of Devices)、最大扩展内存容量(Maximum Capacity)、单根内存最大容量、当前内存总容量<br>
+<code>dmidecode -t 16</code></p>
+<p>dmidecode命令查看硬件信息：<br>
+<code>dmidecode -s system-product-name</code> 查看机器的型号<br>
+<code>dmidecode -s system-serial-number</code> 查看机器的序列号<br>
+同时查看机器的生产制造商、产品型号、产品序列号：<br>
+<code>dmidecode | grep &quot;System Information&quot; -A9 | egrep &quot;Manufacturer|Product|Serial&quot;</code></p>
+<p><code>dmidecode</code> # 打印所有硬件信息<br>
+<code>dmidecode -q</code> # 打印所有硬件信息，比较简洁<br>
+<code>dmidecode -h</code> # 获取帮助<br>
+<code>dmidecode | grep 'Product Name'</code>     # 以过滤的方式来查看指定的硬件信息<br>
+<code>dmidecode --type bios</code>        # 查看BIOS相关的硬件信息，-t等价于&ndash;type<br>
+<code>dmidecode --type system</code>      # 查看系统相关的硬件信息<br>
+<code>dmidecode --type baseboard</code>   # 查看主板相关的硬件信息<br>
+<code>dmidecode --type chassis</code>     # 查看机箱相关的硬件信息<br>
+<code>dmidecode --type processor</code>   # 查看处理器相关的硬件信息<br>
+<code>dmidecode --type memory</code>      # 查看内存相关的硬件信息<br>
+<code>dmidecode |grep 'Serial Number'</code>  # 查看主板的序列号<br>
+<code>dmidecode -s system-serial-number</code> # 查看系统序列号<br>
+<code>dmidecode -t 11</code></p>
 <p>**查看linux操作系统版本号的四种命令：<br>
 cat /etc/redhat-release<br>
 rpm -q centos-release<br>
@@ -399,14 +446,17 @@ mysql -u root -p vm_data_20211216_01 &lt; vm_data_20211216_bak20221026.sql;<br>
 备份时，要注意备份出来的文件所在的目录路径，恢复时最好是进入文件所在的路径进行操作。<br>
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</p>
 <p><strong>lshw 查看硬件信息</strong><br>
-lshw 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
+<code>lshw</code> 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
+<code>lshw -short</code><br>
 lscpu 可以列出本机的 CPU 的相关信息。 free 可以查看系统中使用的、闲置的和 RAM 的总体数量，可带参数 -m 或 -g，来以不同的单位显示容量<br>
 free -m 以MB为单位查看内存<br>
 free -g 以GB为单位查看内存<br>
 lsusb 列出与本机相连的所有 USB 设备的信息。默认情况下，只列出概要信息，使用 -v 选项可以列出每一个 USB 口的详细信息。<br>
 lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
 lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。<br>
-lscpu 查看CPU信息。CPU信息记录在 /proc/cpuinfo 中，也可以使用 cat cat /proc/cpuinfo | grep ^cpu 来查看。</p>
+lscpu 查看CPU信息。CPU信息记录在 /proc/cpuinfo 中，也可以使用 cat cat /proc/cpuinfo | grep ^cpu 来查看。<br>
+查看网络适配器(网卡)的硬件信息，包括其制造商：<br>
+<code>lshw -C network</code></p>
 <p>查看显卡信息：</p>
 <ul>
 <li><code>lspci | grep VGA</code><br>

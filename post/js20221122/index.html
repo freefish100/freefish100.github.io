@@ -12,7 +12,7 @@
 <meta name="description" content="Linux(Centos) top命令的使用详解" /><meta itemprop="name" content="Linux(Centos) top命令的使用详解">
 <meta itemprop="description" content="Linux(Centos) top命令的使用详解"><meta itemprop="datePublished" content="2022-11-22T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-11-22T00:00:00+00:00" />
-<meta itemprop="wordCount" content="486">
+<meta itemprop="wordCount" content="497">
 <meta itemprop="keywords" content="linux,centos," /><meta property="og:title" content="Linux(Centos) top命令的使用详解" />
 <meta property="og:description" content="Linux(Centos) top命令的使用详解" />
 <meta property="og:type" content="article" />
@@ -361,14 +361,18 @@ sar -P ALL<br>
 <h2 id="linux查看物理cpu个数核数逻辑cpu个数">Linux查看物理CPU个数、核数、逻辑CPU个数<a class="anchor ms-1" href="#linux查看物理cpu个数核数逻辑cpu个数"><i class="fas fa-link"></i></a></h2>
 <p>总核数 = 物理CPU个数 X 每颗物理CPU的核数<br>
 总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</p>
-<p>查看物理CPU个数<br>
+<p>查看物理CPU的数量<br>
 <code>cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</code></p>
-<p>查看每个物理CPU中core的个数(即核数)<br>
+<p>查看单个物理CPU中core的个数(即核数)<br>
 <code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code></p>
 <p>查看逻辑CPU的个数<br>
 <code>cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code></p>
+<p>查看CPU信息
+<code>cat /proc/cpuinfo | head -20</code></p>
 <p>查看CPU信息（型号）<br>
 <code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</code></p>
+<p>查看CPU主频<br>
+<code>cat /proc/cpuinfo |grep MHz|uniq</code></p>
 <p>查看内 存信息<br>
 <code>cat /proc/meminfo</code></p>
 <p>Free 命令,free查看总内存，使用空闲情况<br>

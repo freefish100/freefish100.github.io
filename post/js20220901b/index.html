@@ -12,7 +12,7 @@
 <meta name="description" content="Linux Centos 防火墙firewall配置只允许特定ip访问" /><meta itemprop="name" content="Linux Centos 防火墙firewall配置只允许特定ip访问">
 <meta itemprop="description" content="Linux Centos 防火墙firewall配置只允许特定ip访问"><meta itemprop="datePublished" content="2022-09-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-09-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="162">
+<meta itemprop="wordCount" content="164">
 <meta itemprop="keywords" content="linux,防火墙,centos," /><meta property="og:title" content="Linux Centos 防火墙firewall配置只允许特定ip访问" />
 <meta property="og:description" content="Linux Centos 防火墙firewall配置只允许特定ip访问" />
 <meta property="og:type" content="article" />
@@ -216,7 +216,7 @@
 #重新载入一下防火墙设置，使设置生效<br>
 <code>firewall-cmd --reload</code><br>
 #查询打开的端口<br>
-<code>firewall-cmd --zone=public --list-ports</code></p>
+<code>firewall-cmd --list-all</code></p>
 <p><strong>3. 开放指定的ip访问服务器的80端口</strong><br>
 #允许ip192.168.1.111访问80端口</p>
 <pre tabindex="0"><code>firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;192.168.1.111&quot; port protocol=&quot;tcp&quot; port=&quot;80&quot; accept&quot;
@@ -225,7 +225,9 @@
 </code></pre><p>#重新载入一下防火墙设置，使设置生效<br>
 <code>firewall-cmd --reload</code><br>
 #查看已设置规则<br>
-<code>firewall-cmd --zone=public --list-rich-rules</code></p>
+<code>firewall-cmd --zone=public --list-rich-rules</code><br>
+**查看防火墙已开放端口列表：<br>
+<code>firewall-cmd --list-all</code></p>
 <p>到此，firewall配置只允许特定ip访问的步骤完成。<br>
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
 <strong>其它一些常用命令</strong></p>
@@ -241,8 +243,8 @@
 </li>
 <li>
 <p>开放或限制端口（端口开放，所有ip都可以访问）
-#开放80端口
-<code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code><br>
+#开放80端口</p>
+<p><code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code><br>
 #重新载入一下防火墙设置，使设置生效<br>
 <code>firewall-cmd --reload</code><br>
 #通过如下命令查看80端口是否生效<br>
@@ -271,7 +273,7 @@
 </li>
 </ul>
 <pre tabindex="0"><code>firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;192.168.0.0&quot; port protocol=&quot;tcp&quot; port=&quot;9001&quot; accept&quot;
-</code></pre><p><code>firewall-cmd --reload</code>
+</code></pre><p><code>firewall-cmd --reload</code><br>
 #查看已经设置的规则<br>
 <code>firewall-cmd --zone=public --list-rich-rules</code></p>
 <p>#限制IP为192.168.0.0的地址禁止访问9001端口，即设置禁止访问的ip</p>

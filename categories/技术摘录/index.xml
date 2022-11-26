@@ -102,7 +102,7 @@ systemctl start firewalld
   重启防火墙
 systemctl restart firewalld.service
   开放端口
-firewall-cmd --zone=public --add-port=80/tcp --permanent</description>
+firewall-cmd --zone=public --add-port=80/tcp --permanent //在public作用域中开放80端口。</description>
     </item>
     
     <item>

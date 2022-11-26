@@ -60,7 +60,7 @@ firewall-cmd --zone=public --remove-port=80/tcp --permanent
 #重新载入一下防火墙设置，使设置生效
 firewall-cmd --reload
 #查询打开的端口
-firewall-cmd --zone=public --list-ports
+firewall-cmd --list-all
 3. 开放指定的ip访问服务器的80端口
 #允许ip192.168.1.111访问80端口
 firewall-cmd --permanent --add-rich-rule=&amp;quot;rule family=&amp;quot;ipv4&amp;quot; source address=&amp;quot;192.168.1.111&amp;quot; port protocol=&amp;quot;tcp&amp;quot; port=&amp;quot;80&amp;quot; accept&amp;quot; 如果是开放一个网段，就把ip改成ip网段：
@@ -68,8 +68,8 @@ firewall-cmd --permanent --add-rich-rule=&amp;quot;rule family=&amp;quot;ipv4&am
 firewall-cmd --reload
 #查看已设置规则
 firewall-cmd --zone=public --list-rich-rules
-到此，firewall配置只允许特定ip访问的步骤完成。
-&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;</description>
+**查看防火墙已开放端口列表：
+firewall-cmd --list-all</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@ systemctl start firewalld
   重启防火墙
 systemctl restart firewalld.service
   开放端口
-firewall-cmd --zone=public --add-port=80/tcp --permanent</description>
+firewall-cmd --zone=public --add-port=80/tcp --permanent //在public作用域中开放80端口。</description>
     </item>
     
     <item>
