@@ -12,7 +12,7 @@
 <meta name="description" content="Linux Centos7 firewall防火墙的基本操作" /><meta itemprop="name" content="Linux Centos7 firewall防火墙的基本操作">
 <meta itemprop="description" content="Linux Centos7 firewall防火墙的基本操作"><meta itemprop="datePublished" content="2022-09-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-09-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="213">
+<meta itemprop="wordCount" content="222">
 <meta itemprop="keywords" content="linux,防火墙,centos," /><meta property="og:title" content="Linux Centos7 firewall防火墙的基本操作" />
 <meta property="og:description" content="Linux Centos7 firewall防火墙的基本操作" />
 <meta property="og:type" content="article" />
@@ -239,12 +239,18 @@ systemctl restart firewalld.service</p>
 <li>
 <p>开放端口<br>
 <code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code> //在public作用域中开放80端口。<br>
-返回success为成功。<br>
-其中 <code>--zone``是作用域，</code>&ndash;add-port=80/tcp<code> 添加80端口，通讯协议为TCP，</code>&ndash;permanent``` 设置为永久生效。</p>
+返回success为成功。</p>
+</li>
+<li>
+<p>关闭端口<br>
+<code>firewall-cmd --zone=public --remove-port=80/tcp --permanent</code> //在public作用域中关闭80端口。<br>
+其中 <code>--zone</code>是作用域，<code>--add-port=80/tcp</code> 添加80端口，通讯协议为TCP，<code>--permanent</code> 设置为永久生效。</p>
 </li>
 <li>
 <p>开放一段端口<br>
-<code>firewall-cmd --zone=public --add-port=40000-45000/tcp --permanent</code></p>
+<code>firewall-cmd --zone=public --add-port=40000-45000/tcp --permanent</code><br>
+重新加载Firewalld守护程序以使更改生效：<br>
+<code>firewall-cmd --reload</code></p>
 </li>
 <li>
 <p>查看开放的端口列表<br>
