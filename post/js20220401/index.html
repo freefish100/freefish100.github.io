@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1459">
+<meta itemprop="wordCount" content="1462">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -606,7 +606,8 @@ useradd user01<br>
 id user01
 列出系统中的用户<br>
 cat /etc/passwd 或者 getent passwd</p>
-<p>sosreport 命令用于收集系统配置及架构信息并输出诊断文档，输入该命令后按回车键执行即可</p>
+<p><code>sosreport</code> 命令用于收集系统配置及架构信息并输出诊断文档，输入该命令后按回车键执行即可</p>
+<p>使用 <code>getenforce</code> 命令可以在Linux下查看是否开启了SELinux</p>
 <p><strong>查看日志</strong><br>
 Systemd是Linux系统工具，Systemd拥有强大的解决与系统日志记录功能-systemd-journald。日志目录一般是在/var/log/journal，记录的是二进制文件，我们可以通过journalctl进行查看。<br>
 显示所有日志：journalctl<br>
