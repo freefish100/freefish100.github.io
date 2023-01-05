@@ -49,8 +49,7 @@
       <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/post/js20220729/</guid>
-      <description>网卡信息查询
-查看所有网卡：
+      <description>网卡信息查询 查看所有网卡：
 esxcfg-nics -l
 查看更详细的网上信息：
 esxcli network nic list
@@ -63,13 +62,11 @@ vmkchdev -l | grep vmnic0
 esxcli software vib install -d {OFFLINE_BUNDLE}
 (注：如果执行安装后提示could not find a trusted signer，可以在命令后添加参数 –no-sig-check) 建议使用第一种更新方式，注意，vib存放路径用完整路径。之后重启主机。
 ……………………………………………
-给虚拟机添加USB设备，例如U盘
-1、把USB设备插入到物理主机
+给虚拟机添加USB设备，例如U盘 1、把USB设备插入到物理主机
 2、编辑虚拟机设置–添加其它其他设备–USB设备–保存设置。
 注：同一个USB设备，同时只能添加到一台虚拟机中。在虚拟机中删除该USB设备后，才能添加到其它虚拟机中。
 ……………………………………………
-esxi6.5开启开启嵌套虚拟化
-Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo
+esxi6.5开启开启嵌套虚拟化 Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo
 另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。
 要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：
 使用 vSphere Client 登录到 ESXi/ESX 主机或 vCenter Server。在清单中选择 ESXi/ESX 主机。单击配置选项卡。在“硬件”部分，单击网络。单击要启用混杂模式的虚拟交换机的属性。 选择要修改的虚拟交换机或端口组，然后单击编辑。单击安全选项卡。从“混杂模式”下拉菜单中，单击接受。</description>

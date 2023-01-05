@@ -12,7 +12,7 @@
 <meta name="description" content="VMware ESXI vCenter 备忘笔记" /><meta itemprop="name" content="VMware ESXI vCenter 备忘笔记">
 <meta itemprop="description" content="VMware ESXI vCenter 备忘笔记"><meta itemprop="datePublished" content="2022-07-29T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-07-29T00:00:00+00:00" />
-<meta itemprop="wordCount" content="259">
+<meta itemprop="wordCount" content="274">
 <meta itemprop="keywords" content="ESXi,VMware," /><meta property="og:title" content="VMware ESXI vCenter 备忘笔记" />
 <meta property="og:description" content="VMware ESXI vCenter 备忘笔记" />
 <meta property="og:type" content="article" />
@@ -182,7 +182,9 @@
     <a class="action" href="#post-comments" role="button" aria-label="Comments" title="Comments">
   <i class="fas fa-fw fa-comments"></i>
 </a>
-    
+    <a class="action" href="#postTOC" aria-controls="Table of contents" role="button" title="Table of contents">
+  <i class="fas fa-fw fa-list-alt"></i>
+</a>
     
   </div>
 </div>
@@ -196,8 +198,8 @@
     2022-07-29
   </span><span class="post-taxonomies"><a href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" class="badge post-taxonomy">技术摘录</a><a href="https://note.freezz.cc/tags/esxi/" class="badge post-taxonomy">ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge post-taxonomy">VMware</a></span>
 </div>
-<div class="post-content mb-3"><p><strong>网卡信息查询</strong><br>
-查看所有网卡：<br>
+<div class="post-content mb-3"><h2 id="网卡信息查询">网卡信息查询<a class="anchor ms-1" href="#网卡信息查询"><i class="fas fa-link"></i></a></h2>
+<p>查看所有网卡：<br>
 esxcfg-nics -l<br>
 查看更详细的网上信息：<br>
 esxcli network nic list<br>
@@ -209,20 +211,20 @@ vmkchdev -l | grep vmnic0<br>
 或<br>
 esxcli software vib install -d {OFFLINE_BUNDLE}<br>
 (注：如果执行安装后提示could not find a trusted signer，可以在命令后添加参数 –no-sig-check) 建议使用第一种更新方式，注意，vib存放路径用完整路径。之后重启主机。<br>
-……………………………………………<br>
-<strong>给虚拟机添加USB设备，例如U盘</strong><br>
-1、把USB设备插入到物理主机<br>
+……………………………………………</p>
+<h2 id="给虚拟机添加usb设备例如u盘">给虚拟机添加USB设备，例如U盘<a class="anchor ms-1" href="#给虚拟机添加usb设备例如u盘"><i class="fas fa-link"></i></a></h2>
+<p>1、把USB设备插入到物理主机<br>
 2、编辑虚拟机设置–添加其它其他设备–USB设备–保存设置。<br>
 注：同一个USB设备，同时只能添加到一台虚拟机中。在虚拟机中删除该USB设备后，才能添加到其它虚拟机中。<br>
-……………………………………………<br>
-<strong>esxi6.5开启开启嵌套虚拟化</strong><br>
-Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo<br>
+……………………………………………</p>
+<h2 id="esxi65开启开启嵌套虚拟化">esxi6.5开启开启嵌套虚拟化<a class="anchor ms-1" href="#esxi65开启开启嵌套虚拟化"><i class="fas fa-link"></i></a></h2>
+<p>Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo<br>
 另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。<br>
 要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：<br>
 使用 vSphere Client 登录到 ESXi/ESX 主机或 vCenter Server。在清单中选择 ESXi/ESX 主机。单击配置选项卡。在“硬件”部分，单击网络。单击要启用混杂模式的虚拟交换机的属性。 选择要修改的虚拟交换机或端口组，然后单击编辑。单击安全选项卡。从“混杂模式”下拉菜单中，单击接受。</p>
 <p>配置虚拟机开机自启动 导航器–&gt;主机–&gt;管理–&gt;系统–&gt;自动启动中将已启用设置为&quot;是&quot;，然后返回到虚拟机列表页面，右击需要自动启动的某个虚拟机–自动启动–启用。 默认情况下启动和停止延迟都是120秒，默认动作是关机，不等待停止信号。即开机后等待120秒后启动虚拟机，关机也是等待120秒，避免宿主机启动时压力过大。停止操作和等待检测信号需要连用，意思是宿主机关机时给虚拟机发出关机的信号，并等待120秒使虚机关机，120秒后虚机仍未完成关机动作则不等待，断电。</p>
-<p><strong>VMware OVF Tool导出主虚拟主机</strong><br>
-虚拟主机先关机 进入VMware OVF Tool的安装目录，在地址栏中运行cmd<br>
+<h2 id="vmware-ovf-tool导出主虚拟主机">VMware OVF Tool导出主虚拟主机<a class="anchor ms-1" href="#vmware-ovf-tool导出主虚拟主机"><i class="fas fa-link"></i></a></h2>
+<p>虚拟主机先关机 进入VMware OVF Tool的安装目录，在地址栏中运行cmd<br>
 <img class="img-fluid" alt="" src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/OVFTool2022072901.jpg" loading="lazy"
   
    />
@@ -241,8 +243,8 @@ ovftool.exe vi://root:@192.168.1.41/CentOS8_192.168.1.49 c:\ovf\CentOS8_192.168.
    />
 
 </p>
-<p><strong>许可证</strong><br>
-VMware-ESXi-6.7.0<br>
+<h2 id="许可证">许可证<a class="anchor ms-1" href="#许可证"><i class="fas fa-link"></i></a></h2>
+<p>VMware-ESXi-6.7.0<br>
 0A65P-00HD0-3Z5M1-M097M-22P7H<br>
 VMware vCenter/vSphere/vSan/Esxi/7.0<br>
 <strong>VMware vSphere 7.x</strong><br>
@@ -286,8 +288,8 @@ NU0EK-05100-M80N9-501N2-8G81D</p>
    />
 
 </p>
-<p><strong>集群报错处理：</strong><br>
-数据中心启用HA后 HA代理报错<br>
+<h2 id="集群报错处理">集群报错处理<a class="anchor ms-1" href="#集群报错处理"><i class="fas fa-link"></i></a></h2>
+<p>数据中心启用HA后 HA代理报错<br>
 问题一 ：此主机上的vsphere HA无法访问隔离地址<br>
 在每台ESXi主机上 的 网络配置 默认网关都配置的 管理IP 的一个网关，如果之前设置的默认网关IP地址ping不通，只能修改HA高级属性的默认配置了。<br>
 一般默认隔离地址是管理IP对应的网关，如果没有网关，也可以通过高级设置指定某具体ip地址作为隔离地址。<br>
@@ -321,20 +323,30 @@ das.usedefaultisolationaddress<br>
 错误：VMkernel 网络适配器 vmk0 与多个物理网络适配器相关联。要使用 VMkernel 网络适配器进行 iSCSI 端口绑定，必须只将其与一个物理网络适配器相关联。<br>
 解决方法：要使用 VMkernel 网络适配器进行 iSCSI 端口绑定，必须将此虚拟网卡只与一个物理网络适配器相关联，就是每个虚拟交换机下，只添加一个上行链路。</li>
 </ul>
-<p><strong>VMware vCenter Server 设置HA和DRS功能</strong><br>
-1、 启动HA功能<br>
+<h2 id="vmware-vcenter-server-设置ha和drs功能">VMware vCenter Server 设置HA和DRS功能<a class="anchor ms-1" href="#vmware-vcenter-server-设置ha和drs功能"><i class="fas fa-link"></i></a></h2>
+<p>1、 启动HA功能<br>
 标注：前面虽然虽然启用HA功能，因为没有添加任何主机，群集会自动把HA的功能关闭，所以，现在需要手动开启。<br>
 2、选择 “打开vSpherer HA”和 “启用Proactive HA”功能<br>
 HA功能响应机制设置<br>
 一台VMware EXSI主机发生故障时自动迁移到另外一台VMware EXSI主机上，但是自动迁移虚拟机过程中会重启虚拟机系统。<br>
 3、配置DRS功能<br>
 DRS功能暂时先设置成手动，如果选择全自动会影响本教程HA功能测试。 原因是全自动DRS功能会自动检查两台VMware EXSI主机上的虚拟机资源利用率， 如果一台VMware EXSI主机资源利用率过高，会自动把虚拟机重新启动迁移到另外一台VMware EXSI主机上。</p>
-<p><strong>导出(克隆)虚拟机：</strong><br>
-1、进入“数据存储浏览器“，可以看到以虚拟机命名的一些目录，目录下的文件夹名一般是虚拟机名称，创建虚拟机时按虚拟机名称创建了同名文件夹。点击上方“创建目录”按钮，输入文件夹名，建议和想要新建的虚拟机名称一致，便于维护。<br>
+<h2 id="导出克隆虚拟机">导出(克隆)虚拟机<a class="anchor ms-1" href="#导出克隆虚拟机"><i class="fas fa-link"></i></a></h2>
+<p>1、进入“数据存储浏览器“，可以看到以虚拟机命名的一些目录，目录下的文件夹名一般是虚拟机名称，创建虚拟机时按虚拟机名称创建了同名文件夹。点击上方“创建目录”按钮，输入文件夹名，建议和想要新建的虚拟机名称一致，便于维护。<br>
 2、然后进入需要复制的虚拟机目录（就是刚刚我们关机了的那台机器），将后将缀名为.vmx（虚拟机）和.vmdk（虚拟磁盘）的文件进行点击右键后复制。其实把 .nvram .vmxf 都可以复制过去，除了.log 选择新虚拟机目录，点击右键后进行粘贴。<br>
 3、粘贴完成之后，右键点击. vmx（虚拟机）文件，再点击“注册虚拟机”。<br>
 4、成功之后会多出一个虚拟机（它不会自己修改虚拟机名称的），重命名输入新的虚拟机名称，建议与虚拟机文件夹名称一致，便于维护。<br>
 5、首次运行虚拟机时，ESXi会询问虚拟机文件的来源，这时候我们选择“我已复制”，这样ESXi就会自动修改虚拟机中的唯一标识，最重要的就是网卡的MAC地址，这是避免冲突的最好办法。</p>
+<h2 id="esxi-cpu-vsphere正确分配虚拟机cpu资源">ESXI CPU VSphere正确分配虚拟机CPU资源<a class="anchor ms-1" href="#esxi-cpu-vsphere正确分配虚拟机cpu资源"><i class="fas fa-link"></i></a></h2>
+<ul>
+<li><strong>CPU资源说明：</strong> VMware vSphere为虚拟机分配的CPU数是指逻辑处理器数。每台主机（服务器）拥有的逻辑处理器总数是不一样的，为物理CPU数量×每CPU的核(Core)数×超线程因子，当硬件支持超线程且在BIOS中开启超线程时，超线程因子为2，否则为1。例如某服务器为4C 8核并且支持超线程时，其CPU内核只有4×8＝32个，插槽数即CPU数＝4，vSphere可分配的该主机逻辑处理器数为4×8×2＝64。</li>
+<li><strong>CPU资源分配：</strong> vSphere给虚拟机分配的逻辑CPU数等于插槽数×每插槽的内核数，其中插槽数不能直接设置，可通过调整另两个数量来间接设置。如分配4个逻辑CPU给某虚拟机时，可以设置每个插槽的内核数为1，则插槽数自动设为4；如内核数为2，则插槽数为2；如内核数为4，则插槽数为1。</li>
+<li><strong>分配原则：</strong> 1、插槽数不能超过主机的CPU数，否则多余的插槽数是无效的。2、每个插槽的内核数不能超过每CPU的内核数×超线程因子。</li>
+</ul>
+<p>在vSphere中，一旦违反以上两个原则之一，为虚拟机分配的实际CPU数将少于显示的CPU数。同时，在进行虚拟机vMotion时，也要考虑目的主机的硬件资源配置情况。</p>
+<p>比如，系统分配了4个CPU，1个插槽，实际上系统只能在一个物理CPU上运行，不利于系统运行大并发任务。
+曾经遇到过一个类似情况，分配的CPU数为8，但每个插槽的内核数为8，插槽数为1，系统启动都很正常，但跑数据库应用时查询响应非常慢，用户不可接受。后经过优化，CPU总数8保持不变，但调整每个插槽的内核数为2，插槽数为4，性能明显好转，查询响应很快。
+另：强烈建议选择“启用CPU热添加”，这样，当虚拟机因CPU计算资源不足时可以在线手动添加CPU数量而无需停机。如没选择该项，如欲增加CPU数，则只能先将虚拟机系统停机后手动添加。</p>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
     <i class="fas fa-fw fa-chevron-left"></i>
@@ -366,7 +378,26 @@ DRS功能暂时先设置成手动，如果选择全自动会影响本教程HA功
 </div><aside class="col-lg-4 sidebar d-flex">
   <div class="container d-flex flex-column">
     
-    <section class="featured-posts row card component">
+    <div class="post-toc row mb-4 card component" id="postTOC">
+  <div class="card-header">
+    <h2 class="card-title">目录</h2>
+  </div>
+  <div class="card-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#网卡信息查询">网卡信息查询</a></li>
+    <li><a href="#给虚拟机添加usb设备例如u盘">给虚拟机添加USB设备，例如U盘</a></li>
+    <li><a href="#esxi65开启开启嵌套虚拟化">esxi6.5开启开启嵌套虚拟化</a></li>
+    <li><a href="#vmware-ovf-tool导出主虚拟主机">VMware OVF Tool导出主虚拟主机</a></li>
+    <li><a href="#许可证">许可证</a></li>
+    <li><a href="#集群报错处理">集群报错处理</a></li>
+    <li><a href="#vmware-vcenter-server-设置ha和drs功能">VMware vCenter Server 设置HA和DRS功能</a></li>
+    <li><a href="#导出克隆虚拟机">导出(克隆)虚拟机</a></li>
+    <li><a href="#esxi-cpu-vsphere正确分配虚拟机cpu资源">ESXI CPU VSphere正确分配虚拟机CPU资源</a></li>
+  </ul>
+</nav>
+  </div>
+</div><section class="featured-posts row card component">
     <div class="card-header">
       <h2 class="card-title">精选文章</h2>
     </div>
@@ -468,7 +499,7 @@ DRS功能暂时先设置成手动，如果选择全自动会影响本教程HA功
 </div>
     </main><footer class="footer mt-auto py-3 text-center container"><nav class="social-links nav justify-content-center mb-2"></nav>
 <div class="copyright mb-2">
-  Copyright © 2021-2022 FreeFish. All Rights Reserved.
+  Copyright © 2021-2023 FreeFish. All Rights Reserved.
 </div>
 <div class="powered-by mb-2">
   Powered by <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> and the <a href="https://github.com/razonyang/hugo-theme-bootstrap" target="_blank" rel="noopener noreferrer">Bootstrap</a> theme.
