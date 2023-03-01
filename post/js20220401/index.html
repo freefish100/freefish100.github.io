@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1462">
+<meta itemprop="wordCount" content="1502">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -258,12 +258,14 @@ ls -l 显示文件的详细信息<br>
 ls -ld 查看目录(文件夹)的属性信息<br>
 ls -lrt 按时时间排序显示文件<br>
 pwd 显示当前路径</p>
-<p><strong>查看硬盘分区情况</strong><br>
+<p><strong>查看硬盘和分区情况</strong><br>
+lshw -class disk -short 列出所有磁盘的信息，包括磁盘容量、厂商和型号<br>
+parted -l 列出磁盘信息，分区类型、分区大小<br>
 df -h 此命令可查看全部的挂载点情况(包括挂载的外部共享磁盘)<br>
 df -hl 可查看系统挂载点，但查看不了挂载的外部共享磁盘<br>
 lsblk 可以以树形方式查看磁盘大小<br>
 fdisk -l 查看设备和分区<br>
-blkid 查看分区的UUID信息</p>
+blkid 查看分区的UUID信息和文件系统类型</p>
 <p><strong>查看当前目录下各个文件及目录占用空间大小</strong><br>
 du -sh * 按K、M、G为单位显示<br>
 du -s * 按兆字节为单位显示<br>
@@ -354,7 +356,11 @@ Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这
 使用 ifconfig -a 命令查看；<br>
 使用 lspci | grep -i “eth” 或 lspci | grep -i net 命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
 iwconfig 用于查看无线网络<br>
-………………………………………….</p>
+lspci | grep -i eth 查看有线网卡型号<br>
+lspci | grep Network 无线网卡型号<br>
+………………………………………….<br>
+查看HBA卡<br>
+lspci | grep -i Fibre</p>
 <p><strong>系统相关</strong><br>
 查看linux内核版本号的三种命令：<br>
 uname -a<br>
@@ -401,7 +407,7 @@ cat /proc/version</p>
 <code>dmidecode -q</code> # 打印所有硬件信息，比较简洁<br>
 <code>dmidecode -h</code> # 获取帮助<br>
 <code>dmidecode | grep 'Product Name'</code>     # 以过滤的方式来查看指定的硬件信息<br>
-<code>dmidecode --type bios</code>        # 查看BIOS相关的硬件信息，-t等价于&ndash;type<br>
+<code>dmidecode --type bios</code>        # 查看BIOS相关的硬件信息，-t 等价于&ndash;type<br>
 <code>dmidecode --type system</code>      # 查看系统相关的硬件信息<br>
 <code>dmidecode --type baseboard</code>   # 查看主板相关的硬件信息<br>
 <code>dmidecode --type chassis</code>     # 查看机箱相关的硬件信息<br>
@@ -472,7 +478,7 @@ lscpu 查看CPU信息。CPU信息记录在 /proc/cpuinfo 中，也可以使用 c
 其中2236 就是Nvidia显卡的型号对应的标识ID，其对应的具体型号，可到下面网址查询<br>
 <a href="http://pci-ids.ucw.cz/read/PC/" target="_blank" rel="noopener noreferrer">http://pci-ids.ucw.cz/read/PC/</a><br>
 网页拉到最尾，在搜索框中输入显卡的ID标识进行查询。</li>
-<li>还可以使用命令 <code>nvidia-smi -L</code> 直接查看Nvidia显卡的型号。</li>
+<li>如果是nvidia的显卡并安装了驱动程序后，还可以使用命令 <code>nvidia-smi -L</code> 直接查看Nvidia显卡的型号。</li>
 </ul>
 <p>查看正在运行的服务：<br>
 systemctl | grep running<br>
@@ -488,7 +494,8 @@ ps -elf #以长格式显示系统的进程信息，并包含更丰富的内容<b
 -e：显示系统内所有的进程信息<br>
 -l ：使用长格式显示进程信息<br>
 -f ：使用完整的格式显示进程信息<br>
-ps命令常配合管道命令 | 和查找命令 grep 同时执行来查看特定进程，如： ps -ef | grep caddy</li>
+ps命令常配合管道命令 | 和查找命令 grep 同时执行来查看特定进程，如： ps -ef | grep caddy<br>
+查找某个进程所在的目录：ps -aux | grep 28990 其中28990是进程的PID，PID可通过top命令查看到。</li>
 <li>top 命令。top 命令会在当前终端以全屏交互式的界面显示进程排名，及时跟踪CPU、内存等系统资源占用情况，默认情况下每三秒刷新一次，其作用类似于windows系统中的任务管理器。<br>
 top -Hp 查看进程详细信息获取目标线程的CPU使用情况<br>
 默认top命令是3秒刷新一次，可以加参数改成1秒<br>
@@ -502,6 +509,8 @@ top命令后，输入大写的M</li>
 <p><strong>查看开放的端口</strong><br>
 netstat -aptn</p>
 <p><strong>查看端口占用情况</strong><br>
+lsof -i :端口号<br>
+例如 lsof -i :80 \查看占用了80端口的进程
 netstat<br>
 netstat -tunlp 用于显示 tcp，udp 的端口和进程等相关情况。<br>
 netstat 查看端口占用语法格式：<br>
@@ -658,6 +667,9 @@ journalctl –until 2020-05-27 #查找2020-05-27日期的日志<br>
     </div>
     <div class="card-body">
       <ul class="post-list"><li>
+          <a href="https://note.freezz.cc/post/js20230223/">DELL戴尔2012年至2022年生产的服务器型号列表
+</a>
+        </li><li>
           <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
 </a>
         </li><li>
@@ -683,6 +695,9 @@ journalctl –until 2020-05-27 #查找2020-05-27日期的日志<br>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20230223/">DELL戴尔2012年至2022年生产的服务器型号列表
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/js20221122/">Linux(Centos) top命令的使用详解
 </a>
       </li><li>
@@ -708,9 +723,6 @@ journalctl –until 2020-05-27 #查找2020-05-27日期的日志<br>
 </a>
       </li><li>
         <a href="https://note.freezz.cc/post/js20220729/">VMware ESXI vCenter 备忘笔记
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220714/">命令的形式列出各个linux系统已经安装的软件包
 </a>
       </li></ul>
   </div>
