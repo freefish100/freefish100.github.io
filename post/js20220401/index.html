@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1502">
+<meta itemprop="wordCount" content="1586">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -369,20 +369,26 @@ cat /proc/version</p>
 <p><code>hostnamectl</code> 查看linux系统版本号和内核版本号</p>
 <p>查看物理CPU个数、核数、逻辑CPU个数<br>
 总核数 = 物理CPU个数 X 每颗物理CPU的核数<br>
-总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</p>
-<p>查看物理CPU的数量<br>
-<code>cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</code>
+总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+查看已安装的CPU型号<br>
+<code>dmidecode -t processor | grep &quot;Version:&quot; | awk '{print $2&quot; &quot;$3&quot; &quot;$4&quot; &quot;$5&quot; &quot;$6}'</code><br>
+查看物理CPU的数量<br>
+<code>cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</code><br>
 查看单个物理CPU中core的个数(即核数)<br>
-<code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code>
+<code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code><br>
 查看逻辑CPU的个数<br>
-<code>cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code>
-查看CPU信息
+<code>cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code><br>
+查看CPU信息<br>
 <code>cat /proc/cpuinfo | head -20</code><br>
 查看CPU信息（型号）<br>
 <code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</code><br>
 查看CPU主频<br>
-<code>cat /proc/cpuinfo |grep MHz|uniq</code></p>
-<p>查看内存硬件信息:<br>
+<code>cat /proc/cpuinfo |grep MHz|uniq</code><br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+列出已安装的内存信息以及内存位于哪个插槽上：<br>
+<code>dmidecode -t memory | awk '/^[[:space:]]+Size:/ {size=$2}/^[[:space:]]+Locator:/ {locator=$2} /^[[:space:]]+Type:/ {type=$2} /^[[:space:]]+Speed:/ {speed=$2} /^[[:space:]]+Manufacturer:/ {manufacturer=$2} /^[[:space:]]+Serial Number:/ {serial=$3} /^[[:space:]]+Part Number:/ {part=$3} /^[[:space:]]+Rank:/ {rank=$2} /^[[:space:]]+Configured Clock Speed:/ {config_speed=$4} /^$/ {if (size != &quot;&quot; &amp;&amp; locator != &quot;&quot;) print size, locator, type, speed, manufacturer, serial, part, rank, config_speed; size=&quot;&quot;; locator=&quot;&quot;}'</code><br>
+查看内存硬件信息:<br>
 <code>dmidecode -t memory | head -45 | tail -24</code><br>
 查询内存条数：<br>
 <code>dmidecode -t 17 | grep &quot;Size.*MB&quot; | wc -l</code><br>
@@ -398,7 +404,13 @@ cat /proc/version</p>
 <code>dmidecode | grep -A16 &quot;Memory Device&quot; | grep 'Speed'</code><br>
 下面这边命令可查看内存的插槽数量(Number Of Devices)、最大扩展内存容量(Maximum Capacity)、单根内存最大容量、当前内存总容量<br>
 <code>dmidecode -t 16</code></p>
-<p>dmidecode命令查看硬件信息：<br>
+<p>&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+列出阵列卡信息：<br>
+<code>lspci | grep -i raid</code> 或者 <code>lspci -nn | grep -i raid</code> <br>
+列出硬盘信息：<br>
+<code>lshw -class disk</code><br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+dmidecode命令查看硬件信息：<br>
 <code>dmidecode -s system-product-name</code> 查看机器的型号<br>
 <code>dmidecode -s system-serial-number</code> 查看机器的序列号<br>
 同时查看机器的生产制造商、产品型号、产品序列号：<br>
