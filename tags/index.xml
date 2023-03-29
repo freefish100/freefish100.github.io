@@ -7,20 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>戴尔服务器</title>
-      <link>https://note.freezz.cc/tags/%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
-      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Wed, 29 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>centos</title>
       <link>https://note.freezz.cc/tags/centos/</link>
-      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/centos/</guid>
       <description></description>
@@ -29,9 +20,27 @@
     <item>
       <title>linux</title>
       <link>https://note.freezz.cc/tags/linux/</link>
-      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu </title>
+      <link>https://note.freezz.cc/tags/ubuntu/</link>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>戴尔服务器</title>
+      <link>https://note.freezz.cc/tags/%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description></description>
     </item>
     
@@ -140,15 +149,6 @@
       <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/vmware/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu </title>
-      <link>https://note.freezz.cc/tags/ubuntu/</link>
-      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/ubuntu/</guid>
       <description></description>
     </item>
     

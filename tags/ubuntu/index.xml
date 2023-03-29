@@ -7,7 +7,33 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 14 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows远程桌面连接linux ubuntu centos</title>
+      <link>https://note.freezz.cc/post/js20230329/</link>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20230329/</guid>
+      <description>windows远程桌面连接ubuntu（ubuntu20.04下测试通过）
+在Ubuntu上安装Xfce桌面环境。您可以使用以下命令安装Xfce桌面环境
+sudo apt-get update
+sudo apt-get install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils
+安装xrdp
+sudo apt-get update
+sudo apt-get install xrdp
+启动xrdp服务
+sudo systemctl enable xrdp
+sudo systemctl enable --now xrdp
+配置Ubuntu防火墙以允许RDP连接
+sudo ufw allow 3389/tcp
+如果连接不上，提示类似如下的错误，要检查用户名密码是否正确，否则重启一次unbuntu电脑.
+connection to sesman ip 127.0.0.1 port 3350 sesman connect ok sending login info to session manager,please wait... login failed for display 0 在Windows上打开远程桌面连接(或者运行“mstsc”)，输入Ubuntu主机的IP地址并点击“连接”。 在“登录到Windows”窗口中，选择“使用其他帐户”选项，并输入Ubuntu的用户名和密码。 单击“连接”按钮，等待几秒钟，即可连接到Ubuntu桌面。
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;
+windows远程桌面连接Centos（Centos7.9下测试通过）
+在CentOS 7.9上安装GNOME桌面环境
+sudo yum groupinstall &amp;quot;GNOME Desktop&amp;quot;</description>
+    </item>
+    
     <item>
       <title>命令的形式列出各个linux系统已经安装的软件包</title>
       <link>https://note.freezz.cc/post/js20220714/</link>
@@ -95,7 +121,9 @@ sudo apt-get install vim
       <guid>https://note.freezz.cc/post/js20220401b/</guid>
       <description>查看用户的当前目录 pwd
 查看ubuntu版本：
-lsb_release -a &amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.
+lsb_release -a
+cat /etc/issue
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.
 Ubuntu 22.04上配置静态IP地址： 配置文件路径
 /etc/netplan
 以下是文件内容(配置项冒号后面有一个空格，注意缩行)：
@@ -103,7 +131,7 @@ Ubuntu 22.04上配置静态IP地址： 配置文件路径
 sudo netplan apply
 &amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;
 Ubuntu 20.04上配置静态IP地址 Ubuntu 17.10及更高版本使用Netplan作为默认网络管理工具。 先前的Ubuntu版本使用ifconfig及其配置文件/etc/network/interfaces来配置网络。 Netplan配置文件使用YAML语法编写，文件扩展名为.yaml。 要使用Netplan配置网络接口，您需要为该接口创建YAML描述，然后Netplan会使用所选的渲染器工具生成所需的配置文件。 Netplan支持两个渲染器：NetworkManager和Systemd-networked。NetworkManager主要在台式机上使用，而Systemd-networked在没有GUI的服务器上使用。 在Ubuntu 20.04上，系统使用“predictable network interface names(可预测的网络接口名称)”标识网络接口。设置静态IP地址的第一步是识别要配置的以太网接口的名称。 为此，请使用 ip link 命令， 该命令将打印所有可用网络接口的列表。
-Netplan配置文件存储在/etc/netplan目录中。 您可能会在此目录中找到一个或多个YAML文件。 文件的名称可能因安装程序而异。 通常，文件名为01-netcfg.yaml，50-cloud-init.yaml或NN_interfaceName.yaml，但在您的系统中可能有所不同。 如果您的Ubuntu云实例配置有cloud-init，则需要将其禁用。 为此，请创建以下文件：</description>
+Netplan配置文件存储在/etc/netplan目录中。 您可能会在此目录中找到一个或多个YAML文件。 文件的名称可能因安装程序而异。 通常，文件名为01-netcfg.</description>
     </item>
     
   </channel>
