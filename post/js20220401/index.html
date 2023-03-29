@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1598">
+<meta itemprop="wordCount" content="1610">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -326,10 +326,14 @@ touch xxx<br>
 touch -d &ldquo;2022-11-20 15:50&rdquo; xxx<br>
 参数-d是同时修改“访问时间”和“修改时间”，若只修改“访问时间”，可用参数-a，若只修改“修改时间”，可用参数-m</p>
 <p><strong>网络相关</strong><br>
-ip addr 显示当前ip地址<br>
+ip addr ( 或者ip a )显示当前ip地址<br>
 ifdown eth0 禁用 ‘eth0’ 网络设备<br>
 ifup eth0 启用 ‘eth0’ 网络设备<br>
 使用 nmtui 可以调出图形界面设置网络参数</p>
+<p>查看公网的VPS服务器的公网ip地址：<br>
+curl ifconfig.me<br>
+wget -qO- ifconfig.me/ip<br>
+curl icanhazip.com (测试返回ipv6)</p>
 <p>Cenos7、8的网卡配置文件路径：<br>
 /etc/sysconfig/network-scripts<br>
 如果配置静态ip，则修改如下配置：<br>
