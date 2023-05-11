@@ -7,7 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 29 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux centos firewall防火墙屏蔽某个ip地址对服务器的访问</title>
+      <link>https://note.freezz.cc/post/js20230511/</link>
+      <pubDate>Thu, 11 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20230511/</guid>
+      <description>1、查看有哪些外部IP正在访问本机服务器，并按照连接次数从多到少排序：
+netstat -n | grep -E &#39;tcp|udp&#39; | awk &#39;{print $5}&#39; | cut -d: -f1 | sort | uniq -c | sort -nr | head
+2、使用firewall-cmd --list-all，该命令将显示当前的防火墙规则，包括打开的端口和已定义的服务
+3、使用以下命令添加防火墙规则以屏蔽指定的 IP：
+sudo firewall-cmd --permanent --add-rich-rule=&#39;rule family=ipv4 source address=&amp;lt;IP地址&amp;gt; drop&#39;
+其中 &amp;lt;IP地址&amp;gt; 是要屏蔽的 IP 地址。该命令将向防火墙添加一个规则，该规则将禁止来自指定 IP 地址的所有传入连接。&amp;ndash;permanent 选项将规则永久性保存在防火墙中，以便在重启后保持持久。
+4、重新加载防火墙配置以使更改生效：
+firewall-cmd --reload
+5、重新执行firewall-cmd --list-all就可以看到刚才添加的规格了
+如果要重新允许某个ip地址访问服务器，可按如下步骤操作：
+firewall-cmd --list-all
+sudo firewall-cmd --permanent --remove-rich-rule=&#39;rule family=ipv4 source address=&amp;lt;IP地址&amp;gt; drop&#39;
+firewall-cmd --reload</description>
+    </item>
+    
     <item>
       <title>windows远程桌面连接linux ubuntu centos</title>
       <link>https://note.freezz.cc/post/js20230329/</link>

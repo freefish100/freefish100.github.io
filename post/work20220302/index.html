@@ -44,7 +44,7 @@ https://almalinux.org/zh-hans/
 …………………………………. IDRAC9管理口配置
 遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。"><meta itemprop="datePublished" content="2023-04-03T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-04-03T00:00:00+00:00" />
-<meta itemprop="wordCount" content="554">
+<meta itemprop="wordCount" content="561">
 <meta itemprop="keywords" content="笔记,备忘," /><meta property="og:title" content="工作笔记备忘(不定时更新)" />
 <meta property="og:description" content="【2022年12月20日更新】
 可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。
@@ -478,12 +478,21 @@ GRF89-QM67C-DRTP9-JD3QR-6P4B9<br>
 上面的IP180.163.151.34不一定一直能用，如果不能用，就要按步骤1的来换一个。</li>
 <li><strong>长城超云服务器各型号文档</strong>
 <a href="https://www.chinasupercloud.com/techsupport/user/manual" target="_blank" rel="noopener noreferrer">https://www.chinasupercloud.com/techsupport/user/manual</a></li>
+<li><strong>内存的规格2R4和2R8：</strong><br>
+2R4和2R8是描述计算机内存的规格，其中：2R表示内存模块具有双通道读写能力，可以同时进行两个数据操作。4和8表示内存模块的容量大小，其中*4表示内存模块的容量为4个存储单元，*8表示内存模块的容量为8个存储单元。因此，内存2R4和2R8的容量分别为8字节和16字节。<br>
+具体来说，&ldquo;2R4&quot;表示一种内存模块的规格，它由两个通道（dual-rank，2R）组成，每个通道包含4个内存颗粒（4），因此，这种内存模块的总容量为8个存储单元（4个颗粒×2个通道），通常为8GB（每个存储单元容量为1GB）。&ldquo;2R8&quot;表示一种内存模块的规格，它由两个通道（dual-rank，2R）组成，每个通道包含8个内存颗粒（8），因此，这种内存模块的总容量为16个存储单元（8个颗粒×2个通道），通常为16GB（每个存储单元容量为1GB）。<br>
+内存颗粒（Memory chip）是内存模块上实际存储数据的小型芯片，它们通常由DRAM或SRAM等存储芯片组成，用于存储数据和指令。内存颗粒通常有不同的容量，例如1GB、2GB等。
+而内存模块（Memory module）是将多个内存颗粒组合在一起形成的一个模块，内存模块在计算机中负责存储数据和指令，通常有不同的规格和容量，如前面提到的2R4、2R8等。</li>
 </ul>
 </div></div>
   <div class="card-footer"><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev">
     <i class="fas fa-fw fa-chevron-left"></i>
     <a href="https://note.freezz.cc/post/js20230329/">windows远程桌面连接linux ubuntu centos
 </a>
+  </div><div class="post-nav post-next">
+    <a href="https://note.freezz.cc/post/js20230511/">linux centos firewall防火墙屏蔽某个ip地址对服务器的访问
+</a>
+    <i class="fas fa-fw fa-chevron-right"></i>
   </div></div></div>
 </article><section class="related-posts row card component">
     <div class="card-header">
@@ -561,6 +570,9 @@ GRF89-QM67C-DRTP9-JD3QR-6P4B9<br>
   </div>
   <div class="card-body">
     <ul class="post-list"><li>
+        <a href="https://note.freezz.cc/post/js20230511/">linux centos firewall防火墙屏蔽某个ip地址对服务器的访问
+</a>
+      </li><li>
         <a href="https://note.freezz.cc/post/work20220302/">工作笔记备忘(不定时更新)
 </a>
       </li><li>
@@ -586,9 +598,6 @@ GRF89-QM67C-DRTP9-JD3QR-6P4B9<br>
 </a>
       </li><li>
         <a href="https://note.freezz.cc/post/js20220901a/">Linux Centos7 firewall防火墙的基本操作
-</a>
-      </li><li>
-        <a href="https://note.freezz.cc/post/js20220812/">Centos修改硬盘分区大小,把home分区部分容量分配给根分区
 </a>
       </li></ul>
   </div>
@@ -619,11 +628,11 @@ GRF89-QM67C-DRTP9-JD3QR-6P4B9<br>
             Ubuntu </a><a href="https://note.freezz.cc/tags/esxi/" class="badge rounded post-taxonomy" title="ESXi">
             ESXi</a><a href="https://note.freezz.cc/tags/vmware/" class="badge rounded post-taxonomy" title="VMware">
             VMware</a><a href="https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/" class="badge rounded post-taxonomy" title="备忘">
-            备忘</a><a href="https://note.freezz.cc/tags/raid/" class="badge rounded post-taxonomy" title="raid">
+            备忘</a><a href="https://note.freezz.cc/tags/%E9%98%B2%E7%81%AB%E5%A2%99/" class="badge rounded post-taxonomy" title="防火墙">
+            防火墙</a><a href="https://note.freezz.cc/tags/raid/" class="badge rounded post-taxonomy" title="raid">
             raid</a><a href="https://note.freezz.cc/tags/windows11/" class="badge rounded post-taxonomy" title="windows11">
             windows11</a><a href="https://note.freezz.cc/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="badge rounded post-taxonomy" title="操作系统">
-            操作系统</a><a href="https://note.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="badge rounded post-taxonomy" title="网络配置 ">
-            网络配置 </a></div>
+            操作系统</a></div>
       </div>
     </section>
     
