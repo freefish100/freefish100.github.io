@@ -12,7 +12,7 @@
 <meta name="description" content="Linux CentOS 命令摘录备忘" /><meta itemprop="name" content="Linux CentOS 命令摘录备忘">
 <meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1642">
+<meta itemprop="wordCount" content="1648">
 <meta itemprop="keywords" content="Linux,centos," /><meta property="og:title" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:description" content="Linux CentOS 命令摘录备忘" />
 <meta property="og:type" content="article" />
@@ -237,8 +237,9 @@ scp -r /usr/local/abc <a href="mailto:root@192.168.1.49">root@192.168.1.49</a>:/
 用来查看某个文件的信息属性。其中可以看到列出来的Access，Modify，Change这三行有三个时间的，分别为atime，mtime和ctime。 modification time (mtime):该档案的内容数据变更时,就会更新这个时间!内容数据指的是档案的内容,而不是档案属性或权限喔!<br>
 status time (ctime):该档案的状态改变时,就会更新这个时间,举例来说，像是权限与属性被更改了,都会更新这个时间啊。<br>
 access time (atime): 当该档案的内容被取用时,就会更新这个读取时间 (access)。举例来说,我们使用 cat 去读取 /etc/man.config , 就会更新该档案的atime 了。</p>
-<p><strong>查看文件容量大小</strong><br>
-du -h 文件名称<br>
+<p><strong>查看文件和文件夹容量大小</strong><br>
+ls -lh 文件路径
+du -h 文件夹路径<br>
 如果对一个目录执行du，du会递归列出目录中的所有文件，并显示其大小，同时也会显示目录中所有文件的大小。<br>
 du -h 文件夹名称<br>
 查看某个目录下(文件夹)下所有文件占用空间的总大小
@@ -257,7 +258,8 @@ ls -a 列举出当前目录中所有文件，包括隐藏文件<br>
 ls -l 显示文件的详细信息<br>
 ls -ld 查看目录(文件夹)的属性信息<br>
 ls -lrt 按时时间排序显示文件<br>
-pwd 显示当前路径</p>
+pwd 显示当前路径<br>
+ls -lh 查看文件大小</p>
 <p><strong>查看硬盘和分区情况</strong><br>
 lshw -class disk -short 列出所有磁盘的信息，包括磁盘容量、厂商和型号<br>
 parted -l 列出磁盘信息，分区类型、分区大小<br>
