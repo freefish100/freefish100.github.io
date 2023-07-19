@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Thu, 15 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>centos</title>
+      <link>https://note.freezz.cc/tags/centos/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://note.freezz.cc/tags/linux/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/tags/linux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>备忘</title>
       <link>https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/</link>
@@ -32,24 +50,6 @@
       <pubDate>Thu, 11 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://note.freezz.cc/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>centos</title>
-      <link>https://note.freezz.cc/tags/centos/</link>
-      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/centos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://note.freezz.cc/tags/linux/</link>
-      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://note.freezz.cc/tags/linux/</guid>
       <description></description>
     </item>
     

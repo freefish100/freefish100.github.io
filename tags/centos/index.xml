@@ -7,7 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021-{year} FreeFish. All Rights Reserved.</copyright>
-    <lastBuildDate>Wed, 29 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://note.freezz.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Centos 查看硬件配置命令汇总</title>
+      <link>https://note.freezz.cc/post/js20230718/</link>
+      <pubDate>Tue, 18 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://note.freezz.cc/post/js20230718/</guid>
+      <description>1、 lshw 命令
+安装lshw：yum install lshw
+列出主板信息：lshw -class system
+列出CPU信息：lshw -class processor
+列出内存信息：lshw -class memory
+列出硬盘信息：lshw -class disk
+列出阵列卡信息：lshw -class storage
+列出显卡信息：lshw -class display
+列出网卡信息：lshw -class network
+列出USB控制器信息：lshw -class usb
+列出SCSI控制器信息：lshw -class scsi
+列出声卡信息：lshw -class multimedia
+列出其他PCI和PCI-E设备信息：
+lshw -class bridge
+lshw -class communication
+2、dmidecode命令查看硬件信息：
+dmidecode -s system-product-name 查看机器的型号
+dmidecode -s system-serial-number 查看机器的序列号
+同时查看机器的生产制造商、产品型号、产品序列号：
+dmidecode | grep &amp;quot;System Information&amp;quot; -A9 | egrep &amp;quot;Manufacturer|Product|Serial&amp;quot; dmidecode # 打印所有硬件信息
+dmidecode -q # 打印所有硬件信息，比较简洁
+dmidecode -h # 获取帮助</description>
+    </item>
+    
     <item>
       <title>windows远程桌面连接linux ubuntu centos</title>
       <link>https://note.freezz.cc/post/js20230329/</link>

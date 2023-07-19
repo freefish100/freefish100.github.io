@@ -3,13 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://note.freezz.cc/categories/</loc>
-    <lastmod>2023-06-15T00:00:00+00:00</lastmod>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://note.freezz.cc/tags/centos/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://note.freezz.cc/tags/linux/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://note.freezz.cc/post/js20230718/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://note.freezz.cc/post/</loc>
-    <lastmod>2023-06-15T00:00:00+00:00</lastmod>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://note.freezz.cc/tags/</loc>
-    <lastmod>2023-06-15T00:00:00+00:00</lastmod>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://note.freezz.cc/</loc>
+    <lastmod>2023-07-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://note.freezz.cc/tags/%E5%A4%87%E5%BF%98/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
@@ -23,23 +38,11 @@
     <loc>https://note.freezz.cc/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2023-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://note.freezz.cc/</loc>
-    <lastmod>2023-06-15T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://note.freezz.cc/post/js20230511/</loc>
-    <lastmod>2023-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://note.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/</loc>
     <lastmod>2023-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://note.freezz.cc/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
     <lastmod>2023-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://note.freezz.cc/tags/centos/</loc>
-    <lastmod>2023-03-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://note.freezz.cc/tags/linux/</loc>
-    <lastmod>2023-03-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://note.freezz.cc/tags/ubuntu/</loc>
     <lastmod>2023-03-29T00:00:00+00:00</lastmod>
