@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ESXi on </title>
+    <link>http://localhost:1313/tags/esxi/</link>
+    <description>Recent content in ESXi on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/esxi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法</title>
+      <link>http://localhost:1313/posts/js202200810/</link>
+      <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/js202200810/</guid>
+      <description>ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法&#xA;点开ESXI主机的”网络“，新建一个虚拟交换机&#xA;已经看到新增的”虚拟交换机“了&#xA;点开ESXI主机的”网络“，新建一个&amp;quot;端口组&amp;quot;&#xA;点开ESXI主机的”网络“，新建一个”VMkernel网卡“&#xA;点开ESXI主机的”存储“–”适配器“–“软件iSCSI”&#xA;上图“名称和别名”的IQN号要记下，到在存储主机上添加IQN时要用到的。&#xA;进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，设置主机通道的工作模式，按实际情况来选择，这里选择“iSCSI 10 Gbps”为例&#xA;线缆连接好ESXI主机服务器和GS1012R2存储的相应的端口&#xA;进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，编辑好上面步骤2对应的通道端口，比如图中的”通道1“&#xA;把存储中的卷映射到主机（事先要创建好卷，这里略过）&#xA;下面添加主机IQN&#xA;点击“确定”后，如下图，点击“下一步”&#xA;点击“关闭”按钮，返回到创建映射主机页面&#xA;这里显示选择的的“ESXI”，就是上面建立的主机IQN，“ESXI”是主机的别名&#xA;点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，如无意外，就可以看到连接的存储了&#xA;注意：ESXi会把远程添加的存储当作远程磁盘，所以它期望有两条或以上路径可以到达它，如果没有找到，它会将其视为“已降级”。&#xA;解决步骤如下：&#xA;点开ESXI主机的”网络“，新建一个虚拟交换机&#xA;点开ESXI主机的”网络“，新建一个端口组&#xA;点开ESXI主机的”网络“，新建一个VMkernel网卡&#xA;点开ESXI主机的”存储“–”适配器“，选中那张iSCSI适配器，点”配置iSCSI“，”添加端口绑定“&#xA;点击选中刚才添加的VMkernel网卡&#xA;添加完成后的状态&#xA;点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，就可以正常显示存储&#xA;最后，还需要在ESXI主机中再配置一下iSCSI，多添加一条”动态目标“。因为普安infortrend GS1012R2是双控制器的，每个控制器都有各自的通道，比如上面的控制器接线图，ESXI服务器分别接了控制器A的通道1端口(设置的ip是192.168.1.31) 和 控制器B的通道1端口(设置的ip是192.168.1.32)，这样可以双路径通讯，如果其中一个控制器或者链路出现故障，会自动切换到另外一个控制器和链路。添加完成后，如下图：&#xA;………………………………………………………………………</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on </title>
+    <link>https://blog.freezz.cc/tags/blog/</link>
+    <description>Recent content in Blog on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Apr 2024 08:44:50 +0100</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>这是我的第一篇hugo博客</title>
+      <link>https://blog.freezz.cc/posts/202404a/</link>
+      <pubDate>Sun, 07 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/202404a/</guid>
+      <description>欢迎 欢迎来到我的博客。这是我的第一篇文章，使用Hugo部署。 为什么选择Hugo Hugo是一个快速的静态网站生成器。以下是我选择它的几个理由：&#xA;快速和高效 简单易学 大量的主题和插件 开始使用 要开始使用Hugo，你需要安装它并创建一个新的网站项目：&#xA;hugo new site mysite 感谢阅读，希望你喜欢我的博客！&#xA;Hugo 扩展的 Front Matter 属性 Hugo 不仅支持标准的 Front Matter 属性（如标题、日期、描述等），还提供了一些扩展属性，允许你更灵活地控制内容和页面的表现。以下是一些常见的扩展属性：&#xA;draft: 指示文章是否是草稿。如果设置为 true，则在构建生产版本的网站时，该文章不会被发布。 aliases: 为页面提供一个或多个别名（URL），用于重定向或兼容旧链接。 author: 指定文章的作者。这可以是一个字符串或者是一个作者对象的列表。 weight: 用于排序，尤其在列表页面上。数字越小，文章或页面越靠前。 slug: 自定义页面的 URL 片段。 url: 完全自定义页面的 URL。使用此属性时，Hugo 将不会基于文件路径生成 URL。 type: 指定页面的类型。在 Hugo 中，类型用于决定使用哪个模板来渲染页面。 layout: 指定用于渲染页面的模板文件的名称。 images: 为页面指定一个或多个图像，这些图像可以用于社交媒体分享或在模板中显示。 series: 将文章分组到系列中，用于将相关文章组织在一起。 这些扩展属性使 Hugo 在创建和管理内容时更加灵活，能够满足更复杂的网站需求。</description>
+    </item>
+  </channel>
+</rss>

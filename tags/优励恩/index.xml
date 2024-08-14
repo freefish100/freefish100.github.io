@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>优励恩 on </title>
+    <link>https://blog.freezz.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/</link>
+    <description>Recent content in 优励恩 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E4%BC%98%E5%8A%B1%E6%81%A9/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>优励恩的兄弟MFC-8535DN打印机更换硒鼓</title>
+      <link>https://blog.freezz.cc/posts/work20220222/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220222/</guid>
+      <description>【2022年2月22日】&#xA;兄弟MFC-8535DN因打印出来的纸张有黑边和字影，更换硒鼓后打印效果恢复正常。更换硒鼓后，需要重置硒鼓计数器。 重置硒鼓计数器步骤：&#xA;原硒鼓统计情况：</description>
+    </item>
+  </channel>
+</rss>

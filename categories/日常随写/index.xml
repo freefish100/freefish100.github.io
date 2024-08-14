@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>日常随写 on </title>
+    <link>https://blog.freezz.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/</link>
+    <description>Recent content in 日常随写 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术文章链接收录</title>
+      <link>https://blog.freezz.cc/posts/rc20220411/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/rc20220411/</guid>
+      <description>【2022年4月11日】&#xA;Linux Window10 VNC远程访问ubuntu20.04&#xA;https://www.cxyzjd.com/article/qq_33343767/112431846&#xA;Ubuntu20.04防火墙设置简易教程&#xA;https://cloud.tencent.com/developer/article/1711744&#xA;deepin-wine GitHub主页&#xA;https://github.com/zq1997/deepin-wine&#xA;deepin-wine支持软件列表&#xA;https://deepin-wine.i-m.dev/&#xA;ubuntu20.04使用wine安装微信卸载微信 https://blog.csdn.net/qq_25272679/article/details/113633441&#xA;Ubuntu20.04使用阿里云源安装Docker&#xA;https://www.jianshu.com/p/da1c7dc4217a&#xA;ubuntu使用docker安装微信&#xA;https://segmentfault.com/a/1190000040674722&#xA;https://ugirc.blog.csdn.net/article/details/109487664&#xA;ubuntu执行.sh文件几种方式区别&#xA;https://blog.csdn.net/u012336923/article/details/50474692&#xA;centos7安装时加载RAID磁盘阵列卡驱动&#xA;https://www.linuxprobe.com/centos7-raid-install.html&#xA;https://blog.csdn.net/u014389734/article/details/94005885&#xA;https://blog.csdn.net/weixin_33910305/article/details/116850746&#xA;Windows SQLServer2019+WSFC高可用部署&#xA;https://blog.csdn.net/shy871/article/details/117041269&#xA;硬件资讯和技术 戴尔DELL服务器相关&amp;ndash;胖大牛&#xA;http://b.7dell.com/index.php/index.html&#xA;USB 3.1 Gen 1、Gen 2 和USB 3.2三种接口之间的区别？</description>
+    </item>
+    <item>
+      <title>实用网址收录(不定时更新)</title>
+      <link>https://blog.freezz.cc/posts/rc20220223/</link>
+      <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/rc20220223/</guid>
+      <description>【2022年6月27日】&#xA;微软Azure云服务平台永久免费和限时免费项目&#xA;微软Azure文本转语音&#xA;微软Azure语音转文本&#xA;微软Azure语音翻译&#xA;图片在线去背景 https://www.photoroom.com/tools/remove-object-from-photo/&#xA;Chorme谷歌浏览器插件下载CRX搜搜&#xA;https://www.crxsoso.com/&#xA;硬盘容量整数分区在线计算工具 支持 NTFS 和 FAT32&#xA;https://tool.lu/partition/index.html&#xA;https://www.iplaysoft.com/tools/partition-calculator/&#xA;RAID 容量计算器&#xA;https://www.seagate.com/cn/zh/internal-hard-drives/raid-calculator/ （希捷科技） https://www.synology.cn/zh-cn/support/RAID_calculator （群晖科技）&#xA;Windows/Office 各版本镜像下载&#xA;https://next.itellyou.cn/&#xA;https://msdn.itellyou.cn/&#xA;http://www.imsdn.cn/&#xA;https://hellowindows.cn/&#xA;https://msdn.sjjzm.com/&#xA;https://www.xitongku.com/ (含office)&#xA;windows11官网iso镜像下载&#xA;https://www.microsoft.com/zh-cn/software-download/windows11&#xA;windows10官网iso镜像下载&#xA;https://www.microsoft.com/zh-cn/software-download/windows10&#xA;微软Windows密钥管理服务 (KMS) 客户端激活和通用批量许可证密钥 (GVLK)，Windows全系列。安装产品密钥命令 &amp;quot; slmgr /ipk 密钥 &amp;ldquo;， 如 slmgr /ipk D2N9P-3P6X9-2R39C-7RTCD-MDVJX&#xA;https://docs.microsoft.com/zh-cn/windows-server/get-started/kms-client-activation-keys&#xA;在线文件转换器Convertio。Convertio是一个在线文件格式转换工具网站，可以转换的类型有：文档、图像、音频、视频、电子书、字体等等。&#xA;https://convertio.co/zh/&#xA;MuseTransfer是一款极简有趣的大文件传输工具，无需下载客户端，甚至无需注册，打开网页即可全速上传或下载超大文件。&#xA;https://musetransfer.com/&#xA;Markdown 语法官方教程&#xA;https://markdown.com.cn/</description>
+    </item>
+    <item>
+      <title>博客基本搭建起来了</title>
+      <link>https://blog.freezz.cc/posts/my-first-post/</link>
+      <pubDate>Tue, 15 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/my-first-post/</guid>
+      <description>多天的折腾，博客基本搭建起来了。。。。。</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>戴尔 on 自游鱼</title>
+    <link>https://blog.freezz.cc/tags/%E6%88%B4%E5%B0%94/</link>
+    <description>Recent content in 戴尔 on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E6%88%B4%E5%B0%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术备忘记--戴尔设备篇(不定期更新)</title>
+      <link>https://blog.freezz.cc/posts/jsbw202410a/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/jsbw202410a/</guid>
+      <description>戴尔DELL设备 戴尔计算机不能通电、无法开机自检、无法启动或无视频的问题 Precision Workstation 工作站诊断指示灯参考指南&#xA;Precision Workstation 工作站诊断指示灯参考指南 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。&#xA;…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。&#xA;…………………………………. DELL 14G INTEL平台服务器BIOS设置详解&#xA;…………………………………. Precision 3650 塔式机规格参数&#xA;…………………………………. 在RAID控制器10中分配/取消分配设置热备盘&#xA;…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号&#xA;，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。&#xA;…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍&#xA;…………………………………. Dell EMC PowerEdge 服务器型号列表&#xA;……………….. PowerEdge 服务器命名约定&#xA;…………………………………. IDRAC9管理口配置&#xA;遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。&#xA;…………………………………. T140机器进入S140软阵列&#xA;开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>硬盘容量 on </title>
+    <link>https://blog.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/</link>
+    <description>Recent content in 硬盘容量 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>硬盘容量十进制与操作系统二进制的换算</title>
+      <link>https://blog.freezz.cc/posts/js20220624/</link>
+      <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220624/</guid>
+      <description>平时我们一般用十进制格式 (base-10) 计算硬盘容量，而操作系统以二进制格式 (base-2)计算的，这两种进制计算出来的容量是明显存在差异的。 Base 10 值称为千兆字节，缩写为 GB，Base 2 称为 Gibibytes，缩写为 GiB。为了确认操作系统中显示的硬盘容量与我们平时日常计算的容量相匹配，应将 GB 转换为 GiB 或将 Base 10 字节转换为 Base 2 字节。&#xA;千兆字节示例：&#xA;500 GB 卷约为 500,000,000,000 字节&#xA;注意： 1 GB = 1^10 字节 = 1,000,000,000 字节&#xA;Gibibytes 示例：&#xA;500 GB 卷约为 500,000,000,000 字节&#xA;注意： 1 GiB = 2^30 字节 = 1,073,741,824 字节&#xA;GB 到 GiB 示例&#xA;500,000,000,000 字节/1,073,741,824 Base 2 字节 = 465.661 GB&#xA;换言之，人工计算的500G约等于系统的465.661G，是系统的0.931322倍。&#xA;那么，1000GB（1TB），在系统中就约显示为 1000GB容量×0.931322系数=931.322G&#xA;10TB=10TB×0.931322=9.31322TB</description>
+    </item>
+  </channel>
+</rss>

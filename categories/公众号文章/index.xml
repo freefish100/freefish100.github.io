@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>公众号文章 on 自游鱼</title>
+    <link>https://blog.freezz.cc/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/</link>
+    <description>Recent content in 公众号文章 on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Apr 2024 14:41:01 +0800</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>公众号文章收集</title>
+      <link>https://blog.freezz.cc/posts/20240417a/</link>
+      <pubDate>Wed, 17 Apr 2024 14:41:01 +0800</pubDate>
+      <guid>https://blog.freezz.cc/posts/20240417a/</guid>
+      <description>一行代码就能激活windows/office&#xA;微软官方工具制作启动U盘全新安装windows</description>
+    </item>
+  </channel>
+</rss>

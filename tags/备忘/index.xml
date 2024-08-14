@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>备忘 on </title>
+    <link>https://blog.freezz.cc/tags/%E5%A4%87%E5%BF%98/</link>
+    <description>Recent content in 备忘 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E5%A4%87%E5%BF%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>工作笔记备忘(不定时更新)</title>
+      <link>https://blog.freezz.cc/posts/work20220302/</link>
+      <pubDate>Mon, 03 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220302/</guid>
+      <description>【2022年12月20日更新】&#xA;可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。&#xA;https://rockylinux.org/zh_CN/&#xA;2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS&#xA;https://almalinux.org/zh-hans/&#xA;戴尔DELL设备 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。&#xA;…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。&#xA;…………………………………. DELL 14G INTEL平台服务器BIOS设置详解&#xA;…………………………………. Precision 3650 塔式机规格参数&#xA;…………………………………. 在RAID控制器10中分配/取消分配设置热备盘&#xA;…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号&#xA;，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。&#xA;…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍&#xA;…………………………………. Dell EMC PowerEdge 服务器型号列表&#xA;……………….. PowerEdge 服务器命名约定&#xA;…………………………………. IDRAC9管理口配置&#xA;遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。</description>
+    </item>
+    <item>
+      <title>穿梭云应用服务启动服务的步骤和命令</title>
+      <link>https://blog.freezz.cc/posts/work20220505/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220505/</guid>
+      <description>SSH端口12233，cs&#xA;重启项目步骤：&#xA;进入data目录：&#xA;cd /data 订单系统，启动命令： nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;amp; 服务器重启后的步骤：&#xA;如果遇到SSH连接不上，需登录网页后台，打开命令页面，手动启动网卡：&#xA;systemctl start NetworkManager&#xA;可设置下次网卡自动启动：&#xA;systemctl enable NetworkManager&#xA;查看防火墙状态，需关闭防火墙&#xA;systemctl status firewalld&#xA;关闭防火墙&#xA;systemctl stop firewalld&#xA;第一步数据库 启动mysql数据库，命令：&#xA;service mysqld start&#xA;查看数据库启动状态，正常应该有active(runnign)字样&#xA;service mysqld status&#xA;启动mongodb数据库，命令：&#xA;cd /usr/local/mongo/service/bin&#xA;./mongod -f mongo.conf 第二步，启动nginx和redis Nginx启动命令：&#xA;/usr/sbin/nginx -s reload&#xA;（或者systemctl start nginx.service 或者 systemctl start nginx）&#xA;Redis 启动命令：</description>
+    </item>
+    <item>
+      <title>Markdown 语法教程</title>
+      <link>https://blog.freezz.cc/posts/js20220304/</link>
+      <pubDate>Fri, 04 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220304/</guid>
+      <description>Markdown 基本语法 Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。 它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。 因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。&#xA;Markdown 标题语法 要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题 () (例如：### My Header)。&#xA;Markdown 段落 要创建段落，请使用空白行将一行或多行文本进行分隔。不要用空格（spaces）或制表符（ tabs）缩进段落。&#xA;Markdown 换行语法 在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(&amp;lt;br&amp;gt;)。 几乎每个 Markdown 应用程序都支持两个或多个空格进行换行，称为 结尾空格（trailing whitespace) 的方式，但这是有争议的，因为很难在编辑器中直接看到空格，并且很多人在每个句子后面都会有意或无意地添加两个空格。由于这个原因，你可能要使用除结尾空格以外的其它方式来换行。幸运的是，几乎每个 Markdown 应用程序都支持另一种换行方式：HTML 的 标签。 为了兼容性，请在行尾添加“结尾空格”或 HTML 的 &amp;lt;br&amp;gt; 标签来实现换行。&#xA;Markdown 强调语法 通过将文本设置为粗体或斜体来强调其重要性。&#xA;粗体（Bold） 要加粗文本，请在单词或短语的前后各添加两个星号（asterisks）。如需加粗一个单词或短语的中间部分用以表示强调的话，请在要加粗部分的两侧各添加两个星号（asterisks）。例如：&#xA;我在学习**Markdown**语法 输出结果：我在学习Markdown语法&#xA;斜体（Italic） 要用斜体显示文本，请在单词或短语前后添加一个星号（asterisk）。要斜体突出单词的中间部分，请在字母前后各添加一个星号，中间不要带空格。例如：&#xA;我在学习*Markdown*语法 输出结果：我在学习Markdown语法&#xA;粗体（Bold）和斜体（Italic） 要同时用粗体和斜体突出显示文本，请在单词或短语的前后各添加三个星号。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各添加三个星号，中间不要带空格。例如：&#xA;我在学习***Markdown***语法 输出结果：我在学习Markdown语法&#xA;Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 符号&#xA;&amp;gt;正在学习Markdown的引用语法。&#xA;输出效果：&#xA;正在学习Markdown的引用语法。&#xA;多个段落的块引用：块引用可以包含多个段落。为段落之间的空白行添加一个 &amp;gt; 符号&#xA;&amp;gt;正在学习Markdown的引用语法。 &amp;gt; &amp;gt;正在学习Markdown的引用语法。 输出效果：</description>
+    </item>
+  </channel>
+</rss>

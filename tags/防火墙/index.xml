@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>防火墙 on </title>
+    <link>https://blog.freezz.cc/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</link>
+    <description>Recent content in 防火墙 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E9%98%B2%E7%81%AB%E5%A2%99/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Centos 防火墙firewall配置只允许特定ip访问</title>
+      <link>https://blog.freezz.cc/posts/js20220901b/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220901b/</guid>
+      <description>本实例情况如下： 服务器的80端口，需要配置为只有允许的ip才可以访问，其它未经允许的ip不能访问。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..&#xA;1. 启用防火墙，首先查看防火墙状态，看防火墙是否已开启&#xA;#查看防火墙状态&#xA;systemctl status firewalld&#xA;如果返回绿色active代表服务已启动。如果未启动，要开启防火墙并设置开机启动.&#xA;#开启防火墙&#xA;systemctl start firewalld&#xA;#开机启动&#xA;systemctl enable firewalld&#xA;2. 关闭端口访问&#xA;确保端口关闭。如果有已开放则要关闭端口，因为此处端口如果开放，是所有ip都可以进行访问。如果端口未开启则无需关闭。&#xA;#查询打开的端口&#xA;firewall-cmd --zone=public --list-ports&#xA;#关闭端口80&#xA;firewall-cmd --zone=public --remove-port=80/tcp --permanent&#xA;#重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查询打开的端口&#xA;firewall-cmd --list-all&#xA;3. 开放指定的ip访问服务器的80端口&#xA;#允许ip192.168.1.111访问80端口&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.111&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; 如果是开放一个网段，就把ip改成ip网段：&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.0/24&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; #重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查看已设置规则&#xA;firewall-cmd --zone=public --list-rich-rules&#xA;**查看防火墙已开放端口列表：&#xA;firewall-cmd --list-all</description>
+    </item>
+    <item>
+      <title>Linux Centos7 firewall防火墙的基本操作</title>
+      <link>https://blog.freezz.cc/posts/js20220901a/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220901a/</guid>
+      <description>Centos7中使用firewalld来作为防火墙，其底层调用的命令仍然是iptables等命令，但是在配置上发生了较大的变化。 Centos7中有两个位置存放了firewall的配置文件，一个是/etc/firewalld，一个是/usr/lib/firewalld，前者是用户配置目录，后者是系统配置目录。/usr/lib/firewalld目录中存放的是firewalld提供的一些默认和备份的配置文件，一般不随意改变，/etc/firewalld目录下才是用户配置的真正生效的配置文件，只有在/etc/firewalld目录不存在或该目录下不存在配置文件的情况下/usr/lib/firewalld目录下的配置文件才会生效。&#xA;zone的概念&#xA;zone定义了防火墙对某个连接、网口（interface）或源地址的信任等级，我们可以把他理解为防火墙对不同的连接（connection）、网口（interface）或源地址（source address）划分到不同的zone当中，而不同的zone定义了不同的规则，因此防火墙可以针对不同的连接、网口（interface）或源地址做出不同的行为。例如，我们将10.12.18.201这个地址划分到zone1中，将10.12.18.202这个地址划分到zone2中，然后zone1中定义的规则为：允许访问3306端口，其余的端口都拒绝访问；zone2中定义的规则为：拒绝访问3306端口，其余的端口都允许访问。那么10.12.18.201就仅能访问本机的3306端口，10.12.18.202就仅不能访问本机的3306端口。每个zone的防火墙规则是通过/etc/firewalld/zones目录下的xml配置文件来配置的。 zone和connection、interface、source address之间是一对多的关系，即一个connection、interface或source address仅能划分到一个zone中，而一个zone中可以包含多个connection、interface或source address。&#xA;对于一个接受到的请求具体使用哪个zone，firewalld是通过三种方法来判断的：&#xA;1、source，也就是源地址&#xA;2、interface，接收请求的网卡&#xA;3、firewalld.conf中配置的默认zone&#xA;这三个的优先级按顺序依次降低，也就是说如果按照source可以找到就不会再按interface去查找，如果前两个都找不到才会使用第三个，也就是学生在前面给大家讲过的在firewalld.conf中配置的默认zone。&#xA;预定义的zone&#xA;Centos7中firewalld为用户预定义了9个zone，分别为drop，block，public，external，dmz，work，home，internal，trusted。这9个zone的配置文件在/usr/lib/firewalld/zones目录下，通过查看他们的配置文件可以得知这9个zone的规则是怎么样的。&#xA;drop：任何传入本机的网络数据包都会被丢弃，并且不会回复，只允许本机对外访问其他服务器。&#xA;block：任何传入本机的网络连接请求都会被拒绝，并且会回复一条拒绝访问的消息。&#xA;public：用于本机处于公共网络环境的场景下，仅接受特定的连接请求，如仅接受某些特定的IP的连接请求，或仅对外部开放特定的某些端口。Centos 7 默认的public.xml文件中仅开放用于ssh连接请求的22端口和dhcpv6-client服务的546端口。&#xA;external：与public类似，Centos 7 默认仅开放用于ssh连接请求的22端口。&#xA;dmz：与external一样，Centos 7 默认也是仅开放用于ssh连接请求的22端口。&#xA;work：用于工作网络环境场景下，信任大部分的其他的计算机不会对本机进行攻击。Centos 7 默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，以及IPP协议的631端口。&#xA;home：用于家庭网络环境，信任网络上的其他计算机不会攻击本机。Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。&#xA;internal：与home一样，Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。 trusted：所有对本机的网络连接请求都会被接受。&#xA;（注：如果更改的防火墙配置，记得要执行 firewall-cmd &amp;ndash;reload 重新加载一次才会生效。）&#xA;操作firewall防火墙的常用命令&#xA;查看防火墙状态&#xA;systemctl status firewalld&#xA;关闭防火墙&#xA;systemctl stop firewalld&#xA;打开防火墙&#xA;systemctl start firewalld&#xA;重启防火墙&#xA;systemctl restart firewalld.service&#xA;开放端口&#xA;firewall-cmd --zone=public --add-port=80/tcp --permanent //在public作用域中开放80端口。&#xA;返回success为成功。&#xA;关闭端口&#xA;firewall-cmd --zone=public --remove-port=80/tcp --permanent //在public作用域中关闭80端口。&#xA;其中 --zone是作用域，--add-port=80/tcp 添加80端口，通讯协议为TCP，--permanent 设置为永久生效。</description>
+    </item>
+  </channel>
+</rss>

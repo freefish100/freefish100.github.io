@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>远程桌面 on </title>
+    <link>https://blog.freezz.cc/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</link>
+    <description>Recent content in 远程桌面 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows2012/win2016/win2019配置多用户访问远程桌面</title>
+      <link>https://blog.freezz.cc/posts/js20220902/</link>
+      <pubDate>Fri, 02 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220902/</guid>
+      <description>默认情况下，同时最多2个用户通过远程桌面的方式登录Windows Server 2016服务器，通过配置实现多用户登录：本文仅用于测试目的，不建议用于正式环境。&#xA;具体步骤：&#xA;1.安装远程桌面服务 【服务器管理器】-【添加角色和功能】&#xA;勾选【远程桌面服务】&#xA;2.解除远程桌面授权只有120天的有效期 安装过程中，系统会自动重启重启登录系统后，右下角会弹窗提示，远程桌面授权只有120天的有效期，需要向微软采购激活。本文为了测试，将按照下面的操作方式，跳过120天的限制。&#xA;修改注册表打开【注册表编辑器】，进入表项：HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod将这个注册表项删除&#xA;如果提示没有权限进行删除，需要添加权限。在【GracePeriod】表项上，右键-【权限】&#xA;将【所有者】修改为当前登录用户，通常需要使用本地管理员账号administrator记得勾选【替换子容器及所有者】，然后确定&#xA;此时，再次删除【GracePeriod】表项，将可以删除。&#xA;然后调整操作系统时间将操作系统的时间调整为未来的某个时间，例如2099年12月31日调整完时间后，重启操作系统，将时间调整为正确的时间即可。&#xA;3.使用组策略设置限制连接的数量 运行gpedit.msc打开组策略： 计算机配置-&amp;gt;管理模板-&amp;gt;Windows 组件-&amp;gt;远程桌面服务-&amp;gt;远程桌面会话主机-&amp;gt;连接，在右边窗口找到 “将远程桌面服务的用户限制到单独的远程桌面会话” 选项，编辑为 “已禁用”。找到 “限制连接的数量” ，编辑为 “已启用”，“允许的RD最大连接数”填写一个数值，比如100或1000，如果打算无限制连接数量，则填写999999 启用 【设置已中断会话的时间限制】为5分钟，表示用户断开连接5分钟后，将删除会话。可通过任务管理器查看到，或者运行cmd，执行 query user 命令也可查看正在连接的会话。&#xA;至此，所有的配置完成，该Windows server 2016将允许有超过2个以上的用户同时远程桌面连接到该服务器。&#xA;4.创建不同的用户访问远程桌面 创建不同的用户来访问远程桌面，可以使每个登录的用户拥有不同的桌面，实现每个用户个性化，也能实现不同的用户对某个文件的访问权限。&#xA;首先使用管理员登录服务器，然后在“计算机管理”中添加多个用户，再在“远程桌面”属性中添加能登录本服务器进行远程的用户。 设置好后，再重新登录远程&#xA;5.限制桌面远程的客户端把服务器的文件复制到客户端 运行gpedit.msc打开“计算机配置” ，计算机配置—管理模板—windows组件—远程桌面服务—远程桌面会话主机，选择【设备和资源重定向】，在右侧双击【不允许剪贴板重定向】&#xA;然后，运行gpupdate /force 或者重启机器。最好是重启机器使修改后的组策略生效，gpupdate /force 不一定能生效。&#xA;6.客户端连接可能会出现的错误解决方法 win10/win7作为客户端连接win2012/win2016/win2019远程桌面遇到的一些错误解决方法：&#xA;win10提示 “出现身份验证错误。要求的函数不受支持，这可能是由于CredSSP加密数据库修正” 。&#xA;解决方法：&#xA;方法一：运行 gpedit.msc 打开组策略 (注意：win10家庭版没有组策略，可使用下面的方法二解决)&#xA;运行 gpupdate /force 刷新组策略使设置生效&#xA;方法二：修改注册表：&#xA;运行 regedit，找到路径：计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System在System文件夹内创建文件夹项：\CredSSP\Parameters在Parameters文件夹内，新建 DWORD（32）位值（D），文件名为AllowEncryptionOracle，值为2。重新远程桌面连接一下，即可&#xA;如果win10提示 “出现身份验证错误。要求的函数不受支持，这可能是由于找不到ORALCE修正” 。这个解决办法可使用上面的方法二来解决。&#xA;若本地是win7系统，且没有 【加密 Oracle 修正】 选项 ,请先创建比如reg.</description>
+    </item>
+  </channel>
+</rss>

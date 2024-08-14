@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Centos on </title>
+    <link>https://blog.freezz.cc/tags/centos/</link>
+    <description>Recent content in Centos on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows远程桌面连接linux ubuntu centos</title>
+      <link>https://blog.freezz.cc/posts/js20230329/</link>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20230329/</guid>
+      <description>windows远程桌面连接ubuntu（ubuntu20.04下测试通过）&#xA;在Ubuntu上安装Xfce桌面环境。您可以使用以下命令安装Xfce桌面环境&#xA;sudo apt-get update&#xA;sudo apt-get install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils&#xA;安装xrdp&#xA;sudo apt-get update&#xA;sudo apt-get install xrdp&#xA;启动xrdp服务&#xA;sudo systemctl enable xrdp&#xA;sudo systemctl enable --now xrdp&#xA;配置Ubuntu防火墙以允许RDP连接&#xA;sudo ufw allow 3389/tcp&#xA;如果连接不上，提示类似如下的错误，要检查用户名密码是否正确，否则重启一次unbuntu电脑.&#xA;connection to sesman ip 127.0.0.1 port 3350 sesman connect ok sending login info to session manager,please wait... login failed for display 0 在Windows上打开远程桌面连接(或者运行“mstsc”)，输入Ubuntu主机的IP地址并点击“连接”。 在“登录到Windows”窗口中，选择“使用其他帐户”选项，并输入Ubuntu的用户名和密码。 单击“连接”按钮，等待几秒钟，即可连接到Ubuntu桌面。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&#xA;windows远程桌面连接Centos（Centos7.9下测试通过）&#xA;在CentOS 7.9上安装GNOME桌面环境&#xA;sudo yum groupinstall &amp;quot;GNOME Desktop&amp;quot;</description>
+    </item>
+    <item>
+      <title>Linux(Centos) top命令的使用详解</title>
+      <link>https://blog.freezz.cc/posts/js20221122/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20221122/</guid>
+      <description>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。&#xA;top参数详解 第一行，任务队列信息，同 uptime 命令的执行结果&#xA;系统时间：13:55:50&#xA;运行时间：up 1:47 min,&#xA;当前登录用户数： 1 user&#xA;负载均衡(uptime) load average: 0.00, 0.00, 0.00&#xA;average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值，这里的Load指的出于R(runing)和D(Uninterruptible sleep)的两种状态下的进程数。&#xA;在单核cpu情况下，如果load average 为0.4的表示，其cpu利用率只有40%， load average 为1，表示cpu利用率为100，如果load average 为高于1，比如为2.12，则说明cpu已经超负荷112% (2.12减满负荷1，即为超负荷部分)。&#xA;在多核cpu的机器上，需要将以上的1,5,15的负载除以对应的cpu核数，才好评估对应的cpu的负载情况。比如，一个cpu为40核的机器，其cpu过去一分钟的使用情况是8.26，则8.26/40=0.2065 ，说明cpu使用率只有20% 。&#xA;第二行，Tasks — 任务（进程）&#xA;总进程:298 total, 运行:1 running, 休眠:297 sleeping, 停止: 0 stopped, 僵尸进程: 0 zombie&#xA;第三行，cpu状态信息&#xA;0.1%us【user space】— 用户空间占用CPU的百分比。&#xA;0.2%sy【sysctl】— 内核空间占用CPU的百分比。&#xA;0.0%ni【】— 改变过优先级的进程占用CPU的百分比&#xA;99.6%id【idolt】— 空闲CPU百分比&#xA;0.0%wa【wait】— IO等待占用CPU的百分比&#xA;0.0%hi【Hardware IRQ】— 硬中断占用CPU的百分比&#xA;0.0%si【Software Interrupts】— 软中断占用CPU的百分比&#xA;在top 命令下，按数字“1”可监控每个逻辑CPU的状况：如图，服务器有8个逻辑CPU，实际上是1个物理CPU。&#xA;如果不按1，则在top视图里面显示的是所有cpu的平均值。&#xA;第四行,内存状态</description>
+    </item>
+    <item>
+      <title>Linux Centos 防火墙firewall配置只允许特定ip访问</title>
+      <link>https://blog.freezz.cc/posts/js20220901b/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220901b/</guid>
+      <description>本实例情况如下： 服务器的80端口，需要配置为只有允许的ip才可以访问，其它未经允许的ip不能访问。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..&#xA;1. 启用防火墙，首先查看防火墙状态，看防火墙是否已开启&#xA;#查看防火墙状态&#xA;systemctl status firewalld&#xA;如果返回绿色active代表服务已启动。如果未启动，要开启防火墙并设置开机启动.&#xA;#开启防火墙&#xA;systemctl start firewalld&#xA;#开机启动&#xA;systemctl enable firewalld&#xA;2. 关闭端口访问&#xA;确保端口关闭。如果有已开放则要关闭端口，因为此处端口如果开放，是所有ip都可以进行访问。如果端口未开启则无需关闭。&#xA;#查询打开的端口&#xA;firewall-cmd --zone=public --list-ports&#xA;#关闭端口80&#xA;firewall-cmd --zone=public --remove-port=80/tcp --permanent&#xA;#重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查询打开的端口&#xA;firewall-cmd --list-all&#xA;3. 开放指定的ip访问服务器的80端口&#xA;#允许ip192.168.1.111访问80端口&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.111&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; 如果是开放一个网段，就把ip改成ip网段：&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.0/24&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; #重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查看已设置规则&#xA;firewall-cmd --zone=public --list-rich-rules&#xA;**查看防火墙已开放端口列表：&#xA;firewall-cmd --list-all</description>
+    </item>
+    <item>
+      <title>Linux Centos7 firewall防火墙的基本操作</title>
+      <link>https://blog.freezz.cc/posts/js20220901a/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220901a/</guid>
+      <description>Centos7中使用firewalld来作为防火墙，其底层调用的命令仍然是iptables等命令，但是在配置上发生了较大的变化。 Centos7中有两个位置存放了firewall的配置文件，一个是/etc/firewalld，一个是/usr/lib/firewalld，前者是用户配置目录，后者是系统配置目录。/usr/lib/firewalld目录中存放的是firewalld提供的一些默认和备份的配置文件，一般不随意改变，/etc/firewalld目录下才是用户配置的真正生效的配置文件，只有在/etc/firewalld目录不存在或该目录下不存在配置文件的情况下/usr/lib/firewalld目录下的配置文件才会生效。&#xA;zone的概念&#xA;zone定义了防火墙对某个连接、网口（interface）或源地址的信任等级，我们可以把他理解为防火墙对不同的连接（connection）、网口（interface）或源地址（source address）划分到不同的zone当中，而不同的zone定义了不同的规则，因此防火墙可以针对不同的连接、网口（interface）或源地址做出不同的行为。例如，我们将10.12.18.201这个地址划分到zone1中，将10.12.18.202这个地址划分到zone2中，然后zone1中定义的规则为：允许访问3306端口，其余的端口都拒绝访问；zone2中定义的规则为：拒绝访问3306端口，其余的端口都允许访问。那么10.12.18.201就仅能访问本机的3306端口，10.12.18.202就仅不能访问本机的3306端口。每个zone的防火墙规则是通过/etc/firewalld/zones目录下的xml配置文件来配置的。 zone和connection、interface、source address之间是一对多的关系，即一个connection、interface或source address仅能划分到一个zone中，而一个zone中可以包含多个connection、interface或source address。&#xA;对于一个接受到的请求具体使用哪个zone，firewalld是通过三种方法来判断的：&#xA;1、source，也就是源地址&#xA;2、interface，接收请求的网卡&#xA;3、firewalld.conf中配置的默认zone&#xA;这三个的优先级按顺序依次降低，也就是说如果按照source可以找到就不会再按interface去查找，如果前两个都找不到才会使用第三个，也就是学生在前面给大家讲过的在firewalld.conf中配置的默认zone。&#xA;预定义的zone&#xA;Centos7中firewalld为用户预定义了9个zone，分别为drop，block，public，external，dmz，work，home，internal，trusted。这9个zone的配置文件在/usr/lib/firewalld/zones目录下，通过查看他们的配置文件可以得知这9个zone的规则是怎么样的。&#xA;drop：任何传入本机的网络数据包都会被丢弃，并且不会回复，只允许本机对外访问其他服务器。&#xA;block：任何传入本机的网络连接请求都会被拒绝，并且会回复一条拒绝访问的消息。&#xA;public：用于本机处于公共网络环境的场景下，仅接受特定的连接请求，如仅接受某些特定的IP的连接请求，或仅对外部开放特定的某些端口。Centos 7 默认的public.xml文件中仅开放用于ssh连接请求的22端口和dhcpv6-client服务的546端口。&#xA;external：与public类似，Centos 7 默认仅开放用于ssh连接请求的22端口。&#xA;dmz：与external一样，Centos 7 默认也是仅开放用于ssh连接请求的22端口。&#xA;work：用于工作网络环境场景下，信任大部分的其他的计算机不会对本机进行攻击。Centos 7 默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，以及IPP协议的631端口。&#xA;home：用于家庭网络环境，信任网络上的其他计算机不会攻击本机。Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。&#xA;internal：与home一样，Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。 trusted：所有对本机的网络连接请求都会被接受。&#xA;（注：如果更改的防火墙配置，记得要执行 firewall-cmd &amp;ndash;reload 重新加载一次才会生效。）&#xA;操作firewall防火墙的常用命令&#xA;查看防火墙状态&#xA;systemctl status firewalld&#xA;关闭防火墙&#xA;systemctl stop firewalld&#xA;打开防火墙&#xA;systemctl start firewalld&#xA;重启防火墙&#xA;systemctl restart firewalld.service&#xA;开放端口&#xA;firewall-cmd --zone=public --add-port=80/tcp --permanent //在public作用域中开放80端口。&#xA;返回success为成功。&#xA;关闭端口&#xA;firewall-cmd --zone=public --remove-port=80/tcp --permanent //在public作用域中关闭80端口。&#xA;其中 --zone是作用域，--add-port=80/tcp 添加80端口，通讯协议为TCP，--permanent 设置为永久生效。</description>
+    </item>
+    <item>
+      <title>Centos修改硬盘分区大小,把home分区部分容量分配给根分区</title>
+      <link>https://blog.freezz.cc/posts/js20220812/</link>
+      <pubDate>Fri, 12 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220812/</guid>
+      <description>执行df -h查看硬盘使用情况，先看下有没有未分配的磁盘，如果有的话可以把未分配的空间直接分过去，这里都已经使用了，需要从home中分出空间给根目录&#xA;备份home目录文件&#xA;cp -r /home/ homebak/&#xA;使用 umount /home 卸载home分区，并 df -h 查看是否成功。如果提示目标忙，则用fuser -m -v -i -k /home 干掉进程，然后再执行umount /home&#xA;再执行 df -h 查看分区挂载情况：&#xA;这里的显示已经没有了/home，已成功卸载了home分区&#xA;删除home分区（删除home所在lv）：lvremove /dev/mapper/centos-home&#xA;给根目录对应的/dev/mapper/centos-root增加5G空间：lvextend -L +5G /dev/mapper/centos-root&#xA;扩容拓展根分区文件系统 xfs_growfs /dev/mapper/centos-root&#xA;重建home（重建home的lv）。先执行 fdisk -l 查看总量减去已分配的剩下的就是可以分配的大小，不够的话会有提示&#xA;或者执行 vgdisplay 命令，显示LVM卷组的信息，查看到可用的分配容量&#xA;这里显示可用的分配容量为5G。执行 lvcreate -L 5G -n home centos -y 重建home。其中“centos”是home所处的卷组名称（vgdisplay命令可以查看卷组名称），加参数y， 是因为执行时有可能会提示是否擦除xfs签名，加-y 就是擦除xfs签名。&#xA;创建home文件系统，执行 mkfs.xfs /dev/centos/home&#xA;如果出现如下提示：&#xA;mkfs.xfs: /dev/centos/home appears to contain an existing filesystem (xfs_external_log).&#xA;mkfs.xfs: Use the -f option to force overwrite.</description>
+    </item>
+    <item>
+      <title>命令的形式列出各个linux系统已经安装的软件包</title>
+      <link>https://blog.freezz.cc/posts/js20220714/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220714/</guid>
+      <description>在 Arch Linux 中使用 pacman 显示已安装的包 Pacman是 Arch Linux 及其衍生产品（如 EndeavourOS 和 Manjaro Linux）的默认包管理器。要列出Arch Linux 及其衍生产品中使用pacman显示所有已安装软件包，如下：&#xA;pacman -Q&#xA;如果要逐页查看输出，请将输出通过管道传输到more命令&#xA;pacman -Q | more&#xA;仅列出显式安装的软件包和版本：&#xA;pacman -Qe&#xA;要仅列出 Arch Linux 中已安装软件包的总数，请将pacman输出通过管道传输到wc命令：&#xA;pacman -Q | wc -l 会回显一个数字的，就是安装包的总数量&#xA;在Alpine Linux中使用apk命令获取已安装包列表 Apk是 Alpine Package Manager 的缩写，是 Alpine Linux 的默认包管理器。在 Alpine Linux 中查看已安装包列表的命令是：&#xA;apk info&#xA;如果要查看已安装的软件包列表以及版本号和软件包描述，请使用-vv如下标志：&#xA;apk info -vv&#xA;要仅列出 Alpine Linux 中所有已安装软件包的总数，请将apk info输出通过管道发送到wc如下命令：&#xA;apk info | wc -l&#xA;在 Debian、Ubuntu 中使用 apt 命令查找已安装的包 Apt为 Debian、Ubuntu 和其他基于 Debian 的系统中的包管理系统提供了高级命令行界面。要在 Debian、Ubuntu、Linux Mint 和其他基于 DEB 的系统中显示已安装软件包的列表， 请运行：</description>
+    </item>
+    <item>
+      <title>使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明</title>
+      <link>https://blog.freezz.cc/posts/js20220713/</link>
+      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220713/</guid>
+      <description>NTFS 是 Windows NT 系列操作系统支持的磁盘文件系统格式，它是一个特别为网络和磁盘配额、文件加密等管理安全特性设计的文件系统。 而 Linux 内核中新进入主线支持的 NTFS3 驱动是一个功能齐全的 NTFS 驱动程序，该驱动程序适用于最高的 NTFS 3.1 版本。&#xA;最初，Linux 内核没有 NTFS 的原生支持，后来对 NTFS 的支持也仅提供了只读功能。来自 Tuxera 的 NTFS-3G 是之前主流的解决方案，但在实际使用中也存在一些问题。 NTFS-3G 是借助 Linux 的用户空间文件系统（FUSE）模块在用户层实现的一个对 NTFS 支持的文件系统，其对 NTFS 的访问逻辑代码都是在用户层代码实现的。 在 NTFS3 出现之前，Linux 上使用 NTFS 主要问题还是缺乏稳定且功能齐全的读/写支持。2020 年，Paragon 软件公司做出了一个惊人的决定： 尝试将之前只提供给商业客户的 NTFS3 驱动程序贡献到 Linux 主线。最终，在经过多轮审核和修改之后，Linux 内核 5.15 合并了 Paragon 提供的 NTFS3 内核驱动， 它拥有更高的性能和更多的特性：&#xA;该驱动程序实现了对 NTFS 文件系统中的正常、稀疏和压缩文件的读/写支持。 支持本地日志回放。 支持已挂载的 NTFS 卷的 NFS 导出。 支持文件和文件夹的权限管理。 使用 NTFS3 驱动挂载 NTFS 卷：使用 NTFS3 驱动挂载时使用的文件系统类型是 ntfs3。</description>
+    </item>
+    <item>
+      <title>开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH </title>
+      <link>https://blog.freezz.cc/posts/js20220628/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220628/</guid>
+      <description>查看SSH是否安装：&#xA;输入命令：rpm -qa | grep ssh&#xA;注：若没安装SSH则可输入：yum install openssh-server安装。&#xA;启动SSH服务&#xA;输入命令：systemctl start sshd 或者 service sshd start 来启动SSH服务&#xA;重启后可输入：netstat -antp | grep sshd 查看是否启动22端口（可略）&#xA;设置SSH服务为开机启动&#xA;输入命令：systemctl enable ssh 或者 chkconfig sshd on 即可。&#xA;注：若是chkconfig sshd off则禁止SSH开机启动。&#xA;使用SSD终端进行远程连接，比如Xshell，FinalShell&#xA;点击新建连接图标，在主机框输入IP。然后根据提示输入登录的用户名密码。&#xA;注：网络要通，账号密码要对。&#xA;Ubuntu 20.04上启用SSH&#xA;默认情况下，首次安装Ubuntu时，不允许通过SSH进行远程访问。以root 用户或具有sudo特权的用户执行以下步骤，以在Ubuntu系统上安装并启用SSH：&#xA;安装openssh-server软件包：&#xA;sudo apt update&#xA;sudo apt install openssh-server&#xA;安装完成后，SSH服务将自动启动。您可以通过键入以下命令来验证SSH是否正在运行：&#xA;sudo systemctl status ssh&#xA;按q返回到命令行提示符。 防火墙放行SSH。Ubuntu随附了一个名为UFW的防火墙配置工具，查看防火墙状态：&#xA;sudo ufw status verbose&#xA;启用ubuntu ufw防火墙： sudo ufw enable&#xA;sudo ufw default deny 运行以上两条命令后，开启了防火墙，并在系统启动时自动开启。</description>
+    </item>
+    <item>
+      <title>Centos8/7 激活（启用连接）网卡 NetworkManager网络设置</title>
+      <link>https://blog.freezz.cc/posts/js20220623/</link>
+      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220623/</guid>
+      <description>Linux查看网卡ip地址命令：&#xA;ip addr&#xA;或 ip address&#xA;或 ip addr show&#xA;或 ip address show&#xA;Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这样才能访问网络。&#xA;启用网卡连接connection（相当于ifup）&#xA;mncli d 查看网上接口信息&#xA;nmcli c up ethX(enoX) 激活打开网卡连接，ethX(enoX)为网卡接口名称&#xA;停止网卡连接connection（相当于ifdown）&#xA;nmcli c down ethX(enoX)&#xA;设置自动启动网卡&#xA;nmcli connection modify ethX(enoX) connection.autoconnect yes&#xA;例如 nmcli connection modify ens192 connection.autoconnect yes&#xA;实际修改的是网卡配置文件ONBOOT=yes&#xA;修改IP&#xA;在/etc/sysconfig/network-scripts目录下存放着网卡的配置文件，文件名称是 ifcfg- 网卡名称。&#xA;cd /etc/sysconfig/network-scripts/&#xA;ls&#xA;找到网卡配置文件，使用vim修改文件。&#xA;网卡配置文件的默认配置&#xA;TYPE=Ethernet PROXY_METHOD=none BROWSER_ONLY=no BOOTPROTO=dhcp DEFROUTE=yes IPV4_FAILURE_FATAL=no IPV6INIT=yes IPV6_AUTOCONF=yes IPV6_DEFROUTE=yes IPV6_FAILURE_FATAL=no IPV6_ADDR_GEN_MODE=stable-privacy NAME=ens33 UUID=e4987998-a4ce-4cef-96f5-a3106a97f5bf DEVICE=ens33 ONBOOT=no #如果使用dhcp分配ip的话，只需要将这里no改为yes，然后重启网络服务就行,使用 nmcli c reload 命令重启网络服务 如果需要配置静态ip，则按照以下修改方法修改</description>
+    </item>
+    <item>
+      <title>Centos7/8 Linux 配置网络ip地址 nmtui命令</title>
+      <link>https://blog.freezz.cc/posts/js202200526/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js202200526/</guid>
+      <description>nmcli安装命令：&#xA;yum install NetworkManager&#xA;nmtui安装命令：&#xA;yum install NetworkManager-tui&#xA;这个命令也可以安装：&#xA;yum install NetworkManager-tui;nmtui;&#xA;启动&#xA;systemctl start NetworkManager&#xA;运行nmtui图形界面：&#xA;nmtui&#xA;查看网卡和ip地址 nmcli device show&#xA;如果你想使用旧版的ifconfig作为过渡，可以把它安装回来：&#xA;yum install net-tools&#xA;这个包里面包括了ifconfig, netstat, whois等一些惯用的命令，可以把它装回来方便使用。</description>
+    </item>
+    <item>
+      <title>Linux CentOS 命令摘录备忘</title>
+      <link>https://blog.freezz.cc/posts/js20220401/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220401/</guid>
+      <description>可用 pwd 命令查看用户的当前目录&#xA;** sudo -i 命令可切换成root用户&#xA;Linux查看设置开机启动的服务列表&#xA;systemctl list-units --type=service&#xA;压缩、解压&#xA;tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）&#xA;tar -xvf file.tar 解包到当前目录&#xA;tar -xvf file.tar -C dir 把文件解压到指定目录中&#xA;zip 压缩后文件名 源文件&#xA;zip -r 压缩后目录名 原目录&#xA;unzip file.zip -d dir 解压到指定目录&#xA;gunzip file1.gz 解压 file1.gz&#xA;gzip file1 压缩 file1&#xA;gzip -9 file 最大程度压缩文件&#xA;tar比较常用的使用方式：&#xA;打包压缩：&amp;ldquo;tar -czvf 压缩包名称.tar.gz 要打包的目录”&#xA;解压缩：&amp;ldquo;tar -xzvf 压缩包名称.tar.gz&amp;rdquo;&#xA;文件、目录、文件夹和文件大小&#xA;rm -f file 参数-f用来强制删除文件，不提示&#xA;rm [文件名] 删除文件&#xA;rm -r dir 递归删除其文件和文件夹，就是删除目录是要加上参数-r，否则删除不了 rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示</description>
+    </item>
+  </channel>
+</rss>

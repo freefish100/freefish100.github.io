@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>穿梭 on </title>
+    <link>https://blog.freezz.cc/tags/%E7%A9%BF%E6%A2%AD/</link>
+    <description>Recent content in 穿梭 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E7%A9%BF%E6%A2%AD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>穿梭云应用服务启动服务的步骤和命令</title>
+      <link>https://blog.freezz.cc/posts/work20220505/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220505/</guid>
+      <description>SSH端口12233，cs&#xA;重启项目步骤：&#xA;进入data目录：&#xA;cd /data 订单系统，启动命令： nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;amp; 服务器重启后的步骤：&#xA;如果遇到SSH连接不上，需登录网页后台，打开命令页面，手动启动网卡：&#xA;systemctl start NetworkManager&#xA;可设置下次网卡自动启动：&#xA;systemctl enable NetworkManager&#xA;查看防火墙状态，需关闭防火墙&#xA;systemctl status firewalld&#xA;关闭防火墙&#xA;systemctl stop firewalld&#xA;第一步数据库 启动mysql数据库，命令：&#xA;service mysqld start&#xA;查看数据库启动状态，正常应该有active(runnign)字样&#xA;service mysqld status&#xA;启动mongodb数据库，命令：&#xA;cd /usr/local/mongo/service/bin&#xA;./mongod -f mongo.conf 第二步，启动nginx和redis Nginx启动命令：&#xA;/usr/sbin/nginx -s reload&#xA;（或者systemctl start nginx.service 或者 systemctl start nginx）&#xA;Redis 启动命令：</description>
+    </item>
+  </channel>
+</rss>

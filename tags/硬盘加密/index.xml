@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>硬盘加密 on </title>
+    <link>https://blog.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/</link>
+    <description>Recent content in 硬盘加密 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密</title>
+      <link>https://blog.freezz.cc/posts/js20220413/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220413/</guid>
+      <description>注重数据保护的 PC 用户应该接触过 Windows 自带的 「BitLocker 驱动器加密」工具，该工具是一项能对磁盘驱动器进行加密保护的安全工具。我们知道升级 Windows 11 系统最重要的条件之一便是具备「TPM 2.0 安全模块」并开启它，在开启 TPM 后 BitLocker 将变为可用状态。&#xA;在部分设备特别是兼容性较好的设备上首次登录 Microsoft 账户时，可能会在未经过你的允许下自动启用 BitLocker。这时候你的硬盘就会被 BitLocker 加密，但因为正常使用过程中数据的读写不受影响。许多用户甚至并没有意识到他们的磁盘已被加密，并且不知道解锁密码。 这无疑是给用户带来了一定的隐患。&#xA;例如当你彻底恢复以及重装系统后，访问加密磁盘的数据就需要先对其进行解密，因为 BitLocker 的安全系数很高，即使重装系统也无法解除加密。 那么这就产生了两个问题：如何确认自己的磁盘是否启用 BitLocker 加密？加密后如何解锁磁盘？&#xA;首先，在搜索菜单栏搜索「BitLocker」并打开「管理 BitLocker」；新窗口中，对应盘符后面显示「BitLocker已关闭」表示该磁盘并未加密，显示「BitLocker 已启用」则表示已加密，已开启加密的，要备份好密钥，以备以后可以恢复密钥查看数据。&#xA;如果磁盘可以正常打开访问，那么直接点击需要解锁磁盘后面的「关闭 BitLocker」，这时候一般不用密码，只需耐心等待即可成功解锁。 注意：磁盘数据量比较大的情况下，解锁需要花费较长时间。&#xA;而解锁时如果提示输入密码以及系统故障等问题无法进入系统时，解除磁盘加密则可以用到我们的恢复秘钥。其实对磁盘加密时，Windows 通常会自动将恢复秘钥保存至我们的 Microsoft 帐户中。 只需要打开以下网站并登录需要解密设备上的关联 Microsoft 账户即可查看恢复秘钥。&#xA;account.microsoft.com/devices/recoverykey&#xA;在解锁磁盘时点击「更多选项」；&#xA;然后点击「输入恢复秘钥」；&#xA;最后输入查询到的48位恢复秘钥即可解锁。&#xA;来源 https://mp.weixin.qq.com/s?__biz=Mzg3MzY2MjgxMg==&amp;amp;mid=2247634284&amp;amp;idx=1&amp;amp;sn=ce4941867c169f02651270919b6935ee&amp;amp;chksm=ced01d5ff9a79449683a16dec52bb7a1b4da8a26cc83d7f6a46671293a348a21d84b923a4962&amp;amp;mpshare=1&amp;amp;scene=23&amp;amp;srcid=04137amH72s2c9hrYl0AzLfm&amp;amp;sharer_sharetime=1649831238869&amp;amp;sharer_shareid=970709776a181e42a8eeec84ec08562f#rd</description>
+    </item>
+  </channel>
+</rss>

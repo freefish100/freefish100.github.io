@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网络配置  on </title>
+    <link>https://blog.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE-/</link>
+    <description>Recent content in 网络配置  on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE-/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos8/7 激活（启用连接）网卡 NetworkManager网络设置</title>
+      <link>https://blog.freezz.cc/posts/js20220623/</link>
+      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220623/</guid>
+      <description>Linux查看网卡ip地址命令：&#xA;ip addr&#xA;或 ip address&#xA;或 ip addr show&#xA;或 ip address show&#xA;Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这样才能访问网络。&#xA;启用网卡连接connection（相当于ifup）&#xA;mncli d 查看网上接口信息&#xA;nmcli c up ethX(enoX) 激活打开网卡连接，ethX(enoX)为网卡接口名称&#xA;停止网卡连接connection（相当于ifdown）&#xA;nmcli c down ethX(enoX)&#xA;设置自动启动网卡&#xA;nmcli connection modify ethX(enoX) connection.autoconnect yes&#xA;例如 nmcli connection modify ens192 connection.autoconnect yes&#xA;实际修改的是网卡配置文件ONBOOT=yes&#xA;修改IP&#xA;在/etc/sysconfig/network-scripts目录下存放着网卡的配置文件，文件名称是 ifcfg- 网卡名称。&#xA;cd /etc/sysconfig/network-scripts/&#xA;ls&#xA;找到网卡配置文件，使用vim修改文件。&#xA;网卡配置文件的默认配置&#xA;TYPE=Ethernet PROXY_METHOD=none BROWSER_ONLY=no BOOTPROTO=dhcp DEFROUTE=yes IPV4_FAILURE_FATAL=no IPV6INIT=yes IPV6_AUTOCONF=yes IPV6_DEFROUTE=yes IPV6_FAILURE_FATAL=no IPV6_ADDR_GEN_MODE=stable-privacy NAME=ens33 UUID=e4987998-a4ce-4cef-96f5-a3106a97f5bf DEVICE=ens33 ONBOOT=no #如果使用dhcp分配ip的话，只需要将这里no改为yes，然后重启网络服务就行,使用 nmcli c reload 命令重启网络服务 如果需要配置静态ip，则按照以下修改方法修改</description>
+    </item>
+    <item>
+      <title>Centos7/8 Linux 配置网络ip地址 nmtui命令</title>
+      <link>https://blog.freezz.cc/posts/js202200526/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js202200526/</guid>
+      <description>nmcli安装命令：&#xA;yum install NetworkManager&#xA;nmtui安装命令：&#xA;yum install NetworkManager-tui&#xA;这个命令也可以安装：&#xA;yum install NetworkManager-tui;nmtui;&#xA;启动&#xA;systemctl start NetworkManager&#xA;运行nmtui图形界面：&#xA;nmtui&#xA;查看网卡和ip地址 nmcli device show&#xA;如果你想使用旧版的ifconfig作为过渡，可以把它安装回来：&#xA;yum install net-tools&#xA;这个包里面包括了ifconfig, netstat, whois等一些惯用的命令，可以把它装回来方便使用。</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工作笔记 on </title>
+    <link>https://blog.freezz.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 工作笔记 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>工作笔记备忘(不定时更新)</title>
+      <link>https://blog.freezz.cc/posts/work20220302/</link>
+      <pubDate>Mon, 03 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220302/</guid>
+      <description>【2022年12月20日更新】&#xA;可以替代Centos的发行版本推荐 1、Rocky Linux是一个开源的企业级操作系统，旨在与 Red Hat Enterprise Linux®100% 1:1兼容。&#xA;https://rockylinux.org/zh_CN/&#xA;2、一个开源的、由社区拥有并治理且永久免费的企业 Linux 发行版，专注于长期稳定性，提供一个强大的生产级平台。AlmaLinux OS 与 RHEL® 和 CentOS Stream 是 1:1 的二进制兼容。 AlmaLinux OS&#xA;https://almalinux.org/zh-hans/&#xA;戴尔DELL设备 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。&#xA;…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。&#xA;…………………………………. DELL 14G INTEL平台服务器BIOS设置详解&#xA;…………………………………. Precision 3650 塔式机规格参数&#xA;…………………………………. 在RAID控制器10中分配/取消分配设置热备盘&#xA;…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号&#xA;，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。&#xA;…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍&#xA;…………………………………. Dell EMC PowerEdge 服务器型号列表&#xA;……………….. PowerEdge 服务器命名约定&#xA;…………………………………. IDRAC9管理口配置&#xA;遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。</description>
+    </item>
+    <item>
+      <title>穿梭云应用服务启动服务的步骤和命令</title>
+      <link>https://blog.freezz.cc/posts/work20220505/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220505/</guid>
+      <description>SSH端口12233，cs&#xA;重启项目步骤：&#xA;进入data目录：&#xA;cd /data 订单系统，启动命令： nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;amp; 服务器重启后的步骤：&#xA;如果遇到SSH连接不上，需登录网页后台，打开命令页面，手动启动网卡：&#xA;systemctl start NetworkManager&#xA;可设置下次网卡自动启动：&#xA;systemctl enable NetworkManager&#xA;查看防火墙状态，需关闭防火墙&#xA;systemctl status firewalld&#xA;关闭防火墙&#xA;systemctl stop firewalld&#xA;第一步数据库 启动mysql数据库，命令：&#xA;service mysqld start&#xA;查看数据库启动状态，正常应该有active(runnign)字样&#xA;service mysqld status&#xA;启动mongodb数据库，命令：&#xA;cd /usr/local/mongo/service/bin&#xA;./mongod -f mongo.conf 第二步，启动nginx和redis Nginx启动命令：&#xA;/usr/sbin/nginx -s reload&#xA;（或者systemctl start nginx.service 或者 systemctl start nginx）&#xA;Redis 启动命令：</description>
+    </item>
+    <item>
+      <title>优励恩的兄弟MFC-8535DN打印机更换硒鼓</title>
+      <link>https://blog.freezz.cc/posts/work20220222/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220222/</guid>
+      <description>【2022年2月22日】&#xA;兄弟MFC-8535DN因打印出来的纸张有黑边和字影，更换硒鼓后打印效果恢复正常。更换硒鼓后，需要重置硒鼓计数器。 重置硒鼓计数器步骤：&#xA;原硒鼓统计情况：</description>
+    </item>
+  </channel>
+</rss>

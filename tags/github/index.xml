@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on </title>
+    <link>https://blog.freezz.cc/tags/github/</link>
+    <description>Recent content in Github on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>部署hugo网站到github</title>
+      <link>https://blog.freezz.cc/posts/js20220317/</link>
+      <pubDate>Thu, 17 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220317/</guid>
+      <description>部署hugo网站到github&#xA;代码行&#xA;第一次开始部署&#xA;☞使用Git Bash终端&#xA;☞新建一个网站&#xA;hugo new site ffblog 其中 &amp;ldquo;ffblog&amp;rdquo; 是网站文件夹名&#xA;☞把主题文件复制到themes文件夹内&#xA;☞进入网站文件夹根目录&#xA;cd ffblog&#xA;☞将主题添加到站点配置，“bootstrap”是主题(文件)名称&#xA;echo theme = \&amp;quot;bootstrap\&amp;quot; &amp;gt;&amp;gt; config.toml&#xA;☞新建一篇文章&#xA;hugo new post/my-first-post.md ☞启动 Hugo server，运行本地网站&#xA;hugo server -D ☞进入网站根目录&#xA;cd ~/ffblog&#xA;☞构建Hugo 网站，默认将生成的静态站点文件保存到 &amp;ldquo;public&amp;rdquo; 目录，&amp;ldquo;public&amp;rdquo; 文件夹会被转换为 Git 库&#xA;hugo&#xA;☞进入public目录&#xA;cd ffblog/public&#xA;☞初始化 Git 库&#xA;git init&#xA;☞显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件&#xA;ls -a&#xA;☞新建一个主分支main&#xA;git branch -M main&#xA;☞将 Git 本地库关联至远程库，如果 [remote &amp;ldquo;origin&amp;rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vmware  on </title>
+    <link>http://localhost:1313/tags/vmware-/</link>
+    <description>Recent content in Vmware  on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vmware-/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ESXI 虚拟交换机配置 Trunk 端口组 VLan</title>
+      <link>http://localhost:1313/posts/js20220411/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/js20220411/</guid>
+      <description>ESXI 标准 vSwitch 支持自定义 VLAN ID，以实现网络隔离！根据 VLAN ID 的不同，可分为三种网络：&#xA;VLAN ID 0 阻止任何携带了 VLAN tag 的数据包 VLAN ID 4095 允许通过携带任何 VLAN tag 的数据包（trunk） VLAN ID 1~4094 仅允许携带指定 VLAN ID tag 的数据包 默认地，在未做更改的情况下，虚拟机往往是使用的 VLAN ID 为 0 的网络。当我们需要虚拟机间的网卡能接收到携带任何 VLAN tag 的数据包时，就需要设置 trunk 网络！&#xA;ESXI 设置 Trunk 网络（端口组） 首先，登录到 ESXI 控制台（本文是 ESXI 7.0），依次选择：网络 -&amp;gt; 端口组 -&amp;gt; 添加端口组&#xA;注意，VLAN ID 必须是 4095，只有该 ID 才是 Trunk 模式（允许任何 VLAN 包通过） 保存后，Trunk 网络就创建好了！&#xA;接下来，配置虚拟机网卡，使其使用该 Trunk 网络 虚拟机网络适配器处选择我们创建好的 Trunk 网络即可！当多个虚拟机都配置为使用该 Trunk 网络，它们之间就能互相收发携带任何 VLAN tag 的数据包了。</description>
+    </item>
+  </channel>
+</rss>

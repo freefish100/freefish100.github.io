@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>戴尔服务器 on </title>
+    <link>https://blog.freezz.cc/tags/%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <description>Recent content in 戴尔服务器 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DELL戴尔2012年至2022年生产的服务器型号列表</title>
+      <link>https://blog.freezz.cc/posts/js20230223/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20230223/</guid>
+      <description>DELL戴尔2012年至2022年生产的服务器型号参考列表(来源chatgpt，可能有错漏)&#xA;年份 机架式服务器型号 塔式服务器型号 主板芯片组 兼容的CPU型号 2012 PowerEdge R720 PowerEdge T620 Intel C600 Intel Xeon E5-2600 Series: 4-16 cores, up to 3.3 GHz 2013 PowerEdge R720xd PowerEdge T320 Intel C600 Intel Xeon E5-2400 Series: 4-12 cores, up to 2.4 GHz 2014 PowerEdge R730 PowerEdge T630 Intel C610 Intel Xeon E5-2600 v3 Series: 6-18 cores, up to 3.5 GHz 2015 PowerEdge R730xd PowerEdge T430 Intel C610 Intel Xeon E5-2600 v4 Series: 8-22 cores, up to 3.</description>
+    </item>
+  </channel>
+</rss>

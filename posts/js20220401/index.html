@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Linux CentOS 命令摘录备忘 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Linux CentOS 命令摘录备忘">
+		<meta property="og:title" content="Linux CentOS 命令摘录备忘" />
+<meta property="og:description" content="Linux CentOS 命令摘录备忘" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js20220401/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-01T00:00:00+00:00" />
+
+		<meta itemprop="name" content="Linux CentOS 命令摘录备忘">
+<meta itemprop="description" content="Linux CentOS 命令摘录备忘"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1610">
+<meta itemprop="keywords" content="Linux," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Linux CentOS 命令摘录备忘"/>
+<meta name="twitter:description" content="Linux CentOS 命令摘录备忘"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Linux CentOS 命令摘录备忘</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-04-01T00:00:00Z">2022-04-01</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p><strong>可用 pwd 命令查看用户的当前目录</strong></p>
+<p>** sudo -i 命令可切换成root用户</p>
+<p><strong>Linux查看设置开机启动的服务列表</strong><br>
+<code>systemctl list-units --type=service</code></p>
+<p><strong>压缩、解压</strong><br>
+tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）<br>
+tar -xvf file.tar 解包到当前目录<br>
+tar -xvf file.tar -C dir 把文件解压到指定目录中<br>
+zip 压缩后文件名 源文件<br>
+zip -r 压缩后目录名 原目录<br>
+unzip file.zip -d dir 解压到指定目录<br>
+gunzip file1.gz 解压 file1.gz<br>
+gzip file1 压缩 file1<br>
+gzip -9 file 最大程度压缩文件</p>
+<p>tar比较常用的使用方式：<br>
+打包压缩：&ldquo;tar -czvf 压缩包名称.tar.gz 要打包的目录”<br>
+解压缩：&ldquo;tar -xzvf 压缩包名称.tar.gz&rdquo;</p>
+<p><strong>文件、目录、文件夹和文件大小</strong><br>
+rm -f file 参数-f用来强制删除文件，不提示<br>
+rm [文件名] 删除文件<br>
+rm -r dir 递归删除其文件和文件夹，就是删除目录是要加上参数-r，否则删除不了 <br>
+rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示<br>
+mv dir/file dir 将文件或者文件夹移动到指定目录<br>
+mv -t dir file 将文件或者文件夹移动到指定目录<br>
+mkdir dir dir2 创建两个文件夹<br>
+mkdir -p /tmp/dir 创建多级目录<br>
+cp file file1 将文件file复制一份并命令为file1<br>
+cp -r /home/a /www/b 复制文件夹到另一个文件夹<br>
+cp -r * /dir 递归复制当前路径下的全部目录及其子目录内的所有内容到另一个目录，参数-r 为递归持续复制 <br>
+cp -a file/dir dir 将文件或者文件夹复制到指定目录<br>
+cp有如下几个参数：-p保留原始文件的属性，-d若对象为“链接文件”，则保留该“链接文件”的属性，-r递归持续复制（用于目录）,-i若目标文件存在则询问是否覆盖，-a相当于-pdr（p、d、r 为上述参数）<br>
+使用cp命令在复制目录时要加上-r 参数</p>
+<p>远程复制目录或文件：<br>
+scp -r /usr/local/abc 192.168.1.49:/usr/local/abc<br>
+或者<br>
+scp -r /usr/local/abc <a href="mailto:root@192.168.1.49">root@192.168.1.49</a>:/usr/local/abc<br>
+把本机的目录abc复制到远程机器192.168.1.49中。远程复制不能加参数-f。</p>
+<p><strong>stat命令 “stat 文件名”</strong><br>
+用来查看某个文件的信息属性。其中可以看到列出来的Access，Modify，Change这三行有三个时间的，分别为atime，mtime和ctime。 modification time (mtime):该档案的内容数据变更时,就会更新这个时间!内容数据指的是档案的内容,而不是档案属性或权限喔!<br>
+status time (ctime):该档案的状态改变时,就会更新这个时间,举例来说，像是权限与属性被更改了,都会更新这个时间啊。<br>
+access time (atime): 当该档案的内容被取用时,就会更新这个读取时间 (access)。举例来说,我们使用 cat 去读取 /etc/man.config , 就会更新该档案的atime 了。</p>
+<p><strong>查看文件容量大小</strong><br>
+du -h 文件名称<br>
+如果对一个目录执行du，du会递归列出目录中的所有文件，并显示其大小，同时也会显示目录中所有文件的大小。<br>
+du -h 文件夹名称<br>
+查看某个目录下(文件夹)下所有文件占用空间的总大小
+du -sh 目录(或文件夹名称)</p>
+<p><strong>centos7 拷贝目录下所有文件包含隐藏文件</strong><br>
+不能这样使用 cp -a /storage/* /home/ 使用 *不会拷贝隐藏文件<br>
+正确的做法 cp -a /storage/. /home/</p>
+<p>cd [目录名] 进入某个目录<br>
+cd .. 返回上一级目录<br>
+cd ../.. 返回上两级目录<br>
+cd / 返回根目录<br>
+cd或cd ~ 返回home目录<br>
+cd - 目录名 返回指定的目录<br>
+ls 列举出当前目录中所有文件<br>
+ls -a 列举出当前目录中所有文件，包括隐藏文件<br>
+ls -l 显示文件的详细信息<br>
+ls -ld 查看目录(文件夹)的属性信息<br>
+ls -lrt 按时时间排序显示文件<br>
+pwd 显示当前路径</p>
+<p><strong>查看硬盘和分区情况</strong><br>
+lshw -class disk -short 列出所有磁盘的信息，包括磁盘容量、厂商和型号<br>
+parted -l 列出磁盘信息，分区类型、分区大小<br>
+df -h 此命令可查看全部的挂载点情况(包括挂载的外部共享磁盘)<br>
+df -hl 可查看系统挂载点，但查看不了挂载的外部共享磁盘<br>
+lsblk 可以以树形方式查看磁盘大小<br>
+fdisk -l 查看设备和分区<br>
+blkid 查看分区的UUID信息和文件系统类型</p>
+<p><strong>查看当前目录下各个文件及目录占用空间大小</strong><br>
+du -sh * 按K、M、G为单位显示<br>
+du -s * 按兆字节为单位显示<br>
+du -sh * | sort -rn 参数-r 从大到小的方式排序<br>
+参数-s表示只显示每个参数总的大小，参数-h表示打印人类可读大小。 查看上GB的目录并且排序,可以用这个命令：<br>
+du -h –max-depth=1 |grep ‘G’ |sort<br>
+如果删除大文件，df -h查看磁盘空间并没有释放，那么就是被删除的文件关联的进程还在执行，那么需要我们将相关进程kill掉或重启，可以用这个命令来查看进程 lsof |grep delete</p>
+<p><strong>查找大小范围的文件</strong><br>
+<code>find -type f -size +100M -exec du -h {} \;</code> 查找大于100M的文件(命令含分号)<br>
+<code>find -type f -size +1G -exec du -h {} \;</code> 查找大于1G的文件(命令含分号)</p>
+<p><strong>批量查找删除文件 (按时间条件）</strong><br>
+<code>find /usr/local/nginx/html/upload/images -mtime +10 -name &quot;*.*&quot; -exec rm -rf {} \;</code> （包括后面的分号）<br>
+<code>find /usr/local/nginx/html/upload/files -mtime +10 -exec rm -rf {} \;</code> （包括后面的分号）<br>
+解释如下<br>
+/usr/local/nginx/html/upload/images ：准备要进行清理的任意目录<br>
+-mtime：标准语句写法<br>
+＋10：查找10天前的文件，这里用数字代表天数，＋30表示查找30天前的文件<br>
+“<em>.</em>&quot;：希望查找的数据类型，&rdquo;<em>.jpg&quot;表示查找扩展名为jpg的所有文件，&quot;</em>“表示查找所有文件<br>
+-exec：固定写法<br>
+rm -rf：强制删除文件，包括目录<br>
+{} ; ：固定写法，一对大括号+空格+/+;</p>
+<p><strong>linux 删除文件或批量删除文件（按名称条件）</strong><br>
+一般的删除文件的操作<br>
+删除几个文件 rm 文件1 文件2<br>
+删除文件夹下面所有文件 rm * -rf<br>
+删除某些固定字母开头的文件 rm xxx*<br>
+删除一类文件 rm *.txt</p>
+<p><strong>批量删除文件</strong><br>
+首先查找我们要删除的某类批量的文件：<br>
+<code>find . -maxdepth 1 -regex &quot;.*ws.*&quot;</code><br>
+maxdepth参数为1表示只在当前目录查找，不递归查找子目录<br>
+regex参数是正则表达式<br>
+上面的命令表示查找所有文件名中含有“ws”的文件。<br>
+批量删除上面查找到的文件：<br>
+<code>find . -maxdepth 1 -regex &quot;.*ws.*&quot; | xargs rm -rf</code><br>
+xargs是把前面的输出作为后面的参数，如果多行输出，就多次执行后面的命令<br>
+有的linux系统支持的regex正则表达式不一样，可以使用下面的方式替换<br>
+<code>find . -maxdepth 1 -name &quot;*.c&quot; | xargs rm -rf</code><br>
+还有使用下面的命令也可以：<br>
+<code>find . -maxdepth 1 -regex &quot;.*ws.*&quot; -exec rm -rf {} \;</code></p>
+<p>查找文件夹<br>
+find -name 文件夹名称 -depth</p>
+<p>whereis 命令用于按照名称快速查找搜索二进制程序（命令）、源代码以及帮助文件所对应的位置，语法格式为“whereis 命令名称”<br>
+如：whereis cd</p>
+<p>which 命令用于按照指定名称快速搜索二进制程序（命令）所对应的位置，语法格式为“which 命令名称”<br>
+如：which cd  会返回cd这个命令所在的目录路径</p>
+<p>查看文本文件内容：<br>
+cat 命令用于查看纯文本文件（内容较少的），可以参数-n来显示行号<br>
+more 命令用于查看纯文本文件（内容较多的），more命令会在最下面使用百分比的形式来提示您已经阅读了多少内容，还可以使用空格键或回车键向下翻页<br>
+head 命令用于查看纯文本文件的前 N 行，比如要查看文本中前 10 行的内容：head -n 10 文件名称<br>
+tail 命令用于查看纯文本文件的后 N 行或持续刷新文件的最新内容，比如要查看文本内容的最后 10 行：tail -n 10 文件名称<br>
+tail 命令能够持续刷新一个文件的内容，当想要实时查看最新的日志文件时， 可以这样使用：tail -f 文件名称</p>
+<p>stat 命令用于查看文件的具体存储细节和时间等信息。Linux 系统中的文件包含3 种时间状态，分别是 Access Time（内容最后一次被访问的时间，简称为 Atime），Modify Time（内容最后一次被修改的时间，简称为 Mtime）以及 Change Time（文件属性最后一次被修改的时间，简称为 Ctime）。</p>
+<p>touch 命令用于创建空白文件或设置文件的时间，语法格式为“touch [参数] 文件名称”<br>
+如新建一个名称为xxx的文件：<br>
+touch xxx<br>
+使用touch可以修改文件的访问时间和修改时间：<br>
+touch -d &ldquo;2022-11-20 15:50&rdquo; xxx<br>
+参数-d是同时修改“访问时间”和“修改时间”，若只修改“访问时间”，可用参数-a，若只修改“修改时间”，可用参数-m</p>
+<p><strong>网络相关</strong><br>
+ip addr ( 或者ip a )显示当前ip地址<br>
+ifdown eth0 禁用 ‘eth0’ 网络设备<br>
+ifup eth0 启用 ‘eth0’ 网络设备<br>
+使用 nmtui 可以调出图形界面设置网络参数</p>
+<p>查看公网的VPS服务器的公网ip地址：<br>
+curl ifconfig.me<br>
+wget -qO- ifconfig.me/ip<br>
+curl icanhazip.com (测试返回ipv6)</p>
+<p>Cenos7、8的网卡配置文件路径：<br>
+/etc/sysconfig/network-scripts<br>
+如果配置静态ip，则修改如下配置：<br>
+BOOTPROTO=static //引导协议：dhcp自动获取、static静态、none不指定<br>
+ONBOOT=yes //开机自动激活网卡<br>
+IPADDR=192.168.1.110 // 静态ip<br>
+GATEWAY=192.168.1.1 // 网关地址<br>
+NETMASK=255.255.255.0 // 子网掩码<br>
+DNS1=192.168.1.1 // DNS地址<br>
+DNS2=8.8.8.8<br>
+然后 systemctl restart network 重启网络服务
+……………………………………<br>
+Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这样才能访问网络。<br>
+启用网卡连接connection（相当于ifup）：<br>
+1、查看网上接口信息：<code>nmcli d</code><br>
+2、激活打开网卡连接：<code>nmcli c up ethX(enoX)</code> ethX(enoX)为网卡接口名称<br>
+3、设置自动启动网卡：<code>nmcli connection modify ethX(enoX) connection.autoconnect yes</code><br>
+例如 <code>nmcli connection modify ens192 connection.autoconnect yes</code> (实际修改的是网卡配置文件中的ONBOOT=yes)<br>
+停止网卡连接connection（相当于ifdown）： <code>nmcli c down ethX(enoX)</code>  <br>
+…………………………………<br>
+运行nmtui图形界面： nmtui<br>
+……………………………………….<br>
+列出网卡设备<br>
+使用 ifconfig -a 命令查看；<br>
+使用 lspci | grep -i “eth” 或 lspci | grep -i net 命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
+iwconfig 用于查看无线网络<br>
+lspci | grep -i eth 查看有线网卡型号<br>
+lspci | grep Network 无线网卡型号<br>
+………………………………………….<br>
+查看HBA卡<br>
+lspci | grep -i Fibre</p>
+<p><strong>系统相关</strong><br>
+查看linux内核版本号的三种命令：<br>
+uname -a<br>
+uname -r<br>
+cat /proc/version
+<code>hostnamectl</code> 查看linux系统版本号和内核版本号</p>
+<p>**查看linux操作系统版本号的四种命令：<br>
+cat /etc/redhat-release<br>
+rpm -q centos-release<br>
+lsb_release -a 如果提示找不到这个命令，可以 yum install redhat-lsb -y 安装后再使用。<br>
+cat /etc/issue 适合于ubuntu系统</p>
+<p>查看已安装的CPU型号<br>
+<code>dmidecode -t processor | grep &quot;Version:&quot; | awk '{print $2&quot; &quot;$3&quot; &quot;$4&quot; &quot;$5&quot; &quot;$6}'</code></p>
+<p>查看物理CPU个数、核数、逻辑CPU个数<br>
+总核数 = 物理CPU个数 X 每颗物理CPU的核数<br>
+总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+查看物理CPU的数量<br>
+<code>cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</code><br>
+查看单个物理CPU中core的个数(即核数)<br>
+<code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code><br>
+查看逻辑CPU的个数<br>
+<code>cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code><br>
+查看CPU信息<br>
+<code>cat /proc/cpuinfo | head -20</code><br>
+查看CPU信息（型号）<br>
+<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</code><br>
+查看CPU主频<br>
+<code>cat /proc/cpuinfo |grep MHz|uniq</code><br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+列出已安装的内存信息以及内存位于哪个插槽上：</p>
+<pre tabindex="0"><code>dmidecode -t memory | awk &#39;/^[[:space:]]+Size:/ {size=$2}/^[[:space:]]+Locator:/ {locator=$2} /^[[:space:]]+Type:/ {type=$2} /^[[:space:]]+Speed:/ {speed=$2} /^[[:space:]]+Manufacturer:/ {manufacturer=$2} /^[[:space:]]+Serial Number:/ {serial=$3} /^[[:space:]]+Part Number:/ {part=$3} /^[[:space:]]+Rank:/ {rank=$2} /^[[:space:]]+Configured Clock Speed:/ {config_speed=$4} /^$/ {if (size != &#34;&#34; &amp;&amp; locator != &#34;&#34;) print size, locator, type, speed, manufacturer, serial, part, rank, config_speed; size=&#34;&#34;; locator=&#34;&#34;}&#39;
+</code></pre><p>查看内存硬件信息:<br>
+<code>dmidecode -t memory | head -45 | tail -24</code><br>
+查询内存条数：<br>
+<code>dmidecode -t 17 | grep &quot;Size.*MB&quot; | wc -l</code><br>
+查看现有内存数量和内存大小：<br>
+<code>dmidecode | grep -A16 &quot;Memory Device&quot; | grep &quot;Size&quot; | sed 's/^[ \t]*//'</code><br>
+查看最大支持内存容量：<br>
+<code>dmidecode|grep -P 'Maximum\s+Capacity'</code><br>
+或者<br>
+<code>dmidecode | grep &quot;Maximum Capacity&quot; | sed  &quot;s/^[ \t]*//&quot;</code><br>
+查看内存槽数、那个槽位插了内存，大小是多少：<br>
+<code>dmidecode|grep -P -A5 &quot;Memory\s+Device&quot;|grep Size|grep -v Range</code><br>
+查看槽位上内存的速率，没插就是unknown：<br>
+<code>dmidecode | grep -A16 &quot;Memory Device&quot; | grep 'Speed'</code><br>
+下面这边命令可查看内存的插槽数量(Number Of Devices)、最大扩展内存容量(Maximum Capacity)、单根内存最大容量、当前内存总容量<br>
+<code>dmidecode -t 16</code></p>
+<p>&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+列出阵列卡信息：<br>
+<code>lspci | grep -i raid</code> 或者 <code>lspci -nn | grep -i raid</code> <br>
+列出硬盘信息：<br>
+<code>lshw -class disk</code><br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+dmidecode命令查看硬件信息：<br>
+<code>dmidecode -s system-product-name</code> 查看机器的型号<br>
+<code>dmidecode -s system-serial-number</code> 查看机器的序列号<br>
+同时查看机器的生产制造商、产品型号、产品序列号：<br>
+<code>dmidecode | grep &quot;System Information&quot; -A9 | egrep &quot;Manufacturer|Product|Serial&quot;</code></p>
+<p><code>dmidecode</code> # 打印所有硬件信息<br>
+<code>dmidecode -q</code> # 打印所有硬件信息，比较简洁<br>
+<code>dmidecode -h</code> # 获取帮助<br>
+<code>dmidecode | grep 'Product Name'</code>     # 以过滤的方式来查看指定的硬件信息<br>
+<code>dmidecode --type bios</code>        # 查看BIOS相关的硬件信息，-t 等价于&ndash;type<br>
+<code>dmidecode --type system</code>      # 查看系统相关的硬件信息<br>
+<code>dmidecode --type baseboard</code>   # 查看主板相关的硬件信息<br>
+<code>dmidecode --type chassis</code>     # 查看机箱相关的硬件信息<br>
+<code>dmidecode --type processor</code>   # 查看处理器相关的硬件信息<br>
+<code>dmidecode --type memory</code>      # 查看内存相关的硬件信息<br>
+<code>dmidecode |grep 'Serial Number'</code>  # 查看主板的序列号<br>
+<code>dmidecode -s system-serial-number</code> # 查看系统序列号<br>
+<code>dmidecode -t 11</code></p>
+<p><strong>修改主机名：</strong><br>
+hostnamectl set-hostname somename<br>
+用hostnamectl设置主机名会立刻生效并且存入配置文件，重启系统不会被重置，不必再修改配置文件。</p>
+<p><strong>查询服务器的架构，在命令行中输入：arch 进行查询</strong><br>
+输出结果：x86_64 代表 amd64 ; aarch64 代表 arm64</p>
+<p><strong>MYSQL相关</strong><br>
+查看MYSQL版本信息：<br>
+mysql -V<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+登录mysql数据库：<br>
+mysql -u 用户名 -p 然后按提示输入密码<br>
+连接到远程主机上的MYSQL：<br>
+mysql -h ip地址 -u 用户名 -p密码<br>
+退出mysql命令 ：exit<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+show databases; //显示数据库列表（包括英文的分号） <br>
+use 数据库名称;  //打开数据库（包括英文的分号）<br>
+show 数据表名称; //显示数据表（包括英文的分号）<br>
+describe 表名; //显示数据表的结构(简写：desc 表名;) <br>
+备份数据库存命令(在linux命令行中，不用进入mysql&gt;提示符)：<br>
+mysqldump -u 用户名 -p 要备份的数据库名称 &gt; 备份出来的数据库名称.sql;<br>
+比如：
+mysqldump -u admin -p vm_data_20211216 &gt; vm_data_20211216_bak20221026.sql;<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..<br>
+恢复数据库：<br>
+可以创建一个新的数据库，也可以不创建。在mysql命令行下，可以使用“select user,host from mysql.user;”查看用户列表，用有权限的用户登录mysql，比如root用户，密码是数据库的密码，不是系统密码 <br>
+mysql -u root -p; <br>
+create database 新建的数据库名称;<br>
+exit 退出mysql命令行<br>
+mysql -u root -p 刚才新建的数据库名称 &lt; 刚才备份出来的数据库名称.sql;<br>
+mysql -u root -p vm_data_20211216_01 &lt; vm_data_20211216_bak20221026.sql;<br>
+备份时，要注意备份出来的文件所在的目录路径，恢复时最好是进入文件所在的路径进行操作。<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</p>
+<p><strong>lshw 查看硬件信息</strong><br>
+<code>lshw</code> 这个命令是一个比较通用的工具，它可以详细的列出本机的硬件信息。但这个命令并非所有的发行版都有，比如 Fedora 就默认没有，需要自己安装。 lshw 可以从各个 /proc 文件中提取出硬件信息，比如：CPU、内存、usb 控制器、硬盘等。如果不带选项的话，列出的信息将很长，加上 -short 选项时，将只列出概要信息。<br>
+<code>lshw -short</code><br>
+lscpu 可以列出本机的 CPU 的相关信息。 free 可以查看系统中使用的、闲置的和 RAM 的总体数量，可带参数 -m 或 -g，来以不同的单位显示容量<br>
+free -m 以MB为单位查看内存<br>
+free -g 以GB为单位查看内存<br>
+lsusb 列出与本机相连的所有 USB 设备的信息。默认情况下，只列出概要信息，使用 -v 选项可以列出每一个 USB 口的详细信息。<br>
+lsscsi 可以列出诸如硬盘/光驱等 SCSI/SATA 设备信息。<br>
+lspci 列出所有 PCI 总线，以及与 PCI 总线相连的所有设备的详细信息，比如 VGA 适配器、显卡、网络适配器、usb 端口、SATA 控制器等。<br>
+lscpu 查看CPU信息。CPU信息记录在 /proc/cpuinfo 中，也可以使用 cat cat /proc/cpuinfo | grep ^cpu 来查看。<br>
+查看网络适配器(网卡)的硬件信息，包括其制造商：<br>
+<code>lshw -C network</code></p>
+<p>查看显卡信息：</p>
+<ul>
+<li><code>lspci | grep VGA</code><br>
+更详细的显卡信息可使用 <code>lshw -C video</code></li>
+<li>如果知道是Nvidia的显卡，可使用 <code>lspci | grep -i nvidia</code><br>
+这样会回显类似信息如下：<br>
+“00:02.0 VGA compatible controller:NVIDIA Corporation Device 2236（rev a1）”<br>
+其中2236 就是Nvidia显卡的型号对应的标识ID，其对应的具体型号，可到下面网址查询<br>
+<a href="http://pci-ids.ucw.cz/read/PC/">http://pci-ids.ucw.cz/read/PC/</a><br>
+网页拉到最尾，在搜索框中输入显卡的ID标识进行查询。</li>
+<li>如果是nvidia的显卡并安装了驱动程序后，还可以使用命令 <code>nvidia-smi -L</code> 直接查看Nvidia显卡的型号。</li>
+</ul>
+<p>查看正在运行的服务：<br>
+systemctl | grep running<br>
+查看指定服务运行状态：<br>
+systemctl | grep apache2</p>
+<p><strong>查看进程</strong></p>
+<ul>
+<li>ps aux #以简单的列表形式显示出进程信息<br>
+a ： 显示当前终端下的所有进程信息，包括其他用户的进程<br>
+u ：以用户为主的进程状态<br>
+x ：通常与 a 这个参数一起使用，显示当前用户在所有终端下的进程信息<br>
+ps -elf #以长格式显示系统的进程信息，并包含更丰富的内容<br>
+-e：显示系统内所有的进程信息<br>
+-l ：使用长格式显示进程信息<br>
+-f ：使用完整的格式显示进程信息<br>
+ps命令常配合管道命令 | 和查找命令 grep 同时执行来查看特定进程，如： ps -ef | grep caddy<br>
+查找某个进程所在的目录：ps -aux | grep 28990 其中28990是进程的PID，PID可通过top命令查看到。</li>
+<li>top 命令。top 命令会在当前终端以全屏交互式的界面显示进程排名，及时跟踪CPU、内存等系统资源占用情况，默认情况下每三秒刷新一次，其作用类似于windows系统中的任务管理器。<br>
+top -Hp 查看进程详细信息获取目标线程的CPU使用情况<br>
+默认top命令是3秒刷新一次，可以加参数改成1秒<br>
+即 top -d 1<br>
+按cpu排序：<br>
+top命令后，输入大写的P<br>
+按内存排序：<br>
+top命令后，输入大写的M</li>
+</ul>
+<p>jstack 命令是JDK工具之一，使用该命令可以打印正在运行中 Java 进程的栈信息。 首先使用 jps命令查看需要打印线程栈的java进程号； 再链接到某个进程号(如82)上，使用下面命令： jstack 82 可以看到控制台打印出了线程的信息以及线程对应的堆栈信息。</p>
+<p><strong>查看开放的端口</strong><br>
+netstat -aptn</p>
+<p><strong>查看端口占用情况</strong><br>
+lsof -i :端口号<br>
+例如 lsof -i :80 \查看占用了80端口的进程
+netstat<br>
+netstat -tunlp 用于显示 tcp，udp 的端口和进程等相关情况。<br>
+netstat 查看端口占用语法格式：<br>
+netstat -tunlp | grep 端口号<br>
+-t (tcp) 仅显示tcp相关选项<br>
+-u (udp)仅显示udp相关选项<br>
+-n 拒绝显示别名，能显示数字的全部转化为数字<br>
+-l 仅列出在Listen(监听)的服务状态<br>
+-p 显示建立相关链接的程序名<br>
+例如查看 8000 端口的情况，使用以下命令：<br>
+netstat -tunlp | grep 8000<br>
+tcp 0 0 0.0.0.0:8000 0.0.0.0:* LISTEN 26993/nodejs<br>
+更多命令：<br>
+netstat -ntlp //查看当前所有tcp端口，n是使用ip地址不使用域名显示，t是显示TCP协议的连接状态，l是仅列出当前正在监听的服务状态，p是显示正在使用的Socket信息(进程名称和进程id)<br>
+netstat -u //查看UDP协议的连接状态
+netstat -ntulp | grep 80 //查看所有80端口使用情况<br>
+netstat -ntulp | grep 3306 //查看所有3306端口使用情况<br>
+netstat -a</p>
+<p>kill<br>
+在查到端口占用的进程后，如果你要杀掉对应的进程可以使用 kill 命令：<br>
+kill -9 PID<br>
+如上实例，我们看到 8000 端口对应的 PID 为 26993，使用以下命令杀死进程：<br>
+kill -9 26993</p>
+<p>df 命令可以列出不同分区的大小，使用情况，使用率，挂载点等信息，加上 -h 选项可以以 k, M, G 等单位表示大小，否则默认是字节，不容易阅读。<br>
+列出网卡设备<br>
+使用 ifconfig -a 命令查看；<br>
+使用 lspci | grep -i “eth” 或 lspci | grep -i net 命令查看，列出每个pci总线上的设备，通过grep过滤后可得到网卡设备列表<br>
+iwconfig 用于查看无线网络<br>
+dmidecode -t bios 查看BIOS信息。</p>
+<p>su 用户名 #用于切换用户<br>
+sudo 获取root权限 poweroff 关机<br>
+shutdown -h now 关机<br>
+shutdown -r now 重启<br>
+reboot 重启</p>
+<p><strong>docker命令</strong><br>
+使用 docker images -a 命令来查看所有镜像<br>
+使用 docker rmi 镜像ID号 来删除镜像。如：sudo docker rmi c49ba8e92691</p>
+<p>使用 docker ps -a 命令来查找要删除的容器名或ID<br>
+使用 sudo docker rm 容器ID或容器名称。如：sudo docker rm 2c4cbc16436f</p>
+<p><strong>LNMP 查看Apache Nginx PHP mysql版本命令</strong> linux 下查看Apache版本 httpd -v<br>
+linux 下查看Nginx版本 nginx -v<br>
+linux 下查看PHP版本 php -v<br>
+linux 下查看mysql版本 mysql -V （大写的V）</p>
+<p><strong>systemd 语法</strong><br>
+systemctl [command] [unit]（配置的应用名称）<br>
+command可选项<br>
+start：启动指定的unit， 如 systemctl start nginx<br>
+stop：关闭指定的unit， 如 systemctl stop nginx<br>
+restart：重启指定unit， 如 systemctl restart nginx<br>
+reload：重载指定unit， 如 systemctl reload nginx<br>
+enable：系统开机时自动启动指定unit，前提是配置文件中有相关配置， 如 systemctl enable nginx<br>
+disable：开机时不自动运行指定unit，如 systemctl disable nginx<br>
+status：查看指定unit当前运行状态，如 systemctl status nginx</p>
+<p><strong>查看用户登录记录</strong><br>
+who 命令：显示当前当登录的用户的信息<br>
+w 命令：显示登录的用户及其当前执行的任务<br>
+users 命令：显示当前当登录的用户的用户名<br>
+last 命令：显示当前与过去登录系统的用户的信息<br>
+lastb 命令：显示所有登录系统失败的用户的信息<br>
+lastlog 命令：显示用户最后一次登录的信息<br>
+ac 命令：显示用户连接时间的统计数据。ac -d 显示每天的总的连接时间，ac -p 显示每个用户的总的连接时间。<br>
+who、w 和 users 等命令通过 utmp(/var/run/utmp) 文件查询当前登录用户的信息。<br>
+last 和 ac 命令通过 wtmp(/var/log/wtmp) 文件查询当前与过去登录系统的用户的信息。<br>
+lastb 命令通过 btmp(/var/log/btmp) 文件查询所有登录系统失败的用户的信息。<br>
+lastlog 命令通过 lastlog(/var/log/lastlog) 文件查询用户最后一次登录的信息。</p>
+<p><strong>查看过往历史中使用过的命令：</strong><br>
+history<br>
+后面加数字可以查看相应的历史命令数量，如果要查看最近10条运行过的命令： history 10</p>
+<p><strong>挂载NTFS格式的U盘</strong><br>
+安装阿里云yum源<br>
+wget -O /etc/yum.repos.d/epel.repo <a href="http://mirrors.aliyun.com/repo/epel-7.repo">http://mirrors.aliyun.com/repo/epel-7.repo</a><br>
+安装ntfs-3g<br>
+yum install ntfs-3g -y<br>
+创建挂载目录<br>
+mkdir /mnt/u<br>
+挂载NTFS格式的U盘<br>
+mount -t ntfs-3g /dev/sdc1 /mnt/u<br>
+可加参数 -o iocharset=cp936，设定字符集：<br>
+mount -t vfat -o iocharset=utf8,codepage=uft8 /dev/sdb1 /mnt/usb<br>
+mount -t vfat -o iocharset=cp936,codepage=936 /dev/sdb1 /mnt/usb<br>
+cp936是指简体中文，cp950是指繁体中文<br>
+检查是否挂载成功<br>
+df -hl 查看挂载信息 挂载fat格式的U盘：<br>
+mount -t vfat /dev/sdb1 /mnt/</p>
+<p><strong>查看已安装的软件包</strong><br>
+rpm包<br>
+rpm -qa<br>
+rpm -qa | grep &ldquo;软件包名称&rdquo;<br>
+deb<br>
+dpkg -l<br>
+dpkg -l | grep &ldquo;软件包名称&rdquo;<br>
+yum<br>
+yum list installed<br>
+yum list installed | grep &ldquo;软件包名称&rdquo;<br>
+dnf<br>
+dnf list installed<br>
+dnf list installed | grep &ldquo;软件包名称&rdquo;</p>
+<p>新建用户，查看用户，查看用户id信息和所属的组：<br>
+新建名为user01的用户<br>
+useradd user01<br>
+查看user01用户所属的用户组<br>
+id user01<br>
+列出系统中的用户<br>
+cat /etc/passwd 或者 getent passwd<br>
+修改用户密码：<br>
+修改root用户密码<code>passwd</code> ，修改其它用户如user01的密码 <code>passwd user01</code><br>
+除一个用户如user01的密码 用参数-d，密码清除后登录就无需密码：<code>passwd -d user01</code><br>
+查看用户user01的密码状态(是否空密码)： <code>passwd -S user01</code></p>
+<p><code>sosreport</code> 命令用于收集系统配置及架构信息并输出诊断文档，输入该命令后按回车键执行即可</p>
+<p>使用 <code>getenforce</code> 命令可以在Linux下查看是否开启了SELinux</p>
+<p><strong>查看日志</strong><br>
+Systemd是Linux系统工具，Systemd拥有强大的解决与系统日志记录功能-systemd-journald。日志目录一般是在/var/log/journal，记录的是二进制文件，我们可以通过journalctl进行查看。<br>
+显示所有日志：journalctl<br>
+查看启动只有的所有日志：journalctl -b<br>
+查看最后10条日志：journalctl -n 10<br>
+跟踪日志：journalctl -f<br>
+只显示冲突、告警和错误：journalctl -p err..alert<br>
+显示某个单元日志（也可以同时显示多个增加多个 -u nginx.service -u php-fom.service）：journalctl -u nginx.service</p>
+<p>根据时间查找： <code>journalctl --since &quot;20 min ago&quot;</code> #查找20分钟前的日志<br>
+<code>journalctl --since today</code> #查找今天的日志<br>
+journalctl –until 2020-05-27 #查找2020-05-27日期的日志<br>
+查看内核日志：journalctl -k<br>
+查找指定客户(UID)日志：journalctl _UID=1000</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">Linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220401b/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Linux Ubuntu 命令摘录备忘</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20220402/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

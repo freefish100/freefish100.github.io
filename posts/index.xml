@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 自游鱼</title>
+    <link>https://blog.freezz.cc/posts/</link>
+    <description>Recent content in Posts on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 26 Apr 2024 08:44:50 +0100</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</title>
+      <link>https://blog.freezz.cc/posts/20240426/</link>
+      <pubDate>Fri, 26 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/20240426/</guid>
+      <description>浪潮 G2 系列的存储产品，默认的管理ip为 192.168.70.10，登录用户名和密码为 superuser / Passw0rd! ，电脑浏览器访问G2存储管理的ip，即可打开存储的登录页面&#xA;登录后，看到首页是G2存储的总览状态&#xA;当前已建立了一个存储池和一个存储卷&#xA;这里讲述一下建立一个卷和把卷映射到主机的基本操作：&#xA;1、点击页面左边导航条的第3个图标，再点击“创建卷”&#xA;这里新建一个“基本”卷&#xA;2、点击页面左边导航条的第4个图标，再点击“添加主机”&#xA;填写主机的名称和iSCS端口(主机的iqn)。名称这里可自定义，iSCS端口要填写主机的IQN名称&#xA;按如下步骤可以查找到主机的IQN：打开windows server的“开始菜单”&amp;ndash;“Windows管理工具”&amp;ndash;&amp;ldquo;iSCSI发起程序&amp;rdquo;&#xA;切换到&amp;quot;配置”选项卡，即可看到主机的IQN名称，把IQN复制粘贴到上面第2个步骤的“iSCS端口”里&#xA;3、把卷映射到主机&#xA;选择要映射到的主机，这里选择上面刚刚添加的那台主机&#xA;4、查看存储设备的ip地址，以太网端口的ip，这台G2是双控制器的机型，每个控制器有4个端口。当前这里就配置了每个控制器的1和2端口的ip，主机通过交换机与存储设备控制器的端口都已连通&#xA;5、再次打开&amp;quot;iSCSI发起程序&amp;quot;，切换到“目标”选项卡，在“目标”中填写上图中的控制器以太网端口的ip，如192.168.67.130 ，然后点击“快速连接”&#xA;成功连接到目标存储的状态。双控制器的多个端口ip的，重复第5个步骤，把所有的目标ip都连接上&#xA;当&amp;quot;iSCSI发起程序&amp;quot;连接目标存储成功后，存储端就会看到主机处于“联机”状态&#xA;6、安装多路径功能。这台G2存储，是双控多端口链路的，主机还需要安装“多路径”服务，以防止某单条链路故障导致业务中断&#xA;安装好MPIO多路径功能后，重启一次主机，然后打开MPIO属性设置&#xA;点击“发现多路径”选项卡，对相应的设备勾选上“添加对iSCSI设备的支持”&#xA;7、打开“磁盘管理器”，点击“操作”菜单&amp;ndash;“重新扫描磁盘”，就可以见到一块新添加的磁盘了，右击这块新磁盘选择“联机”，然后再次右击新磁盘选择“初始化”，然后对新磁盘进行分区，就可以使用了。&#xA;这样就把G2存储上的一个卷，连接并挂载到windows server 的主机上，当成本地磁盘使用了。</description>
+    </item>
+    <item>
+      <title>公众号文章收集</title>
+      <link>https://blog.freezz.cc/posts/20240417a/</link>
+      <pubDate>Wed, 17 Apr 2024 14:41:01 +0800</pubDate>
+      <guid>https://blog.freezz.cc/posts/20240417a/</guid>
+      <description>一行代码就能激活windows/office&#xA;微软官方工具制作启动U盘全新安装windows</description>
+    </item>
+    <item>
+      <title>Hugo网站在文章页面中插入文件链接</title>
+      <link>https://blog.freezz.cc/posts/20240412a/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/20240412a/</guid>
+      <description>Hugo网站在文章页面中插入文件链接&#xA;请访问我的博客自由鱼浏览更多的内容&#xA;DELL RAID控制器_H755_H750_H355_H350_用户指南&#xA;下载：DELL RAID控制器_H755_H750_H355_H350_用户指南</description>
+    </item>
+    <item>
+      <title>技术备忘--windows篇(不定更新)</title>
+      <link>https://blog.freezz.cc/posts/jsbw202410c/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/jsbw202410c/</guid>
+      <description>Windows 打开移动硬盘U盘提示：“无法访问，磁盘结构损坏且无法读取”的解决方法：&#xA;以管理员身份运行cmd，输入命令 &amp;quot; chkdsk 盘符: /f &amp;quot; 等待命令运行结束，如果还不行，继续执行命令 &amp;quot; chkdsk 盘符: /r &amp;quot; 。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. windows常用命令 打开网络连接命令 ncpa.cpl&#xA;立即重启shutdown /r /t 0&#xA;立即关机shutdown /s /t 0&#xA;更新组策略gpupdate /force&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. Windows11 Win11 跳过联网：&#xA;21H1之前版本：shift+F10(笔记本shift+Fn+F10)，输入 taskmgr 打开任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务。&#xA;22H2版本：先断网，shift+F10(笔记本shift+Fn+F10)，输入oobe\bypassnro.cmd 系统自动重启，到联网时点击“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. Windows11 Win11家庭版升级到专业版密钥：&#xA;BTY9C-JXQ4W-YFHCH-6RF4V-VC2RY 测过有效&#xA;C6XDT-XJK4G-7B29G-J8C3C-TKGV9&#xA;KFRJV-V9GWP-FQCGD-P2RGV-RVPMM&#xA;GRF89-QM67C-DRTP9-JD3QR-6P4B9&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. cmd命令行下删除已连接的网络共享&#xA;使用net use 列出已连接的网络共享，如返回类似信息： \192.168.1.111\share&#xA;\192.168.1.51\work&#xA;使用net use 连接名 /del 删除这个共享连接，例如要删除上面的&amp;quot;\192.168.1.111\share&amp;quot;这个共享，执行： net use \\192.168.1.111\share /del&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. powershell查看文件的MD5码&#xA;Get-FileHash -Algorithm MD5 -Path 文件路径</description>
+    </item>
+    <item>
+      <title>技术备忘记--infortrend存储设备篇(不定期更新)</title>
+      <link>https://blog.freezz.cc/posts/jsbw202410b/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/jsbw202410b/</guid>
+      <description>Infortrend普安存储设备 目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月） 存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. DS系列：物理硬盘&amp;ndash;&amp;gt;逻辑卷&amp;ndash;&amp;gt;逻辑磁盘&amp;ndash;&amp;gt;分区。（服务器主机映射分区，最终使用的是分区）&#xA;iSCSI映射步骤：&#xA;1、存储主页&amp;ndash;&amp;gt;设置通道的ip地址，比如192.168.1.10&#xA;2、服务器主机打开ISCSI程序&amp;ndash;&amp;gt;“目标”&amp;ndash;&amp;gt;填写目标ip地址(即上面通道的ip地址)&amp;ndash;&amp;gt;点击&amp;quot;快速连接&amp;quot;。连接成功后，会在&amp;quot;存储主页&amp;quot;&amp;ndash;&amp;gt;&amp;ldquo;通道&amp;rdquo;&amp;ndash;&amp;gt;点击&amp;quot;扫描端口信息&amp;quot;&amp;ndash;&amp;gt;&amp;ldquo;添加&amp;quot;页面，可看到服务器主机的 IQN号。&#xA;3、&amp;ldquo;存储主页&amp;rdquo;&amp;ndash;&amp;gt;&amp;ldquo;分区&amp;rdquo;(下面的具体分区)&amp;ndash;&amp;gt;&amp;ldquo;主机 LUN 映射&amp;rdquo;&amp;ndash;&amp;gt;&amp;ldquo;创建&amp;rdquo;&amp;ndash;&amp;gt;&amp;ldquo;自定义主机 LUN 映射配置&amp;rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&amp;quot;使用扩展的主机 LUN 功能&amp;rdquo;，&amp;ldquo;配置iSCSI启动程序别名&amp;rdquo;&amp;ndash;&amp;gt;&amp;ldquo;添加&amp;quot;服务器主机IQN。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. GS系列：物理硬盘&amp;gt;存储池&amp;gt;卷，（服务器主机映射卷，最终使用的是卷）。DS系列：物理硬盘&amp;gt;逻辑卷&amp;gt;逻辑磁盘&amp;gt;分区，（服务器主机映射分区，最终使用的是分区）&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. GS系列的卷打开ACL权限控制功能和使用“文件管理器”创建共享文件夹：&#xA;1、设置控制器通道的IP地址：[设置]&amp;ndash;[访问]，设置相应“通道”(例如通道0)的IP地址。要注意，如果是双控制器的机型，要留意设置的是控制器A还是控制器B，最好两个控制器都设置通道的IP地址，物理线缆也要连接到相应的控制器所对应的通道端口。&#xA;2、新建一个存储池：[设置]&amp;ndash;[存储配置]&amp;ndash;[存储池]&amp;ndash;[添加存储池]，其中“为该存储器指定一个控制器”下，要留意是把池建立在A控制器还是B控制器，如果是A控制器就是用A控制器所对应的IP地址来访问共享文件夹，若是把池建立在B控制器，就用B控制器所对应的IP地址来访问共享文件夹。&#xA;3、创建一个卷：[设置]&amp;ndash;[存储配置]&amp;ndash;[添加卷]，卷所属的“存储池”，选择刚才建立的存储池，卷的类型选择“NAS文件级卷”，勾选“启用高级ACL”。&#xA;4、新建一个共享文件夹(如果不先建立一个共享文件夹，当访问“文件管理器”时会提示“没有可访问的共享文件夹”)：[设置]&amp;ndash;[权限]&amp;ndash;[共享文件夹]&amp;ndash;[添加]，其中“协议访问”那，要勾选“CIFS/SMB”，在当前页面中切换到“权限”选项卡，给予用户相应的访问权限。 5、访问文件管理器：[设置]&amp;ndash;[应用]&amp;ndash;[文件管理器]&amp;ndash;[开启]文件管理器功能，点击下面的“文件管理器”按钮。如果是双控制器的会显示“控制器A文件管理器”和“控制器B文件管理器”，当步骤1中的池是建立在A控制器的，就点击“控制器A文件管理器”，若是池建立在B控制器的，就点击“控制器B文件管理器”，来打开“文件管理器”页面。 6、进入“文件管理器”后，右键点击刚才建立的文件夹，选择“共享”，勾选“CIFS/SMB”。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. 电脑连接存储com口使用的波特率为38400. 有些老款的机器波特率为115200。 GS系列的系统关机顺序：先关闭存储中正在跑的业务(比如虚拟机、数据库等)，然后关闭存储本身的系统(设置&amp;gt;系统&amp;gt;关闭系统)，再关闭电源，如果有扩展柜的，再关闭扩展柜。开机顺序：先开扩展柜（如有），再开存储。 DS系列的关机顺序：管理首页&amp;gt;系统设置&amp;gt;系统&amp;gt;关闭控制器，然后关闭电源。 GS系列添加热备盘：插入新硬盘，设备&amp;gt;存储设备&amp;gt;硬盘，选中新硬盘(硬盘的状态显示为&amp;quot;新硬盘&amp;quot;的，才能添加为热备盘)，点“管理备用硬盘”，按实际需要选择热备盘的类型，比如“全局”或者“本地”。 GS系列加入域：[设置]&amp;ndash;[访问]&amp;ndash;[通道&amp;amp;网络]&amp;ndash;[DNS服务器]&amp;ndash;[添加DNS服务器]，填入DNS服务器IP地址(例如是域服务器的IP地址)，这里最好只填写一个DNS地址，填写多个可能会导致后面“检查域”时出错。然后返回[设置]&amp;ndash;[权限]&amp;ndash;[AD/LDAP]，选择“Windows Active Directory (AD)域”，填写AD服务器的域名，登录域的用户名和密码，其它选项默认，然后点击“检查域”，检查的选项都显示通过后，再点击“保存”。 Linux挂载 iscsi协议 SAN存储：&#xA;1、在存储中做好映射到服务器的操作 (查看服务器主机的iqn号命令：cat /etc/iscsi/initiatorname.iscsi) 2、发现存储： iscsiadm -m discovery -p 192.168.1.51 -t st 其中 192.168.1.51是存储通道的IP。 命令执行后会返回存储通道对应的IP、端口号，以及服务器主机的iqn号 3、连接存储：iscsiadm -m node -T iqn.1994-05.com.redhat:34b1b4c5b2f3 -p 192.168.1.51 -l 其中 192.168.1.51是存储通道的IP，“ iqn.1994-05.com.redhat:34b1b4c5b2f3”是服务器主机的iqn号。如成功连接，会回显successful字样 Linux连接FC SAN存储：&#xA;1、服务器主机插上FC HBA卡后，会自动有WWN号和FC光模块端口(SCSI host端口)，把存储中卷LUN映射到服务器对应的WWN。存储注意要选择FC的通道。&#xA;(使用ls /sys/class/fc_host 命令列出相应的FC光模块端口，比如是host15,host16) 。</description>
+    </item>
+    <item>
+      <title>技术备忘记--戴尔设备篇(不定期更新)</title>
+      <link>https://blog.freezz.cc/posts/jsbw202410a/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/jsbw202410a/</guid>
+      <description>戴尔DELL设备 戴尔计算机不能通电、无法开机自检、无法启动或无视频的问题 Precision Workstation 工作站诊断指示灯参考指南&#xA;Precision Workstation 工作站诊断指示灯参考指南 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。&#xA;…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。&#xA;…………………………………. DELL 14G INTEL平台服务器BIOS设置详解&#xA;…………………………………. Precision 3650 塔式机规格参数&#xA;…………………………………. 在RAID控制器10中分配/取消分配设置热备盘&#xA;…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号&#xA;，点击&amp;quot;VERIFYGH&amp;quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。&#xA;…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍&#xA;…………………………………. Dell EMC PowerEdge 服务器型号列表&#xA;……………….. PowerEdge 服务器命名约定&#xA;…………………………………. IDRAC9管理口配置&#xA;遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。&#xA;…………………………………. T140机器进入S140软阵列&#xA;开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。</description>
+    </item>
+    <item>
+      <title>hugo博客文章测试</title>
+      <link>https://blog.freezz.cc/posts/202404a/</link>
+      <pubDate>Sun, 07 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/202404a/</guid>
+      <description>欢迎 欢迎来到我的博客。这是hugo博客测试文章，使用Hugo部署。 为什么选择Hugo Hugo是一个快速的静态网站生成器。以下是我选择它的几个理由：&#xA;快速和高效 简单易学 大量的主题和插件 开始使用 要开始使用Hugo，你需要安装它并创建一个新的网站项目：&#xA;hugo new site mysite 感谢阅读，希望你喜欢我的博客！&#xA;Hugo 扩展的 Front Matter 属性 Hugo 不仅支持标准的 Front Matter 属性（如标题、日期、描述等），还提供了一些扩展属性，允许你更灵活地控制内容和页面的表现。以下是一些常见的扩展属性：&#xA;draft: 指示文章是否是草稿。如果设置为 true，则在构建生产版本的网站时，该文章不会被发布。 aliases: 为页面提供一个或多个别名（URL），用于重定向或兼容旧链接。 author: 指定文章的作者。这可以是一个字符串或者是一个作者对象的列表。 weight: 用于排序，尤其在列表页面上。数字越小，文章或页面越靠前。 slug: 自定义页面的 URL 片段。 url: 完全自定义页面的 URL。使用此属性时，Hugo 将不会基于文件路径生成 URL。 type: 指定页面的类型。在 Hugo 中，类型用于决定使用哪个模板来渲染页面。 layout: 指定用于渲染页面的模板文件的名称。 images: 为页面指定一个或多个图像，这些图像可以用于社交媒体分享或在模板中显示。 series: 将文章分组到系列中，用于将相关文章组织在一起。 这些扩展属性使 Hugo 在创建和管理内容时更加灵活，能够满足更复杂的网站需求。</description>
+    </item>
+    <item>
+      <title>Hugo网站在文章页面中插入视频</title>
+      <link>https://blog.freezz.cc/posts/202409b/</link>
+      <pubDate>Sun, 07 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/202409b/</guid>
+      <description>在 Hugo 搭建的网站中，在编辑文章页面 Markdown 文件时，可以使用以下两种方法在文件中插入视频：&#xA;使用 Hugo 短代码 Hugo 提供了 video 短代码来插入视频。使用 video 短代码，可以将视频的路径、类型、宽度和高度等属性指定为参数。&#xA;例如，以下代码将插入一个 MP4 视频：&#xA;{{&amp;lt; video src=&amp;quot;/videos/example.mp4&amp;quot; type=&amp;quot;mp4&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;240&amp;quot; &amp;gt;}}&#xA;使用 HTML 代码 也可以使用 HTML 代码来插入视频。例如，可以使用以下代码插入一个 MP4 视频：&#xA;&amp;lt;video width=&amp;#34;320&amp;#34; height=&amp;#34;240&amp;#34; controls&amp;gt; &amp;lt;source src=&amp;#34;/videos/example.mp4&amp;#34; type=&amp;#34;video/mp4&amp;#34;&amp;gt; &amp;lt;/video&amp;gt; 视频的最佳存放目录是网站根目录下的 static 目录。这样做的原因是：&#xA;static 目录是 Hugo 网站默认的静态资源目录。将视频放在 static 目录下，可以确保视频能够被正确加载。 将视频放在 static 目录下，可以方便地管理视频资源。&#xA;注意事项&#xA;在插入视频时，请注意视频的格式。Hugo 网站支持的视频格式包括 MP4、MOV、AVI、WMV 和 FLV。 在插入视频时，请注意视频的大小。过大的视频会影响网站的加载速度。 在插入视频时，请注意视频的版权。如果您使用的是来自互联网上的视频，请确保您有权使用该视频。 以下是一些插入视频的示例：&#xA;{{&amp;lt; video src=&amp;quot;/videos/example.mp4&amp;quot; type=&amp;quot;mp4&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;240&amp;quot; &amp;gt;}}&#xA;&amp;lt;video width=&amp;#34;320&amp;#34; height=&amp;#34;240&amp;#34; controls&amp;gt; &amp;lt;source src=&amp;#34;/videos/example.</description>
+    </item>
+    <item>
+      <title>文章测试图片路径是否正确显示图片</title>
+      <link>https://blog.freezz.cc/posts/202409a/</link>
+      <pubDate>Sun, 07 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/202409a/</guid>
+      <description>问题： 在hugo构建的网站中，网站的根目录是blog，文章markdown文件是放在blog/content/posts目录下，文章中插入的图片是放在blog/content/posts/images目录下，插入图片的代码是 ![Hugo](/images/hugo01.png &amp;quot;Hugo博客网站&amp;quot;) ，那当执行“hugo”命令后，blog/content/posts/images目录下的图片会自动被复制到public/img 目录下的吗？还是要另外手动上传图片过去？ 现在是担心图片路径不对，会无法显示图片。&#xA;回答： 在使用Hugo这类静态网站生成器时，处理静态资源（如图片）的方式需要根据配置和所用主题的指导来进行。通常，Hugo的默认行为是将/static目录下的文件复制到生成的/public目录中，而不会自动处理位于/content目录下的静态资源。这意味着，如果你将图片放在/content/posts/images目录下，它们可能不会自动被复制到生成的网站目录中。 通常，推荐的做法是将图片放在static目录下。这样可以确保图片在生成的网站中能够正确显示，而不需要手动复制文件或进行额外的配置。</description>
+    </item>
+    <item>
+      <title>Hugo网站中的markdown事例文章</title>
+      <link>https://blog.freezz.cc/posts/test09/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/test09/</guid>
+      <description>Hugo 是一个开源的静态网站生成器，它有着极快的构建速度，能在几毫秒内构建一个中小型的博客网站，Hugo也非常易于安装，适用于Windows、macOS 和 Linux 多种操作系统，并且容易上手，它拥有简单的内容组织方式,配置也很直观。Hugo 有大量的开源主题模块，涵盖各种风格，我们可以很容易地选择并应用自己喜欢的主题，即使是初学者也能很快上手。&#xA;--- # Common-Defined params title: &amp;#34;Hugo网站中的markdown事例文章&amp;#34; date: &amp;#34;2024-03-31&amp;#34; description: &amp;#34;Hugo网站中的markdown事例文章&amp;#34; categories: - &amp;#34;技术笔记&amp;#34; - &amp;#34;技术摘录&amp;#34; tags: - &amp;#34;hugo&amp;#34; - &amp;#34;网站搭建&amp;#34; # menu: main # Optional, add page to a menu. Options: main, side, footer # Theme-Defined params thumbnail: &amp;#34;img/placeholder.png&amp;#34; # Thumbnail image lead: &amp;#34;Example lead - highlighted near the title&amp;#34; # Lead text comments: false # Enable Disqus comments for specific page authorbox: true # Enable authorbox for specific page pager: true # Enable pager navigation (prev/next) for specific page toc: true # Enable Table of Contents for specific page mathjax: true # Enable MathJax for specific page sidebar: &amp;#34;right&amp;#34; # Enable sidebar (on the right side) per page widgets: # Enable sidebar widgets in given order per page - &amp;#34;search&amp;#34; - &amp;#34;recent&amp;#34; - &amp;#34;taglist&amp;#34; --- 这段代码是一个用于Hugo网站的Markdown文件的头部（Front Matter），它用于定义文章或页面的元数据和一些特定的配置选项。Hugo是一个静态网站生成器，它使用这样的头部信息来控制内容的展示和行为。这个示例中的头部信息使用了YAML语法，它是一种常用于配置文件的数据序列化格式。下面是对每个字段含义的解释：</description>
+    </item>
+    <item>
+      <title>windows远程桌面连接linux ubuntu centos</title>
+      <link>https://blog.freezz.cc/posts/js20230329/</link>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20230329/</guid>
+      <description>windows远程桌面连接ubuntu（ubuntu20.04下测试通过）&#xA;在Ubuntu上安装Xfce桌面环境。您可以使用以下命令安装Xfce桌面环境&#xA;sudo apt-get update&#xA;sudo apt-get install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils&#xA;安装xrdp&#xA;sudo apt-get update&#xA;sudo apt-get install xrdp&#xA;启动xrdp服务&#xA;sudo systemctl enable xrdp&#xA;sudo systemctl enable --now xrdp&#xA;配置Ubuntu防火墙以允许RDP连接&#xA;sudo ufw allow 3389/tcp&#xA;如果连接不上，提示类似如下的错误，要检查用户名密码是否正确，否则重启一次unbuntu电脑.&#xA;connection to sesman ip 127.0.0.1 port 3350 sesman connect ok sending login info to session manager,please wait... login failed for display 0 在Windows上打开远程桌面连接(或者运行“mstsc”)，输入Ubuntu主机的IP地址并点击“连接”。 在“登录到Windows”窗口中，选择“使用其他帐户”选项，并输入Ubuntu的用户名和密码。 单击“连接”按钮，等待几秒钟，即可连接到Ubuntu桌面。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&#xA;windows远程桌面连接Centos（Centos7.9下测试通过）&#xA;在CentOS 7.9上安装GNOME桌面环境&#xA;sudo yum groupinstall &amp;quot;GNOME Desktop&amp;quot;</description>
+    </item>
+    <item>
+      <title>DELL戴尔2012年至2022年生产的服务器型号列表</title>
+      <link>https://blog.freezz.cc/posts/js20230223/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20230223/</guid>
+      <description>DELL戴尔2012年至2022年生产的服务器型号参考列表(来源chatgpt，可能有错漏)&#xA;年份 机架式服务器型号 塔式服务器型号 主板芯片组 兼容的CPU型号 2012 PowerEdge R720 PowerEdge T620 Intel C600 Intel Xeon E5-2600 Series: 4-16 cores, up to 3.3 GHz 2013 PowerEdge R720xd PowerEdge T320 Intel C600 Intel Xeon E5-2400 Series: 4-12 cores, up to 2.4 GHz 2014 PowerEdge R730 PowerEdge T630 Intel C610 Intel Xeon E5-2600 v3 Series: 6-18 cores, up to 3.5 GHz 2015 PowerEdge R730xd PowerEdge T430 Intel C610 Intel Xeon E5-2600 v4 Series: 8-22 cores, up to 3.</description>
+    </item>
+    <item>
+      <title>Linux(Centos) top命令的使用详解</title>
+      <link>https://blog.freezz.cc/posts/js20221122/</link>
+      <pubDate>Tue, 22 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20221122/</guid>
+      <description>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。&#xA;top参数详解 第一行，任务队列信息，同 uptime 命令的执行结果&#xA;系统时间：13:55:50&#xA;运行时间：up 1:47 min,&#xA;当前登录用户数： 1 user&#xA;负载均衡(uptime) load average: 0.00, 0.00, 0.00&#xA;average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值，这里的Load指的出于R(runing)和D(Uninterruptible sleep)的两种状态下的进程数。&#xA;在单核cpu情况下，如果load average 为0.4的表示，其cpu利用率只有40%， load average 为1，表示cpu利用率为100，如果load average 为高于1，比如为2.12，则说明cpu已经超负荷112% (2.12减满负荷1，即为超负荷部分)。&#xA;在多核cpu的机器上，需要将以上的1,5,15的负载除以对应的cpu核数，才好评估对应的cpu的负载情况。比如，一个cpu为40核的机器，其cpu过去一分钟的使用情况是8.26，则8.26/40=0.2065 ，说明cpu使用率只有20% 。&#xA;第二行，Tasks — 任务（进程）&#xA;总进程:298 total, 运行:1 running, 休眠:297 sleeping, 停止: 0 stopped, 僵尸进程: 0 zombie&#xA;第三行，cpu状态信息&#xA;0.1%us【user space】— 用户空间占用CPU的百分比。&#xA;0.2%sy【sysctl】— 内核空间占用CPU的百分比。&#xA;0.0%ni【】— 改变过优先级的进程占用CPU的百分比&#xA;99.6%id【idolt】— 空闲CPU百分比&#xA;0.0%wa【wait】— IO等待占用CPU的百分比&#xA;0.0%hi【Hardware IRQ】— 硬中断占用CPU的百分比&#xA;0.0%si【Software Interrupts】— 软中断占用CPU的百分比&#xA;在top 命令下，按数字“1”可监控每个逻辑CPU的状况：如图，服务器有8个逻辑CPU，实际上是1个物理CPU。&#xA;如果不按1，则在top视图里面显示的是所有cpu的平均值。&#xA;第四行,内存状态</description>
+    </item>
+    <item>
+      <title>Infortrend普安GS系列存储文件同步，两台存储间文件同步</title>
+      <link>https://blog.freezz.cc/posts/js20220904b/</link>
+      <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220904b/</guid>
+      <description>RSYNC: remote synchronize 的缩写，是一个远程数据同步工具，可以通过网络实现多台主机之间的文件同步，也可以实现同一主机上不同分区或目录间的数据同步。Rsync 通过“quick check”算法，仅同步发生变化的文件或目录，甚至是只同步一个文件中发生变化的内容部分。因此相比于 cp、scp 等完整拷贝工具，rsync 的增量拷贝在性能和效率上更胜一筹。&#xA;Rsync 特性：&#xA;可以镜像保存整个目录树和文件系统 同步时可以选择是否保持源文件或目录的权限、时间、软硬链接等属性不改变 增量同步，效率更高 灵活的传输方式，可以使用 rsh,ssh 或直接 socket 连接 支持匿名传输 无论是本地还是远程同步数据，首次运行时将会把全部数据拷贝一次，以后再同步时才会是增量备份。由于 rsync 数据复制时效能不如 cp,tar 等工具速度快，因此如果在数据量比较大的情况下，首次复制可以先用其它工具完成，之后再用 rsync 实现同步。&#xA;GS 系列 rsync 网络服务介绍 IFT 所有统一存储，如：GS、GSe、GSc、GSa、GSi、GSe Pro 系列均可以作为 rsync 源端或 rsync 目标端或既是源端也是目标端。当使用 GS 作为 rsync 源端时，直接从“排程&amp;amp;备份”中创建一个文件夹远程同步计划即可；当使用 GS 作为 rsync 目标端时，由两种方式可选择，第一种方式是通过 ssh 直接访问；第二种方式是通过 socket 方式，这种方式需要先在“访问”-“网络服务”中开启并配置 rsync 目标服务，具体操作在以下章节中详细介绍。由于 rsync 协议本身是开源软件，所以此功能在 GS 中也是完全免费的，不需要额外购买 License。&#xA;两台 GS 之间 rsync 同步数据可以选择使用 ssh 方式或 socket 方式来实现，本文以SSH方式为例，演示两台GS 之间 rsync 同步数据，其中GS1016为源端，GS1012为目标端。</description>
+    </item>
+    <item>
+      <title>联想 x3650 M5 服务器不停机不重启加装硬盘并配置阵列</title>
+      <link>https://blog.freezz.cc/posts/js20220904/</link>
+      <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220904/</guid>
+      <description>联想 x3650 M5 服务器，支持硬盘热插拔，通过IMM远程管理配置硬盘阵列，不需要进入BIOS，不用停机或重启服务器，操作比较安全直观，非常适合生产环境。下面我们加装两个1.2T的SAS硬盘，详细记录加装硬盘的全过程。&#xA;关于IMM：IMM全称是Intel Mobile Module是联想IBM服务器上的集成管理模块，该模块是独立于服务器系统，可以通过一个单独的IP地址，使用Web和虚拟端口方式直接启动、停止和管理远程服务器，即使主板、处理器或者内存故障导致主机无法启动，也依然可以远程管理服务器，可以远程直接操作启动画面和服务器工作界面。&#xA;登陆IMM远程管理界面&#xA;找到服务器背面的IMM远程管理口，一般会标记为”IMM”或者有一个扳手型的标志&#xA;然后接上网线。把控制端的电脑的ip设置为与IMM远程管理口的ip同一个网段，联想 System x3650 M5服务器IMM远程管理口的默认初始ip是192.168.70.125。&#xA;在控制端电脑的浏览器中访问192.168.70.125即可打开IMM远程管理的登录页面，默认用户名USERID，密码PASSW0RD，（注意：0是数字0，不是字母O）。&#xA;登录成功后，可以看到系统信息&#xA;点击“Local Storage”，进入阵列卡硬盘存储管理页面&#xA;这里可以看到阵列卡的型号是M5210，有两个300G的硬盘&#xA;点击 “Storage RAID Configuation”&amp;ndash;“View Logical Drives by Storage Pools”，查看到这两个硬盘是做了raid1阵列模式&#xA;现在要添加两个1.2T的新硬盘，并配置成raid1。&#xA;首先在前面板插入新硬盘，槽位0和1是原来的300G硬盘，槽位2和3是新加装的1.2T硬盘 加装好新硬盘后，点击存储管理页面中的“Refresh”按钮，刷新一下，就可以看到新加入的硬盘了。&#xA;但是，这里的新硬盘是没有配置好阵列模式的，我们需要把新硬盘转换为未配置好的状态，然后再配置阵列，步骤如下：&#xA;到此，完成了新硬盘转换为未配置好的状态。进入Local Storage 页面，然后按下面步骤配置新硬盘的阵列&#xA;这里选择阵列模式，把硬盘添加到新阵列中&#xA;到这里，就配置好两个新硬盘的阵列了。然后打开服务器的“磁盘管理”，把新硬盘初始化，分区。&#xA;到此，就全部完成新硬盘的加装了。</description>
+    </item>
+    <item>
+      <title>windows2012/win2016/win2019配置多用户访问远程桌面</title>
+      <link>https://blog.freezz.cc/posts/js20220902/</link>
+      <pubDate>Fri, 02 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220902/</guid>
+      <description>默认情况下，同时最多2个用户通过远程桌面的方式登录Windows Server 2016服务器，通过配置实现多用户登录：本文仅用于测试目的，不建议用于正式环境。&#xA;具体步骤：&#xA;1.安装远程桌面服务 【服务器管理器】-【添加角色和功能】&#xA;勾选【远程桌面服务】&#xA;2.解除远程桌面授权只有120天的有效期 安装过程中，系统会自动重启重启登录系统后，右下角会弹窗提示，远程桌面授权只有120天的有效期，需要向微软采购激活。本文为了测试，将按照下面的操作方式，跳过120天的限制。&#xA;修改注册表打开【注册表编辑器】，进入表项：HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod将这个注册表项删除&#xA;如果提示没有权限进行删除，需要添加权限。在【GracePeriod】表项上，右键-【权限】&#xA;将【所有者】修改为当前登录用户，通常需要使用本地管理员账号administrator记得勾选【替换子容器及所有者】，然后确定&#xA;此时，再次删除【GracePeriod】表项，将可以删除。&#xA;然后调整操作系统时间将操作系统的时间调整为未来的某个时间，例如2099年12月31日调整完时间后，重启操作系统，将时间调整为正确的时间即可。&#xA;3.使用组策略设置限制连接的数量 运行gpedit.msc打开组策略： 计算机配置-&amp;gt;管理模板-&amp;gt;Windows 组件-&amp;gt;远程桌面服务-&amp;gt;远程桌面会话主机-&amp;gt;连接，在右边窗口找到 “将远程桌面服务的用户限制到单独的远程桌面会话” 选项，编辑为 “已禁用”。找到 “限制连接的数量” ，编辑为 “已启用”，“允许的RD最大连接数”填写一个数值，比如100或1000，如果打算无限制连接数量，则填写999999 启用 【设置已中断会话的时间限制】为5分钟，表示用户断开连接5分钟后，将删除会话。可通过任务管理器查看到，或者运行cmd，执行 query user 命令也可查看正在连接的会话。&#xA;至此，所有的配置完成，该Windows server 2016将允许有超过2个以上的用户同时远程桌面连接到该服务器。&#xA;4.创建不同的用户访问远程桌面 创建不同的用户来访问远程桌面，可以使每个登录的用户拥有不同的桌面，实现每个用户个性化，也能实现不同的用户对某个文件的访问权限。&#xA;首先使用管理员登录服务器，然后在“计算机管理”中添加多个用户，再在“远程桌面”属性中添加能登录本服务器进行远程的用户。 设置好后，再重新登录远程&#xA;5.限制桌面远程的客户端把服务器的文件复制到客户端 运行gpedit.msc打开“计算机配置” ，计算机配置—管理模板—windows组件—远程桌面服务—远程桌面会话主机，选择【设备和资源重定向】，在右侧双击【不允许剪贴板重定向】&#xA;然后，运行gpupdate /force 或者重启机器。最好是重启机器使修改后的组策略生效，gpupdate /force 不一定能生效。&#xA;6.客户端连接可能会出现的错误解决方法 win10/win7作为客户端连接win2012/win2016/win2019远程桌面遇到的一些错误解决方法：&#xA;win10提示 “出现身份验证错误。要求的函数不受支持，这可能是由于CredSSP加密数据库修正” 。&#xA;解决方法：&#xA;方法一：运行 gpedit.msc 打开组策略 (注意：win10家庭版没有组策略，可使用下面的方法二解决)&#xA;运行 gpupdate /force 刷新组策略使设置生效&#xA;方法二：修改注册表：&#xA;运行 regedit，找到路径：计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System在System文件夹内创建文件夹项：\CredSSP\Parameters在Parameters文件夹内，新建 DWORD（32）位值（D），文件名为AllowEncryptionOracle，值为2。重新远程桌面连接一下，即可&#xA;如果win10提示 “出现身份验证错误。要求的函数不受支持，这可能是由于找不到ORALCE修正” 。这个解决办法可使用上面的方法二来解决。&#xA;若本地是win7系统，且没有 【加密 Oracle 修正】 选项 ,请先创建比如reg.</description>
+    </item>
+    <item>
+      <title>Linux Centos 防火墙firewall配置只允许特定ip访问</title>
+      <link>https://blog.freezz.cc/posts/js20220901b/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220901b/</guid>
+      <description>本实例情况如下： 服务器的80端口，需要配置为只有允许的ip才可以访问，其它未经允许的ip不能访问。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..&#xA;1. 启用防火墙，首先查看防火墙状态，看防火墙是否已开启&#xA;#查看防火墙状态&#xA;systemctl status firewalld&#xA;如果返回绿色active代表服务已启动。如果未启动，要开启防火墙并设置开机启动.&#xA;#开启防火墙&#xA;systemctl start firewalld&#xA;#开机启动&#xA;systemctl enable firewalld&#xA;2. 关闭端口访问&#xA;确保端口关闭。如果有已开放则要关闭端口，因为此处端口如果开放，是所有ip都可以进行访问。如果端口未开启则无需关闭。&#xA;#查询打开的端口&#xA;firewall-cmd --zone=public --list-ports&#xA;#关闭端口80&#xA;firewall-cmd --zone=public --remove-port=80/tcp --permanent&#xA;#重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查询打开的端口&#xA;firewall-cmd --list-all&#xA;3. 开放指定的ip访问服务器的80端口&#xA;#允许ip192.168.1.111访问80端口&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.111&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; 如果是开放一个网段，就把ip改成ip网段：&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.0/24&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; #重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查看已设置规则&#xA;firewall-cmd --zone=public --list-rich-rules&#xA;**查看防火墙已开放端口列表：&#xA;firewall-cmd --list-all</description>
+    </item>
+    <item>
+      <title>Linux Centos7 firewall防火墙的基本操作</title>
+      <link>https://blog.freezz.cc/posts/js20220901a/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220901a/</guid>
+      <description>Centos7中使用firewalld来作为防火墙，其底层调用的命令仍然是iptables等命令，但是在配置上发生了较大的变化。 Centos7中有两个位置存放了firewall的配置文件，一个是/etc/firewalld，一个是/usr/lib/firewalld，前者是用户配置目录，后者是系统配置目录。/usr/lib/firewalld目录中存放的是firewalld提供的一些默认和备份的配置文件，一般不随意改变，/etc/firewalld目录下才是用户配置的真正生效的配置文件，只有在/etc/firewalld目录不存在或该目录下不存在配置文件的情况下/usr/lib/firewalld目录下的配置文件才会生效。&#xA;zone的概念&#xA;zone定义了防火墙对某个连接、网口（interface）或源地址的信任等级，我们可以把他理解为防火墙对不同的连接（connection）、网口（interface）或源地址（source address）划分到不同的zone当中，而不同的zone定义了不同的规则，因此防火墙可以针对不同的连接、网口（interface）或源地址做出不同的行为。例如，我们将10.12.18.201这个地址划分到zone1中，将10.12.18.202这个地址划分到zone2中，然后zone1中定义的规则为：允许访问3306端口，其余的端口都拒绝访问；zone2中定义的规则为：拒绝访问3306端口，其余的端口都允许访问。那么10.12.18.201就仅能访问本机的3306端口，10.12.18.202就仅不能访问本机的3306端口。每个zone的防火墙规则是通过/etc/firewalld/zones目录下的xml配置文件来配置的。 zone和connection、interface、source address之间是一对多的关系，即一个connection、interface或source address仅能划分到一个zone中，而一个zone中可以包含多个connection、interface或source address。&#xA;对于一个接受到的请求具体使用哪个zone，firewalld是通过三种方法来判断的：&#xA;1、source，也就是源地址&#xA;2、interface，接收请求的网卡&#xA;3、firewalld.conf中配置的默认zone&#xA;这三个的优先级按顺序依次降低，也就是说如果按照source可以找到就不会再按interface去查找，如果前两个都找不到才会使用第三个，也就是学生在前面给大家讲过的在firewalld.conf中配置的默认zone。&#xA;预定义的zone&#xA;Centos7中firewalld为用户预定义了9个zone，分别为drop，block，public，external，dmz，work，home，internal，trusted。这9个zone的配置文件在/usr/lib/firewalld/zones目录下，通过查看他们的配置文件可以得知这9个zone的规则是怎么样的。&#xA;drop：任何传入本机的网络数据包都会被丢弃，并且不会回复，只允许本机对外访问其他服务器。&#xA;block：任何传入本机的网络连接请求都会被拒绝，并且会回复一条拒绝访问的消息。&#xA;public：用于本机处于公共网络环境的场景下，仅接受特定的连接请求，如仅接受某些特定的IP的连接请求，或仅对外部开放特定的某些端口。Centos 7 默认的public.xml文件中仅开放用于ssh连接请求的22端口和dhcpv6-client服务的546端口。&#xA;external：与public类似，Centos 7 默认仅开放用于ssh连接请求的22端口。&#xA;dmz：与external一样，Centos 7 默认也是仅开放用于ssh连接请求的22端口。&#xA;work：用于工作网络环境场景下，信任大部分的其他的计算机不会对本机进行攻击。Centos 7 默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，以及IPP协议的631端口。&#xA;home：用于家庭网络环境，信任网络上的其他计算机不会攻击本机。Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。&#xA;internal：与home一样，Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。 trusted：所有对本机的网络连接请求都会被接受。&#xA;（注：如果更改的防火墙配置，记得要执行 firewall-cmd &amp;ndash;reload 重新加载一次才会生效。）&#xA;操作firewall防火墙的常用命令&#xA;查看防火墙状态&#xA;systemctl status firewalld&#xA;关闭防火墙&#xA;systemctl stop firewalld&#xA;打开防火墙&#xA;systemctl start firewalld&#xA;重启防火墙&#xA;systemctl restart firewalld.service&#xA;开放端口&#xA;firewall-cmd --zone=public --add-port=80/tcp --permanent //在public作用域中开放80端口。&#xA;返回success为成功。&#xA;关闭端口&#xA;firewall-cmd --zone=public --remove-port=80/tcp --permanent //在public作用域中关闭80端口。&#xA;其中 --zone是作用域，--add-port=80/tcp 添加80端口，通讯协议为TCP，--permanent 设置为永久生效。</description>
+    </item>
+    <item>
+      <title>Centos修改硬盘分区大小,把home分区部分容量分配给根分区</title>
+      <link>https://blog.freezz.cc/posts/js20220812/</link>
+      <pubDate>Fri, 12 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220812/</guid>
+      <description>执行df -h查看硬盘使用情况，先看下有没有未分配的磁盘，如果有的话可以把未分配的空间直接分过去，这里都已经使用了，需要从home中分出空间给根目录&#xA;备份home目录文件&#xA;cp -r /home/ homebak/&#xA;使用 umount /home 卸载home分区，并 df -h 查看是否成功。如果提示目标忙，则用fuser -m -v -i -k /home 干掉进程，然后再执行umount /home&#xA;再执行 df -h 查看分区挂载情况：&#xA;这里的显示已经没有了/home，已成功卸载了home分区&#xA;删除home分区（删除home所在lv）：lvremove /dev/mapper/centos-home&#xA;给根目录对应的/dev/mapper/centos-root增加5G空间：lvextend -L +5G /dev/mapper/centos-root&#xA;扩容拓展根分区文件系统 xfs_growfs /dev/mapper/centos-root&#xA;重建home（重建home的lv）。先执行 fdisk -l 查看总量减去已分配的剩下的就是可以分配的大小，不够的话会有提示&#xA;或者执行 vgdisplay 命令，显示LVM卷组的信息，查看到可用的分配容量&#xA;这里显示可用的分配容量为5G。执行 lvcreate -L 5G -n home centos -y 重建home。其中“centos”是home所处的卷组名称（vgdisplay命令可以查看卷组名称），加参数y， 是因为执行时有可能会提示是否擦除xfs签名，加-y 就是擦除xfs签名。&#xA;创建home文件系统，执行 mkfs.xfs /dev/centos/home&#xA;如果出现如下提示：&#xA;mkfs.xfs: /dev/centos/home appears to contain an existing filesystem (xfs_external_log).&#xA;mkfs.xfs: Use the -f option to force overwrite.</description>
+    </item>
+    <item>
+      <title>ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法</title>
+      <link>https://blog.freezz.cc/posts/js202200810/</link>
+      <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js202200810/</guid>
+      <description>ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法&#xA;点开ESXI主机的”网络“，新建一个虚拟交换机&#xA;已经看到新增的”虚拟交换机“了&#xA;点开ESXI主机的”网络“，新建一个&amp;quot;端口组&amp;quot;&#xA;点开ESXI主机的”网络“，新建一个”VMkernel网卡“&#xA;点开ESXI主机的”存储“–”适配器“–“软件iSCSI”&#xA;上图“名称和别名”的IQN号要记下，到在存储主机上添加IQN时要用到的。&#xA;进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，设置主机通道的工作模式，按实际情况来选择，这里选择“iSCSI 10 Gbps”为例&#xA;线缆连接好ESXI主机服务器和GS1012R2存储的相应的端口&#xA;进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，编辑好上面步骤2对应的通道端口，比如图中的”通道1“&#xA;把存储中的卷映射到主机（事先要创建好卷，这里略过）&#xA;下面添加主机IQN&#xA;点击“确定”后，如下图，点击“下一步”&#xA;点击“关闭”按钮，返回到创建映射主机页面&#xA;这里显示选择的的“ESXI”，就是上面建立的主机IQN，“ESXI”是主机的别名&#xA;点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，如无意外，就可以看到连接的存储了&#xA;注意：ESXi会把远程添加的存储当作远程磁盘，所以它期望有两条或以上路径可以到达它，如果没有找到，它会将其视为“已降级”。&#xA;解决步骤如下：&#xA;点开ESXI主机的”网络“，新建一个虚拟交换机&#xA;点开ESXI主机的”网络“，新建一个端口组&#xA;点开ESXI主机的”网络“，新建一个VMkernel网卡&#xA;点开ESXI主机的”存储“–”适配器“，选中那张iSCSI适配器，点”配置iSCSI“，”添加端口绑定“&#xA;点击选中刚才添加的VMkernel网卡&#xA;添加完成后的状态&#xA;点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，就可以正常显示存储&#xA;最后，还需要在ESXI主机中再配置一下iSCSI，多添加一条”动态目标“。因为普安infortrend GS1012R2是双控制器的，每个控制器都有各自的通道，比如上面的控制器接线图，ESXI服务器分别接了控制器A的通道1端口(设置的ip是192.168.1.31) 和 控制器B的通道1端口(设置的ip是192.168.1.32)，这样可以双路径通讯，如果其中一个控制器或者链路出现故障，会自动切换到另外一个控制器和链路。添加完成后，如下图：&#xA;………………………………………………………………………</description>
+    </item>
+    <item>
+      <title>VMware ESXI vCenter 备忘笔记</title>
+      <link>https://blog.freezz.cc/posts/js20220729/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220729/</guid>
+      <description>网卡信息查询 查看所有网卡：&#xA;esxcfg-nics -l&#xA;查看更详细的网上信息：&#xA;esxcli network nic list&#xA;查看对应网卡驱动和固件，如下查看vmnic0对应的驱动和固件：&#xA;esxcli network nic get -n vmnic0&#xA;显示网卡的VID，DID 等信息：&#xA;vmkchdev -l | grep vmnic0&#xA;然后去VMware网站查询兼容情况，如果不兼容，去对应硬件厂商找到对应固件更新。各硬件厂商更新fireware方式略有不同，具体联系对应硬件厂商。 VMware网站下载对应的网卡驱动，会得到一个zip压缩包，解压缩后有两个文件，一个vib格式，一个zip格式。用如下命令更新： esxcli software vib install -v {VIBFILE}&#xA;或&#xA;esxcli software vib install -d {OFFLINE_BUNDLE}&#xA;(注：如果执行安装后提示could not find a trusted signer，可以在命令后添加参数 –no-sig-check) 建议使用第一种更新方式，注意，vib存放路径用完整路径。之后重启主机。&#xA;……………………………………………&#xA;给虚拟机添加USB设备，例如U盘 1、把USB设备插入到物理主机&#xA;2、编辑虚拟机设置–添加其它其他设备–USB设备–保存设置。&#xA;注：同一个USB设备，同时只能添加到一台虚拟机中。在虚拟机中删除该USB设备后，才能添加到其它虚拟机中。&#xA;……………………………………………&#xA;esxi6.5开启开启嵌套虚拟化 Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo&#xA;另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。&#xA;要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：&#xA;使用 vSphere Client 登录到 ESXi/ESX 主机或 vCenter Server。在清单中选择 ESXi/ESX 主机。单击配置选项卡。在“硬件”部分，单击网络。单击要启用混杂模式的虚拟交换机的属性。 选择要修改的虚拟交换机或端口组，然后单击编辑。单击安全选项卡。从“混杂模式”下拉菜单中，单击接受。</description>
+    </item>
+    <item>
+      <title>命令的形式列出各个linux系统已经安装的软件包</title>
+      <link>https://blog.freezz.cc/posts/js20220714/</link>
+      <pubDate>Thu, 14 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220714/</guid>
+      <description>在 Arch Linux 中使用 pacman 显示已安装的包 Pacman是 Arch Linux 及其衍生产品（如 EndeavourOS 和 Manjaro Linux）的默认包管理器。要列出Arch Linux 及其衍生产品中使用pacman显示所有已安装软件包，如下：&#xA;pacman -Q&#xA;如果要逐页查看输出，请将输出通过管道传输到more命令&#xA;pacman -Q | more&#xA;仅列出显式安装的软件包和版本：&#xA;pacman -Qe&#xA;要仅列出 Arch Linux 中已安装软件包的总数，请将pacman输出通过管道传输到wc命令：&#xA;pacman -Q | wc -l 会回显一个数字的，就是安装包的总数量&#xA;在Alpine Linux中使用apk命令获取已安装包列表 Apk是 Alpine Package Manager 的缩写，是 Alpine Linux 的默认包管理器。在 Alpine Linux 中查看已安装包列表的命令是：&#xA;apk info&#xA;如果要查看已安装的软件包列表以及版本号和软件包描述，请使用-vv如下标志：&#xA;apk info -vv&#xA;要仅列出 Alpine Linux 中所有已安装软件包的总数，请将apk info输出通过管道发送到wc如下命令：&#xA;apk info | wc -l&#xA;在 Debian、Ubuntu 中使用 apt 命令查找已安装的包 Apt为 Debian、Ubuntu 和其他基于 Debian 的系统中的包管理系统提供了高级命令行界面。要在 Debian、Ubuntu、Linux Mint 和其他基于 DEB 的系统中显示已安装软件包的列表， 请运行：</description>
+    </item>
+    <item>
+      <title>使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明</title>
+      <link>https://blog.freezz.cc/posts/js20220713/</link>
+      <pubDate>Wed, 13 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220713/</guid>
+      <description>NTFS 是 Windows NT 系列操作系统支持的磁盘文件系统格式，它是一个特别为网络和磁盘配额、文件加密等管理安全特性设计的文件系统。 而 Linux 内核中新进入主线支持的 NTFS3 驱动是一个功能齐全的 NTFS 驱动程序，该驱动程序适用于最高的 NTFS 3.1 版本。&#xA;最初，Linux 内核没有 NTFS 的原生支持，后来对 NTFS 的支持也仅提供了只读功能。来自 Tuxera 的 NTFS-3G 是之前主流的解决方案，但在实际使用中也存在一些问题。 NTFS-3G 是借助 Linux 的用户空间文件系统（FUSE）模块在用户层实现的一个对 NTFS 支持的文件系统，其对 NTFS 的访问逻辑代码都是在用户层代码实现的。 在 NTFS3 出现之前，Linux 上使用 NTFS 主要问题还是缺乏稳定且功能齐全的读/写支持。2020 年，Paragon 软件公司做出了一个惊人的决定： 尝试将之前只提供给商业客户的 NTFS3 驱动程序贡献到 Linux 主线。最终，在经过多轮审核和修改之后，Linux 内核 5.15 合并了 Paragon 提供的 NTFS3 内核驱动， 它拥有更高的性能和更多的特性：&#xA;该驱动程序实现了对 NTFS 文件系统中的正常、稀疏和压缩文件的读/写支持。 支持本地日志回放。 支持已挂载的 NTFS 卷的 NFS 导出。 支持文件和文件夹的权限管理。 使用 NTFS3 驱动挂载 NTFS 卷：使用 NTFS3 驱动挂载时使用的文件系统类型是 ntfs3。</description>
+    </item>
+    <item>
+      <title>开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH </title>
+      <link>https://blog.freezz.cc/posts/js20220628/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220628/</guid>
+      <description>查看SSH是否安装：&#xA;输入命令：rpm -qa | grep ssh&#xA;注：若没安装SSH则可输入：yum install openssh-server安装。&#xA;启动SSH服务&#xA;输入命令：systemctl start sshd 或者 service sshd start 来启动SSH服务&#xA;重启后可输入：netstat -antp | grep sshd 查看是否启动22端口（可略）&#xA;设置SSH服务为开机启动&#xA;输入命令：systemctl enable ssh 或者 chkconfig sshd on 即可。&#xA;注：若是chkconfig sshd off则禁止SSH开机启动。&#xA;使用SSD终端进行远程连接，比如Xshell，FinalShell&#xA;点击新建连接图标，在主机框输入IP。然后根据提示输入登录的用户名密码。&#xA;注：网络要通，账号密码要对。&#xA;Ubuntu 20.04上启用SSH&#xA;默认情况下，首次安装Ubuntu时，不允许通过SSH进行远程访问。以root 用户或具有sudo特权的用户执行以下步骤，以在Ubuntu系统上安装并启用SSH：&#xA;安装openssh-server软件包：&#xA;sudo apt update&#xA;sudo apt install openssh-server&#xA;安装完成后，SSH服务将自动启动。您可以通过键入以下命令来验证SSH是否正在运行：&#xA;sudo systemctl status ssh&#xA;按q返回到命令行提示符。 防火墙放行SSH。Ubuntu随附了一个名为UFW的防火墙配置工具，查看防火墙状态：&#xA;sudo ufw status verbose&#xA;启用ubuntu ufw防火墙： sudo ufw enable&#xA;sudo ufw default deny 运行以上两条命令后，开启了防火墙，并在系统启动时自动开启。</description>
+    </item>
+    <item>
+      <title>硬盘容量十进制与操作系统二进制的换算</title>
+      <link>https://blog.freezz.cc/posts/js20220624/</link>
+      <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220624/</guid>
+      <description>平时我们一般用十进制格式 (base-10) 计算硬盘容量，而操作系统以二进制格式 (base-2)计算的，这两种进制计算出来的容量是明显存在差异的。 Base 10 值称为千兆字节，缩写为 GB，Base 2 称为 Gibibytes，缩写为 GiB。为了确认操作系统中显示的硬盘容量与我们平时日常计算的容量相匹配，应将 GB 转换为 GiB 或将 Base 10 字节转换为 Base 2 字节。&#xA;千兆字节示例：&#xA;500 GB 卷约为 500,000,000,000 字节&#xA;注意： 1 GB = 1^10 字节 = 1,000,000,000 字节&#xA;Gibibytes 示例：&#xA;500 GB 卷约为 500,000,000,000 字节&#xA;注意： 1 GiB = 2^30 字节 = 1,073,741,824 字节&#xA;GB 到 GiB 示例&#xA;500,000,000,000 字节/1,073,741,824 Base 2 字节 = 465.661 GB&#xA;换言之，人工计算的500G约等于系统的465.661G，是系统的0.931322倍。&#xA;那么，1000GB（1TB），在系统中就约显示为 1000GB容量×0.931322系数=931.322G&#xA;10TB=10TB×0.931322=9.31322TB</description>
+    </item>
+    <item>
+      <title>Centos8/7 激活（启用连接）网卡 NetworkManager网络设置</title>
+      <link>https://blog.freezz.cc/posts/js20220623/</link>
+      <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220623/</guid>
+      <description>Linux查看网卡ip地址命令：&#xA;ip addr&#xA;或 ip address&#xA;或 ip addr show&#xA;或 ip address show&#xA;Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这样才能访问网络。&#xA;启用网卡连接connection（相当于ifup）&#xA;mncli d 查看网上接口信息&#xA;nmcli c up ethX(enoX) 激活打开网卡连接，ethX(enoX)为网卡接口名称&#xA;停止网卡连接connection（相当于ifdown）&#xA;nmcli c down ethX(enoX)&#xA;设置自动启动网卡&#xA;nmcli connection modify ethX(enoX) connection.autoconnect yes&#xA;例如 nmcli connection modify ens192 connection.autoconnect yes&#xA;实际修改的是网卡配置文件ONBOOT=yes&#xA;修改IP&#xA;在/etc/sysconfig/network-scripts目录下存放着网卡的配置文件，文件名称是 ifcfg- 网卡名称。&#xA;cd /etc/sysconfig/network-scripts/&#xA;ls&#xA;找到网卡配置文件，使用vim修改文件。&#xA;网卡配置文件的默认配置&#xA;TYPE=Ethernet PROXY_METHOD=none BROWSER_ONLY=no BOOTPROTO=dhcp DEFROUTE=yes IPV4_FAILURE_FATAL=no IPV6INIT=yes IPV6_AUTOCONF=yes IPV6_DEFROUTE=yes IPV6_FAILURE_FATAL=no IPV6_ADDR_GEN_MODE=stable-privacy NAME=ens33 UUID=e4987998-a4ce-4cef-96f5-a3106a97f5bf DEVICE=ens33 ONBOOT=no #如果使用dhcp分配ip的话，只需要将这里no改为yes，然后重启网络服务就行,使用 nmcli c reload 命令重启网络服务 如果需要配置静态ip，则按照以下修改方法修改</description>
+    </item>
+    <item>
+      <title>Centos7/8 Linux 配置网络ip地址 nmtui命令</title>
+      <link>https://blog.freezz.cc/posts/js202200526/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js202200526/</guid>
+      <description>nmcli安装命令：&#xA;yum install NetworkManager&#xA;nmtui安装命令：&#xA;yum install NetworkManager-tui&#xA;这个命令也可以安装：&#xA;yum install NetworkManager-tui;nmtui;&#xA;启动&#xA;systemctl start NetworkManager&#xA;运行nmtui图形界面：&#xA;nmtui&#xA;查看网卡和ip地址 nmcli device show&#xA;如果你想使用旧版的ifconfig作为过渡，可以把它安装回来：&#xA;yum install net-tools&#xA;这个包里面包括了ifconfig, netstat, whois等一些惯用的命令，可以把它装回来方便使用。</description>
+    </item>
+    <item>
+      <title>云应用服务启动服务的步骤和命令</title>
+      <link>https://blog.freezz.cc/posts/work20220505/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220505/</guid>
+      <description>SSH端口12233，cs&#xA;重启项目步骤：&#xA;进入data目录：&#xA;cd /data 订单系统，启动命令： nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;amp; 服务器重启后的步骤：&#xA;如果遇到SSH连接不上，需登录网页后台，打开命令页面，手动启动网卡：&#xA;systemctl start NetworkManager&#xA;可设置下次网卡自动启动：&#xA;systemctl enable NetworkManager&#xA;查看防火墙状态，需关闭防火墙&#xA;systemctl status firewalld&#xA;关闭防火墙&#xA;systemctl stop firewalld&#xA;第一步数据库 启动mysql数据库，命令：&#xA;service mysqld start&#xA;查看数据库启动状态，正常应该有active(runnign)字样&#xA;service mysqld status&#xA;启动mongodb数据库，命令：&#xA;cd /usr/local/mongo/service/bin&#xA;./mongod -f mongo.conf 第二步，启动nginx和redis Nginx启动命令：&#xA;/usr/sbin/nginx -s reload&#xA;（或者systemctl start nginx.service 或者 systemctl start nginx）&#xA;Redis 启动命令：</description>
+    </item>
+    <item>
+      <title>戴尔DELL H330 Raid卡 阵列卡BIOS模式下配置阵列</title>
+      <link>https://blog.freezz.cc/posts/js20220424/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220424/</guid>
+      <description>开机看到屏幕有提示有“Ctrl+R”字样的提示时，按下“Ctrl+R”进入阵列卡设置界面。</description>
+    </item>
+    <item>
+      <title>windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密</title>
+      <link>https://blog.freezz.cc/posts/js20220413/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220413/</guid>
+      <description>注重数据保护的 PC 用户应该接触过 Windows 自带的 「BitLocker 驱动器加密」工具，该工具是一项能对磁盘驱动器进行加密保护的安全工具。我们知道升级 Windows 11 系统最重要的条件之一便是具备「TPM 2.0 安全模块」并开启它，在开启 TPM 后 BitLocker 将变为可用状态。&#xA;在部分设备特别是兼容性较好的设备上首次登录 Microsoft 账户时，可能会在未经过你的允许下自动启用 BitLocker。这时候你的硬盘就会被 BitLocker 加密，但因为正常使用过程中数据的读写不受影响。许多用户甚至并没有意识到他们的磁盘已被加密，并且不知道解锁密码。 这无疑是给用户带来了一定的隐患。&#xA;例如当你彻底恢复以及重装系统后，访问加密磁盘的数据就需要先对其进行解密，因为 BitLocker 的安全系数很高，即使重装系统也无法解除加密。 那么这就产生了两个问题：如何确认自己的磁盘是否启用 BitLocker 加密？加密后如何解锁磁盘？&#xA;首先，在搜索菜单栏搜索「BitLocker」并打开「管理 BitLocker」；新窗口中，对应盘符后面显示「BitLocker已关闭」表示该磁盘并未加密，显示「BitLocker 已启用」则表示已加密，已开启加密的，要备份好密钥，以备以后可以恢复密钥查看数据。&#xA;如果磁盘可以正常打开访问，那么直接点击需要解锁磁盘后面的「关闭 BitLocker」，这时候一般不用密码，只需耐心等待即可成功解锁。 注意：磁盘数据量比较大的情况下，解锁需要花费较长时间。&#xA;而解锁时如果提示输入密码以及系统故障等问题无法进入系统时，解除磁盘加密则可以用到我们的恢复秘钥。其实对磁盘加密时，Windows 通常会自动将恢复秘钥保存至我们的 Microsoft 帐户中。 只需要打开以下网站并登录需要解密设备上的关联 Microsoft 账户即可查看恢复秘钥。&#xA;account.microsoft.com/devices/recoverykey&#xA;在解锁磁盘时点击「更多选项」；&#xA;然后点击「输入恢复秘钥」；&#xA;最后输入查询到的48位恢复秘钥即可解锁。&#xA;来源 https://mp.weixin.qq.com/s?__biz=Mzg3MzY2MjgxMg==&amp;amp;mid=2247634284&amp;amp;idx=1&amp;amp;sn=ce4941867c169f02651270919b6935ee&amp;amp;chksm=ced01d5ff9a79449683a16dec52bb7a1b4da8a26cc83d7f6a46671293a348a21d84b923a4962&amp;amp;mpshare=1&amp;amp;scene=23&amp;amp;srcid=04137amH72s2c9hrYl0AzLfm&amp;amp;sharer_sharetime=1649831238869&amp;amp;sharer_shareid=970709776a181e42a8eeec84ec08562f#rd</description>
+    </item>
+    <item>
+      <title>解决Ubuntu的Vi方向键出现乱码</title>
+      <link>https://blog.freezz.cc/posts/js20220412/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220412/</guid>
+      <description>新装的系统，只装了vi未装vim，在使用vi时方向键出现问题都是字母，如下可解决：&#xA;cp /etc/vim/vimrc ~/.vimrc&#xA;或者：&#xA;sudo apt-get install vim&#xA;重启终端即可。&#xA;来源 https://blog.csdn.net/qq_34975710/article/details/104423974</description>
+    </item>
+    <item>
+      <title>ESXI 虚拟交换机配置 Trunk 端口组 VLan</title>
+      <link>https://blog.freezz.cc/posts/js20220411/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220411/</guid>
+      <description>ESXI 标准 vSwitch 支持自定义 VLAN ID，以实现网络隔离！根据 VLAN ID 的不同，可分为三种网络：&#xA;VLAN ID 0 阻止任何携带了 VLAN tag 的数据包 VLAN ID 4095 允许通过携带任何 VLAN tag 的数据包（trunk） VLAN ID 1~4094 仅允许携带指定 VLAN ID tag 的数据包 默认地，在未做更改的情况下，虚拟机往往是使用的 VLAN ID 为 0 的网络。当我们需要虚拟机间的网卡能接收到携带任何 VLAN tag 的数据包时，就需要设置 trunk 网络！&#xA;ESXI 设置 Trunk 网络（端口组） 首先，登录到 ESXI 控制台（本文是 ESXI 7.0），依次选择：网络 -&amp;gt; 端口组 -&amp;gt; 添加端口组&#xA;注意，VLAN ID 必须是 4095，只有该 ID 才是 Trunk 模式（允许任何 VLAN 包通过） 保存后，Trunk 网络就创建好了！&#xA;接下来，配置虚拟机网卡，使其使用该 Trunk 网络 虚拟机网络适配器处选择我们创建好的 Trunk 网络即可！当多个虚拟机都配置为使用该 Trunk 网络，它们之间就能互相收发携带任何 VLAN tag 的数据包了。</description>
+    </item>
+    <item>
+      <title>技术文章链接收录</title>
+      <link>https://blog.freezz.cc/posts/rc20220411/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/rc20220411/</guid>
+      <description>【2022年4月11日】&#xA;Linux Window10 VNC远程访问ubuntu20.04&#xA;https://www.cxyzjd.com/article/qq_33343767/112431846&#xA;Ubuntu20.04防火墙设置简易教程&#xA;https://cloud.tencent.com/developer/article/1711744&#xA;deepin-wine GitHub主页&#xA;https://github.com/zq1997/deepin-wine&#xA;deepin-wine支持软件列表&#xA;https://deepin-wine.i-m.dev/&#xA;ubuntu20.04使用wine安装微信卸载微信 https://blog.csdn.net/qq_25272679/article/details/113633441&#xA;Ubuntu20.04使用阿里云源安装Docker&#xA;https://www.jianshu.com/p/da1c7dc4217a&#xA;ubuntu使用docker安装微信&#xA;https://segmentfault.com/a/1190000040674722&#xA;https://ugirc.blog.csdn.net/article/details/109487664&#xA;ubuntu执行.sh文件几种方式区别&#xA;https://blog.csdn.net/u012336923/article/details/50474692&#xA;centos7安装时加载RAID磁盘阵列卡驱动&#xA;https://www.linuxprobe.com/centos7-raid-install.html&#xA;https://blog.csdn.net/u014389734/article/details/94005885&#xA;https://blog.csdn.net/weixin_33910305/article/details/116850746&#xA;Windows SQLServer2019+WSFC高可用部署&#xA;https://blog.csdn.net/shy871/article/details/117041269&#xA;硬件资讯和技术 戴尔DELL服务器相关&amp;ndash;胖大牛&#xA;http://b.7dell.com/index.php/index.html&#xA;USB 3.1 Gen 1、Gen 2 和USB 3.2三种接口之间的区别？</description>
+    </item>
+    <item>
+      <title>存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别</title>
+      <link>https://blog.freezz.cc/posts/js20220402/</link>
+      <pubDate>Sat, 02 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220402/</guid>
+      <description>10Gb iSCSI 光纤与 8Gb/16Gb 的光纤两者有什么区别呢？我们可以把 10Gb iSCSI 光纤视为10Gb 的光纤以太网卡，将 8Gb/16Gb 光纤视为光纤 HBA 卡，这样去对比两者的区别就容易得多了，首先两者使用的 SFP（Small form Factor Pluggable）模块不可以通用，也就是说存储产品中的 8Gb/16GB SFP 模块与 10Gb的SFP 模块不能混用。&#xA;在早期的 SAN（存储区域网络）存储系统中，服务器与交换机的数据传输是通过光纤进行的，因为服务器是把 SCSI（Small Computer System Interface小型计算机系统接口）指令传输到存储设备上，不能走普通以太网的 TCP/IP 协议，所以需要使用 FC 传输，因此这种 SAN 就叫 FC-SAN，而后期出现了用 IP 协议封装的 SAN，可以完全走普通 LAN 网络，因此叫做 IP-SAN，其中最典型的就是现在热门的 ISCSI。&#xA;这两种方式都需要对数据块进行繁重的读包解包操作，因此高性能的 SAN 系统是需要在服务器上安装一块专门负责解包工作以减轻处理器负担的卡，这种卡就叫 HBA 卡（Host Bus Adapter，即主机总线适配器），它除了执行解包工作外当然还可以提供一个光纤接口（如果是 iSCSI HBA 卡就是提供普通的 RJ45 接口）以用于跟对应的交换机连接；另外，HBA 卡物理上也可以把它当作网卡一样插在服务器的 PCI-E 插槽上，因此这种设备的用法非常像一块网卡，很多人也就把它跟普通网卡或普通的光纤网卡混淆了。当然，有的 iSCSI HBA 卡就可以当作普通网卡来用，不过从价格上考虑这是非常奢侈，以至于我们很少见到 ISCSI HBA 卡，通常客户都是使用 iSCSI_Initiator 软件加服务器板载网卡进行搭配使用。&#xA;HBA 的常规定义就是连接主机 I/O 总线和计算机内存系统的 I/O 适配器。按照这个定义，像显卡就是连接视频总线和内存，网卡就是连接网络总线和内存，SCSI 或者 FC 卡就是连接 SCSI 或者 FC 总线和内存的，它们都是 HBA。HBA 卡有 FC HBA、SAS HBA、iSCSI HBA 将来还有其他 HBA 卡。</description>
+    </item>
+    <item>
+      <title>Linux CentOS 命令摘录备忘</title>
+      <link>https://blog.freezz.cc/posts/js20220401/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220401/</guid>
+      <description>可用 pwd 命令查看用户的当前目录&#xA;** sudo -i 命令可切换成root用户&#xA;Linux查看设置开机启动的服务列表&#xA;systemctl list-units --type=service&#xA;压缩、解压&#xA;tar -cvf fille.tar file（可以多个文件空格隔开）-c: 建立压缩档案；-v: 显示所有过程；-f: 使用档案名字，是必须的，是最后一个参数）&#xA;tar -xvf file.tar 解包到当前目录&#xA;tar -xvf file.tar -C dir 把文件解压到指定目录中&#xA;zip 压缩后文件名 源文件&#xA;zip -r 压缩后目录名 原目录&#xA;unzip file.zip -d dir 解压到指定目录&#xA;gunzip file1.gz 解压 file1.gz&#xA;gzip file1 压缩 file1&#xA;gzip -9 file 最大程度压缩文件&#xA;tar比较常用的使用方式：&#xA;打包压缩：&amp;ldquo;tar -czvf 压缩包名称.tar.gz 要打包的目录”&#xA;解压缩：&amp;ldquo;tar -xzvf 压缩包名称.tar.gz&amp;rdquo;&#xA;文件、目录、文件夹和文件大小&#xA;rm -f file 参数-f用来强制删除文件，不提示&#xA;rm [文件名] 删除文件&#xA;rm -r dir 递归删除其文件和文件夹，就是删除目录是要加上参数-r，否则删除不了 rm -rf dir 强制删除非空文件夹及其内容，不提示。-r 就是向下递归，不管有多少级目录，一并删除。-f 就是直接强行删除，不作任何提示</description>
+    </item>
+    <item>
+      <title>Linux Ubuntu 命令摘录备忘</title>
+      <link>https://blog.freezz.cc/posts/js20220401b/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220401b/</guid>
+      <description>查看用户的当前目录 pwd&#xA;查看ubuntu版本：&#xA;lsb_release -a&#xA;cat /etc/issue&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.&#xA;Ubuntu 22.04上配置静态IP地址： 配置文件路径&#xA;/etc/netplan&#xA;以下是文件内容(配置项冒号后面有一个空格，注意缩行)：&#xA;# This is the network config written by &amp;#39;subiquity&amp;#39; network: ethernets: ens160: dhcp4: no addresses: - 192.168.1.112/24 //设置ip和子网掩码 routes: - to: default via: 192.168.1.1 //设置网关 nameservers: //设置DNS addresses: [202.96.128.166,8.8.8.8] version: 2 保存文件后，重新启动网络服务：&#xA;sudo netplan apply&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&#xA;Ubuntu 20.04上配置静态IP地址 Ubuntu 17.10及更高版本使用Netplan作为默认网络管理工具。 先前的Ubuntu版本使用ifconfig及其配置文件/etc/network/interfaces来配置网络。 Netplan配置文件使用YAML语法编写，文件扩展名为.yaml。 要使用Netplan配置网络接口，您需要为该接口创建YAML描述，然后Netplan会使用所选的渲染器工具生成所需的配置文件。 Netplan支持两个渲染器：NetworkManager和Systemd-networked。NetworkManager主要在台式机上使用，而Systemd-networked在没有GUI的服务器上使用。 在Ubuntu 20.04上，系统使用“predictable network interface names(可预测的网络接口名称)”标识网络接口。设置静态IP地址的第一步是识别要配置的以太网接口的名称。 为此，请使用 ip link 命令， 该命令将打印所有可用网络接口的列表。&#xA;Netplan配置文件存储在/etc/netplan目录中。 您可能会在此目录中找到一个或多个YAML文件。 文件的名称可能因安装程序而异。 通常，文件名为01-netcfg.</description>
+    </item>
+    <item>
+      <title>Windows11 Win11操作配置技巧</title>
+      <link>https://blog.freezz.cc/posts/js20220318b/</link>
+      <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220318b/</guid>
+      <description>安装winows11时跳过强制联网 方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。&#xA;方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。 以上方法只适合22H2之前的版本，如果是22H2的版本，侧需如下方法来跳过强制联网和微软账号：&#xA;第一启动前，要先断网，然后开机，当进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobe\bypassnro.cmd 然后按回车键，系统自动重启。 当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。&#xA;windows11离线解包系统： 1、先拔出网线（断网），电脑开机。&#xA;2、当进入到选择国家、或者要求联网、或者要求输入微软账号中的任何一个页面时，同时按下 ctrl+shift+F3 这三个组合键，系统自动重启。&#xA;3、重启完成进入桌面后，会自动弹出一个系统工具对话窗口的，直接点击窗口下的“确定”按钮，系统会再次自动重启。&#xA;4、当重启进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobebypassnro.cmd 然后按回车键，系统会再一次自动重启。&#xA;5、当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。&#xA;解决Win11右键菜单折叠问题 切换回经典右键菜单 首先Win+X打开Windows powershell（管理员）（PS：现在貌似叫Windows 终端（管理员）） 输入如下内容后回车 reg add &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;rdquo; /f /ve&#xA;然后 Win+E 打开Windows资源管理器，再 Ctrl+Shift+Esc，任务管理器重启Windows资源管理器（重启电脑也可以）， 完成。&#xA;如需重新恢复到新版右键菜单（没人会这么干吧） reg delete &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&amp;rdquo; /f 选择想要的类型，粘贴后回车。</description>
+    </item>
+    <item>
+      <title>更改 ESXi Server 管理 IP 地址</title>
+      <link>https://blog.freezz.cc/posts/js20220318/</link>
+      <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220318/</guid>
+      <description>更改 ESXi Server 管理 IP 地址 在更改 ESXi Server 管理 IP 地址之前，请确保：&#xA;新的 IP 地址和所需网络设置就绪。 已在群集中禁用高可用性 (HA)，以防止故障切换事件。有关详细信息，请参见 Disabling VMware High Availability (HA) (1008025)。 如果锁定模式启用，则禁用该模式。更多信息，请参见Enabling or disabling Lockdown mode on an ESXi host ESXi 主机处于维护模式，因为该主机在更改 IP 地址期间可能会断开连接。 要更改 ESXi Server 管理 IP 地址，请执行以下操作：&#xA;更改 ESXi Server 管理 IP 地址：&#xA;使用 DCUI 更改 ESXi Server 管理 IP 地址： 登录到 ESXi 的直接控制台用户界面。 选择“配置管理网络”，并按 Enter 键 从“配置管理网络选项”菜单中，选择“IPv4 配置”或“IPv6 配置”，并按 Enter 键 设置新的 IPv4 或 IPv6 配置，然后按 Enter 键 按 Esc 键退出 DCUI 时会弹出警示“配置管理网络: 确认” 按 Y 以应用更改并重新启动管理网络。</description>
+    </item>
+    <item>
+      <title>部署hugo网站到github</title>
+      <link>https://blog.freezz.cc/posts/js20220317/</link>
+      <pubDate>Thu, 17 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220317/</guid>
+      <description>部署hugo网站到github&#xA;代码行&#xA;第一次开始部署&#xA;☞使用Git Bash终端&#xA;☞新建一个网站&#xA;hugo new site ffblog 其中 &amp;ldquo;ffblog&amp;rdquo; 是网站文件夹名&#xA;☞把主题文件复制到themes文件夹内&#xA;☞进入网站文件夹根目录&#xA;cd ffblog&#xA;☞将主题添加到站点配置，“bootstrap”是主题(文件)名称&#xA;echo theme = \&amp;quot;bootstrap\&amp;quot; &amp;gt;&amp;gt; config.toml&#xA;☞新建一篇文章&#xA;hugo new post/my-first-post.md ☞启动 Hugo server，运行本地网站&#xA;hugo server -D ☞进入网站根目录&#xA;cd ~/ffblog&#xA;☞构建Hugo 网站，默认将生成的静态站点文件保存到 &amp;ldquo;public&amp;rdquo; 目录，&amp;ldquo;public&amp;rdquo; 文件夹会被转换为 Git 库&#xA;hugo&#xA;☞进入public目录&#xA;cd ffblog/public&#xA;☞初始化 Git 库&#xA;git init&#xA;☞显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件&#xA;ls -a&#xA;☞新建一个主分支main&#xA;git branch -M main&#xA;☞将 Git 本地库关联至远程库，如果 [remote &amp;ldquo;origin&amp;rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库</description>
+    </item>
+    <item>
+      <title>Markdown 语法教程</title>
+      <link>https://blog.freezz.cc/posts/js20220304/</link>
+      <pubDate>Fri, 04 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220304/</guid>
+      <description>Markdown 基本语法 Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。 它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。 因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。&#xA;Markdown 标题语法 要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题 () (例如：### My Header)。&#xA;Markdown 段落 要创建段落，请使用空白行将一行或多行文本进行分隔。不要用空格（spaces）或制表符（ tabs）缩进段落。&#xA;Markdown 换行语法 在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(&amp;lt;br&amp;gt;)。 几乎每个 Markdown 应用程序都支持两个或多个空格进行换行，称为 结尾空格（trailing whitespace) 的方式，但这是有争议的，因为很难在编辑器中直接看到空格，并且很多人在每个句子后面都会有意或无意地添加两个空格。由于这个原因，你可能要使用除结尾空格以外的其它方式来换行。幸运的是，几乎每个 Markdown 应用程序都支持另一种换行方式：HTML 的 标签。 为了兼容性，请在行尾添加“结尾空格”或 HTML 的 &amp;lt;br&amp;gt; 标签来实现换行。&#xA;Markdown 强调语法 通过将文本设置为粗体或斜体来强调其重要性。&#xA;粗体（Bold） 要加粗文本，请在单词或短语的前后各添加两个星号（asterisks）。如需加粗一个单词或短语的中间部分用以表示强调的话，请在要加粗部分的两侧各添加两个星号（asterisks）。例如：&#xA;我在学习**Markdown**语法 输出结果：我在学习Markdown语法&#xA;斜体（Italic） 要用斜体显示文本，请在单词或短语前后添加一个星号（asterisk）。要斜体突出单词的中间部分，请在字母前后各添加一个星号，中间不要带空格。例如：&#xA;我在学习*Markdown*语法 输出结果：我在学习Markdown语法&#xA;粗体（Bold）和斜体（Italic） 要同时用粗体和斜体突出显示文本，请在单词或短语的前后各添加三个星号。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各添加三个星号，中间不要带空格。例如：&#xA;我在学习***Markdown***语法 输出结果：我在学习Markdown语法&#xA;Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 符号&#xA;&amp;gt;正在学习Markdown的引用语法。&#xA;输出效果：&#xA;正在学习Markdown的引用语法。&#xA;多个段落的块引用：块引用可以包含多个段落。为段落之间的空白行添加一个 &amp;gt; 符号&#xA;&amp;gt;正在学习Markdown的引用语法。 &amp;gt; &amp;gt;正在学习Markdown的引用语法。 输出效果：</description>
+    </item>
+    <item>
+      <title>实用网址收录(不定时更新)</title>
+      <link>https://blog.freezz.cc/posts/rc20220223/</link>
+      <pubDate>Wed, 23 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/rc20220223/</guid>
+      <description>微软Azure云服务平台永久免费和限时免费项目&#xA;微软Azure文本转语音&#xA;微软Azure语音转文本&#xA;微软Azure语音翻译&#xA;图片在线去背景 https://www.photoroom.com/tools/remove-object-from-photo/&#xA;Chorme谷歌浏览器插件下载CRX搜搜&#xA;https://www.crxsoso.com/&#xA;硬盘容量整数分区在线计算工具 支持 NTFS 和 FAT32&#xA;https://tool.lu/partition/index.html&#xA;https://www.iplaysoft.com/tools/partition-calculator/&#xA;RAID 容量计算器&#xA;https://www.seagate.com/cn/zh/internal-hard-drives/raid-calculator/ （希捷科技） https://www.synology.cn/zh-cn/support/RAID_calculator （群晖科技）&#xA;Windows/Office 各版本镜像下载&#xA;https://next.itellyou.cn/&#xA;https://msdn.itellyou.cn/&#xA;http://www.imsdn.cn/&#xA;https://hellowindows.cn/&#xA;https://msdn.sjjzm.com/&#xA;https://www.xitongku.com/ (含office)&#xA;windows11官网iso镜像下载&#xA;https://www.microsoft.com/zh-cn/software-download/windows11&#xA;windows10官网iso镜像下载&#xA;https://www.microsoft.com/zh-cn/software-download/windows10&#xA;微软Windows密钥管理服务 (KMS) 客户端激活和通用批量许可证密钥 (GVLK)，Windows全系列。安装产品密钥命令 &amp;quot; slmgr /ipk 密钥 &amp;ldquo;， 如 slmgr /ipk D2N9P-3P6X9-2R39C-7RTCD-MDVJX&#xA;https://docs.microsoft.com/zh-cn/windows-server/get-started/kms-client-activation-keys&#xA;在线文件转换器Convertio。Convertio是一个在线文件格式转换工具网站，可以转换的类型有：文档、图像、音频、视频、电子书、字体等等。&#xA;https://convertio.co/zh/&#xA;大文件临时存储&#xA;https://musetransfer.com/&#xA;https://www.tmp.link/&#xA;Markdown 语法官方教程&#xA;https://markdown.com.cn/</description>
+    </item>
+    <item>
+      <title>兄弟MFC-8535DN打印机更换硒鼓</title>
+      <link>https://blog.freezz.cc/posts/work20220222/</link>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/work20220222/</guid>
+      <description>【2022年2月22日】&#xA;兄弟MFC-8535DN因打印出来的纸张有黑边和字影，更换硒鼓后打印效果恢复正常。更换硒鼓后，需要重置硒鼓计数器。 重置硒鼓计数器步骤：&#xA;原硒鼓统计情况：</description>
+    </item>
+    <item>
+      <title>博客基本搭建起来了</title>
+      <link>https://blog.freezz.cc/posts/my-first-post/</link>
+      <pubDate>Tue, 15 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/my-first-post/</guid>
+      <description>多天的折腾，博客基本搭建起来了。。。。。</description>
+    </item>
+    <item>
+      <title>Search</title>
+      <link>https://blog.freezz.cc/posts/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/search/</guid>
+      <description>这将创建一个包含搜索框和用于显示结果的容器的搜索页面 </description>
+    </item>
+  </channel>
+</rss>

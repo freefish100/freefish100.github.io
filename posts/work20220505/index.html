@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>云应用服务启动服务的步骤和命令 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="云应用服务启动步骤和命令">
+		<meta property="og:title" content="云应用服务启动服务的步骤和命令" />
+<meta property="og:description" content="云应用服务启动步骤和命令" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/work20220505/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-05T00:00:00+00:00" />
+
+		<meta itemprop="name" content="云应用服务启动服务的步骤和命令">
+<meta itemprop="description" content="云应用服务启动步骤和命令"><meta itemprop="datePublished" content="2022-05-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-05-05T00:00:00+00:00" />
+<meta itemprop="wordCount" content="370">
+<meta itemprop="keywords" content="linux," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="云应用服务启动服务的步骤和命令"/>
+<meta name="twitter:description" content="云应用服务启动步骤和命令"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">云应用服务启动服务的步骤和命令</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-05-05T00:00:00Z">2022-05-05</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>SSH端口12233，cs</p>
+<p><strong>重启项目步骤：</strong></p>
+<ol>
+<li>进入data目录：<br>
+<code>cd /data</code></li>
+<li>订单系统，启动命令：</li>
+</ol>
+<pre tabindex="0"><code>nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;
+</code></pre><p><strong>服务器重启后的步骤：</strong><br>
+如果遇到SSH连接不上，需登录网页后台，打开命令页面，手动启动网卡：<br>
+<code>systemctl start NetworkManager</code><br>
+可设置下次网卡自动启动：<br>
+<code>systemctl enable NetworkManager</code><br>
+查看防火墙状态，需关闭防火墙<br>
+<code>systemctl status firewalld</code><br>
+关闭防火墙<br>
+<code>systemctl stop firewalld</code></p>
+<ul>
+<li>第一步数据库
+启动mysql数据库，命令：<br>
+<code>service mysqld start</code><br>
+查看数据库启动状态，正常应该有active(runnign)字样<br>
+<code>service mysqld status</code><br>
+启动mongodb数据库，命令：<br>
+<code>cd /usr/local/mongo/service/bin</code><br>
+<code>./mongod -f mongo.conf</code></li>
+<li>第二步，启动nginx和redis
+Nginx启动命令：<br>
+<code>/usr/sbin/nginx -s reload</code><br>
+（或者<code>systemctl start nginx.service</code>  或者 <code>systemctl start nginx</code>）<br>
+Redis 启动命令：<br>
+<code>systemctl start redis.service</code><br>
+（使用<code>systemctl status redis.service</code>看是否启动成功，应有 “active (running) ”字样）</li>
+<li>第三步，启动三个项目。
+所有的项目启动需要在对应的jar包文件夹的目录下面启动
+项目都在data下面，文件预览在/data/pre下面。
+①Mq项目，启动命令：<br>
+<code>nohup java -jar gpoint-mq-admin-1.0.0.jar &amp; </code><br>
+②文件预览项目，启动命令：<br>
+<code>nohup java -jar jodconverter-web.jar &amp;</code><br>
+③订单项目，启动命令：</li>
+</ul>
+<pre tabindex="0"><code>nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;
+</code></pre><ul>
+<li>第四步：重启完后，需要登录项目看看是否正常
+项目地址：http://14.29.169.65:8081/admin/index.html</li>
+</ul>
+<p>完成。</p>
+<p><strong>以下是备忘摘录</strong><br>
+service mysqld start  启动数据库<br>
+service mysqld status 查看数据库启动状态，正常应该有active(runnign)字样</p>
+<p>/usr/sbin/nginx -s reload  启动nginx，用这个命令</p>
+<p>启动如下三个项目：</p>
+<pre tabindex="0"><code>cd /data  
+nohup java -jar gpoint-mq-admin-1.0.0.jar &amp;  
+nohup java -jar jodconverter-web.jar &amp;  
+cd /data/pre  
+nohup java -jar jodconverter-web.jar &amp;  
+cd /data  
+nohup java -server -Xms3G -Xmx3G -Xss256k -XX:PermSize=128m -XX:MaxPermSize=128m -XX:+UseParallelOldGC -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/gc/dump -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/usr/aaa/dump/heap_trace.txt -XX:NewSize=1G -XX:MaxNewSize=1G -jar shuttle.jar &amp;
+</code></pre><p>查看进程内存CPU占用命令：top</p>
+<p>使用 netstat -antlp 查看系统外部链接(什么IP连接使用了哪些进程)</p>
+<p>清理 linux-buff/cache缓存， 释放内存空间<br>
+执行指令：</p>
+<pre tabindex="0"><code>sync  
+echo 1 &gt; /proc/sys/vm/drop_caches
+echo 2 &gt; /proc/sys/vm/drop_caches
+echo 3 &gt; /proc/sys/vm/drop_caches
+</code></pre><p>执行完这三条指令后通过free -m命令查看，free可用内存马上增多，buff/cache列值变小，说明内存被释放了。</p>
+<p>systemctl status firewalld 查看防火墙状态</p>
+<p>systemctl stop firewalld 关闭防火墙</p>
+<p>查看防火墙状态<br>
+systemctl status firewalld</p>
+<p>关闭防火墙<br>
+systemctl stop firewalld</p>
+<p>打开防火墙<br>
+systemctl start firewalld</p>
+<p>centos7中的防火墙改成了firewall，使用iptables无作用，开放端口的方法如下：<br>
+<code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code>  返回success为成功。<br>
+&ndash;zone 作用域<br>
+&ndash;add-port=80/tcp #添加端口，格式为：端口/通讯协议<br>
+&ndash;permanent #永久生效</p>
+<p>重启防火墙<br>
+systemctl restart firewalld.service</p>
+<p>开放一段端口<br>
+<code>firewall-cmd --zone=public --add-port=40000-45000/tcp --permanent</code></p>
+<p>查看开放的端口列表<br>
+<code>firewall-cmd --zone=public --list-ports</code></p>
+<p>查看被监听(Listen)的端口<br>
+netstat -lntp</p>
+<p>检查端口被哪个进程占用<br>
+netstat -lnp|grep 3306</p>
+<p>systemctl disable firewalld.service，开机禁止防火墙服务器<br>
+systemctl enable firewalld.service，开机启动防火墙服务器</p>
+<p>Systemd是Linux系统工具，Systemd拥有强大的解决与系统日志记录功能-systemd-journald。日志目录一般是在/var/log/journal，记录的是二进制文件，我们可以通过journalctl进行查看。<br>
+显示所有日志：journalctl<br>
+查看启动只有的所有日志：journalctl -b<br>
+查看最后10条日志：journalctl -n 10<br>
+跟踪日志：journalctl -f<br>
+只显示冲突、告警和错误：journalctl -p err..alert<br>
+显示某个单元日志（也可以同时显示多个增加多个 -u nginx.service -u php-fom.service）：journalctl -u nginx.service</p>
+<p>根据时间查找：<br>
+journalctl &ndash;since &ldquo;20 min ago&rdquo; #查找20分钟前的日志<br>
+journalctl &ndash;since today #查找今天的日志<br>
+journalctl &ndash;until 2020-05-27 #查找2020-05-27日期的日志<br>
+查看内核日志：journalctl -k<br>
+查找指定客户(UID)日志：journalctl _UID=1000</p>
+<p>查看nohup.out 日志文件<br>
+1.查看实时日志：<br>
+tail -f nohup.out<br>
+2.查看实时日志并检索关键字：<br>
+tail -f nohup.out | grep &ldquo;关键字&rdquo;<br>
+3.查看文件最后100行日志：<br>
+tail -n 100 nohup.out | more<br>
+4.分页查看所有日志：<br>
+cat nohup.out | more<br>
+5.检索日志，并显示该条日志的前后N行记录：<br>
+cat nohup.out | grep -n -B10 -A10 &ldquo;关键字&rdquo;<br>
+6.查看日志，从第100行开始，显示500行：<br>
+cat nohup.out | tail -n +100| head -n 500<br>
+7.查看日志，从第100行到200行：<br>
+cat nohup.out | head -n 1500| tail -n +1000<br>
+8.删除包括关键词的行：<br>
+sed -i &lsquo;/关键词/d&rsquo; nohup.out<br>
+9.上线发布：<br>
+删除文件使用实例：<br>
+rm -f 文件名<br>
+查看端口地址<br>
+ps -ef|grep java<br>
+kill端口<br>
+kill -9 端口号<br>
+运行<br>
+nohup java -jar 文件名 &amp;</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220424/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">戴尔DELL H330 Raid卡 阵列卡BIOS模式下配置阵列</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js202200526/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Centos7/8 Linux 配置网络ip地址 nmtui命令</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

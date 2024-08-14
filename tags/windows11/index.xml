@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows11 on </title>
+    <link>https://blog.freezz.cc/tags/windows11/</link>
+    <description>Recent content in Windows11 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/windows11/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密</title>
+      <link>https://blog.freezz.cc/posts/js20220413/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220413/</guid>
+      <description>注重数据保护的 PC 用户应该接触过 Windows 自带的 「BitLocker 驱动器加密」工具，该工具是一项能对磁盘驱动器进行加密保护的安全工具。我们知道升级 Windows 11 系统最重要的条件之一便是具备「TPM 2.0 安全模块」并开启它，在开启 TPM 后 BitLocker 将变为可用状态。&#xA;在部分设备特别是兼容性较好的设备上首次登录 Microsoft 账户时，可能会在未经过你的允许下自动启用 BitLocker。这时候你的硬盘就会被 BitLocker 加密，但因为正常使用过程中数据的读写不受影响。许多用户甚至并没有意识到他们的磁盘已被加密，并且不知道解锁密码。 这无疑是给用户带来了一定的隐患。&#xA;例如当你彻底恢复以及重装系统后，访问加密磁盘的数据就需要先对其进行解密，因为 BitLocker 的安全系数很高，即使重装系统也无法解除加密。 那么这就产生了两个问题：如何确认自己的磁盘是否启用 BitLocker 加密？加密后如何解锁磁盘？&#xA;首先，在搜索菜单栏搜索「BitLocker」并打开「管理 BitLocker」；新窗口中，对应盘符后面显示「BitLocker已关闭」表示该磁盘并未加密，显示「BitLocker 已启用」则表示已加密，已开启加密的，要备份好密钥，以备以后可以恢复密钥查看数据。&#xA;如果磁盘可以正常打开访问，那么直接点击需要解锁磁盘后面的「关闭 BitLocker」，这时候一般不用密码，只需耐心等待即可成功解锁。 注意：磁盘数据量比较大的情况下，解锁需要花费较长时间。&#xA;而解锁时如果提示输入密码以及系统故障等问题无法进入系统时，解除磁盘加密则可以用到我们的恢复秘钥。其实对磁盘加密时，Windows 通常会自动将恢复秘钥保存至我们的 Microsoft 帐户中。 只需要打开以下网站并登录需要解密设备上的关联 Microsoft 账户即可查看恢复秘钥。&#xA;account.microsoft.com/devices/recoverykey&#xA;在解锁磁盘时点击「更多选项」；&#xA;然后点击「输入恢复秘钥」；&#xA;最后输入查询到的48位恢复秘钥即可解锁。&#xA;来源 https://mp.weixin.qq.com/s?__biz=Mzg3MzY2MjgxMg==&amp;amp;mid=2247634284&amp;amp;idx=1&amp;amp;sn=ce4941867c169f02651270919b6935ee&amp;amp;chksm=ced01d5ff9a79449683a16dec52bb7a1b4da8a26cc83d7f6a46671293a348a21d84b923a4962&amp;amp;mpshare=1&amp;amp;scene=23&amp;amp;srcid=04137amH72s2c9hrYl0AzLfm&amp;amp;sharer_sharetime=1649831238869&amp;amp;sharer_shareid=970709776a181e42a8eeec84ec08562f#rd</description>
+    </item>
+    <item>
+      <title>Windows11 Win11操作配置技巧</title>
+      <link>https://blog.freezz.cc/posts/js20220318b/</link>
+      <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220318b/</guid>
+      <description>安装winows11时跳过强制联网 方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。&#xA;方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。 以上方法只适合22H2之前的版本，如果是22H2的版本，侧需如下方法来跳过强制联网和微软账号：&#xA;第一启动前，要先断网，然后开机，当进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobe\bypassnro.cmd 然后按回车键，系统自动重启。 当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。&#xA;windows11离线解包系统： 1、先拔出网线（断网），电脑开机。&#xA;2、当进入到选择国家、或者要求联网、或者要求输入微软账号中的任何一个页面时，同时按下 ctrl+shift+F3 这三个组合键，系统自动重启。&#xA;3、重启完成进入桌面后，会自动弹出一个系统工具对话窗口的，直接点击窗口下的“确定”按钮，系统会再次自动重启。&#xA;4、当重启进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobebypassnro.cmd 然后按回车键，系统会再一次自动重启。&#xA;5、当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。&#xA;解决Win11右键菜单折叠问题 切换回经典右键菜单 首先Win+X打开Windows powershell（管理员）（PS：现在貌似叫Windows 终端（管理员）） 输入如下内容后回车 reg add &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;rdquo; /f /ve&#xA;然后 Win+E 打开Windows资源管理器，再 Ctrl+Shift+Esc，任务管理器重启Windows资源管理器（重启电脑也可以）， 完成。&#xA;如需重新恢复到新版右键菜单（没人会这么干吧） reg delete &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&amp;rdquo; /f 选择想要的类型，粘贴后回车。</description>
+    </item>
+  </channel>
+</rss>

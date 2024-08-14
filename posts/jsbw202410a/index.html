@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>技术备忘记--戴尔设备篇(不定期更新) - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="技术备忘记--戴尔设备篇(不定期更新)" />
+<meta property="og:description" content="戴尔DELL设备 戴尔计算机不能通电、无法开机自检、无法启动或无视频的问题 Precision Workstation 工作站诊断指示灯参考指南
+Precision Workstation 工作站诊断指示灯参考指南 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
+…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+…………………………………. DELL 14G INTEL平台服务器BIOS设置详解
+…………………………………. Precision 3650 塔式机规格参数
+…………………………………. 在RAID控制器10中分配/取消分配设置热备盘
+…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
+…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+…………………………………. Dell EMC PowerEdge 服务器型号列表
+……………….. PowerEdge 服务器命名约定
+…………………………………. IDRAC9管理口配置
+遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。
+…………………………………. T140机器进入S140软阵列
+开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/jsbw202410a/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-10T00:00:00+00:00" />
+
+		<meta itemprop="name" content="技术备忘记--戴尔设备篇(不定期更新)">
+<meta itemprop="description" content="戴尔DELL设备 戴尔计算机不能通电、无法开机自检、无法启动或无视频的问题 Precision Workstation 工作站诊断指示灯参考指南
+Precision Workstation 工作站诊断指示灯参考指南 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
+…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+…………………………………. DELL 14G INTEL平台服务器BIOS设置详解
+…………………………………. Precision 3650 塔式机规格参数
+…………………………………. 在RAID控制器10中分配/取消分配设置热备盘
+…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
+…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+…………………………………. Dell EMC PowerEdge 服务器型号列表
+……………….. PowerEdge 服务器命名约定
+…………………………………. IDRAC9管理口配置
+遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。
+…………………………………. T140机器进入S140软阵列
+开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。"><meta itemprop="datePublished" content="2024-04-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-04-10T00:00:00+00:00" />
+<meta itemprop="wordCount" content="349">
+<meta itemprop="keywords" content="服务器,戴尔," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="技术备忘记--戴尔设备篇(不定期更新)"/>
+<meta name="twitter:description" content="戴尔DELL设备 戴尔计算机不能通电、无法开机自检、无法启动或无视频的问题 Precision Workstation 工作站诊断指示灯参考指南
+Precision Workstation 工作站诊断指示灯参考指南 DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。
+…………………………………. DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。
+…………………………………. DELL 14G INTEL平台服务器BIOS设置详解
+…………………………………. Precision 3650 塔式机规格参数
+…………………………………. 在RAID控制器10中分配/取消分配设置热备盘
+…………………………………. Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(https://upload.dell.com/)这个链接，其中“Service tag“填写机器服务号
+，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。
+…………………………………. 服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍
+…………………………………. Dell EMC PowerEdge 服务器型号列表
+……………….. PowerEdge 服务器命名约定
+…………………………………. IDRAC9管理口配置
+遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。
+…………………………………. T140机器进入S140软阵列
+开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">技术备忘记--戴尔设备篇(不定期更新)</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-04-10T00:00:00Z">2024-04-10</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#戴尔dell设备">戴尔DELL设备</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h2 id="戴尔dell设备">戴尔DELL设备</h2>
+<ul>
+<li><a href="https://www.dell.com/support/kbdoc/zh-cn/000125609/%e8%a7%a3%e5%86%b3-%e6%88%b4%e5%b0%94%e8%ae%a1%e7%ae%97%e6%9c%ba-%e8%ae%a1%e7%ae%97%e6%9c%ba-%e4%b8%8d%e8%83%bd-%e9%80%9a%e7%94%b5-%e6%97%a0%e6%b3%95-%e5%bc%80%e6%9c%ba-%e8%87%aa%e6%a3%80-%e6%97%a0%e6%b3%95%e5%90%af%e5%8a%a8-%e6%88%96-%e6%97%a0%e8%a7%86%e9%a2%91-%e7%9a%84-%e9%97%ae-%e9%a2%98">戴尔计算机不能通电、无法开机自检、无法启动或无视频的问题 Precision Workstation 工作站诊断指示灯参考指南</a><br>
+<a href="https://www.dell.com/support/kbdoc/zh-cn/000153002/precision-workstation-%E8%AF%8A%E6%96%AD-%E6%8C%87%E7%A4%BA%E7%81%AF-%E5%8F%82%E8%80%83-%E6%8C%87%E5%8D%97">Precision Workstation 工作站诊断指示灯参考指南</a></li>
+<li>DELL:比如目前是3块盘做RAID5，加1块硬盘来扩容成4块盘做RAID5，这样是可以不会破坏数据的，但是扩容有风险，一般做之前都是建议备份一下数据的。如果您是RAID1需要加容量，需要改组成RAID5，所以数据是肯定会被破坏的。<br>
+………………………………….</li>
+<li>DELL:H750阵列卡，支持redhat7.9和8.4版本。centos内核跟redhat系统相近，参考redhat，也是一样仅支持7.9和8.4版本。<br>
+………………………………….</li>
+<li><a href="https://mp.weixin.qq.com/s/wUm_QBeqyW6ML4wXzZvtPw?linkId=102404759">DELL 14G INTEL平台服务器BIOS设置详解</a><br>
+………………………………….</li>
+<li><a href="https://dl.dell.com/content/manual17127189-precision-3650-%E5%A1%94%E5%BC%8F%E6%9C%BA-%E8%AE%BE%E7%BD%AE%E5%92%8C%E8%A7%84%E6%A0%BC.pdf?language=zh-cn&amp;ps=true">Precision 3650 塔式机规格参数</a><br>
+………………………………….</li>
+<li><a href="https://mp.weixin.qq.com/s/pbBV4DuyMUgeB45uopaBTw">在RAID控制器10中分配/取消分配设置热备盘</a><br>
+………………………………….</li>
+<li><a href="https://mp.weixin.qq.com/s/5FBZodduA_WaurAN1StLiA">Polaris(14G)14代服务器通过iDRAC收集TSR日志的方法</a>（提示注册ISM的时候，选择取消注册）。收集完成后，将日志上传到(<a href="https://upload.dell.com/">https://upload.dell.com/</a>)这个链接，其中“Service tag“填写机器服务号<br>
+，点击&quot;VERIFYGH&quot; ,再填好contact name/customer email。然后点击choose file上传文件，点upload，传成功会有upload successful标识。<br>
+………………………………….</li>
+<li><a href="https://mp.weixin.qq.com/s/TMfHSG3A7wWaACH2rk24KQ">服务器前面板的安卓数据口配置IDRAC idrac Polaris(14G) iDRAC Direct 新功能介绍</a><br>
+………………………………….</li>
+<li><a href="https://www.dell.com/support/kbdoc/zh-cn/000143479/list-of-poweredge-models-and-generation">Dell EMC PowerEdge 服务器型号列表</a><br>
+………………..</li>
+<li><a href="https://www.dell.com/support/kbdoc/zh-cn/000137343/%E5%A6%82%E4%BD%95%E5%B0%86-dell-poweredge-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BD%92%E5%B1%9E">PowerEdge 服务器命名约定</a><br>
+………………………………….</li>
+<li><a href="https://mp.weixin.qq.com/s/MOgTPNRRSA4l34Mm_DxsJw">IDRAC9管理口配置</a><br>
+遇到管理口不通(插上网线后管理口的指示灯不亮)，可能是管理口没正确配置： 开机按F2进入System Setup，选择IDRAC Settings，选择Network，确认Enable NIC为Enable状态，在NIC Selection下选择Dedicated(专用网口) 或者LOM1~LOM4(共享服务器1-4号网口)并正确连接网线。 IDRAC Enterprise版本推荐使用Dedicated连接方式。<br>
+………………………………….</li>
+<li>T140机器进入S140软阵列<br>
+开机按F2，进入BIOS，device setting，确认下当前有没有S140，如果没有，返回到system bios，SATA setting，选择raid mode 然后保存退出， 重启服务器进入BIOS，device setting，选择S140进入，之后点击virtual disk management，点击create virtual disk，去创建阵列。<br>
+………………………………….</li>
+<li>BOSS卡介绍<br>
+<a href="https://www.dell.com/support/kbdoc/zh-cn/000131634/14g%e6%9c%8d%e5%8a%a1%e5%99%a8boss%e7%9a%84%e5%9f%ba%e6%9c%ac%e4%bb%8b%e7%bb%8d%e5%92%8c%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95">14G服务器BOSS的基本介绍和配置方法</a><br>
+<a href="https://mp.weixin.qq.com/s/CM5-R7Ao7EETkDy8Z0AV3g">BOSS卡全接触(1)</a><br>
+<a href="https://mp.weixin.qq.com/s/BRr3hxLCQSc_951f3E3l9w">BOSS卡全接触(2)</a><br>
+<a href="https://mp.weixin.qq.com/s/MPQz9m3D1TMUmx1xx-WoAg">BOSS卡全接触(3)</a><br>
+………………………………….</li>
+<li>IDRAC页面查看物理硬盘状况，会有“外来”、“就绪”、“联机”等几种状态。外来，是指硬盘有拔插，或者新加入的；就绪，是指新硬盘状态，没有进行任何配置；联机，是指硬盘已配置使用的。<br>
+<a href="https://mp.weixin.qq.com/s/NsAVdtmWthXhd8a3JG2L3Q">BIOS中导入外来盘教程（先确认没有硬盘故障）</a><br>
+<a href="https://www.dellemc-solution.com/light-reading/desc.html?id=150747">IDRAC中把新硬盘加入原来的阵列做扩容教程(事先要做好数据备份)</a><br>
+………………………………….</li>
+<li><a href="https://mp.weixin.qq.com/s/QBDhu-SUgAUdV9z_dQting">PowerEdge服务器重置BIOS</a><br>
+………………………………….</li>
+<li>更新固件的两种方法：<br>
+<a href="https://mp.weixin.qq.com/s/6NultA1aaoDD-rb9XaMF1A">F10 LifeCycle下升级固件</a><br>
+<a href="https://mp.weixin.qq.com/s/5Ez1jd_HEV221T4_aPi-6A">14G服务器如何在IDRAC下更新固件</a><br>
+更新BIOS和更新IDRAC操作方法一样，只是上传的文件不一样，更新BIOS时上传BIOS文件，更新IDRAC时上传IDRAC文件。<br>
+………………………………….</li>
+<li>IDRAC管理页面中，SSD硬盘的“剩余额定写入耐久性”，是指SSD硬盘的损耗情况。SSD写寿命限制：是指，对于达到写寿命上限的SSD，视为设备损耗， 0% 是上限，到0% 就是SSD的写入寿命快到了，这种没有保修了。<br>
+………………………………….</li>
+<li><a href="https://www.dell.com/support/manuals/zh-cn/poweredge-r740/idrac_3.31.31.31_ug/%E4%BD%BF%E7%94%A8-idrac-web-%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0%E5%9B%BA%E4%BB%B6?guid=guid-609b681d-830b-420c-9935-4e2ab054d54e&amp;lang=zh-cn">Integrated Dell Remote Access Controller 9 版本 3.31.31.31 用户指南（IDRAC9 固件更新步骤）</a><br>
+………………………………….</li>
+<li>H350 H355 H345 阵列卡支持raid 0,1,10，不支持做 raid5 。<br>
+………………………………….</li>
+<li>IDRAC9开启IPMI：IDRAC–设置–连接性–网络–IPMI 设置–选择“已启用”。<br>
+………………………………….</li>
+<li>R740或者同类型型号的服务器，单个CPU建议安装的内存数量是1、2、4、6这样，安装顺序是A1，A2，A3，……。 2个CPU的建议安装的内存数量是2、4、8、12这样，安装顺序是A1，B1，A2，B2，……， 就是A通道和B通道各自的内存数量相同并且A、B通道各自的内存数量为偶数量（内存总共是2条的情况除外）。容量大的内存优先插在前面的通道，例如2个CPU情况下，32G的安装在A1，16G的安装在B1。这是DELL官方所建议的最佳内存插法。<br>
+2个CPU至少要2根内存，A通道和B通道各自都要有1根，A1、B1这样的安装方式。类型相同、容量不同的内存，可以同时使用，一般不会有会问题，具体以上机测试为准。<br>
+………………………………….</li>
+<li><a href="https://customerconnect.vmware.com/cn/downloads/details?downloadGroup=OEM-ESXI67U3-DELLEMC&amp;productId=742&amp;download=true&amp;fileId=9ac79abc9fff7d9db6556fdf66a1b804&amp;uuId=4a0ab224-a73d-4f6d-8cde-114fd917a244">ESXi 6.7U3戴尔DELL定制镜像下载 DellEMC Custom Image for ESXi 6.7U3 Install CD</a></li>
+<li><a href="https://customerconnect.vmware.com/cn/downloads/details?downloadGroup=OEM-ESXI70U3-DELLEMC&amp;productId=974">ESXi 7.0U3戴尔DELL定制镜像下载 DellEMC Custom Image for ESXi 7.0 U3 Install CD</a>
+………………………………….</li>
+</ul>
+<ul>
+<li>台式PC机，CPU的温度如果在80、90度都属于正常的温度范围内的，电脑出厂有自带的温度保护，一旦超过温度阈值（一般是100度），电脑会自动关机保护硬件的。<br>
+如果觉得不放心，可以自行检测下硬件，方法如下：<br>
+1.接上充电线，电脑关机后，稍等15s，轻按电源按钮开机后，马上连续按f12，点Diagnostics选项,回车进入硬件检测。<br>
+2.出现屏幕彩条显示界面并可能伴随警报音，出现提示请立即按 Y 键继续检测。<br>
+3.如果有出现错误代码报错，请拍照留存，然后选择Y继续检测。 <br>
+4.如果出现“No problems have been found&hellip;”等信息窗口， 选择【N 】 结束基础检测。<br>
+5.点击右下角的箭头进入下一页，将右侧上方的system  health、Event Log以及configuration，三个界面拍照留存。<br>
+第三方软件监测是在系统下测试，很多参数获取也是基于系统环境的， 因此不能作为硬件真实性能的依据。机器CPU温度在100度以下是正常的。<br>
+“my dell”是出厂预装的软件，没有的话，可从如下网址下载安装包（安装时需要联网）：</li>
+</ul>
+<pre tabindex="0"><code>http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/bae0b052-f950-4f03-bd4e-a43f7bb48693?P1=1662090982&amp;P2=404&amp;P3=2&amp;P4=Sh3senCuRyA5zcVwOA%2fEkC026HY5Y9rSQTKRKlQHqxBXuUm6AdgTe1mQKln%2bjTU6tMJO2VOAxXjAOhl5dC%2fXyQ%3d%3d
+</code></pre><p>电脑的BIOS驱动老旧也有可能导致散热跟不上，可以更新下BIOS，更新后要重启。<br>
+………………………………….<br>
+Dell Support Live Image Version 3.0
+Support Live Image 3.0是一种CentOS 7.4映像，包含一系列适用于Dell PowerEdge服务器、Dell PowerEdge C服务器和Dell PowerVault存储系统的实用程序和诊断工具。它可以为这些工具提供一种环境，以便对与硬件相关的问题进行故障排除并收集系统配置信息。诊断测试的结果和配置信息将发送至技术支持团队，以识别和解决问题。<br>
+<a href="https://www.dell.com/support/home/zh-cn/drivers/driversdetails?driverid=c31j4">下载Dell Support Live Image Version 3.0</a><br>
+………………………………….</p>
+<ul>
+<li>H330是没有缓存的，不含高速缓存（或高速缓存已禁用）的 RAID 控制器强制其他 I/O 等待，直到上一个 I/O 完成为止。此外，由于数据保护功能的缘故，RAID 功能会产生大量开销。除了冗余计算（奇偶校验或镜像）之外，写 I/O 还一定伴有多个读 I/O。由于在写入完成之前需要多次从每个驱动器执行读取，因此 RAID 5 写入会产生最大的开销。在没有高速缓存的情况下，阵列的写入性能可能会下降到低于标准 SATA 端口的写入性能（约 30MB/s）的速度<br>
+………………………………….</li>
+<li>R740/R630等系列服务器，异常断电后，报avago efi sas driver错误的处理方法：<br>
+异常断电后，系统可能会启动不了，在BIOS开机自检中，会提示无法识别RAID控制器，类似如下提示信息：<br>
+avago efi sas driver:<br>
+unhealthy status reorted by this uefi driver without specific error message.<br>
+uefi0116: one or more boot drivers have reported issue.<br>
+check the driver health menu in bootmanager for details. <br>
+处理方法是重新断开电源，等待BBU(RAID控制器的备份单元)放电完成，再重新开机。<br>
+参考DELL链接链接：<a href="https://www.dell.com/support/kbdoc/zh-cn/000141398/%E5%A6%82%E4%BD%95-%E5%AF%B9-dell-poweredge-%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%B8%8A-%E7%9A%84-perc-%E6%8E%A7%E5%88%B6%E5%99%A8-%E4%B8%8A-%E7%9A%84-%E5%86%85%E5%AD%98-%E6%88%96-%E7%94%B5%E6%B1%A0-%E9%94%99%E8%AF%AF-%E8%BF%9B%E8%A1%8C-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86#PERCError">对Dell PowerEdge服务器上的PERC控制器上的内存或电池错误进行故障诊断</a><br>
+网上搜索到的链接：<a href="https://dasandata.tistory.com/entry/Dell-R740-%EC%84%9C%EB%B2%84-%EC%A0%95%EC%A0%84-%ED%9B%84-UEFI0116-Avago-MegaRAID-FW-Fault-MFI-Register-0xF0FF8302-%EB%B6%80%ED%8C%85-%EB%B6%88%EA%B0%80">UEFI 0116 Avago MegaRAID 故障</a><br>
+………………………………….</li>
+<li><a href="https://www.dell.com/support/manuals/zh-cn/poweredge-r740/per740_ism_pub/%E7%BA%BF%E7%BC%86%E5%B8%83%E7%BA%BF?guid=guid-a7a59d5f-0226-4fac-a6a9-25e6d3bda2ad&amp;lang=zh-cn">R740硬盘背板与主板和阵列卡(适配器PERC)的线缆布线图</a>。
+此系列服务器阵列卡上的硬盘可以不做阵列，把硬盘设置为NON-RAID模式，操作系统可以识别到NON-RAID模式的硬盘。如果硬盘配置为RAID模式，就必须做阵列，否则操作系统识别不了硬盘。另外，可以不加阵列卡，通过线缆直接与主板的SATA接口相连。内部线缆接头不能热插拔。<br>
+………………………………….</li>
+<li>重置和耗尽Dell PowerEdge服务器的电量<br>
+硬重置：由于某些组件在关机后仍然通电，并且服务器在您重置时不重新启动（例如 iDRAC）。我们建议在重启服务器做了断电重启后，仍然不能解决问题或某些组件没有响应时执行硬重置。<br>
+1.关闭服务器电源。<br>
+2.断开服务器与所有电源线、网线的连接。<br>
+3.连续按住电源按钮至少 10 秒钟。<br>
+4.将电源线和网线重新插入系统。<br>
+5.等待大约 2 分钟，才打开服务器电源，以便让 iDRAC 有时间进行初始化。<br>
+6.打开系统电源。</li>
+<li>14G服务器R440/R740等，更换主板的电池后，需要进入BIOS重设系统时间：开机F2-&gt;System Setup-&gt;System BIOS-&gt;Miscellaneous Settings 在这里设置实际需要的时间。iDRAC的时间是自动同步BIOS时间的，然后登录iDRAC管理页面-&gt;iDRAC设置-&gt;时区和NTP设置，时区设置为&quot;美国/中部&quot;。
+………………………………….<br>
+PowerEdge R740 系统支持集成 Matrox G200eW3 图形控制器支持的视频分辨率：<br>
+分辨率	刷新率 (HZ)	颜色深度（位）<br>
+1024 x 768	60	8、16、32<br>
+1280 x 800	60	8、16、32<br>
+1280 x 1024	60	8、16、32<br>
+1360 x 768	60	8、16、32<br>
+1440 x 900	60	8、16、32<br>
+1600 x 900	60	8、16、32<br>
+1600 x 1200	60	8、16、32<br>
+1680 x 1050	60	8、16、32<br>
+1920 x 1080	60	8、16、32<br>
+1920 x 1200	60	8、16、32<br>
+注: 1920 x 1080 和 1920 x 1200 分辨率仅受降低清屏模式支持。</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">服务器</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E6%88%B4%E5%B0%94/" rel="tag">戴尔</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/202404a/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">hugo博客文章测试</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/jsbw202410b/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">技术备忘记--infortrend存储设备篇(不定期更新)</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

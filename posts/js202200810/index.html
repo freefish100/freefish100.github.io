@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法">
+		<meta property="og:title" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法" />
+<meta property="og:description" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js202200810/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-10T00:00:00+00:00" />
+
+		<meta itemprop="name" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法">
+<meta itemprop="description" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法"><meta itemprop="datePublished" content="2022-08-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-08-10T00:00:00+00:00" />
+<meta itemprop="wordCount" content="37">
+<meta itemprop="keywords" content="虚拟化,vmware," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法"/>
+<meta name="twitter:description" content="ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-08-10T00:00:00Z">2022-08-10</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" rel="category">技术摘录</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p><strong>ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法</strong></p>
+<ul>
+<li>
+<p>点开ESXI主机的”网络“，新建一个虚拟交换机<br>
+<img src="/img/782de9fbb23d2e85e9de8b2b61e82ca4.png" alt="782de9fbb23d2e85e9de8b2b61e82ca4.png"></p>
+<p><img src="/img/b23029379897d18e37d2a8d30d68bf24.png" alt="b23029379897d18e37d2a8d30d68bf24.png"><br>
+已经看到新增的”虚拟交换机“了<br>
+<img src="/img/7524d4acf15ba5aca3c9a3149d91ab65.png" alt="7524d4acf15ba5aca3c9a3149d91ab65.png"></p>
+</li>
+<li>
+<p>点开ESXI主机的”网络“，新建一个&quot;端口组&quot;<br>
+<img src="/img/f305804c3cc404b0d54b74564b1de48d.png" alt="f305804c3cc404b0d54b74564b1de48d.png"></p>
+<p><img src="/img/dba1e5fb3e91f66841189deb95a5ab5a.png" alt="dba1e5fb3e91f66841189deb95a5ab5a.png"></p>
+</li>
+<li>
+<p>点开ESXI主机的”网络“，新建一个”VMkernel网卡“<br>
+<img src="/img/565c11b898258db06f2e2d17ce60de97.png" alt="565c11b898258db06f2e2d17ce60de97.png"></p>
+<p><img src="/img/769daabc653ba8624db8c8bcecd788c9.png" alt="769daabc653ba8624db8c8bcecd788c9.png"></p>
+</li>
+<li>
+<p>点开ESXI主机的”存储“–”适配器“–“软件iSCSI”<br>
+<img src="/img/b8b3b3bc99e37231b01afc24e80e7d86.png" alt="b8b3b3bc99e37231b01afc24e80e7d86.png"></p>
+<p><img src="/img/1845ec129606dc79d1ffed838007dbab.png" alt="1845ec129606dc79d1ffed838007dbab.png"><br>
+上图“名称和别名”的IQN号要记下，到在存储主机上添加IQN时要用到的。</p>
+</li>
+<li>
+<p>进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，设置主机通道的工作模式，按实际情况来选择，这里选择“iSCSI 10 Gbps”为例<br>
+<img src="/img/3c3353af95affb59abf8d9807d82bf58.png" alt="3c3353af95affb59abf8d9807d82bf58.png"></p>
+<p><img src="/img/72093f585a1d1742e0eeed80cde99d21.png" alt="72093f585a1d1742e0eeed80cde99d21.png"></p>
+<p><img src="/img/d25a258fff180f7c3a240085305dd2a1.png" alt="d25a258fff180f7c3a240085305dd2a1.png"></p>
+</li>
+<li>
+<p>线缆连接好ESXI主机服务器和GS1012R2存储的相应的端口<br>
+<img src="/img/c5f6083805143572491f42438694101c.png" alt="c5f6083805143572491f42438694101c.png"></p>
+<p><img src="/img/1623c8d462b0841f3989f036bad8bbf5.png" alt="1623c8d462b0841f3989f036bad8bbf5.png"></p>
+</li>
+<li>
+<p>进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，编辑好上面步骤2对应的通道端口，比如图中的”通道1“<br>
+<img src="/img/3d6ad5b98f34ae2f681a6fbb1fe4cc0a.png" alt="3d6ad5b98f34ae2f681a6fbb1fe4cc0a.png"></p>
+</li>
+<li>
+<p>把存储中的卷映射到主机（事先要创建好卷，这里略过）<br>
+<img src="/img/a3a9df2c8bf87e4eebbe55d4fdd9ea7f.png" alt="a3a9df2c8bf87e4eebbe55d4fdd9ea7f.png"></p>
+<p><img src="/img/eee4e112f9ce1e83f2d90cd5f882b576.png" alt="eee4e112f9ce1e83f2d90cd5f882b576.png"></p>
+<p>下面添加主机IQN<br>
+<img src="/img/44c86ee5878cd26c35f494f1648d5e17.png" alt="44c86ee5878cd26c35f494f1648d5e17.png"></p>
+<p><img src="/img/6228e91eac6853d5285a97cee723a271.png" alt="6228e91eac6853d5285a97cee723a271.png"></p>
+<p>点击“确定”后，如下图，点击“下一步”</p>
+<p><img src="/img/706ae219c9f9926399ce37b7699e9d28.png" alt="706ae219c9f9926399ce37b7699e9d28.png"></p>
+<p><img src="/img/45d6816616bb5c350ed18e691a90b15a.png" alt="45d6816616bb5c350ed18e691a90b15a.png"></p>
+<p><img src="/img/29637247c64c38f3fce79f7f358e357d.png" alt="29637247c64c38f3fce79f7f358e357d.png"> 点击“关闭”按钮，返回到创建映射主机页面</p>
+<p><img src="/img/f797fbd04bc8cadc9bae425539e9c2cb.png" alt="f797fbd04bc8cadc9bae425539e9c2cb.png"> 这里显示选择的的“ESXI”，就是上面建立的主机IQN，“ESXI”是主机的别名</p>
+<p><img src="/img/e6acdb45236e25321e3fc91f874d1e0f.png" alt="e6acdb45236e25321e3fc91f874d1e0f.png"></p>
+</li>
+<li>
+<p>点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，如无意外，就可以看到连接的存储了<br>
+<img src="/img/616494b19039ea1e88dc9c9b2699485b.png" alt="616494b19039ea1e88dc9c9b2699485b.png"></p>
+</li>
+</ul>
+<p><strong>注意：ESXi会把远程添加的存储当作远程磁盘，所以它期望有两条或以上路径可以到达它，如果没有找到，它会将其视为“已降级”。</strong><br>
+解决步骤如下：</p>
+<ul>
+<li>
+<p>点开ESXI主机的”网络“，新建一个虚拟交换机<br>
+<img src="/img/142c270f7de5e16660f36db9f57b2176.png" alt="142c270f7de5e16660f36db9f57b2176.png"></p>
+</li>
+<li>
+<p>点开ESXI主机的”网络“，新建一个端口组<br>
+<img src="/img/ab85793afa66cff1d12a7a92c6fada61.png" alt="ab85793afa66cff1d12a7a92c6fada61.png"></p>
+</li>
+<li>
+<p>点开ESXI主机的”网络“，新建一个VMkernel网卡<br>
+<img src="/img/e6ebbf7476df8d8dab2c00c4a5ee1a81.png" alt="e6ebbf7476df8d8dab2c00c4a5ee1a81.png"></p>
+</li>
+<li>
+<p>点开ESXI主机的”存储“–”适配器“，选中那张iSCSI适配器，点”配置iSCSI“，”添加端口绑定“<br>
+<img src="/img/4472bbc5f7bbbf2c1d602659899b7fa1.png" alt="4472bbc5f7bbbf2c1d602659899b7fa1.png"></p>
+</li>
+</ul>
+<p>点击选中刚才添加的VMkernel网卡<br>
+<img src="/img/3f6e0baa0b05d71b05142388a73e6257.png" alt="3f6e0baa0b05d71b05142388a73e6257.png"></p>
+<p>添加完成后的状态<br>
+<img src="/img/e675359840e9d0cf4153b3356c4d1716.png" alt="e675359840e9d0cf4153b3356c4d1716.png"></p>
+<ul>
+<li>点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，就可以正常显示存储<br>
+<img src="/img/34b399f9c93c6708db70d688fc7a50b0.png" alt="34b399f9c93c6708db70d688fc7a50b0.png"></li>
+</ul>
+<p>最后，还需要在ESXI主机中再配置一下iSCSI，多添加一条”动态目标“。因为普安infortrend GS1012R2是双控制器的，每个控制器都有各自的通道，比如上面的控制器接线图，ESXI服务器分别接了控制器A的通道1端口(设置的ip是192.168.1.31) 和 控制器B的通道1端口(设置的ip是192.168.1.32)，这样可以双路径通讯，如果其中一个控制器或者链路出现故障，会自动切换到另外一个控制器和链路。添加完成后，如下图：<br>
+<img src="/img/098aeb11dac373b2b432fa5f73c1c48f.png" alt=""> ………………………………………………………………………</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag">虚拟化</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/vmware/" rel="tag">vmware</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220729/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">VMware ESXI vCenter 备忘笔记</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20220812/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Centos修改硬盘分区大小,把home分区部分容量分配给根分区</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

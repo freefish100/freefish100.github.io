@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文章收录 on </title>
+    <link>https://blog.freezz.cc/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E5%BD%95/</link>
+    <description>Recent content in 文章收录 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术文章链接收录</title>
+      <link>https://blog.freezz.cc/posts/rc20220411/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/rc20220411/</guid>
+      <description>【2022年4月11日】&#xA;Linux Window10 VNC远程访问ubuntu20.04&#xA;https://www.cxyzjd.com/article/qq_33343767/112431846&#xA;Ubuntu20.04防火墙设置简易教程&#xA;https://cloud.tencent.com/developer/article/1711744&#xA;deepin-wine GitHub主页&#xA;https://github.com/zq1997/deepin-wine&#xA;deepin-wine支持软件列表&#xA;https://deepin-wine.i-m.dev/&#xA;ubuntu20.04使用wine安装微信卸载微信 https://blog.csdn.net/qq_25272679/article/details/113633441&#xA;Ubuntu20.04使用阿里云源安装Docker&#xA;https://www.jianshu.com/p/da1c7dc4217a&#xA;ubuntu使用docker安装微信&#xA;https://segmentfault.com/a/1190000040674722&#xA;https://ugirc.blog.csdn.net/article/details/109487664&#xA;ubuntu执行.sh文件几种方式区别&#xA;https://blog.csdn.net/u012336923/article/details/50474692&#xA;centos7安装时加载RAID磁盘阵列卡驱动&#xA;https://www.linuxprobe.com/centos7-raid-install.html&#xA;https://blog.csdn.net/u014389734/article/details/94005885&#xA;https://blog.csdn.net/weixin_33910305/article/details/116850746&#xA;Windows SQLServer2019+WSFC高可用部署&#xA;https://blog.csdn.net/shy871/article/details/117041269&#xA;硬件资讯和技术 戴尔DELL服务器相关&amp;ndash;胖大牛&#xA;http://b.7dell.com/index.php/index.html&#xA;USB 3.1 Gen 1、Gen 2 和USB 3.2三种接口之间的区别？</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vmware on 自游鱼</title>
+    <link>https://blog.freezz.cc/tags/vmware/</link>
+    <description>Recent content in Vmware on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/vmware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ESXI 7.0连接外部存储和添加远程存储时显示‘’正常，已降级‘’的解决办法</title>
+      <link>https://blog.freezz.cc/posts/js202200810/</link>
+      <pubDate>Wed, 10 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js202200810/</guid>
+      <description>ESXI 7.0连接外部存储（以连接普安infortrend GS1012R2为例）的设置和添加远程存储时显示‘’正常，已降级‘’ 的解决办法&#xA;点开ESXI主机的”网络“，新建一个虚拟交换机&#xA;已经看到新增的”虚拟交换机“了&#xA;点开ESXI主机的”网络“，新建一个&amp;quot;端口组&amp;quot;&#xA;点开ESXI主机的”网络“，新建一个”VMkernel网卡“&#xA;点开ESXI主机的”存储“–”适配器“–“软件iSCSI”&#xA;上图“名称和别名”的IQN号要记下，到在存储主机上添加IQN时要用到的。&#xA;进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，设置主机通道的工作模式，按实际情况来选择，这里选择“iSCSI 10 Gbps”为例&#xA;线缆连接好ESXI主机服务器和GS1012R2存储的相应的端口&#xA;进入存储主机管理页面，“设置”–“访问”–“通道和网络” ，编辑好上面步骤2对应的通道端口，比如图中的”通道1“&#xA;把存储中的卷映射到主机（事先要创建好卷，这里略过）&#xA;下面添加主机IQN&#xA;点击“确定”后，如下图，点击“下一步”&#xA;点击“关闭”按钮，返回到创建映射主机页面&#xA;这里显示选择的的“ESXI”，就是上面建立的主机IQN，“ESXI”是主机的别名&#xA;点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，如无意外，就可以看到连接的存储了&#xA;注意：ESXi会把远程添加的存储当作远程磁盘，所以它期望有两条或以上路径可以到达它，如果没有找到，它会将其视为“已降级”。&#xA;解决步骤如下：&#xA;点开ESXI主机的”网络“，新建一个虚拟交换机&#xA;点开ESXI主机的”网络“，新建一个端口组&#xA;点开ESXI主机的”网络“，新建一个VMkernel网卡&#xA;点开ESXI主机的”存储“–”适配器“，选中那张iSCSI适配器，点”配置iSCSI“，”添加端口绑定“&#xA;点击选中刚才添加的VMkernel网卡&#xA;添加完成后的状态&#xA;点开ESXI主机的”存储“–”设备“，点击”重新扫描“，再点击”刷新“，就可以正常显示存储&#xA;最后，还需要在ESXI主机中再配置一下iSCSI，多添加一条”动态目标“。因为普安infortrend GS1012R2是双控制器的，每个控制器都有各自的通道，比如上面的控制器接线图，ESXI服务器分别接了控制器A的通道1端口(设置的ip是192.168.1.31) 和 控制器B的通道1端口(设置的ip是192.168.1.32)，这样可以双路径通讯，如果其中一个控制器或者链路出现故障，会自动切换到另外一个控制器和链路。添加完成后，如下图：&#xA;………………………………………………………………………</description>
+    </item>
+    <item>
+      <title>VMware ESXI vCenter 备忘笔记</title>
+      <link>https://blog.freezz.cc/posts/js20220729/</link>
+      <pubDate>Fri, 29 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220729/</guid>
+      <description>网卡信息查询 查看所有网卡：&#xA;esxcfg-nics -l&#xA;查看更详细的网上信息：&#xA;esxcli network nic list&#xA;查看对应网卡驱动和固件，如下查看vmnic0对应的驱动和固件：&#xA;esxcli network nic get -n vmnic0&#xA;显示网卡的VID，DID 等信息：&#xA;vmkchdev -l | grep vmnic0&#xA;然后去VMware网站查询兼容情况，如果不兼容，去对应硬件厂商找到对应固件更新。各硬件厂商更新fireware方式略有不同，具体联系对应硬件厂商。 VMware网站下载对应的网卡驱动，会得到一个zip压缩包，解压缩后有两个文件，一个vib格式，一个zip格式。用如下命令更新： esxcli software vib install -v {VIBFILE}&#xA;或&#xA;esxcli software vib install -d {OFFLINE_BUNDLE}&#xA;(注：如果执行安装后提示could not find a trusted signer，可以在命令后添加参数 –no-sig-check) 建议使用第一种更新方式，注意，vib存放路径用完整路径。之后重启主机。&#xA;……………………………………………&#xA;给虚拟机添加USB设备，例如U盘 1、把USB设备插入到物理主机&#xA;2、编辑虚拟机设置–添加其它其他设备–USB设备–保存设置。&#xA;注：同一个USB设备，同时只能添加到一台虚拟机中。在虚拟机中删除该USB设备后，才能添加到其它虚拟机中。&#xA;……………………………………………&#xA;esxi6.5开启开启嵌套虚拟化 Esxi主机开启ssh，修改 /etc/vmware/config 配置文件，在配置文件后面加入如下配置：vhv.enable = “TRUE” ，然后reboot重启ESXI主机。 等开机后，打开Esxi上的虚拟机，登陆，查看虚拟化是否开启（vmx是Inter 处理器，svm是AMD处理器） egrep ‘(vmx|svm)’ /proc/cpuinfo&#xA;另外在虚拟交换机的端口组需要开启混杂功能，要不通信有问题，开启混杂的原因：VMware 虚拟交换机上只能感知到其上的虚拟机，但无法感知到嵌套后其上虚拟机的子虚拟机的 MAC地址，所以通信时候，用子虚拟机通信到VMware 最底层虚拟交换机就会丢包。&#xA;要将端口组或虚拟交换机配置为允许混杂模式，请执行以下操作：&#xA;使用 vSphere Client 登录到 ESXi/ESX 主机或 vCenter Server。在清单中选择 ESXi/ESX 主机。单击配置选项卡。在“硬件”部分，单击网络。单击要启用混杂模式的虚拟交换机的属性。 选择要修改的虚拟交换机或端口组，然后单击编辑。单击安全选项卡。从“混杂模式”下拉菜单中，单击接受。</description>
+    </item>
+    <item>
+      <title>ESXI 虚拟交换机配置 Trunk 端口组 VLan</title>
+      <link>https://blog.freezz.cc/posts/js20220411/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220411/</guid>
+      <description>ESXI 标准 vSwitch 支持自定义 VLAN ID，以实现网络隔离！根据 VLAN ID 的不同，可分为三种网络：&#xA;VLAN ID 0 阻止任何携带了 VLAN tag 的数据包 VLAN ID 4095 允许通过携带任何 VLAN tag 的数据包（trunk） VLAN ID 1~4094 仅允许携带指定 VLAN ID tag 的数据包 默认地，在未做更改的情况下，虚拟机往往是使用的 VLAN ID 为 0 的网络。当我们需要虚拟机间的网卡能接收到携带任何 VLAN tag 的数据包时，就需要设置 trunk 网络！&#xA;ESXI 设置 Trunk 网络（端口组） 首先，登录到 ESXI 控制台（本文是 ESXI 7.0），依次选择：网络 -&amp;gt; 端口组 -&amp;gt; 添加端口组&#xA;注意，VLAN ID 必须是 4095，只有该 ID 才是 Trunk 模式（允许任何 VLAN 包通过） 保存后，Trunk 网络就创建好了！&#xA;接下来，配置虚拟机网卡，使其使用该 Trunk 网络 虚拟机网络适配器处选择我们创建好的 Trunk 网络即可！当多个虚拟机都配置为使用该 Trunk 网络，它们之间就能互相收发携带任何 VLAN tag 的数据包了。</description>
+    </item>
+    <item>
+      <title>更改 ESXi Server 管理 IP 地址</title>
+      <link>https://blog.freezz.cc/posts/js20220318/</link>
+      <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220318/</guid>
+      <description>更改 ESXi Server 管理 IP 地址 在更改 ESXi Server 管理 IP 地址之前，请确保：&#xA;新的 IP 地址和所需网络设置就绪。 已在群集中禁用高可用性 (HA)，以防止故障切换事件。有关详细信息，请参见 Disabling VMware High Availability (HA) (1008025)。 如果锁定模式启用，则禁用该模式。更多信息，请参见Enabling or disabling Lockdown mode on an ESXi host ESXi 主机处于维护模式，因为该主机在更改 IP 地址期间可能会断开连接。 要更改 ESXi Server 管理 IP 地址，请执行以下操作：&#xA;更改 ESXi Server 管理 IP 地址：&#xA;使用 DCUI 更改 ESXi Server 管理 IP 地址： 登录到 ESXi 的直接控制台用户界面。 选择“配置管理网络”，并按 Enter 键 从“配置管理网络选项”菜单中，选择“IPv4 配置”或“IPv6 配置”，并按 Enter 键 设置新的 IPv4 或 IPv6 配置，然后按 Enter 键 按 Esc 键退出 DCUI 时会弹出警示“配置管理网络: 确认” 按 Y 以应用更改并重新启动管理网络。</description>
+    </item>
+  </channel>
+</rss>

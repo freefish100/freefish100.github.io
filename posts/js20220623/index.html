@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Centos8/7 激活（启用连接）网卡 NetworkManager网络设置 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Centos8/7 激活（启用连接）网卡 NetworkManager网络设置">
+		<meta property="og:title" content="Centos8/7 激活（启用连接）网卡 NetworkManager网络设置" />
+<meta property="og:description" content="Centos8/7 激活（启用连接）网卡 NetworkManager网络设置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js20220623/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-23T00:00:00+00:00" />
+
+		<meta itemprop="name" content="Centos8/7 激活（启用连接）网卡 NetworkManager网络设置">
+<meta itemprop="description" content="Centos8/7 激活（启用连接）网卡 NetworkManager网络设置"><meta itemprop="datePublished" content="2022-06-23T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-06-23T00:00:00+00:00" />
+<meta itemprop="wordCount" content="308">
+<meta itemprop="keywords" content="linux," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Centos8/7 激活（启用连接）网卡 NetworkManager网络设置"/>
+<meta name="twitter:description" content="Centos8/7 激活（启用连接）网卡 NetworkManager网络设置"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Centos8/7 激活（启用连接）网卡 NetworkManager网络设置</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-06-23T00:00:00Z">2022-06-23</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>Linux查看网卡ip地址命令：<br>
+ip addr<br>
+或 ip address<br>
+或 ip addr show<br>
+或 ip address show</p>
+<p>Centos8 默认情况下是没有激活网卡的，首先应该激活网卡，这样才能访问网络。<br>
+启用网卡连接connection（相当于ifup）<br>
+mncli d 查看网上接口信息<br>
+nmcli c up ethX(enoX) 激活打开网卡连接，ethX(enoX)为网卡接口名称<br>
+停止网卡连接connection（相当于ifdown）<br>
+nmcli c down ethX(enoX)<br>
+<strong>设置自动启动网卡</strong><br>
+nmcli connection modify ethX(enoX) connection.autoconnect yes<br>
+例如 nmcli connection modify ens192 connection.autoconnect yes<br>
+实际修改的是网卡配置文件ONBOOT=yes</p>
+<p>修改IP<br>
+在/etc/sysconfig/network-scripts目录下存放着网卡的配置文件，文件名称是 ifcfg- 网卡名称。<br>
+cd /etc/sysconfig/network-scripts/<br>
+ls<br>
+找到网卡配置文件，使用vim修改文件。<br>
+网卡配置文件的默认配置</p>
+<pre tabindex="0"><code>TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=e4987998-a4ce-4cef-96f5-a3106a97f5bf
+DEVICE=ens33
+ONBOOT=no #如果使用dhcp分配ip的话，只需要将这里no改为yes，然后重启网络服务就行,使用 nmcli c reload 命令重启网络服务
+</code></pre><p>如果需要配置静态ip，则按照以下修改方法修改</p>
+<pre tabindex="0"><code>TYPE=Ethernet    #网卡类型为以太网
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=static # #协议类型，将dhcp修改为stati表示使用静态ip
+DEFROUTE=yes
+IPADDR=192.168.128.129 #设置IP地址
+NETMASK=255.255.255.0 #设置子网掩码
+GATEWAY=192.168.128.1 #设置网关
+DNS1=114.114.114.114 #设置dns
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=ens33
+UUID=e4987998-a4ce-4cef-96f5-a3106a97f5bf
+DEVICE=ens33
+ONBOOT=yes   #启动时是否激活 yes | no
+</code></pre><p>使用 nmcli c reload 命令重启网络服务</p>
+<p>在RHEL 7上，同时支持Network.service和NetworkManager.service（简称NM），默认情况下，这两个服务都开启。在RHEL 8上，已经弃用Network.service，因此只能通过NetworkManager.service进行网络配置，包括动态IP和静态IP。</p>
+<p>nmcli使用方法<br>
+nmcli使用方法非常类似linux ip命令、cisco交换机命令，并且支持tab补全，通过-h、–help、help查看帮助。在nmcli中有两个命令最为常用：<br>
+nmcli connection：译作连接，可理解为配置文件，可以简写为nmcli c 。<br>
+nmcli device：译作设备，可理解为实际存在的网卡（包括物理网卡和虚拟网卡），可以简写为nmcli d 。<br>
+在NM里，有两个维度：连接（connection）和设备（device），这是多对一的关系。想给某个网卡配ip，首先NM要能纳管这个网卡。设备里存在的网卡（即nmcli d可以看到的），就是NM纳管的。接着，可以为一个设备配置多个连接（即nmcli c可以看到的），每个连接可以理解为一个ifcfg配置文件。同一时刻，一个设备只能有一个连接活跃。可以通过nmcli c up切换连接。</p>
+<p>connection有2种状态：<br>
+活跃（带颜色字体）：表示当前该connection生效<br>
+非活跃（正常字体）：表示当前该connection不生效<br>
+device有4种常见状态：<br>
+connected：已被NM纳管，并且当前有活跃的connection<br>
+disconnected：已被NM纳管，但是当前没有活跃的connection<br>
+unmanaged：未被NM纳管<br>
+unavailable：不可用，NM无法纳管，通常出现于网卡link为down的时候（比如：ip link set ethX down）</p>
+<p>nmcli的常用命令示例（其中connection可以简写为c )：<br>
+查看IP<br>
+nmcli<br>
+创建connection，配置静态IP（等同于配置ifcfg，其中BOOTPROTO=none，并ifup启动）<br>
+nmcli c add type ethernet con-name ethX ifname ethX ipv4.addr 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.method manual<br>
+创建connection，配置动态IP（等同于配置ifcfg，其中BOOTPROTO=dhcp，并ifup启动）<br>
+nmcli c add type ethernet con-name ethX ifname ethX ipv4.method auto<br>
+修改ip（非交互式）<br>
+nmcli c modify ethX ipv4.addr &lsquo;192.168.1.100/24<br>
+nmcli c up ethX<br>
+修改ip（交互式）</p>
+<pre tabindex="0"><code>nmcli c edit ethX
+nmcli&gt; goto ipv4.addresses
+nmcli ipv4.addresses&gt; change
+Edit &#39;addresses&#39; value: 192.168.1.100/24
+Do you also want to set &#39;ipv4.method&#39; to &#39;manual&#39;? [yes]: yes
+nmcli ipv4.addresses&gt; back
+nmcli ipv4&gt; save
+nmcli ipv4&gt; quit
+</code></pre><p>启用connection（相当于ifup）<br>
+nmcli c up ethX<br>
+停止connection（相当于ifdown）<br>
+nmcli c down<br>
+删除connection（类似于ifdown并删除ifcfg）<br>
+nmcli c delete ethX<br>
+查看connection列表<br>
+nmcli c show<br>
+查看connection详细信息<br>
+nmcli c show ethX<br>
+重载所有ifcfg或route到connection（不会立即生效）<br>
+nmcli c reload<br>
+重载指定ifcfg或route到connection（不会立即生效）<br>
+nmcli c load /etc/sysconfig/network-scripts/ifcfg-ethX<br>
+nmcli c load /etc/sysconfig/network-scripts/route-ethX<br>
+立即生效connection，有3种方法<br>
+nmcli c up ethX<br>
+nmcli d reapply ethX<br>
+nmcli d connect ethX<br>
+查看device列表<br>
+nmcli d<br>
+查看所有device详细信息<br>
+nmcli d show<br>
+查看指定device的详细信息<br>
+nmcli d show ethX<br>
+激活网卡<br>
+nmcli d connect ethX<br>
+关闭无线网络（NM默认启用无线网络）<br>
+nmcli r all off<br>
+查看NM纳管状态<br>
+nmcli n<br>
+开启NM纳管<br>
+nmcli n on<br>
+关闭NM纳管（谨慎执行）<br>
+nmcli n off<br>
+监听事件<br>
+nmcli m<br>
+查看NM本身状态<br>
+nmcli<br>
+检测NM是否在线可用<br>
+nm-online</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js202200526/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Centos7/8 Linux 配置网络ip地址 nmtui命令</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20220624/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">硬盘容量十进制与操作系统二进制的换算</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

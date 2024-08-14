@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网站技术 on </title>
+    <link>http://74.48.13.81:41297/tags/%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 网站技术 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://74.48.13.81:41297/tags/%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Example article title</title>
+      <link>http://74.48.13.81:41297/posts/test09/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://74.48.13.81:41297/posts/test09/</guid>
+      <description>一个网站，使用纯静态方法，不使用数据库，来实现商品记录的浏览、并可以增加新的商品记录，对每条商品能进行修改，删除。商品的字段包括“商品名称”、“配置”、“价格”和“备注”。请问具体的代码是怎样写？&#xA;在Ubuntu上安装Xfce桌面环境。您可以使用以下命令安装Xfce桌面环境 sudo apt-get update sudo apt-get install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils&#xA;安装xrdp sudo apt-get update sudo apt-get install xrdp</description>
+    </item>
+  </channel>
+</rss>

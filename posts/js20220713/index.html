@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明">
+		<meta property="og:title" content="使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明" />
+<meta property="og:description" content="使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js20220713/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-13T00:00:00+00:00" />
+
+		<meta itemprop="name" content="使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明">
+<meta itemprop="description" content="使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明"><meta itemprop="datePublished" content="2022-07-13T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-07-13T00:00:00+00:00" />
+<meta itemprop="wordCount" content="218">
+<meta itemprop="keywords" content="linux," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明"/>
+<meta name="twitter:description" content="使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">使用原生 NTFS 驱动替代旧版 FUSE NTFS 驱动 和挂载说明</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-07-13T00:00:00Z">2022-07-13</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>NTFS 是 Windows NT 系列操作系统支持的磁盘文件系统格式，它是一个特别为网络和磁盘配额、文件加密等管理安全特性设计的文件系统。
+而 Linux 内核中新进入主线支持的 NTFS3 驱动是一个功能齐全的 NTFS 驱动程序，该驱动程序适用于最高的 NTFS 3.1 版本。</p>
+<p>最初，Linux 内核没有 NTFS 的原生支持，后来对 NTFS 的支持也仅提供了只读功能。来自 Tuxera 的 NTFS-3G 是之前主流的解决方案，但在实际使用中也存在一些问题。
+NTFS-3G 是借助 Linux 的用户空间文件系统（FUSE）模块在用户层实现的一个对 NTFS 支持的文件系统，其对 NTFS 的访问逻辑代码都是在用户层代码实现的。
+在 NTFS3 出现之前，Linux 上使用 NTFS 主要问题还是缺乏稳定且功能齐全的读/写支持。2020 年，Paragon 软件公司做出了一个惊人的决定：
+尝试将之前只提供给商业客户的 NTFS3 驱动程序贡献到 Linux 主线。最终，在经过多轮审核和修改之后，Linux 内核 5.15 合并了 Paragon 提供的 NTFS3 内核驱动，
+它拥有更高的性能和更多的特性：</p>
+<ol>
+<li>该驱动程序实现了对 NTFS 文件系统中的正常、稀疏和压缩文件的读/写支持。</li>
+<li>支持本地日志回放。</li>
+<li>支持已挂载的 NTFS 卷的 NFS 导出。</li>
+<li>支持文件和文件夹的权限管理。</li>
+</ol>
+<p>使用 NTFS3 驱动挂载 NTFS 卷：使用 NTFS3 驱动挂载时使用的文件系统类型是 ntfs3。<br>
+以前使用 NTFS-3g 驱动的挂载方式是：<br>
+mount -t ntfs-3g /dev/sdxY /mnt<br>
+现在只需要将 ntfs-3g 替换为 ntfs3 即可：<br>
+mount -t ntfs3 /dev/sdxY /mnt<br>
+-t 指出文件系统类型，/dev/sdxY 是你的 NTFS 卷（分区）的路径，可以使用 lsblk 命令查看。/mnt 是挂载的目标文件夹。<br>
+如果需要指定挂载参数，可使用 -o 指定参数，如：<br>
+mount -t ntfs3 -o iocharset=utf8,umask=22,prealloc /dev/sdxY /mnt<br>
+这里的 iocharset=utf8,umask=22,prealloc 挂载参数，详见后文解释。</p>
+<p>开机自动挂载
+如需在开机时自动挂载，可编辑 /etc/fstab 文件，添加如下行：<br>
+UUID=**** /data ntfs3 iocharset=utf8,umask=0,prealloc 0 0<br>
+其中 UUID=**** 是指定卷（分区）的 UUID。使用 UUID 的好处在于它们与磁盘挂载顺序无关。
+如果你在 BIOS 中改变了你的存储设备顺序，或是重新拔插了存储设备，或是一些 BIOS 可能会随机地改变存储设备的顺序，那么用 UUID 来表示指定卷（分区）会更有效。
+可以使用 blkid 命令查看 UUID 。<br>
+/data 是挂载位置。本示例的位置是 /data，你需要提前创建这个文件夹。后面的选项都是挂载参数，参见后文介绍。最后两个 0 0 ，表示是否备份和是否检查。0 0 表示不备份、不检查。</p>
+<p>挂载参数说明</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iocharset=name</td>
+<td>此选项告知驱动程序如何解释路径字符串，并将其转换为 Unicode 或返回。如果未设置此选项，将使用默认代码页。示例：iocharset=utf8</td>
+</tr>
+<tr>
+<td>uid=</td>
+<td>挂载用户 ID</td>
+</tr>
+<tr>
+<td>gid=</td>
+<td>挂载组 ID</td>
+</tr>
+<tr>
+<td>umask=</td>
+<td>控制装载 NTFS 卷后创建的文件/目录的默认权限</td>
+</tr>
+<tr>
+<td>dmask=</td>
+<td>fmask 只适用于文件，dmask 只适用于目录，而不是指定同时适用于文件和目录的 umask</td>
+</tr>
+<tr>
+<td>fmask=</td>
+<td>见上一行</td>
+</tr>
+<tr>
+<td>noacsrules</td>
+<td>“无访问规则”装载选项将文件/文件夹的访问权限设置为 777，所有者/组设置为 root。此装载选项吸收所有其他权限。文件/文件夹的权限更改将报告为成功，但仍将保持 777。所有者/组更改将报告为成功，但他们将保留为 root 用户</td>
+</tr>
+<tr>
+<td>nohidden</td>
+<td>Linux 下不会显示具有 Windows 特定隐藏（FILE_ATTRIBUTE_HIDDEN）属性的文件</td>
+</tr>
+<tr>
+<td>sys_immutable</td>
+<td>具有 Windows 特定系统（FILE_ATTRIBUTE_SYSTEM）属性的文件将标记为系统不可变文件</td>
+</tr>
+<tr>
+<td>discard</td>
+<td>支持 TRIM 命令以提高删除操作的性能，建议将其用于固态驱动器（SSD）</td>
+</tr>
+<tr>
+<td>force</td>
+<td>即使卷被标记为脏，也强制驱动程序装载分区。不建议使用</td>
+</tr>
+<tr>
+<td>sparse</td>
+<td>创建稀疏的新文件</td>
+</tr>
+<tr>
+<td>showmeta</td>
+<td>使用此参数可显示已装入 NTFS 分区上的所有元文件（系统文件）。默认情况下，所有元文件都是隐藏的</td>
+</tr>
+<tr>
+<td>prealloc</td>
+<td>当写入时文件大小增加时，为文件过度预分配空间。减少对不同文件执行并行写入操作时的碎片</td>
+</tr>
+<tr>
+<td>acl</td>
+<td>支持 POSIX ACL（访问控制列表）。如果内核支持，则有效。不要与 NTFS ACL 混淆。指定为 acl 的选项支持 POSIX acl</td>
+</tr>
+</tbody>
+</table>
+<p>NTFS3 是内核态的驱动，ntfs3 比 ntfs-3g 无论是速度还是负载都要好上不少。</p>
+<p>文章来源：https://mp.weixin.qq.com/s/xqvXG8NSgPEbsU-cKeYakg</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220628/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">开启Centos8的SSH服务,在Ubuntu 20.04上启用SSH </p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20220714/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">命令的形式列出各个linux系统已经安装的软件包</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

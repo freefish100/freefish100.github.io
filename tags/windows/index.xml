@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on 自游鱼</title>
+    <link>https://blog.freezz.cc/tags/windows/</link>
+    <description>Recent content in Windows on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>技术备忘--windows篇(不定更新)</title>
+      <link>https://blog.freezz.cc/posts/jsbw202410c/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/jsbw202410c/</guid>
+      <description>Windows 打开移动硬盘U盘提示：“无法访问，磁盘结构损坏且无法读取”的解决方法：&#xA;以管理员身份运行cmd，输入命令 &amp;quot; chkdsk 盘符: /f &amp;quot; 等待命令运行结束，如果还不行，继续执行命令 &amp;quot; chkdsk 盘符: /r &amp;quot; 。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. windows常用命令 打开网络连接命令 ncpa.cpl&#xA;立即重启shutdown /r /t 0&#xA;立即关机shutdown /s /t 0&#xA;更新组策略gpupdate /force&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. Windows11 Win11 跳过联网：&#xA;21H1之前版本：shift+F10(笔记本shift+Fn+F10)，输入 taskmgr 打开任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务。&#xA;22H2版本：先断网，shift+F10(笔记本shift+Fn+F10)，输入oobe\bypassnro.cmd 系统自动重启，到联网时点击“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. Windows11 Win11家庭版升级到专业版密钥：&#xA;BTY9C-JXQ4W-YFHCH-6RF4V-VC2RY 测过有效&#xA;C6XDT-XJK4G-7B29G-J8C3C-TKGV9&#xA;KFRJV-V9GWP-FQCGD-P2RGV-RVPMM&#xA;GRF89-QM67C-DRTP9-JD3QR-6P4B9&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. cmd命令行下删除已连接的网络共享&#xA;使用net use 列出已连接的网络共享，如返回类似信息： \192.168.1.111\share&#xA;\192.168.1.51\work&#xA;使用net use 连接名 /del 删除这个共享连接，例如要删除上面的&amp;quot;\192.168.1.111\share&amp;quot;这个共享，执行： net use \\192.168.1.111\share /del&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.. powershell查看文件的MD5码&#xA;Get-FileHash -Algorithm MD5 -Path 文件路径</description>
+    </item>
+    <item>
+      <title>windows远程桌面连接linux ubuntu centos</title>
+      <link>https://blog.freezz.cc/posts/js20230329/</link>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20230329/</guid>
+      <description>windows远程桌面连接ubuntu（ubuntu20.04下测试通过）&#xA;在Ubuntu上安装Xfce桌面环境。您可以使用以下命令安装Xfce桌面环境&#xA;sudo apt-get update&#xA;sudo apt-get install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils&#xA;安装xrdp&#xA;sudo apt-get update&#xA;sudo apt-get install xrdp&#xA;启动xrdp服务&#xA;sudo systemctl enable xrdp&#xA;sudo systemctl enable --now xrdp&#xA;配置Ubuntu防火墙以允许RDP连接&#xA;sudo ufw allow 3389/tcp&#xA;如果连接不上，提示类似如下的错误，要检查用户名密码是否正确，否则重启一次unbuntu电脑.&#xA;connection to sesman ip 127.0.0.1 port 3350 sesman connect ok sending login info to session manager,please wait... login failed for display 0 在Windows上打开远程桌面连接(或者运行“mstsc”)，输入Ubuntu主机的IP地址并点击“连接”。 在“登录到Windows”窗口中，选择“使用其他帐户”选项，并输入Ubuntu的用户名和密码。 单击“连接”按钮，等待几秒钟，即可连接到Ubuntu桌面。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&#xA;windows远程桌面连接Centos（Centos7.9下测试通过）&#xA;在CentOS 7.9上安装GNOME桌面环境&#xA;sudo yum groupinstall &amp;quot;GNOME Desktop&amp;quot;</description>
+    </item>
+    <item>
+      <title>windows2012/win2016/win2019配置多用户访问远程桌面</title>
+      <link>https://blog.freezz.cc/posts/js20220902/</link>
+      <pubDate>Fri, 02 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220902/</guid>
+      <description>默认情况下，同时最多2个用户通过远程桌面的方式登录Windows Server 2016服务器，通过配置实现多用户登录：本文仅用于测试目的，不建议用于正式环境。&#xA;具体步骤：&#xA;1.安装远程桌面服务 【服务器管理器】-【添加角色和功能】&#xA;勾选【远程桌面服务】&#xA;2.解除远程桌面授权只有120天的有效期 安装过程中，系统会自动重启重启登录系统后，右下角会弹窗提示，远程桌面授权只有120天的有效期，需要向微软采购激活。本文为了测试，将按照下面的操作方式，跳过120天的限制。&#xA;修改注册表打开【注册表编辑器】，进入表项：HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod将这个注册表项删除&#xA;如果提示没有权限进行删除，需要添加权限。在【GracePeriod】表项上，右键-【权限】&#xA;将【所有者】修改为当前登录用户，通常需要使用本地管理员账号administrator记得勾选【替换子容器及所有者】，然后确定&#xA;此时，再次删除【GracePeriod】表项，将可以删除。&#xA;然后调整操作系统时间将操作系统的时间调整为未来的某个时间，例如2099年12月31日调整完时间后，重启操作系统，将时间调整为正确的时间即可。&#xA;3.使用组策略设置限制连接的数量 运行gpedit.msc打开组策略： 计算机配置-&amp;gt;管理模板-&amp;gt;Windows 组件-&amp;gt;远程桌面服务-&amp;gt;远程桌面会话主机-&amp;gt;连接，在右边窗口找到 “将远程桌面服务的用户限制到单独的远程桌面会话” 选项，编辑为 “已禁用”。找到 “限制连接的数量” ，编辑为 “已启用”，“允许的RD最大连接数”填写一个数值，比如100或1000，如果打算无限制连接数量，则填写999999 启用 【设置已中断会话的时间限制】为5分钟，表示用户断开连接5分钟后，将删除会话。可通过任务管理器查看到，或者运行cmd，执行 query user 命令也可查看正在连接的会话。&#xA;至此，所有的配置完成，该Windows server 2016将允许有超过2个以上的用户同时远程桌面连接到该服务器。&#xA;4.创建不同的用户访问远程桌面 创建不同的用户来访问远程桌面，可以使每个登录的用户拥有不同的桌面，实现每个用户个性化，也能实现不同的用户对某个文件的访问权限。&#xA;首先使用管理员登录服务器，然后在“计算机管理”中添加多个用户，再在“远程桌面”属性中添加能登录本服务器进行远程的用户。 设置好后，再重新登录远程&#xA;5.限制桌面远程的客户端把服务器的文件复制到客户端 运行gpedit.msc打开“计算机配置” ，计算机配置—管理模板—windows组件—远程桌面服务—远程桌面会话主机，选择【设备和资源重定向】，在右侧双击【不允许剪贴板重定向】&#xA;然后，运行gpupdate /force 或者重启机器。最好是重启机器使修改后的组策略生效，gpupdate /force 不一定能生效。&#xA;6.客户端连接可能会出现的错误解决方法 win10/win7作为客户端连接win2012/win2016/win2019远程桌面遇到的一些错误解决方法：&#xA;win10提示 “出现身份验证错误。要求的函数不受支持，这可能是由于CredSSP加密数据库修正” 。&#xA;解决方法：&#xA;方法一：运行 gpedit.msc 打开组策略 (注意：win10家庭版没有组策略，可使用下面的方法二解决)&#xA;运行 gpupdate /force 刷新组策略使设置生效&#xA;方法二：修改注册表：&#xA;运行 regedit，找到路径：计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System在System文件夹内创建文件夹项：\CredSSP\Parameters在Parameters文件夹内，新建 DWORD（32）位值（D），文件名为AllowEncryptionOracle，值为2。重新远程桌面连接一下，即可&#xA;如果win10提示 “出现身份验证错误。要求的函数不受支持，这可能是由于找不到ORALCE修正” 。这个解决办法可使用上面的方法二来解决。&#xA;若本地是win7系统，且没有 【加密 Oracle 修正】 选项 ,请先创建比如reg.</description>
+    </item>
+    <item>
+      <title>windows11的BitLocker会加密硬盘，重装可能会导致数据不能访问，教你使用恢复密钥解密</title>
+      <link>https://blog.freezz.cc/posts/js20220413/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220413/</guid>
+      <description>注重数据保护的 PC 用户应该接触过 Windows 自带的 「BitLocker 驱动器加密」工具，该工具是一项能对磁盘驱动器进行加密保护的安全工具。我们知道升级 Windows 11 系统最重要的条件之一便是具备「TPM 2.0 安全模块」并开启它，在开启 TPM 后 BitLocker 将变为可用状态。&#xA;在部分设备特别是兼容性较好的设备上首次登录 Microsoft 账户时，可能会在未经过你的允许下自动启用 BitLocker。这时候你的硬盘就会被 BitLocker 加密，但因为正常使用过程中数据的读写不受影响。许多用户甚至并没有意识到他们的磁盘已被加密，并且不知道解锁密码。 这无疑是给用户带来了一定的隐患。&#xA;例如当你彻底恢复以及重装系统后，访问加密磁盘的数据就需要先对其进行解密，因为 BitLocker 的安全系数很高，即使重装系统也无法解除加密。 那么这就产生了两个问题：如何确认自己的磁盘是否启用 BitLocker 加密？加密后如何解锁磁盘？&#xA;首先，在搜索菜单栏搜索「BitLocker」并打开「管理 BitLocker」；新窗口中，对应盘符后面显示「BitLocker已关闭」表示该磁盘并未加密，显示「BitLocker 已启用」则表示已加密，已开启加密的，要备份好密钥，以备以后可以恢复密钥查看数据。&#xA;如果磁盘可以正常打开访问，那么直接点击需要解锁磁盘后面的「关闭 BitLocker」，这时候一般不用密码，只需耐心等待即可成功解锁。 注意：磁盘数据量比较大的情况下，解锁需要花费较长时间。&#xA;而解锁时如果提示输入密码以及系统故障等问题无法进入系统时，解除磁盘加密则可以用到我们的恢复秘钥。其实对磁盘加密时，Windows 通常会自动将恢复秘钥保存至我们的 Microsoft 帐户中。 只需要打开以下网站并登录需要解密设备上的关联 Microsoft 账户即可查看恢复秘钥。&#xA;account.microsoft.com/devices/recoverykey&#xA;在解锁磁盘时点击「更多选项」；&#xA;然后点击「输入恢复秘钥」；&#xA;最后输入查询到的48位恢复秘钥即可解锁。&#xA;来源 https://mp.weixin.qq.com/s?__biz=Mzg3MzY2MjgxMg==&amp;amp;mid=2247634284&amp;amp;idx=1&amp;amp;sn=ce4941867c169f02651270919b6935ee&amp;amp;chksm=ced01d5ff9a79449683a16dec52bb7a1b4da8a26cc83d7f6a46671293a348a21d84b923a4962&amp;amp;mpshare=1&amp;amp;scene=23&amp;amp;srcid=04137amH72s2c9hrYl0AzLfm&amp;amp;sharer_sharetime=1649831238869&amp;amp;sharer_shareid=970709776a181e42a8eeec84ec08562f#rd</description>
+    </item>
+    <item>
+      <title>Windows11 Win11操作配置技巧</title>
+      <link>https://blog.freezz.cc/posts/js20220318b/</link>
+      <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220318b/</guid>
+      <description>安装winows11时跳过强制联网 方法一：在弹出强制联网的步骤页面时，插上网线或者连接wifi，在点击“下一步”后，马上拔出网线或断开wifi，等待一下，接着继续后面的安装操作。&#xA;方法二：按住shift+F10，笔记本有可能是shift+Fn+F10，跳出命令界面，输入：taskmgr 然后回车，打开如下图一样的任务管理器，找到“网络连接流”进程（如果进程名不是中文名的时候，就找 OOBENetworkConnectionFlow.exe又或者Network Connection Flow进程），点结束任务，即可跳过。 以上方法只适合22H2之前的版本，如果是22H2的版本，侧需如下方法来跳过强制联网和微软账号：&#xA;第一启动前，要先断网，然后开机，当进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobe\bypassnro.cmd 然后按回车键，系统自动重启。 当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。&#xA;windows11离线解包系统： 1、先拔出网线（断网），电脑开机。&#xA;2、当进入到选择国家、或者要求联网、或者要求输入微软账号中的任何一个页面时，同时按下 ctrl+shift+F3 这三个组合键，系统自动重启。&#xA;3、重启完成进入桌面后，会自动弹出一个系统工具对话窗口的，直接点击窗口下的“确定”按钮，系统会再次自动重启。&#xA;4、当重启进入到“让我们为你连接网络”要求联网的页面时，同时按下 shift+F10 这两个组合键，会调出cmd窗口的，在&amp;quot;C:\Windows\System32&amp;gt;&amp;ldquo;的后面输入oobebypassnro.cmd 然后按回车键，系统会再一次自动重启。&#xA;5、当重启进入到“立即连接以快速开始使用你的设备”页面，或者“什么是微软帐户”页面时，点击下面的“我没有Internet连接”或者“暂时跳过”，然后再点击“继续执行受限设置”，最后根据界面的提示操作即可完成。&#xA;解决Win11右键菜单折叠问题 切换回经典右键菜单 首先Win+X打开Windows powershell（管理员）（PS：现在貌似叫Windows 终端（管理员）） 输入如下内容后回车 reg add &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32&amp;rdquo; /f /ve&#xA;然后 Win+E 打开Windows资源管理器，再 Ctrl+Shift+Esc，任务管理器重启Windows资源管理器（重启电脑也可以）， 完成。&#xA;如需重新恢复到新版右键菜单（没人会这么干吧） reg delete &amp;ldquo;HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}&amp;rdquo; /f 选择想要的类型，粘贴后回车。</description>
+    </item>
+  </channel>
+</rss>

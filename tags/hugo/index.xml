@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on 自游鱼</title>
+    <link>https://blog.freezz.cc/tags/hugo/</link>
+    <description>Recent content in Hugo on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo网站在文章页面中插入文件链接</title>
+      <link>https://blog.freezz.cc/posts/20240412a/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/20240412a/</guid>
+      <description>Hugo网站在文章页面中插入文件链接&#xA;请访问我的博客自由鱼浏览更多的内容&#xA;DELL RAID控制器_H755_H750_H355_H350_用户指南&#xA;下载：DELL RAID控制器_H755_H750_H355_H350_用户指南</description>
+    </item>
+    <item>
+      <title>hugo博客文章测试</title>
+      <link>https://blog.freezz.cc/posts/202404a/</link>
+      <pubDate>Sun, 07 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/202404a/</guid>
+      <description>欢迎 欢迎来到我的博客。这是hugo博客测试文章，使用Hugo部署。 为什么选择Hugo Hugo是一个快速的静态网站生成器。以下是我选择它的几个理由：&#xA;快速和高效 简单易学 大量的主题和插件 开始使用 要开始使用Hugo，你需要安装它并创建一个新的网站项目：&#xA;hugo new site mysite 感谢阅读，希望你喜欢我的博客！&#xA;Hugo 扩展的 Front Matter 属性 Hugo 不仅支持标准的 Front Matter 属性（如标题、日期、描述等），还提供了一些扩展属性，允许你更灵活地控制内容和页面的表现。以下是一些常见的扩展属性：&#xA;draft: 指示文章是否是草稿。如果设置为 true，则在构建生产版本的网站时，该文章不会被发布。 aliases: 为页面提供一个或多个别名（URL），用于重定向或兼容旧链接。 author: 指定文章的作者。这可以是一个字符串或者是一个作者对象的列表。 weight: 用于排序，尤其在列表页面上。数字越小，文章或页面越靠前。 slug: 自定义页面的 URL 片段。 url: 完全自定义页面的 URL。使用此属性时，Hugo 将不会基于文件路径生成 URL。 type: 指定页面的类型。在 Hugo 中，类型用于决定使用哪个模板来渲染页面。 layout: 指定用于渲染页面的模板文件的名称。 images: 为页面指定一个或多个图像，这些图像可以用于社交媒体分享或在模板中显示。 series: 将文章分组到系列中，用于将相关文章组织在一起。 这些扩展属性使 Hugo 在创建和管理内容时更加灵活，能够满足更复杂的网站需求。</description>
+    </item>
+    <item>
+      <title>Hugo网站在文章页面中插入视频</title>
+      <link>https://blog.freezz.cc/posts/202409b/</link>
+      <pubDate>Sun, 07 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/202409b/</guid>
+      <description>在 Hugo 搭建的网站中，在编辑文章页面 Markdown 文件时，可以使用以下两种方法在文件中插入视频：&#xA;使用 Hugo 短代码 Hugo 提供了 video 短代码来插入视频。使用 video 短代码，可以将视频的路径、类型、宽度和高度等属性指定为参数。&#xA;例如，以下代码将插入一个 MP4 视频：&#xA;{{&amp;lt; video src=&amp;quot;/videos/example.mp4&amp;quot; type=&amp;quot;mp4&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;240&amp;quot; &amp;gt;}}&#xA;使用 HTML 代码 也可以使用 HTML 代码来插入视频。例如，可以使用以下代码插入一个 MP4 视频：&#xA;&amp;lt;video width=&amp;#34;320&amp;#34; height=&amp;#34;240&amp;#34; controls&amp;gt; &amp;lt;source src=&amp;#34;/videos/example.mp4&amp;#34; type=&amp;#34;video/mp4&amp;#34;&amp;gt; &amp;lt;/video&amp;gt; 视频的最佳存放目录是网站根目录下的 static 目录。这样做的原因是：&#xA;static 目录是 Hugo 网站默认的静态资源目录。将视频放在 static 目录下，可以确保视频能够被正确加载。 将视频放在 static 目录下，可以方便地管理视频资源。&#xA;注意事项&#xA;在插入视频时，请注意视频的格式。Hugo 网站支持的视频格式包括 MP4、MOV、AVI、WMV 和 FLV。 在插入视频时，请注意视频的大小。过大的视频会影响网站的加载速度。 在插入视频时，请注意视频的版权。如果您使用的是来自互联网上的视频，请确保您有权使用该视频。 以下是一些插入视频的示例：&#xA;{{&amp;lt; video src=&amp;quot;/videos/example.mp4&amp;quot; type=&amp;quot;mp4&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;240&amp;quot; &amp;gt;}}&#xA;&amp;lt;video width=&amp;#34;320&amp;#34; height=&amp;#34;240&amp;#34; controls&amp;gt; &amp;lt;source src=&amp;#34;/videos/example.</description>
+    </item>
+    <item>
+      <title>文章测试图片路径是否正确显示图片</title>
+      <link>https://blog.freezz.cc/posts/202409a/</link>
+      <pubDate>Sun, 07 Apr 2024 08:44:50 +0100</pubDate>
+      <guid>https://blog.freezz.cc/posts/202409a/</guid>
+      <description>问题： 在hugo构建的网站中，网站的根目录是blog，文章markdown文件是放在blog/content/posts目录下，文章中插入的图片是放在blog/content/posts/images目录下，插入图片的代码是 ![Hugo](/images/hugo01.png &amp;quot;Hugo博客网站&amp;quot;) ，那当执行“hugo”命令后，blog/content/posts/images目录下的图片会自动被复制到public/img 目录下的吗？还是要另外手动上传图片过去？ 现在是担心图片路径不对，会无法显示图片。&#xA;回答： 在使用Hugo这类静态网站生成器时，处理静态资源（如图片）的方式需要根据配置和所用主题的指导来进行。通常，Hugo的默认行为是将/static目录下的文件复制到生成的/public目录中，而不会自动处理位于/content目录下的静态资源。这意味着，如果你将图片放在/content/posts/images目录下，它们可能不会自动被复制到生成的网站目录中。 通常，推荐的做法是将图片放在static目录下。这样可以确保图片在生成的网站中能够正确显示，而不需要手动复制文件或进行额外的配置。</description>
+    </item>
+    <item>
+      <title>Hugo网站中的markdown事例文章</title>
+      <link>https://blog.freezz.cc/posts/test09/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/test09/</guid>
+      <description>Hugo 是一个开源的静态网站生成器，它有着极快的构建速度，能在几毫秒内构建一个中小型的博客网站，Hugo也非常易于安装，适用于Windows、macOS 和 Linux 多种操作系统，并且容易上手，它拥有简单的内容组织方式,配置也很直观。Hugo 有大量的开源主题模块，涵盖各种风格，我们可以很容易地选择并应用自己喜欢的主题，即使是初学者也能很快上手。&#xA;--- # Common-Defined params title: &amp;#34;Hugo网站中的markdown事例文章&amp;#34; date: &amp;#34;2024-03-31&amp;#34; description: &amp;#34;Hugo网站中的markdown事例文章&amp;#34; categories: - &amp;#34;技术笔记&amp;#34; - &amp;#34;技术摘录&amp;#34; tags: - &amp;#34;hugo&amp;#34; - &amp;#34;网站搭建&amp;#34; # menu: main # Optional, add page to a menu. Options: main, side, footer # Theme-Defined params thumbnail: &amp;#34;img/placeholder.png&amp;#34; # Thumbnail image lead: &amp;#34;Example lead - highlighted near the title&amp;#34; # Lead text comments: false # Enable Disqus comments for specific page authorbox: true # Enable authorbox for specific page pager: true # Enable pager navigation (prev/next) for specific page toc: true # Enable Table of Contents for specific page mathjax: true # Enable MathJax for specific page sidebar: &amp;#34;right&amp;#34; # Enable sidebar (on the right side) per page widgets: # Enable sidebar widgets in given order per page - &amp;#34;search&amp;#34; - &amp;#34;recent&amp;#34; - &amp;#34;taglist&amp;#34; --- 这段代码是一个用于Hugo网站的Markdown文件的头部（Front Matter），它用于定义文章或页面的元数据和一些特定的配置选项。Hugo是一个静态网站生成器，它使用这样的头部信息来控制内容的展示和行为。这个示例中的头部信息使用了YAML语法，它是一种常用于配置文件的数据序列化格式。下面是对每个字段含义的解释：</description>
+    </item>
+    <item>
+      <title>部署hugo网站到github</title>
+      <link>https://blog.freezz.cc/posts/js20220317/</link>
+      <pubDate>Thu, 17 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220317/</guid>
+      <description>部署hugo网站到github&#xA;代码行&#xA;第一次开始部署&#xA;☞使用Git Bash终端&#xA;☞新建一个网站&#xA;hugo new site ffblog 其中 &amp;ldquo;ffblog&amp;rdquo; 是网站文件夹名&#xA;☞把主题文件复制到themes文件夹内&#xA;☞进入网站文件夹根目录&#xA;cd ffblog&#xA;☞将主题添加到站点配置，“bootstrap”是主题(文件)名称&#xA;echo theme = \&amp;quot;bootstrap\&amp;quot; &amp;gt;&amp;gt; config.toml&#xA;☞新建一篇文章&#xA;hugo new post/my-first-post.md ☞启动 Hugo server，运行本地网站&#xA;hugo server -D ☞进入网站根目录&#xA;cd ~/ffblog&#xA;☞构建Hugo 网站，默认将生成的静态站点文件保存到 &amp;ldquo;public&amp;rdquo; 目录，&amp;ldquo;public&amp;rdquo; 文件夹会被转换为 Git 库&#xA;hugo&#xA;☞进入public目录&#xA;cd ffblog/public&#xA;☞初始化 Git 库&#xA;git init&#xA;☞显示所有文件和目录列表，包含隐藏文件, 查看 public 目录下的文件，会发现多了 .git 文件&#xA;ls -a&#xA;☞新建一个主分支main&#xA;git branch -M main&#xA;☞将 Git 本地库关联至远程库，如果 [remote &amp;ldquo;origin&amp;rdquo;] 信息正常显示，说明你的 Git 本地库已成功关联至远程库</description>
+    </item>
+  </channel>
+</rss>

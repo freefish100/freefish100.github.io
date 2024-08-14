@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on 自游鱼</title>
+    <link>https://blog.freezz.cc/tags/markdown/</link>
+    <description>Recent content in Markdown on 自游鱼</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown 语法教程</title>
+      <link>https://blog.freezz.cc/posts/js20220304/</link>
+      <pubDate>Fri, 04 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220304/</guid>
+      <description>Markdown 基本语法 Markdown是一种轻量级标记语言，排版语法简洁，让人们更多地关注内容本身而非排版。 它使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。 因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。&#xA;Markdown 标题语法 要创建标题，请在单词或短语前面添加井号 (#) 。# 的数量代表了标题的级别。例如，添加三个 # 表示创建一个三级标题 () (例如：### My Header)。&#xA;Markdown 段落 要创建段落，请使用空白行将一行或多行文本进行分隔。不要用空格（spaces）或制表符（ tabs）缩进段落。&#xA;Markdown 换行语法 在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(&amp;lt;br&amp;gt;)。 几乎每个 Markdown 应用程序都支持两个或多个空格进行换行，称为 结尾空格（trailing whitespace) 的方式，但这是有争议的，因为很难在编辑器中直接看到空格，并且很多人在每个句子后面都会有意或无意地添加两个空格。由于这个原因，你可能要使用除结尾空格以外的其它方式来换行。幸运的是，几乎每个 Markdown 应用程序都支持另一种换行方式：HTML 的 标签。 为了兼容性，请在行尾添加“结尾空格”或 HTML 的 &amp;lt;br&amp;gt; 标签来实现换行。&#xA;Markdown 强调语法 通过将文本设置为粗体或斜体来强调其重要性。&#xA;粗体（Bold） 要加粗文本，请在单词或短语的前后各添加两个星号（asterisks）。如需加粗一个单词或短语的中间部分用以表示强调的话，请在要加粗部分的两侧各添加两个星号（asterisks）。例如：&#xA;我在学习**Markdown**语法 输出结果：我在学习Markdown语法&#xA;斜体（Italic） 要用斜体显示文本，请在单词或短语前后添加一个星号（asterisk）。要斜体突出单词的中间部分，请在字母前后各添加一个星号，中间不要带空格。例如：&#xA;我在学习*Markdown*语法 输出结果：我在学习Markdown语法&#xA;粗体（Bold）和斜体（Italic） 要同时用粗体和斜体突出显示文本，请在单词或短语的前后各添加三个星号。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各添加三个星号，中间不要带空格。例如：&#xA;我在学习***Markdown***语法 输出结果：我在学习Markdown语法&#xA;Markdown 引用语法 要创建块引用，请在段落前添加一个 &amp;gt; 符号&#xA;&amp;gt;正在学习Markdown的引用语法。&#xA;输出效果：&#xA;正在学习Markdown的引用语法。&#xA;多个段落的块引用：块引用可以包含多个段落。为段落之间的空白行添加一个 &amp;gt; 符号&#xA;&amp;gt;正在学习Markdown的引用语法。 &amp;gt; &amp;gt;正在学习Markdown的引用语法。 输出效果：</description>
+    </item>
+  </channel>
+</rss>

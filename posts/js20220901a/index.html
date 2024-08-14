@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Linux Centos7 firewall防火墙的基本操作 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Linux Centos7 firewall防火墙的基本操作">
+		<meta property="og:title" content="Linux Centos7 firewall防火墙的基本操作" />
+<meta property="og:description" content="Linux Centos7 firewall防火墙的基本操作" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js20220901a/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-09-01T00:00:00+00:00" />
+
+		<meta itemprop="name" content="Linux Centos7 firewall防火墙的基本操作">
+<meta itemprop="description" content="Linux Centos7 firewall防火墙的基本操作"><meta itemprop="datePublished" content="2022-09-01T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-09-01T00:00:00+00:00" />
+<meta itemprop="wordCount" content="222">
+<meta itemprop="keywords" content="linux," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Linux Centos7 firewall防火墙的基本操作"/>
+<meta name="twitter:description" content="Linux Centos7 firewall防火墙的基本操作"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Linux Centos7 firewall防火墙的基本操作</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-01T00:00:00Z">2022-09-01</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>Centos7中使用firewalld来作为防火墙，其底层调用的命令仍然是iptables等命令，但是在配置上发生了较大的变化。
+Centos7中有两个位置存放了firewall的配置文件，一个是/etc/firewalld，一个是/usr/lib/firewalld，前者是用户配置目录，后者是系统配置目录。/usr/lib/firewalld目录中存放的是firewalld提供的一些默认和备份的配置文件，一般不随意改变，/etc/firewalld目录下才是用户配置的真正生效的配置文件，只有在/etc/firewalld目录不存在或该目录下不存在配置文件的情况下/usr/lib/firewalld目录下的配置文件才会生效。</p>
+<p><strong>zone的概念</strong><br>
+zone定义了防火墙对某个连接、网口（interface）或源地址的信任等级，我们可以把他理解为防火墙对不同的连接（connection）、网口（interface）或源地址（source address）划分到不同的zone当中，而不同的zone定义了不同的规则，因此防火墙可以针对不同的连接、网口（interface）或源地址做出不同的行为。例如，我们将10.12.18.201这个地址划分到zone1中，将10.12.18.202这个地址划分到zone2中，然后zone1中定义的规则为：允许访问3306端口，其余的端口都拒绝访问；zone2中定义的规则为：拒绝访问3306端口，其余的端口都允许访问。那么10.12.18.201就仅能访问本机的3306端口，10.12.18.202就仅不能访问本机的3306端口。每个zone的防火墙规则是通过/etc/firewalld/zones目录下的xml配置文件来配置的。
+zone和connection、interface、source address之间是一对多的关系，即一个connection、interface或source address仅能划分到一个zone中，而一个zone中可以包含多个connection、interface或source address。</p>
+<p>对于一个接受到的请求具体使用哪个zone，firewalld是通过三种方法来判断的：<br>
+1、source，也就是源地址<br>
+2、interface，接收请求的网卡<br>
+3、firewalld.conf中配置的默认zone<br>
+这三个的优先级按顺序依次降低，也就是说如果按照source可以找到就不会再按interface去查找，如果前两个都找不到才会使用第三个，也就是学生在前面给大家讲过的在firewalld.conf中配置的默认zone。</p>
+<p><strong>预定义的zone</strong><br>
+Centos7中firewalld为用户预定义了9个zone，分别为drop，block，public，external，dmz，work，home，internal，trusted。这9个zone的配置文件在/usr/lib/firewalld/zones目录下，通过查看他们的配置文件可以得知这9个zone的规则是怎么样的。<br>
+drop：任何传入本机的网络数据包都会被丢弃，并且不会回复，只允许本机对外访问其他服务器。<br>
+block：任何传入本机的网络连接请求都会被拒绝，并且会回复一条拒绝访问的消息。<br>
+public：用于本机处于公共网络环境的场景下，仅接受特定的连接请求，如仅接受某些特定的IP的连接请求，或仅对外部开放特定的某些端口。Centos 7 默认的public.xml文件中仅开放用于ssh连接请求的22端口和dhcpv6-client服务的546端口。<br>
+external：与public类似，Centos 7 默认仅开放用于ssh连接请求的22端口。<br>
+dmz：与external一样，Centos 7 默认也是仅开放用于ssh连接请求的22端口。<br>
+work：用于工作网络环境场景下，信任大部分的其他的计算机不会对本机进行攻击。Centos 7 默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，以及IPP协议的631端口。<br>
+home：用于家庭网络环境，信任网络上的其他计算机不会攻击本机。Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。<br>
+internal：与home一样，Centos 7默认开放用于ssh连接请求的22端口，dhcpv6-client服务的546端口，IPP协议的631端口，samba服务的137、138端口，mDNS服务的5353端口。
+trusted：所有对本机的网络连接请求都会被接受。</p>
+<p><strong>（注：如果更改的防火墙配置，记得要执行 firewall-cmd &ndash;reload 重新加载一次才会生效。）</strong></p>
+<p><strong>操作firewall防火墙的常用命令</strong></p>
+<ul>
+<li>
+<p>查看防火墙状态<br>
+systemctl status firewalld</p>
+</li>
+<li>
+<p>关闭防火墙<br>
+systemctl stop firewalld</p>
+</li>
+<li>
+<p>打开防火墙<br>
+systemctl start firewalld</p>
+</li>
+<li>
+<p>重启防火墙<br>
+systemctl restart firewalld.service</p>
+</li>
+<li>
+<p>开放端口<br>
+<code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code> //在public作用域中开放80端口。<br>
+返回success为成功。</p>
+</li>
+<li>
+<p>关闭端口<br>
+<code>firewall-cmd --zone=public --remove-port=80/tcp --permanent</code> //在public作用域中关闭80端口。<br>
+其中 <code>--zone</code>是作用域，<code>--add-port=80/tcp</code> 添加80端口，通讯协议为TCP，<code>--permanent</code> 设置为永久生效。</p>
+</li>
+<li>
+<p>开放一段端口<br>
+<code>firewall-cmd --zone=public --add-port=40000-45000/tcp --permanent</code><br>
+重新加载Firewalld守护程序以使更改生效：<br>
+<code>firewall-cmd --reload</code></p>
+</li>
+<li>
+<p>查看开放的端口列表<br>
+<code>firewall-cmd --zone=public --list-ports</code> //列出public作用域开放的端口<br>
+<code>firewall-cmd --list-all</code> //列出全部开放的端口（并能查看到当前活动的作用域）</p>
+</li>
+<li>
+<p>查看与公共区域关联的防火墙规则或服务<br>
+<code>firewall-cmd --list-all</code></p>
+</li>
+<li>
+<p>查看与某个区域关联的防火墙规则或服务，例如查看block这个区域<br>
+<code>firewall-cmd --zone=block --list-all</code></p>
+</li>
+<li>
+<p>将某个source(IP地址)划分到某个zone的命令如下：<br>
+<code>firewall-cmd [--permanent] [--zone=zone] --add-source=source</code> <br>
+例如：<br>
+<code>firewall-cmd --permanent --zone=trusted --add-source=192.168.5.112</code><br>
+这条命令会将192.168.5.112这个ip划分到trusted这个zone，<code>-–permanent</code>参数会将该配置写入trusted这个zone的配置文件trusted.xml中，使其永久生效。如果不加–permanent，则只会临时生效，重启防火墙或者调用<code>firewall-cmd --reload</code>重新加载配置文件会使得该项配置失效。</p>
+</li>
+<li>
+<p>将某个网口（interface）划分到某个zone的命令如下：<br>
+<code>firewall-cmd [--permanent] [--zone=zone] --add-interface=interface</code><br>
+例如：<br>
+<code>firewall-cmd --permanent --zone=block --add-interface=ens33</code><br>
+这条命令会将ens33这个网口划分到block这个zone，这样其他机器访问本机的ens33网口时就会默认走这个zone。<br>
+如果某个连接请求没有划分到任何一个zone，那么就会走默认的zone，Centos7 默认情况下，默认zone为public。可以通过以下命令查看或者修改默认zone。</p>
+</li>
+<li>
+<p>获取默认的zone：<br>
+<code>firewall-cmd --get-default-zone</code></p>
+</li>
+<li>
+<p>修改默认的zone：<br>
+<code>firewall-cmd --permanent --set-default-zone=[zone]</code></p>
+</li>
+</ul>
+<p><strong>创建新的区域</strong><br>
+firewalld还允许您创建自己的区域。当您想要创建每个应用程序的规则时，这很方便。在以下示例中，我们将创建一个名为memcached的新分区，打开端口11211，并仅允许从IP地址192.168.100.30进行访问：<br>
+<code>firewall-cmd --new-zone=visitors --permanent</code><br>
+开放端口添加端口<br>
+<code>firewall-cmd --zone=visitors --add-port=80/tcp --permanent</code><br>
+<code>firewall-cmd --zone=visitors --add-port=53/tcp --permanent</code><br>
+<code>firewall-cmd --zone=visitors --add-source=10.10.2.0/24 --permanent</code><br>
+重新加载Firewalld守护程序以激活更改：<br>
+<code>firewall-cmd --reload</code><br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;<br>
+<strong>其他的一些相关的命令：</strong><br>
+列出该zone下绑定了哪些interface：
+<code>firewall-cmd [--zone=zone] --list-interfaces</code></p>
+<p>将该interface绑定到另一个zone上：<br>
+<code>firewall-cmd [--permanent] [--zone=zone] --change-interface=interface</code></p>
+<p>如果该interface之前绑定到了某个zone，可以取消绑定，取消绑定后，会走默认的zone：<br>
+<code>firewall-cmd [--permanent] --remove-interface=interface</code></p>
+<p><strong>与source相关的：</strong><br>
+把某个ip绑定到source中<br>
+<code>firewall-cmd [--permanent] [--zone=zone] --add-source=source</code><br>
+例如：<br>
+<code>firewall-cmd --permanent --zone=public --add-source=192.168.1.111</code><br>
+<img src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/d4ff13f3223bcbbd278b0fbc507ea060.png" alt=""></p>
+<p>从某个source中把某个ip取消绑定(删除绑定)<br>
+<code>firewall-cmd [--permanent] --remove-source=source</code><br>
+例如：<br>
+<code>firewall-cmd --permanent --zone=public --remove-source=192.168.1.111</code><br>
+<img src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/06cf54296689c81eba8b7c4d98053648.png" alt=""></p>
+<p>查看source中的绑定<br>
+<code>firewall-cmd [--permanent] [--zone=zone] --list-sources</code></p>
+<p>&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.</p>
+<p><strong>向firewalld中添加规则：</strong><br>
+将服务添加到特定的区域<br>
+指定特定的zone区域名称，并且使用&ndash;add-service添加服务名称<br>
+<code>firewall-cmd --zone=public --add-service=dns --permanent</code></p>
+<p>从区域中删除(删除)服务<br>
+<code>firewall-cmd --zone=public --remove-service=dns --permanent</code></p>
+<p>如何允许/打开TCP/UDP端口/协议<br>
+<code>firewall-cmd --zone=public --add-port=8080/tcp --permanent</code>
+验证结构，可以使用以下命令验证<br>
+<code>firewall-cmd --list-ports</code></p>
+<p>拒绝/阻止TCP/UDP端口/协议<br>
+<code>firewall-cmd --zone=public --remove-port=23/tcp --permanent</code></p>
+<p>打开端口和源IP<br>
+Firewalld还允许您快速启用来自可信IP地址或特定端口的所有流量，而无需创建服务定义<br>
+开放源IP：<br>
+要允许来自特定IP地址(或范围)的所有传入流量，请使用&ndash;zone选项指定区域，并使用&ndash;add-source选项指定源IP。例如，要允许公共区域中来自192.168.172.32的所有传入流量，请运行：
+<code>firewall-cmd --zone=public --add-source=192.168.172.32</code></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220812/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Centos修改硬盘分区大小,把home分区部分容量分配给根分区</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20220901b/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Linux Centos 防火墙firewall配置只允许特定ip访问</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

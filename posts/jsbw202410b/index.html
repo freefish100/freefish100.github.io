@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>技术备忘记--infortrend存储设备篇(不定期更新) - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="技术备忘记--infortrend存储设备篇(不定期更新)" />
+<meta property="og:description" content="Infortrend普安存储设备 目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月） 存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DS系列：物理硬盘&ndash;&gt;逻辑卷&ndash;&gt;逻辑磁盘&ndash;&gt;分区。（服务器主机映射分区，最终使用的是分区）
+iSCSI映射步骤：
+1、存储主页&ndash;&gt;设置通道的ip地址，比如192.168.1.10
+2、服务器主机打开ISCSI程序&ndash;&gt;“目标”&ndash;&gt;填写目标ip地址(即上面通道的ip地址)&ndash;&gt;点击&quot;快速连接&quot;。连接成功后，会在&quot;存储主页&quot;&ndash;&gt;&ldquo;通道&rdquo;&ndash;&gt;点击&quot;扫描端口信息&quot;&ndash;&gt;&ldquo;添加&quot;页面，可看到服务器主机的 IQN号。
+3、&ldquo;存储主页&rdquo;&ndash;&gt;&ldquo;分区&rdquo;(下面的具体分区)&ndash;&gt;&ldquo;主机 LUN 映射&rdquo;&ndash;&gt;&ldquo;创建&rdquo;&ndash;&gt;&ldquo;自定义主机 LUN 映射配置&rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&quot;使用扩展的主机 LUN 功能&rdquo;，&ldquo;配置iSCSI启动程序别名&rdquo;&ndash;&gt;&ldquo;添加&quot;服务器主机IQN。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. GS系列：物理硬盘&gt;存储池&gt;卷，（服务器主机映射卷，最终使用的是卷）。DS系列：物理硬盘&gt;逻辑卷&gt;逻辑磁盘&gt;分区，（服务器主机映射分区，最终使用的是分区）
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. GS系列的卷打开ACL权限控制功能和使用“文件管理器”创建共享文件夹：
+1、设置控制器通道的IP地址：[设置]&ndash;[访问]，设置相应“通道”(例如通道0)的IP地址。要注意，如果是双控制器的机型，要留意设置的是控制器A还是控制器B，最好两个控制器都设置通道的IP地址，物理线缆也要连接到相应的控制器所对应的通道端口。
+2、新建一个存储池：[设置]&ndash;[存储配置]&ndash;[存储池]&ndash;[添加存储池]，其中“为该存储器指定一个控制器”下，要留意是把池建立在A控制器还是B控制器，如果是A控制器就是用A控制器所对应的IP地址来访问共享文件夹，若是把池建立在B控制器，就用B控制器所对应的IP地址来访问共享文件夹。
+3、创建一个卷：[设置]&ndash;[存储配置]&ndash;[添加卷]，卷所属的“存储池”，选择刚才建立的存储池，卷的类型选择“NAS文件级卷”，勾选“启用高级ACL”。
+4、新建一个共享文件夹(如果不先建立一个共享文件夹，当访问“文件管理器”时会提示“没有可访问的共享文件夹”)：[设置]&ndash;[权限]&ndash;[共享文件夹]&ndash;[添加]，其中“协议访问”那，要勾选“CIFS/SMB”，在当前页面中切换到“权限”选项卡，给予用户相应的访问权限。 5、访问文件管理器：[设置]&ndash;[应用]&ndash;[文件管理器]&ndash;[开启]文件管理器功能，点击下面的“文件管理器”按钮。如果是双控制器的会显示“控制器A文件管理器”和“控制器B文件管理器”，当步骤1中的池是建立在A控制器的，就点击“控制器A文件管理器”，若是池建立在B控制器的，就点击“控制器B文件管理器”，来打开“文件管理器”页面。 6、进入“文件管理器”后，右键点击刚才建立的文件夹，选择“共享”，勾选“CIFS/SMB”。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 电脑连接存储com口使用的波特率为38400. 有些老款的机器波特率为115200。 GS系列的系统关机顺序：先关闭存储中正在跑的业务(比如虚拟机、数据库等)，然后关闭存储本身的系统(设置&gt;系统&gt;关闭系统)，再关闭电源，如果有扩展柜的，再关闭扩展柜。开机顺序：先开扩展柜（如有），再开存储。 DS系列的关机顺序：管理首页&gt;系统设置&gt;系统&gt;关闭控制器，然后关闭电源。 GS系列添加热备盘：插入新硬盘，设备&gt;存储设备&gt;硬盘，选中新硬盘(硬盘的状态显示为&quot;新硬盘&quot;的，才能添加为热备盘)，点“管理备用硬盘”，按实际需要选择热备盘的类型，比如“全局”或者“本地”。 GS系列加入域：[设置]&ndash;[访问]&ndash;[通道&amp;网络]&ndash;[DNS服务器]&ndash;[添加DNS服务器]，填入DNS服务器IP地址(例如是域服务器的IP地址)，这里最好只填写一个DNS地址，填写多个可能会导致后面“检查域”时出错。然后返回[设置]&ndash;[权限]&ndash;[AD/LDAP]，选择“Windows Active Directory (AD)域”，填写AD服务器的域名，登录域的用户名和密码，其它选项默认，然后点击“检查域”，检查的选项都显示通过后，再点击“保存”。 Linux挂载 iscsi协议 SAN存储：
+1、在存储中做好映射到服务器的操作 (查看服务器主机的iqn号命令：cat /etc/iscsi/initiatorname.iscsi) 2、发现存储： iscsiadm -m discovery -p 192.168.1.51 -t st 其中 192.168.1.51是存储通道的IP。 命令执行后会返回存储通道对应的IP、端口号，以及服务器主机的iqn号 3、连接存储：iscsiadm -m node -T iqn.1994-05.com.redhat:34b1b4c5b2f3 -p 192.168.1.51 -l 其中 192.168.1.51是存储通道的IP，“ iqn.1994-05.com.redhat:34b1b4c5b2f3”是服务器主机的iqn号。如成功连接，会回显successful字样 Linux连接FC SAN存储：
+1、服务器主机插上FC HBA卡后，会自动有WWN号和FC光模块端口(SCSI host端口)，把存储中卷LUN映射到服务器对应的WWN。存储注意要选择FC的通道。
+(使用ls /sys/class/fc_host 命令列出相应的FC光模块端口，比如是host15,host16) 。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/jsbw202410b/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-10T00:00:00+00:00" />
+
+		<meta itemprop="name" content="技术备忘记--infortrend存储设备篇(不定期更新)">
+<meta itemprop="description" content="Infortrend普安存储设备 目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月） 存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DS系列：物理硬盘&ndash;&gt;逻辑卷&ndash;&gt;逻辑磁盘&ndash;&gt;分区。（服务器主机映射分区，最终使用的是分区）
+iSCSI映射步骤：
+1、存储主页&ndash;&gt;设置通道的ip地址，比如192.168.1.10
+2、服务器主机打开ISCSI程序&ndash;&gt;“目标”&ndash;&gt;填写目标ip地址(即上面通道的ip地址)&ndash;&gt;点击&quot;快速连接&quot;。连接成功后，会在&quot;存储主页&quot;&ndash;&gt;&ldquo;通道&rdquo;&ndash;&gt;点击&quot;扫描端口信息&quot;&ndash;&gt;&ldquo;添加&quot;页面，可看到服务器主机的 IQN号。
+3、&ldquo;存储主页&rdquo;&ndash;&gt;&ldquo;分区&rdquo;(下面的具体分区)&ndash;&gt;&ldquo;主机 LUN 映射&rdquo;&ndash;&gt;&ldquo;创建&rdquo;&ndash;&gt;&ldquo;自定义主机 LUN 映射配置&rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&quot;使用扩展的主机 LUN 功能&rdquo;，&ldquo;配置iSCSI启动程序别名&rdquo;&ndash;&gt;&ldquo;添加&quot;服务器主机IQN。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. GS系列：物理硬盘&gt;存储池&gt;卷，（服务器主机映射卷，最终使用的是卷）。DS系列：物理硬盘&gt;逻辑卷&gt;逻辑磁盘&gt;分区，（服务器主机映射分区，最终使用的是分区）
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. GS系列的卷打开ACL权限控制功能和使用“文件管理器”创建共享文件夹：
+1、设置控制器通道的IP地址：[设置]&ndash;[访问]，设置相应“通道”(例如通道0)的IP地址。要注意，如果是双控制器的机型，要留意设置的是控制器A还是控制器B，最好两个控制器都设置通道的IP地址，物理线缆也要连接到相应的控制器所对应的通道端口。
+2、新建一个存储池：[设置]&ndash;[存储配置]&ndash;[存储池]&ndash;[添加存储池]，其中“为该存储器指定一个控制器”下，要留意是把池建立在A控制器还是B控制器，如果是A控制器就是用A控制器所对应的IP地址来访问共享文件夹，若是把池建立在B控制器，就用B控制器所对应的IP地址来访问共享文件夹。
+3、创建一个卷：[设置]&ndash;[存储配置]&ndash;[添加卷]，卷所属的“存储池”，选择刚才建立的存储池，卷的类型选择“NAS文件级卷”，勾选“启用高级ACL”。
+4、新建一个共享文件夹(如果不先建立一个共享文件夹，当访问“文件管理器”时会提示“没有可访问的共享文件夹”)：[设置]&ndash;[权限]&ndash;[共享文件夹]&ndash;[添加]，其中“协议访问”那，要勾选“CIFS/SMB”，在当前页面中切换到“权限”选项卡，给予用户相应的访问权限。 5、访问文件管理器：[设置]&ndash;[应用]&ndash;[文件管理器]&ndash;[开启]文件管理器功能，点击下面的“文件管理器”按钮。如果是双控制器的会显示“控制器A文件管理器”和“控制器B文件管理器”，当步骤1中的池是建立在A控制器的，就点击“控制器A文件管理器”，若是池建立在B控制器的，就点击“控制器B文件管理器”，来打开“文件管理器”页面。 6、进入“文件管理器”后，右键点击刚才建立的文件夹，选择“共享”，勾选“CIFS/SMB”。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 电脑连接存储com口使用的波特率为38400. 有些老款的机器波特率为115200。 GS系列的系统关机顺序：先关闭存储中正在跑的业务(比如虚拟机、数据库等)，然后关闭存储本身的系统(设置&gt;系统&gt;关闭系统)，再关闭电源，如果有扩展柜的，再关闭扩展柜。开机顺序：先开扩展柜（如有），再开存储。 DS系列的关机顺序：管理首页&gt;系统设置&gt;系统&gt;关闭控制器，然后关闭电源。 GS系列添加热备盘：插入新硬盘，设备&gt;存储设备&gt;硬盘，选中新硬盘(硬盘的状态显示为&quot;新硬盘&quot;的，才能添加为热备盘)，点“管理备用硬盘”，按实际需要选择热备盘的类型，比如“全局”或者“本地”。 GS系列加入域：[设置]&ndash;[访问]&ndash;[通道&amp;网络]&ndash;[DNS服务器]&ndash;[添加DNS服务器]，填入DNS服务器IP地址(例如是域服务器的IP地址)，这里最好只填写一个DNS地址，填写多个可能会导致后面“检查域”时出错。然后返回[设置]&ndash;[权限]&ndash;[AD/LDAP]，选择“Windows Active Directory (AD)域”，填写AD服务器的域名，登录域的用户名和密码，其它选项默认，然后点击“检查域”，检查的选项都显示通过后，再点击“保存”。 Linux挂载 iscsi协议 SAN存储：
+1、在存储中做好映射到服务器的操作 (查看服务器主机的iqn号命令：cat /etc/iscsi/initiatorname.iscsi) 2、发现存储： iscsiadm -m discovery -p 192.168.1.51 -t st 其中 192.168.1.51是存储通道的IP。 命令执行后会返回存储通道对应的IP、端口号，以及服务器主机的iqn号 3、连接存储：iscsiadm -m node -T iqn.1994-05.com.redhat:34b1b4c5b2f3 -p 192.168.1.51 -l 其中 192.168.1.51是存储通道的IP，“ iqn.1994-05.com.redhat:34b1b4c5b2f3”是服务器主机的iqn号。如成功连接，会回显successful字样 Linux连接FC SAN存储：
+1、服务器主机插上FC HBA卡后，会自动有WWN号和FC光模块端口(SCSI host端口)，把存储中卷LUN映射到服务器对应的WWN。存储注意要选择FC的通道。
+(使用ls /sys/class/fc_host 命令列出相应的FC光模块端口，比如是host15,host16) 。"><meta itemprop="datePublished" content="2024-04-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-04-10T00:00:00+00:00" />
+<meta itemprop="wordCount" content="108">
+<meta itemprop="keywords" content="infortrend,存储设备," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="技术备忘记--infortrend存储设备篇(不定期更新)"/>
+<meta name="twitter:description" content="Infortrend普安存储设备 目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月） 存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. DS系列：物理硬盘&ndash;&gt;逻辑卷&ndash;&gt;逻辑磁盘&ndash;&gt;分区。（服务器主机映射分区，最终使用的是分区）
+iSCSI映射步骤：
+1、存储主页&ndash;&gt;设置通道的ip地址，比如192.168.1.10
+2、服务器主机打开ISCSI程序&ndash;&gt;“目标”&ndash;&gt;填写目标ip地址(即上面通道的ip地址)&ndash;&gt;点击&quot;快速连接&quot;。连接成功后，会在&quot;存储主页&quot;&ndash;&gt;&ldquo;通道&rdquo;&ndash;&gt;点击&quot;扫描端口信息&quot;&ndash;&gt;&ldquo;添加&quot;页面，可看到服务器主机的 IQN号。
+3、&ldquo;存储主页&rdquo;&ndash;&gt;&ldquo;分区&rdquo;(下面的具体分区)&ndash;&gt;&ldquo;主机 LUN 映射&rdquo;&ndash;&gt;&ldquo;创建&rdquo;&ndash;&gt;&ldquo;自定义主机 LUN 映射配置&rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&quot;使用扩展的主机 LUN 功能&rdquo;，&ldquo;配置iSCSI启动程序别名&rdquo;&ndash;&gt;&ldquo;添加&quot;服务器主机IQN。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. GS系列：物理硬盘&gt;存储池&gt;卷，（服务器主机映射卷，最终使用的是卷）。DS系列：物理硬盘&gt;逻辑卷&gt;逻辑磁盘&gt;分区，（服务器主机映射分区，最终使用的是分区）
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. GS系列的卷打开ACL权限控制功能和使用“文件管理器”创建共享文件夹：
+1、设置控制器通道的IP地址：[设置]&ndash;[访问]，设置相应“通道”(例如通道0)的IP地址。要注意，如果是双控制器的机型，要留意设置的是控制器A还是控制器B，最好两个控制器都设置通道的IP地址，物理线缆也要连接到相应的控制器所对应的通道端口。
+2、新建一个存储池：[设置]&ndash;[存储配置]&ndash;[存储池]&ndash;[添加存储池]，其中“为该存储器指定一个控制器”下，要留意是把池建立在A控制器还是B控制器，如果是A控制器就是用A控制器所对应的IP地址来访问共享文件夹，若是把池建立在B控制器，就用B控制器所对应的IP地址来访问共享文件夹。
+3、创建一个卷：[设置]&ndash;[存储配置]&ndash;[添加卷]，卷所属的“存储池”，选择刚才建立的存储池，卷的类型选择“NAS文件级卷”，勾选“启用高级ACL”。
+4、新建一个共享文件夹(如果不先建立一个共享文件夹，当访问“文件管理器”时会提示“没有可访问的共享文件夹”)：[设置]&ndash;[权限]&ndash;[共享文件夹]&ndash;[添加]，其中“协议访问”那，要勾选“CIFS/SMB”，在当前页面中切换到“权限”选项卡，给予用户相应的访问权限。 5、访问文件管理器：[设置]&ndash;[应用]&ndash;[文件管理器]&ndash;[开启]文件管理器功能，点击下面的“文件管理器”按钮。如果是双控制器的会显示“控制器A文件管理器”和“控制器B文件管理器”，当步骤1中的池是建立在A控制器的，就点击“控制器A文件管理器”，若是池建立在B控制器的，就点击“控制器B文件管理器”，来打开“文件管理器”页面。 6、进入“文件管理器”后，右键点击刚才建立的文件夹，选择“共享”，勾选“CIFS/SMB”。
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 电脑连接存储com口使用的波特率为38400. 有些老款的机器波特率为115200。 GS系列的系统关机顺序：先关闭存储中正在跑的业务(比如虚拟机、数据库等)，然后关闭存储本身的系统(设置&gt;系统&gt;关闭系统)，再关闭电源，如果有扩展柜的，再关闭扩展柜。开机顺序：先开扩展柜（如有），再开存储。 DS系列的关机顺序：管理首页&gt;系统设置&gt;系统&gt;关闭控制器，然后关闭电源。 GS系列添加热备盘：插入新硬盘，设备&gt;存储设备&gt;硬盘，选中新硬盘(硬盘的状态显示为&quot;新硬盘&quot;的，才能添加为热备盘)，点“管理备用硬盘”，按实际需要选择热备盘的类型，比如“全局”或者“本地”。 GS系列加入域：[设置]&ndash;[访问]&ndash;[通道&amp;网络]&ndash;[DNS服务器]&ndash;[添加DNS服务器]，填入DNS服务器IP地址(例如是域服务器的IP地址)，这里最好只填写一个DNS地址，填写多个可能会导致后面“检查域”时出错。然后返回[设置]&ndash;[权限]&ndash;[AD/LDAP]，选择“Windows Active Directory (AD)域”，填写AD服务器的域名，登录域的用户名和密码，其它选项默认，然后点击“检查域”，检查的选项都显示通过后，再点击“保存”。 Linux挂载 iscsi协议 SAN存储：
+1、在存储中做好映射到服务器的操作 (查看服务器主机的iqn号命令：cat /etc/iscsi/initiatorname.iscsi) 2、发现存储： iscsiadm -m discovery -p 192.168.1.51 -t st 其中 192.168.1.51是存储通道的IP。 命令执行后会返回存储通道对应的IP、端口号，以及服务器主机的iqn号 3、连接存储：iscsiadm -m node -T iqn.1994-05.com.redhat:34b1b4c5b2f3 -p 192.168.1.51 -l 其中 192.168.1.51是存储通道的IP，“ iqn.1994-05.com.redhat:34b1b4c5b2f3”是服务器主机的iqn号。如成功连接，会回显successful字样 Linux连接FC SAN存储：
+1、服务器主机插上FC HBA卡后，会自动有WWN号和FC光模块端口(SCSI host端口)，把存储中卷LUN映射到服务器对应的WWN。存储注意要选择FC的通道。
+(使用ls /sys/class/fc_host 命令列出相应的FC光模块端口，比如是host15,host16) 。"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">技术备忘记--infortrend存储设备篇(不定期更新)</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-04-10T00:00:00Z">2024-04-10</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#infortrend普安存储设备">Infortrend普安存储设备</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h2 id="infortrend普安存储设备">Infortrend普安存储设备</h2>
+<ul>
+<li>目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月）</li>
+<li>存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+<li>DS系列：物理硬盘&ndash;&gt;逻辑卷&ndash;&gt;逻辑磁盘&ndash;&gt;分区。（服务器主机映射分区，最终使用的是分区）<br>
+<strong>iSCSI映射步骤：</strong><br>
+1、存储主页&ndash;&gt;设置通道的ip地址，比如192.168.1.10<br>
+2、服务器主机打开ISCSI程序&ndash;&gt;“目标”&ndash;&gt;填写目标ip地址(即上面通道的ip地址)&ndash;&gt;点击&quot;快速连接&quot;。连接成功后，会在&quot;存储主页&quot;&ndash;&gt;&ldquo;通道&rdquo;&ndash;&gt;点击&quot;扫描端口信息&quot;&ndash;&gt;&ldquo;添加&quot;页面，可看到服务器主机的 IQN号。<br>
+3、&ldquo;存储主页&rdquo;&ndash;&gt;&ldquo;分区&rdquo;(下面的具体分区)&ndash;&gt;&ldquo;主机 LUN 映射&rdquo;&ndash;&gt;&ldquo;创建&rdquo;&ndash;&gt;&ldquo;自定义主机 LUN 映射配置&rdquo;，插槽、通道号和ID号根据实际接入情况对应选择，然后勾选&quot;使用扩展的主机 LUN 功能&rdquo;，&ldquo;配置iSCSI启动程序别名&rdquo;&ndash;&gt;&ldquo;添加&quot;服务器主机IQN。<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+<li>GS系列：物理硬盘&gt;存储池&gt;卷，（服务器主机映射卷，最终使用的是卷）。DS系列：物理硬盘&gt;逻辑卷&gt;逻辑磁盘&gt;分区，（服务器主机映射分区，最终使用的是分区）<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+<li><strong>GS系列的卷打开ACL权限控制功能和使用“文件管理器”创建共享文件夹：</strong><br>
+1、设置控制器通道的IP地址：[设置]&ndash;[访问]，设置相应“通道”(例如通道0)的IP地址。要注意，如果是双控制器的机型，要留意设置的是控制器A还是控制器B，最好两个控制器都设置通道的IP地址，物理线缆也要连接到相应的控制器所对应的通道端口。<br>
+2、新建一个存储池：[设置]&ndash;[存储配置]&ndash;[存储池]&ndash;[添加存储池]，其中“为该存储器指定一个控制器”下，要留意是把池建立在A控制器还是B控制器，如果是A控制器就是用A控制器所对应的IP地址来访问共享文件夹，若是把池建立在B控制器，就用B控制器所对应的IP地址来访问共享文件夹。<br>
+3、创建一个卷：[设置]&ndash;[存储配置]&ndash;[添加卷]，卷所属的“存储池”，选择刚才建立的存储池，卷的类型选择“NAS文件级卷”，勾选“启用高级ACL”。<br>
+4、新建一个共享文件夹(如果不先建立一个共享文件夹，当访问“文件管理器”时会提示“没有可访问的共享文件夹”)：[设置]&ndash;[权限]&ndash;[共享文件夹]&ndash;[添加]，其中“协议访问”那，要勾选“CIFS/SMB”，在当前页面中切换到“权限”选项卡，给予用户相应的访问权限。 <br>
+5、访问文件管理器：[设置]&ndash;[应用]&ndash;[文件管理器]&ndash;[开启]文件管理器功能，点击下面的“文件管理器”按钮。如果是双控制器的会显示“控制器A文件管理器”和“控制器B文件管理器”，当步骤1中的池是建立在A控制器的，就点击“控制器A文件管理器”，若是池建立在B控制器的，就点击“控制器B文件管理器”，来打开“文件管理器”页面。
+6、进入“文件管理器”后，右键点击刚才建立的文件夹，选择“共享”，勾选“CIFS/SMB”。<br>
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;..</li>
+<li>电脑连接存储com口使用的波特率为38400.  有些老款的机器波特率为115200。</li>
+<li>GS系列的系统关机顺序：先关闭存储中正在跑的业务(比如虚拟机、数据库等)，然后关闭存储本身的系统(设置&gt;系统&gt;关闭系统)，再关闭电源，如果有扩展柜的，再关闭扩展柜。开机顺序：先开扩展柜（如有），再开存储。</li>
+<li>DS系列的关机顺序：管理首页&gt;系统设置&gt;系统&gt;关闭控制器，然后关闭电源。</li>
+<li>GS系列添加热备盘：插入新硬盘，设备&gt;存储设备&gt;硬盘，选中新硬盘(硬盘的状态显示为&quot;新硬盘&quot;的，才能添加为热备盘)，点“管理备用硬盘”，按实际需要选择热备盘的类型，比如“全局”或者“本地”。</li>
+<li>GS系列加入域：[设置]&ndash;[访问]&ndash;[通道&amp;网络]&ndash;[DNS服务器]&ndash;[添加DNS服务器]，填入DNS服务器IP地址(例如是域服务器的IP地址)，这里最好只填写一个DNS地址，填写多个可能会导致后面“检查域”时出错。然后返回[设置]&ndash;[权限]&ndash;[AD/LDAP]，选择“Windows Active Directory (AD)域”，填写AD服务器的域名，登录域的用户名和密码，其它选项默认，然后点击“检查域”，检查的选项都显示通过后，再点击“保存”。</li>
+<li>Linux挂载 iscsi协议 SAN存储：<br>
+1、在存储中做好映射到服务器的操作
+(查看服务器主机的iqn号命令：cat /etc/iscsi/initiatorname.iscsi)
+2、发现存储： iscsiadm -m discovery -p 192.168.1.51 -t st
+其中 192.168.1.51是存储通道的IP。
+命令执行后会返回存储通道对应的IP、端口号，以及服务器主机的iqn号
+3、连接存储：iscsiadm -m node -T iqn.1994-05.com.redhat:34b1b4c5b2f3 -p 192.168.1.51 -l
+其中 192.168.1.51是存储通道的IP，“ iqn.1994-05.com.redhat:34b1b4c5b2f3”是服务器主机的iqn号。如成功连接，会回显successful字样</li>
+<li>Linux连接FC SAN存储：<br>
+1、服务器主机插上FC HBA卡后，会自动有WWN号和FC光模块端口(SCSI host端口)，把存储中卷LUN映射到服务器对应的WWN。存储注意要选择FC的通道。<br>
+(使用<code>ls /sys/class/fc_host</code> 命令列出相应的FC光模块端口，比如是host15,host16)  。<br>
+(使用<code>cat /sys/class/fc_host/hostX/port_name</code>查看FC光模块端口的WWN号，其中X是数字，比如上面的15或16)。<br>
+2、根据查询列出来的FC光模块端口(比如是host15,host16)，再使用如下命令依次扫描LUN(即逻辑单元)设备：<br>
+<code>echo &quot;---&quot;&gt;/sys/class/scsi_host/host15/scan</code><br>
+<code>echo &quot;---&quot;&gt;/sys/class/scsi_host/host16/scan</code><br>
+执行过程中若没有报错，即成功了。<br>
+也可以执行 <code>rescan-scsi-bus.sh</code> 脚本来重新扫描所有的SCSI总线，并重新发现和识别所有的SCSI设备。这个脚本可以在大多数 Linux 发行版中找到。如果没有安装，可以使用 yum install sg3_utils 命令来安装 sg3_utils 软件包，然后在 /usr/bin 目录下找到 rescan-scsi-bus.sh 脚本。</li>
+<li>Infortrend普安GS系列存储系统自带的clamav杀毒软件的病毒库更新下载网址<br>
+<a href="https://db.local.clamav.net/daily.cvd">https://db.local.clamav.net/daily.cvd</a><br>
+更新病毒库操作：首先建立一个杀毒软件的工作文件夹，该目录用于存放日志和隔离的文件。然后：[设置]&ndash;[应用]&ndash;[反病毒]&ndash;开启杀毒&ndash;选择日志和隔离的文件所存放的位置(即刚刚创建的文件夹)&ndash;[保存]&ndash;更新病毒码&ndash;[管理]&ndash;上传.cvd类型的病毒库文件&ndash;[安装]。</li>
+<li>存储主机板有一个LED灯，从存储背后的小孔看进去，显示的数值代表不同的存储状态。如0和1交替显示，表示控制器正常；如显示3，可能内存有故障引起系统问题(可抽出控制器重新拔插内存)；如显示8，一般是芯片问题，要返厂家维修。</li>
+<li>替换存储的控制器时，要确保控制器的PN号和固件跟原来的一致，控制器支持热拔插。</li>
+<li>GSe系列机型导出系统诊断日志：[设置]&ndash;[系统]&ndash;[维护]&ndash;[诊断信息]&ndash;[导出]</li>
+<li>DS系列有液晶小屏的机型，在修复好故障后，取消当液晶屏红灯提示和错误告警信息：按ESC键5秒。如果还不行，执行如下操作：1、按ENT键两秒，2、进入system information，3、disable mute。</li>
+<li>当硬盘出现故障，可热拔插硬盘，插入新硬盘后，会自动重建阵列。如果有热备盘替换了故障盘，则需要把新硬盘设置为热备盘。</li>
+<li>GS/GSe系列设置管理口连接外网：[设置]-[访问]-[添加DNS服务器]，同页面底下[路由]-[管理]-&ldquo;添加&rdquo;，添加路由：接口选&quot;局域网络&rdquo;，&ldquo;目的地&quot;和&quot;子网掩码&quot;都输入&quot;0.0.0.0&rdquo;，网关按实际环境填写。按实际环境设置管理口的ip、掩码和网关。</li>
+<li>GS/GSe系列设置中国大陆时间：需要管理口先能通外网，然后[设置]-[系统]-[时间]-勾选&quot;自动更新时区信息&quot;，并选择&quot;(UTC+08:00)北京&hellip;&quot;。再点击上面的“更改&quot;-&ldquo;同步与NTP服务器同步&rdquo;，选择相应的&quot;时间服务器”和输入服务器的“轮询时间间隔”,比如&quot;1&quot;小时，&ldquo;确定&quot;保存即可。</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/infortrend/" rel="tag">infortrend</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" rel="tag">存储设备</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/jsbw202410a/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">技术备忘记--戴尔设备篇(不定期更新)</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/jsbw202410c/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">技术备忘--windows篇(不定更新)</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>磁盘阵列 on </title>
+    <link>https://blog.freezz.cc/tags/%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97/</link>
+    <description>Recent content in 磁盘阵列 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>联想 x3650 M5 服务器不停机不重启加装硬盘并配置阵列</title>
+      <link>https://blog.freezz.cc/posts/js20220904/</link>
+      <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220904/</guid>
+      <description>联想 x3650 M5 服务器，支持硬盘热插拔，通过IMM远程管理配置硬盘阵列，不需要进入BIOS，不用停机或重启服务器，操作比较安全直观，非常适合生产环境。下面我们加装两个1.2T的SAS硬盘，详细记录加装硬盘的全过程。&#xA;关于IMM：IMM全称是Intel Mobile Module是联想IBM服务器上的集成管理模块，该模块是独立于服务器系统，可以通过一个单独的IP地址，使用Web和虚拟端口方式直接启动、停止和管理远程服务器，即使主板、处理器或者内存故障导致主机无法启动，也依然可以远程管理服务器，可以远程直接操作启动画面和服务器工作界面。&#xA;登陆IMM远程管理界面&#xA;找到服务器背面的IMM远程管理口，一般会标记为”IMM”或者有一个扳手型的标志&#xA;然后接上网线。把控制端的电脑的ip设置为与IMM远程管理口的ip同一个网段，联想 System x3650 M5服务器IMM远程管理口的默认初始ip是192.168.70.125。&#xA;在控制端电脑的浏览器中访问192.168.70.125即可打开IMM远程管理的登录页面，默认用户名USERID，密码PASSW0RD，（注意：0是数字0，不是字母O）。&#xA;登录成功后，可以看到系统信息&#xA;点击“Local Storage”，进入阵列卡硬盘存储管理页面&#xA;这里可以看到阵列卡的型号是M5210，有两个300G的硬盘&#xA;点击 “Storage RAID Configuation”&amp;ndash;“View Logical Drives by Storage Pools”，查看到这两个硬盘是做了raid1阵列模式&#xA;现在要添加两个1.2T的新硬盘，并配置成raid1。&#xA;首先在前面板插入新硬盘，槽位0和1是原来的300G硬盘，槽位2和3是新加装的1.2T硬盘 加装好新硬盘后，点击存储管理页面中的“Refresh”按钮，刷新一下，就可以看到新加入的硬盘了。&#xA;但是，这里的新硬盘是没有配置好阵列模式的，我们需要把新硬盘转换为未配置好的状态，然后再配置阵列，步骤如下：&#xA;到此，完成了新硬盘转换为未配置好的状态。进入Local Storage 页面，然后按下面步骤配置新硬盘的阵列&#xA;这里选择阵列模式，把硬盘添加到新阵列中&#xA;到这里，就配置好两个新硬盘的阵列了。然后打开服务器的“磁盘管理”，把新硬盘初始化，分区。&#xA;到此，就全部完成新硬盘的加装了。</description>
+    </item>
+  </channel>
+</rss>

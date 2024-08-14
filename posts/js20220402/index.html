@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别">
+		<meta property="og:title" content="存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别" />
+<meta property="og:description" content="存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js20220402/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-02T00:00:00+00:00" />
+
+		<meta itemprop="name" content="存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别">
+<meta itemprop="description" content="存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别"><meta itemprop="datePublished" content="2022-04-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-04-02T00:00:00+00:00" />
+<meta itemprop="wordCount" content="148">
+<meta itemprop="keywords" content="硬件设备," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别"/>
+<meta name="twitter:description" content="存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-04-02T00:00:00Z">2022-04-02</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>10Gb iSCSI 光纤与 8Gb/16Gb 的光纤两者有什么区别呢？我们可以把 10Gb iSCSI 光纤视为10Gb 的光纤以太网卡，将 8Gb/16Gb 光纤视为光纤 HBA 卡，这样去对比两者的区别就容易得多了，首先两者使用的 SFP（Small form Factor Pluggable）模块不可以通用，也就是说存储产品中的 8Gb/16GB SFP 模块与 10Gb的SFP 模块不能混用。</p>
+<p>在早期的 SAN（存储区域网络）存储系统中，服务器与交换机的数据传输是通过光纤进行的，因为服务器是把 SCSI（Small Computer System Interface小型计算机系统接口）指令传输到存储设备上，不能走普通以太网的 TCP/IP 协议，所以需要使用 FC 传输，因此这种 SAN 就叫 FC-SAN，而后期出现了用 IP 协议封装的 SAN，可以完全走普通 LAN 网络，因此叫做 IP-SAN，其中最典型的就是现在热门的 ISCSI。</p>
+<p>这两种方式都需要对数据块进行繁重的读包解包操作，因此高性能的 SAN 系统是需要在服务器上安装一块专门负责解包工作以减轻处理器负担的卡，这种卡就叫 HBA 卡（Host Bus Adapter，即主机总线适配器），它除了执行解包工作外当然还可以提供一个光纤接口（如果是 iSCSI HBA 卡就是提供普通的 RJ45 接口）以用于跟对应的交换机连接；另外，HBA 卡物理上也可以把它当作网卡一样插在服务器的 PCI-E 插槽上，因此这种设备的用法非常像一块网卡，很多人也就把它跟普通网卡或普通的光纤网卡混淆了。当然，有的 iSCSI HBA 卡就可以当作普通网卡来用，不过从价格上考虑这是非常奢侈，以至于我们很少见到 ISCSI HBA 卡，通常客户都是使用 iSCSI_Initiator 软件加服务器板载网卡进行搭配使用。</p>
+<p>HBA 的常规定义就是连接主机 I/O 总线和计算机内存系统的 I/O 适配器。按照这个定义，像显卡就是连接视频总线和内存，网卡就是连接网络总线和内存，SCSI 或者 FC 卡就是连接 SCSI 或者 FC 总线和内存的，它们都是 HBA。HBA 卡有 FC HBA、SAS HBA、iSCSI HBA 将来还有其他 HBA 卡。</p>
+<p>其实，网卡是大家常提到的一个类型设备的总称，是指安装在主机里，通过网络连接线（双绞线、光纤线、同轴电缆等）与网络交换机（以太网交换机、FC 交换机）、或与其它网络设备（存储设备、服务器、工作站等）连接，从而形成一个网络的硬件设备。</p>
+<p>因传输协议的不同的，网卡可分为三种，一是以太网卡，二是 FC 网卡，三是 iSCSI 网卡。</p>
+<p>•以太网卡：学名 Ethernet Adapter，传输协议为 IP 协议，一般通过光纤线缆或双绞线与以太网交换机连接。接口类型分为光口和电口。光口一般都是通过光纤线缆来进行数据传输，接口模块一般为 SFP 和 GBIC。电口目前常用接口类型为 RJ45，用来与双绞线连接。</p>
+<p>•FC卡：一般也叫光纤网卡，学名 Fibre Channel HBA。传输协议为光纤通道协议，一般通过光纤线缆与光纤通道交换机连接，接口模块也叫 SFP（传输率8Gb/s，16Gb/s）对应的接口为 LC。</p>
+<p>•iSCSI 网卡：学名 iSCSI HBA，传输 iSCSI 协议，接口类型与以太网卡相同。</p>
+<p>“光纤网卡”一般是指 FC HBA 卡，插在服务器上，外接存储用的光纤交换机；而光口的以太网卡一般都叫做“光纤以太网卡”，也是插在服务器上，不过它外接的是带光口的以太网交换机。</p>
+<p>总结：</p>
+<p>•8Gb/16Gb 光纤：俗称 FC SAN 存储与服务器之间传输的是 FC 协议；</p>
+<p>•10Gb 光纤：俗称 IP SAN 传输的是 SCSI 封装的 TCP/IP 协议，需要单独的硬件 iSCSI 卡或者 iSCSI_Initiator 软件进行封装拆包解包的工作</p>
+<p>FC SAN 存储网络独立于服务器、工作站之间使用的以太网，属于服务器与存储或备份设备间专用网络，不占用前端服务器与工作站的带宽，从而性能与可靠性、可用性有更好的保障，而 IP SAN 可以方便的接入到用户的现有网络环境中，部署与使用上比较灵活，适用于对存储性能与可靠性、可用性要求不是特别高的应用。</p>
+<p><strong>HBA卡：FC-HBA卡(俗称：光纤网卡)、iSCSI-HBA卡(RJ45接口)</strong><br>
+<strong>以太网卡：光纤接口的以太网卡(俗称：光纤以太网卡)</strong></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" rel="tag">硬件设备</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220401/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Linux CentOS 命令摘录备忘</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/rc20220411/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">技术文章链接收录</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HBA卡  on </title>
+    <link>https://blog.freezz.cc/tags/hba%E5%8D%A1-/</link>
+    <description>Recent content in HBA卡  on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/hba%E5%8D%A1-/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>存储中的10Gb iSCSI 光纤与 8Gb/16Gb 的光纤区别，光纤网卡和HBA卡的区别</title>
+      <link>https://blog.freezz.cc/posts/js20220402/</link>
+      <pubDate>Sat, 02 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220402/</guid>
+      <description>10Gb iSCSI 光纤与 8Gb/16Gb 的光纤两者有什么区别呢？我们可以把 10Gb iSCSI 光纤视为10Gb 的光纤以太网卡，将 8Gb/16Gb 光纤视为光纤 HBA 卡，这样去对比两者的区别就容易得多了，首先两者使用的 SFP（Small form Factor Pluggable）模块不可以通用，也就是说存储产品中的 8Gb/16GB SFP 模块与 10Gb的SFP 模块不能混用。&#xA;在早期的 SAN（存储区域网络）存储系统中，服务器与交换机的数据传输是通过光纤进行的，因为服务器是把 SCSI（Small Computer System Interface小型计算机系统接口）指令传输到存储设备上，不能走普通以太网的 TCP/IP 协议，所以需要使用 FC 传输，因此这种 SAN 就叫 FC-SAN，而后期出现了用 IP 协议封装的 SAN，可以完全走普通 LAN 网络，因此叫做 IP-SAN，其中最典型的就是现在热门的 ISCSI。&#xA;这两种方式都需要对数据块进行繁重的读包解包操作，因此高性能的 SAN 系统是需要在服务器上安装一块专门负责解包工作以减轻处理器负担的卡，这种卡就叫 HBA 卡（Host Bus Adapter，即主机总线适配器），它除了执行解包工作外当然还可以提供一个光纤接口（如果是 iSCSI HBA 卡就是提供普通的 RJ45 接口）以用于跟对应的交换机连接；另外，HBA 卡物理上也可以把它当作网卡一样插在服务器的 PCI-E 插槽上，因此这种设备的用法非常像一块网卡，很多人也就把它跟普通网卡或普通的光纤网卡混淆了。当然，有的 iSCSI HBA 卡就可以当作普通网卡来用，不过从价格上考虑这是非常奢侈，以至于我们很少见到 ISCSI HBA 卡，通常客户都是使用 iSCSI_Initiator 软件加服务器板载网卡进行搭配使用。&#xA;HBA 的常规定义就是连接主机 I/O 总线和计算机内存系统的 I/O 适配器。按照这个定义，像显卡就是连接视频总线和内存，网卡就是连接网络总线和内存，SCSI 或者 FC 卡就是连接 SCSI 或者 FC 总线和内存的，它们都是 HBA。HBA 卡有 FC HBA、SAS HBA、iSCSI HBA 将来还有其他 HBA 卡。</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>存储 on </title>
+    <link>https://blog.freezz.cc/tags/%E5%AD%98%E5%82%A8/</link>
+    <description>Recent content in 存储 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E5%AD%98%E5%82%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Infortrend普安GS系列存储文件同步，两台存储间文件同步</title>
+      <link>https://blog.freezz.cc/posts/js20220904b/</link>
+      <pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220904b/</guid>
+      <description>RSYNC: remote synchronize 的缩写，是一个远程数据同步工具，可以通过网络实现多台主机之间的文件同步，也可以实现同一主机上不同分区或目录间的数据同步。Rsync 通过“quick check”算法，仅同步发生变化的文件或目录，甚至是只同步一个文件中发生变化的内容部分。因此相比于 cp、scp 等完整拷贝工具，rsync 的增量拷贝在性能和效率上更胜一筹。&#xA;Rsync 特性：&#xA;可以镜像保存整个目录树和文件系统 同步时可以选择是否保持源文件或目录的权限、时间、软硬链接等属性不改变 增量同步，效率更高 灵活的传输方式，可以使用 rsh,ssh 或直接 socket 连接 支持匿名传输 无论是本地还是远程同步数据，首次运行时将会把全部数据拷贝一次，以后再同步时才会是增量备份。由于 rsync 数据复制时效能不如 cp,tar 等工具速度快，因此如果在数据量比较大的情况下，首次复制可以先用其它工具完成，之后再用 rsync 实现同步。&#xA;GS 系列 rsync 网络服务介绍 IFT 所有统一存储，如：GS、GSe、GSc、GSa、GSi、GSe Pro 系列均可以作为 rsync 源端或 rsync 目标端或既是源端也是目标端。当使用 GS 作为 rsync 源端时，直接从“排程&amp;amp;备份”中创建一个文件夹远程同步计划即可；当使用 GS 作为 rsync 目标端时，由两种方式可选择，第一种方式是通过 ssh 直接访问；第二种方式是通过 socket 方式，这种方式需要先在“访问”-“网络服务”中开启并配置 rsync 目标服务，具体操作在以下章节中详细介绍。由于 rsync 协议本身是开源软件，所以此功能在 GS 中也是完全免费的，不需要额外购买 License。&#xA;两台 GS 之间 rsync 同步数据可以选择使用 ssh 方式或 socket 方式来实现，本文以SSH方式为例，演示两台GS 之间 rsync 同步数据，其中GS1016为源端，GS1012为目标端。</description>
+    </item>
+  </channel>
+</rss>

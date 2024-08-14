@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vcenter on </title>
+    <link>https://blog.freezz.cc/tags/vcenter/</link>
+    <description>Recent content in Vcenter on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/vcenter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>更改 ESXi Server 管理 IP 地址</title>
+      <link>https://blog.freezz.cc/posts/js20220318/</link>
+      <pubDate>Fri, 18 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220318/</guid>
+      <description>更改 ESXi Server 管理 IP 地址 在更改 ESXi Server 管理 IP 地址之前，请确保：&#xA;新的 IP 地址和所需网络设置就绪。 已在群集中禁用高可用性 (HA)，以防止故障切换事件。有关详细信息，请参见 Disabling VMware High Availability (HA) (1008025)。 如果锁定模式启用，则禁用该模式。更多信息，请参见Enabling or disabling Lockdown mode on an ESXi host ESXi 主机处于维护模式，因为该主机在更改 IP 地址期间可能会断开连接。 要更改 ESXi Server 管理 IP 地址，请执行以下操作：&#xA;更改 ESXi Server 管理 IP 地址：&#xA;使用 DCUI 更改 ESXi Server 管理 IP 地址： 登录到 ESXi 的直接控制台用户界面。 选择“配置管理网络”，并按 Enter 键 从“配置管理网络选项”菜单中，选择“IPv4 配置”或“IPv6 配置”，并按 Enter 键 设置新的 IPv4 或 IPv6 配置，然后按 Enter 键 按 Esc 键退出 DCUI 时会弹出警示“配置管理网络: 确认” 按 Y 以应用更改并重新启动管理网络。</description>
+    </item>
+  </channel>
+</rss>

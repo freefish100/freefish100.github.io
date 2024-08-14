@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu  on </title>
+    <link>https://blog.freezz.cc/tags/ubuntu-/</link>
+    <description>Recent content in Ubuntu  on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/ubuntu-/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Ubuntu 命令摘录备忘</title>
+      <link>https://blog.freezz.cc/posts/js20220401b/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220401b/</guid>
+      <description>查看用户的当前目录 pwd&#xA;查看ubuntu版本：&#xA;lsb_release -a&#xA;cat /etc/issue&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.&#xA;Ubuntu 22.04上配置静态IP地址： 配置文件路径&#xA;/etc/netplan&#xA;以下是文件内容(配置项冒号后面有一个空格，注意缩行)：&#xA;# This is the network config written by &amp;#39;subiquity&amp;#39; network: ethernets: ens160: dhcp4: no addresses: - 192.168.1.112/24 //设置ip和子网掩码 routes: - to: default via: 192.168.1.1 //设置网关 nameservers: //设置DNS addresses: [202.96.128.166,8.8.8.8] version: 2 保存文件后，重新启动网络服务：&#xA;sudo netplan apply&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&#xA;Ubuntu 20.04上配置静态IP地址 Ubuntu 17.10及更高版本使用Netplan作为默认网络管理工具。 先前的Ubuntu版本使用ifconfig及其配置文件/etc/network/interfaces来配置网络。 Netplan配置文件使用YAML语法编写，文件扩展名为.yaml。 要使用Netplan配置网络接口，您需要为该接口创建YAML描述，然后Netplan会使用所选的渲染器工具生成所需的配置文件。 Netplan支持两个渲染器：NetworkManager和Systemd-networked。NetworkManager主要在台式机上使用，而Systemd-networked在没有GUI的服务器上使用。 在Ubuntu 20.04上，系统使用“predictable network interface names(可预测的网络接口名称)”标识网络接口。设置静态IP地址的第一步是识别要配置的以太网接口的名称。 为此，请使用 ip link 命令， 该命令将打印所有可用网络接口的列表。&#xA;Netplan配置文件存储在/etc/netplan目录中。 您可能会在此目录中找到一个或多个YAML文件。 文件的名称可能因安装程序而异。 通常，文件名为01-netcfg.</description>
+    </item>
+  </channel>
+</rss>

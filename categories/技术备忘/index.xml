@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术备忘 on </title>
+    <link>https://blog.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/</link>
+    <description>Recent content in 技术备忘 on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Example article title</title>
+      <link>https://blog.freezz.cc/posts/test09/</link>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/test09/</guid>
+      <description>一个网站，使用纯静态方法，不使用数据库，来实现商品记录的浏览、并可以增加新的商品记录，对每条商品能进行修改，删除。商品的字段包括“商品名称”、“配置”、“价格”和“备注”。请问具体的代码是怎样写？&#xA;在Ubuntu上安装Xfce桌面环境。您可以使用以下命令安装Xfce桌面环境 sudo apt-get update sudo apt-get install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils&#xA;安装xrdp sudo apt-get update sudo apt-get install xrdp</description>
+    </item>
+    <item>
+      <title>Linux Centos 防火墙firewall配置只允许特定ip访问</title>
+      <link>https://blog.freezz.cc/posts/js20220901b/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220901b/</guid>
+      <description>本实例情况如下： 服务器的80端口，需要配置为只有允许的ip才可以访问，其它未经允许的ip不能访问。&#xA;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..&#xA;1. 启用防火墙，首先查看防火墙状态，看防火墙是否已开启&#xA;#查看防火墙状态&#xA;systemctl status firewalld&#xA;如果返回绿色active代表服务已启动。如果未启动，要开启防火墙并设置开机启动.&#xA;#开启防火墙&#xA;systemctl start firewalld&#xA;#开机启动&#xA;systemctl enable firewalld&#xA;2. 关闭端口访问&#xA;确保端口关闭。如果有已开放则要关闭端口，因为此处端口如果开放，是所有ip都可以进行访问。如果端口未开启则无需关闭。&#xA;#查询打开的端口&#xA;firewall-cmd --zone=public --list-ports&#xA;#关闭端口80&#xA;firewall-cmd --zone=public --remove-port=80/tcp --permanent&#xA;#重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查询打开的端口&#xA;firewall-cmd --list-all&#xA;3. 开放指定的ip访问服务器的80端口&#xA;#允许ip192.168.1.111访问80端口&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.111&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; 如果是开放一个网段，就把ip改成ip网段：&#xA;firewall-cmd --permanent --add-rich-rule=&amp;#34;rule family=&amp;#34;ipv4&amp;#34; source address=&amp;#34;192.168.1.0/24&amp;#34; port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;80&amp;#34; accept&amp;#34; #重新载入一下防火墙设置，使设置生效&#xA;firewall-cmd --reload&#xA;#查看已设置规则&#xA;firewall-cmd --zone=public --list-rich-rules&#xA;**查看防火墙已开放端口列表：&#xA;firewall-cmd --list-all</description>
+    </item>
+  </channel>
+</rss>

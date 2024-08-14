@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>更改 ESXi Server 管理 IP 地址 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="更改 ESXi Server 管理 IP 地址">
+		<meta property="og:title" content="更改 ESXi Server 管理 IP 地址" />
+<meta property="og:description" content="更改 ESXi Server 管理 IP 地址" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js20220318/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-18T00:00:00+00:00" />
+
+		<meta itemprop="name" content="更改 ESXi Server 管理 IP 地址">
+<meta itemprop="description" content="更改 ESXi Server 管理 IP 地址"><meta itemprop="datePublished" content="2022-03-18T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-03-18T00:00:00+00:00" />
+<meta itemprop="wordCount" content="550">
+<meta itemprop="keywords" content="虚拟化,vmware," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="更改 ESXi Server 管理 IP 地址"/>
+<meta name="twitter:description" content="更改 ESXi Server 管理 IP 地址"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">更改 ESXi Server 管理 IP 地址</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-03-18T00:00:00Z">2022-03-18</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#更改-esxi-server-管理-ip-地址">更改 ESXi Server 管理 IP 地址</a></li>
+    <li><a href="#在-esxi-中重新启动管理代理">在 ESXi 中重新启动管理代理</a></li>
+    <li><a href="#vcenter-server-ip-地址更改导致-esxi-主机断开连接">vCenter Server IP 地址更改导致 ESXi 主机断开连接</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h2 id="更改-esxi-server-管理-ip-地址">更改 ESXi Server 管理 IP 地址</h2>
+<p>在更改 ESXi Server 管理 IP 地址之前，请确保：</p>
+<ul>
+<li>新的 IP 地址和所需网络设置就绪。</li>
+<li>已在群集中禁用高可用性 (HA)，以防止故障切换事件。有关详细信息，请参见 <a href="https://kb.vmware.com/kb/1008025">Disabling VMware High Availability (HA) (1008025)</a>。</li>
+<li>如果锁定模式启用，则禁用该模式。更多信息，请参见<a href="https://kb.vmware.com/s/article/1008077">Enabling or disabling Lockdown mode on an ESXi host</a></li>
+<li>ESXi 主机处于维护模式，因为该主机在更改 IP 地址期间可能会断开连接。</li>
+</ul>
+<p>要更改 ESXi Server 管理 IP 地址，请执行以下操作：</p>
+<ol>
+<li>更改 ESXi Server 管理 IP 地址：<br>
+使用 DCUI 更改 ESXi Server 管理 IP 地址：
+<ul>
+<li>登录到 ESXi 的直接控制台用户界面。</li>
+<li>选择“配置管理网络”，并按 Enter 键</li>
+<li>从“配置管理网络选项”菜单中，选择“IPv4 配置”或“IPv6 配置”，并按 Enter 键</li>
+<li>设置新的 IPv4 或 IPv6 配置，然后按 Enter 键</li>
+<li>按 Esc 键退出 DCUI 时会弹出警示“配置管理网络: 确认”</li>
+<li>按 Y 以应用更改并重新启动管理网络。<br>
+或使用 shell 命令更改 ESXi Server 管理 IP 地址</li>
+<li>使用 root 凭据打开 SSH 与主机之间的会话。有关详细信息，请参见 <a href="https://kb.vmware.com/kb/1003892">Opening a command or shell prompt (1003892)</a></li>
+<li>或者，您还可以通过 KVM 或远程控制台更改 IP 地址。</li>
+<li>运行以下命令：esxcli network ip interface ipv4 set -i vmk1 -I ip address -N subnet -t static</li>
+</ul>
+</li>
+<li>更新 DNS 服务器条目，以反映所需的更改。</li>
+<li>重新启动 ESXi Server 管理网络<br>
+登录到 vCenter Server Appliance 的直接控制台用户界面。选择“重新启动管理网络”，并按 Enter 键。按 F11 键。</li>
+<li>在 ESXi 中重新启动管理代理 (vpxa)。请参见 <a href="https://kb.vmware.com/s/article/1003490">https://kb.vmware.com/s/article/1003490</a> 中的详细信息</li>
+<li>将主机重新连接到 vCenter</li>
+<li>登录到 vCenter Server Web Client，并在清单中选择一个主机。</li>
+<li>右键单击主机，并选择“连接”-&gt;“连接”</li>
+</ol>
+<p>您可以调整其他选项，以确保 HA 不会因从 vCenter Server 短暂断开（而不是主机故障）而激活，从而导致虚拟机出现故障。例如，主要功能为数据存储检测信号。如果已启用此功能，则会将虚拟机标识为在 ESXi 主机上运行，并且 HA 不会激活。您还可以在执行更改时调整主机监控或网络隔离响应。</p>
+<p><strong>注意：以下是最安全和最简单的方法：</strong></p>
+<ol>
+<li>将 ESXi 主机置于维护模式。</li>
+<li>从 vCenter Server 删除 ESXi 主机。</li>
+<li>使用 ESXi 主机 UI Client 或 KVM 直接连接。<br>
+注意：在执行操作之前请确保可以访问 ESXi 服务器控制台。</li>
+<li>更改 IP 地址并更新 DNS 服务器。</li>
+<li>将 ESXi 主机添加回 vCenter Server，重新启动 VC 管理网络和 ESXi 主机的管理代理。</li>
+</ol>
+<p>注意：如果您在主机上使用了 syslog，则还需重启 syslog 服务，以防止日志条目使用主机此前的管理 IP 信息，请在主机上运行命令 esxcli system syslog reload。</p>
+<h2 id="在-esxi-中重新启动管理代理">在 ESXi 中重新启动管理代理</h2>
+<p>无法直接连接至 ESXi 主机或在 vCenter Server 中进行管理。vCenter Server 显示以下错误：<br>
+创建虚拟机可能失败，因为代理无法从主机检索虚拟机创建选项
+(Virtual machine creation may fail because agent is unable to retrieve VM creation options from the host)</p>
+<p>要排除 ESXi 连接问题，请重新启动 ESXi 主机上的管理代理。<br>
+警告：如果在 vSAN 网络上已配置 LACP，请不要在正在运行 vSAN 的 ESXi 主机上重新启动管理代理。<br>
+重新启动管理代理可能会影响重新启动时 ESXi 主机上正在运行的任何任务。<br>
+重新启动主机守护程序 hostd 服务或 services.sh 前，请检查有无存储问题。</p>
+<p><strong>使用直接控制台用户界面 (DCUI)重启管理代理：</strong><br>
+来源：https://kb.vmware.com/s/article/1003490?lang=zh_cn</p>
+<ol>
+<li>连接到您的 ESXi 主机的控制台。</li>
+<li>按 F2 自定义系统。</li>
+<li>以 root 身份登录。</li>
+<li>使用上下箭头导航至故障排除选项&gt;重新启动管理代理。</li>
+<li>按 Enter 键。</li>
+<li>按 F11 重新启动服务。</li>
+<li>服务重新启动时，按 Enter 键。</li>
+<li>按 Esc 注销。<br>
+注意：还可以使用 Host Client 重启服务。在 Host Client 中，选择 主机&raquo;管理&raquo;服务，然后选择要重启的服务。</li>
+</ol>
+<p><strong>使用 ESXi Shell 或 Secure Shell (SSH) 重启管理代理：</strong></p>
+<ol>
+<li>以 root 用户身份登录 ESXi Shell 或 SSH。<br>
+要启用 ESXi Shell 或 SSH，请参见 <a href="https://kb.vmware.com/s/article/2004746">Using ESXi Shell in ESXi 5.x, 6.x and 7.x</a> 。</li>
+<li>用以下命令重启 ESXi 主机守护进程和 vCenter Agent 服务：<br>
+/etc/init.d/hostd restart<br>
+/etc/init.d/vpxa restart<br>
+或者：<br>
+要在特定 VMkernel 接口（默认为 vmk0）上重置管理网络，请运行以下命令：<br>
+esxcli network ip interface set -e false -i vmk0; esxcli network ip interface set -e true -i vmk0<br>
+注意：在两个命令之间使用分号 (;)，确保依次禁用再重新启用 VMkernel 接口。如果管理接口未在 vmk0 上运行，请根据所用的 VMkernel 接口更改上述命令。<br>
+要在主机上重新启动所有管理代理，请运行以下命令：<br>
+services.sh restart</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li>如果启用和配置了 LACP，请勿使用 services.sh 命令重新启动管理服，而用 /etc/init.d/module restart 命令重新启动独立服务。</li>
+<li>如果问题未解决，并且您必须重新启动所有作为 services.sh 脚本一部分的服务，请在继续执行脚本之前进行停机。</li>
+<li>如果环境中配置了 NSX，请勿运行 /sbin/services.sh restart 命令，因为这将重新启动 ESXi 主机上的所有服务。如果您需要在 ESXi 主机上重新启动管理代理，请分别重新启动 vpxa、host.d 和 fdm。如果还需要运行 /sbin/services.sh restart 命令（因为重新启动每个管理代理不起作用），则将所有虚拟机迁移出 ESXi 主机，并将主机置于维护模式（如果可以）。</li>
+<li>如果您不确定 ESXi 主机上是否已安装 NSX for vSphere，请运行以下命令进行验证：<br>
+esxcli software vib list &ndash;rebooting-image | grep esx-*<br>
+查找以下 VIB 以确定 ESX 主机上是否已安装 NSX：<br>
+esx-vsip<br>
+esx-vxlan</li>
+<li>如果在 View 环境（VGPU、vDGA、vSGA）中使用共享图形，请勿使用 services.sh。这将关闭 xorg 服务，该服务负责客户机操作系统级别上的图形。将图形从客户机操作系统中剥离，最终将导致使用共享图形的 VDI 工作负载发生崩溃。如果未处于维护模式，请确保仅使用共享图形重新启动 hostd 和 vpxa。</li>
+</ul>
+<h2 id="vcenter-server-ip-地址更改导致-esxi-主机断开连接">vCenter Server IP 地址更改导致 ESXi 主机断开连接</h2>
+<p>来源：https://kb.vmware.com/s/article/1001493?lang=zh_CN<br>
+ESXi/ESX 主机将断开连接，因为它们将 vCenter Server 的 IP 地址存储在每个服务器上的配置文件中。 发送到 vCenter Server 的检测信号数据包会继续使用这个不正确的地址。<br>
+有两种方法可再次连接 ESXi/ESX 主机。 请按指定顺序尝试连接每个主机，分别测试您的结果。<br>
+方法 1</p>
+<ol>
+<li>使用 SSH 客户端以 root 用户身份登录到 ESXi/ESX 主机。</li>
+<li>使用文本编辑器，编辑 /etc/opt/vmware/vpxa/vpxa.cfg 文件并将 serverIp 参数更改为 vCenter Server 的新 IP。<br>
+ESXi 5.x/6.0： vpxa.cfg 文件位于 /etc/vmware/vpxa/vpxa.cfg。</li>
+<li>保存更改并退出。</li>
+<li>在 ESXi/ESX 上重新启动管理代理。 有关详细信息，请参见 <a href="https://kb.vmware.com/s/article/1003490">Restarting the Management agents in ESXi</a> 。</li>
+<li>重新启动 VMware VirtualCenter Server 服务。 有关详细信息，请参见 <a href="https://kb.vmware.com/s/article/1003895">How to stop, start, or restart vCenter Server services</a>。</li>
+</ol>
+<p>方法 2</p>
+<ol>
+<li>在 vSphere Client 中，右键单击 ESXi/ESX 主机，然后单击断开连接。</li>
+<li>在 vSphere Client 中，右键单击 ESXi/ESX 主机，然后单击重新连接。 如果 IP 仍不正确，请转到步骤 3。</li>
+<li>在 vSphere Client 中，右键单击 ESXi/ESX 主机，然后单击移除。<br>
+警告： 将主机从 vCenter Server 中移除后，有关虚拟机和主机的所有性能数据都会丢失。</li>
+<li>重新安装 VMware vCenter Server 代理。 有关说明的详细信息，请参见 <a href="https://kb.vmware.com/s/article/1003714">Verifying and reinstalling the correct version of the VMware vCenter Server agents</a>。</li>
+<li>单击新建 &gt; 添加主机。</li>
+<li>输入用于连接到主机的信息。</li>
+</ol>
+<p>文章来源：https://kb.vmware.com/s/article/2084629?lang=zh_CN</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag">虚拟化</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/vmware/" rel="tag">vmware</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220317/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">部署hugo网站到github</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20220318b/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Windows11 Win11操作配置技巧</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

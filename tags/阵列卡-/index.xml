@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>阵列卡  on </title>
+    <link>https://blog.freezz.cc/tags/%E9%98%B5%E5%88%97%E5%8D%A1-/</link>
+    <description>Recent content in 阵列卡  on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.freezz.cc/tags/%E9%98%B5%E5%88%97%E5%8D%A1-/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>戴尔DELL H330 Raid卡 阵列卡BIOS模式下配置阵列</title>
+      <link>https://blog.freezz.cc/posts/js20220424/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://blog.freezz.cc/posts/js20220424/</guid>
+      <description>开机看到屏幕有提示有“Ctrl+R”字样的提示时，按下“Ctrl+R”进入阵列卡设置界面。</description>
+    </item>
+  </channel>
+</rss>

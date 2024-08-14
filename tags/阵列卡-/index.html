@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>阵列卡  - </title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="阵列卡 " />
+<meta property="og:description" content="自游鱼的博客 电脑技术 互联网技术 AI技术 网络" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://blog.freezz.cc/tags/%E9%98%B5%E5%88%97%E5%8D%A1-/" />
+
+		<meta itemprop="name" content="阵列卡 ">
+<meta itemprop="description" content="自游鱼的博客 电脑技术 互联网技术 AI技术 网络">
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="阵列卡 "/>
+<meta name="twitter:description" content="自游鱼的博客 电脑技术 互联网技术 AI技术 网络"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="alternate" type="application/rss+xml" href="/tags/%E9%98%B5%E5%88%97%E5%8D%A1-/index.xml" title="">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/logo.png">
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">阵列卡 </h1>
+	</header><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/js20220424/" rel="bookmark">
+			戴尔DELL H330 Raid卡 阵列卡BIOS模式下配置阵列
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-04-24T00:00:00Z">2022-04-24</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/" rel="category">技术摘录</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		开机看到屏幕有提示有“Ctrl+R”字样的提示时，按下“Ctrl+R”进入阵列卡设置界面。
+	</div>
+</article>
+
+</main>
+
+
+			</div>
+			
+<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/202404a/">这是我的第一篇hugo博客</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/work20220302/">工作笔记备忘(不定时更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20230223/">DELL戴尔2012年至2022年生产的服务器型号列表</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/202404a/">这是我的第一篇hugo博客</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/test09/">Example article title</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/work20220302/">工作笔记备忘(不定时更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20230329/">windows远程桌面连接linux ubuntu centos</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/js20230223/">DELL戴尔2012年至2022年生产的服务器型号列表</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0/">工作笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E5%A4%87%E5%BF%98/">技术备忘</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%97%A5%E5%B8%B8%E9%9A%8F%E5%86%99/">日常随写</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/blog/" title="Blog">Blog</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/esxi/" title="ESXi">ESXi</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="Github">Github</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hba%E5%8D%A1-/" title="HBA卡 ">HBA卡 </a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/raid/" title="Raid">Raid</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu/" title="Ubuntu">Ubuntu</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ubuntu-/" title="Ubuntu ">Ubuntu </a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcenter/" title="Vcenter">Vcenter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-/" title="Vmware ">Vmware </a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/win11/" title="Win11">Win11</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows11/" title="Windows11">Windows11</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%85%89%E7%BA%A4%E7%BD%91%E5%8D%A1/" title="光纤网卡">光纤网卡</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%AB%99/" title="在线网站">在线网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%A4%87%E5%BF%98/" title="备忘">备忘</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8/" title="存储">存储</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%BB%BA%E7%AB%99%E6%8A%80%E6%9C%AF/" title="建站技术">建站技术</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="戴尔服务器">戴尔服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" title="打印机">打印机</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统">操作系统</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E4%BB%B6%E5%90%8C%E6%AD%A5/" title="文件同步">文件同步</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E5%BD%95/" title="文章收录">文章收录</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E7%9B%98%E5%8A%A0%E5%AF%86/" title="硬盘加密">硬盘加密</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E7%9B%98%E5%AE%B9%E9%87%8F/" title="硬盘容量">硬盘容量</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97/" title="磁盘阵列">磁盘阵列</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A9%BF%E6%A2%AD/" title="穿梭">穿梭</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5/" title="网址链接">网址链接</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE-/" title="网络配置 ">网络配置 </a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/" title="远程桌面">远程桌面</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/" title="远程管理">远程管理</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99/" title="防火墙">防火墙</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E9%98%B5%E5%88%97%E5%8D%A1-/" title="阵列卡 ">阵列卡 </a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

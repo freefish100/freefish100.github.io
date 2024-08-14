@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Linux(Centos) top命令的使用详解 - 自游鱼</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Linux(Centos) top命令的使用详解">
+		<meta property="og:title" content="Linux(Centos) top命令的使用详解" />
+<meta property="og:description" content="Linux(Centos) top命令的使用详解" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.freezz.cc/posts/js20221122/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-22T00:00:00+00:00" />
+
+		<meta itemprop="name" content="Linux(Centos) top命令的使用详解">
+<meta itemprop="description" content="Linux(Centos) top命令的使用详解"><meta itemprop="datePublished" content="2022-11-22T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-11-22T00:00:00+00:00" />
+<meta itemprop="wordCount" content="497">
+<meta itemprop="keywords" content="linux," />
+		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Linux(Centos) top命令的使用详解"/>
+<meta name="twitter:description" content="Linux(Centos) top命令的使用详解"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="自游鱼" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">自游鱼</div>
+					<div class="logo__tagline">从原点再出发,不是简单的重复</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Linux(Centos) top命令的使用详解</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-11-22T00:00:00Z">2022-11-22</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#top参数详解">top参数详解</a></li>
+    <li><a href="#top使用方法">top使用方法</a></li>
+    <li><a href="#常用命令说明">常用命令说明</a></li>
+    <li><a href="#查看多核cpu命令">查看多核CPU命令</a></li>
+    <li><a href="#进程字段排序">进程字段排序</a></li>
+    <li><a href="#改变进程显示字段">改变进程显示字段</a></li>
+    <li><a href="#linux查看物理cpu个数核数逻辑cpu个数">Linux查看物理CPU个数、核数、逻辑CPU个数</a></li>
+    <li><a href="#vmstat-命令">Vmstat 命令</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<p>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。</p>
+<h2 id="top参数详解">top参数详解</h2>
+<p><img src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/linnux_top_20221122a0.png" alt=""></p>
+<p>第一行，任务队列信息，同 uptime 命令的执行结果</p>
+<blockquote>
+<p>系统时间：13:55:50</p>
+<p>运行时间：up 1:47 min,</p>
+<p>当前登录用户数： 1 user</p>
+<p>负载均衡(uptime) load average: 0.00, 0.00, 0.00</p>
+<p>average后面的三个数分别是1分钟、5分钟、15分钟的负载情况。load average数据是每隔5秒钟检查一次活跃的进程数，然后按特定算法计算出的数值，这里的Load指的出于R(runing)和D(Uninterruptible sleep)的两种状态下的进程数。<br>
+在单核cpu情况下，如果load average 为0.4的表示，其cpu利用率只有40%， load average 为1，表示cpu利用率为100，如果load average 为高于1，比如为2.12，则说明cpu已经超负荷112% (2.12减满负荷1，即为超负荷部分)。<br>
+在多核cpu的机器上，需要将以上的1,5,15的负载除以对应的cpu核数，才好评估对应的cpu的负载情况。比如，一个cpu为40核的机器，其cpu过去一分钟的使用情况是8.26，则8.26/40=0.2065 ，说明cpu使用率只有20% 。</p>
+</blockquote>
+<p>第二行，Tasks — 任务（进程）</p>
+<blockquote>
+<p>总进程:298 total, 运行:1 running, 休眠:297 sleeping, 停止: 0 stopped, 僵尸进程: 0 zombie</p>
+</blockquote>
+<p>第三行，cpu状态信息</p>
+<blockquote>
+<p>0.1%us【user space】— 用户空间占用CPU的百分比。</p>
+<p>0.2%sy【sysctl】— 内核空间占用CPU的百分比。</p>
+<p>0.0%ni【】— 改变过优先级的进程占用CPU的百分比</p>
+<p>99.6%id【idolt】— 空闲CPU百分比</p>
+<p>0.0%wa【wait】— IO等待占用CPU的百分比</p>
+<p>0.0%hi【Hardware IRQ】— 硬中断占用CPU的百分比</p>
+<p>0.0%si【Software Interrupts】— 软中断占用CPU的百分比</p>
+</blockquote>
+<blockquote>
+<p>在top 命令下，按数字“1”可监控每个逻辑CPU的状况：如图，服务器有8个逻辑CPU，实际上是1个物理CPU。<br>
+<img src="https://cdn.staticaly.com/gh/freefish100/pics@main/img/linnux_top_20221122c.png" alt=""><br>
+如果不按1，则在top视图里面显示的是所有cpu的平均值。</p>
+</blockquote>
+<p>第四行,内存状态</p>
+<blockquote>
+<p>16265908k total, 3428784k used, 12143088k free, 694036k buffers/cache【缓存的内存量/缓冲的交换区总量】
+（buff/cache ，是在cpu读写硬盘数据时，为了提速在内存中开辟的缓冲(buffer针对写)或缓存区域(cache针对读)）</p>
+</blockquote>
+<p>第五行，swap交换分区信息</p>
+<blockquote>
+<p>8257532k total, 0k used, 8257532k free, 12529992k availe Mem<br>
+（avail mem 是创建新进程时，在不使用swap分区的情况下，能够分配的内存大小。这个大小可能比当前的free还大，这是因为buff/cache中的内存在创建进程时，若需要，也是可以抢占过来的。）</p>
+</blockquote>
+<p>备注：</p>
+<p>可用内存=free + buffer + cached</p>
+<p>对于内存监控，在top里我们要时刻监控第五行swap交换分区的used，如果这个数值在不断的变化，说明内核在不断进行内存和swap的数据交换，这是真正的内存不够用了。</p>
+<p>第四行中使用中的内存总量（used）指的是现在系统内核控制的内存数，</p>
+<p>第四行中空闲内存总量（free）是内核还未纳入其管控范围的数量。</p>
+<p>纳入内核管理的内存不见得都在使用中，还包括过去使用过的现在可以被重复利用的内存，内核并不把这些可被重新使用的内存交还到free中去，因此在linux上free内存会越来越少，但不用为此担心。</p>
+<p>第六行，空行</p>
+<p>第七行以下：各进程（任务）的状态监控</p>
+<blockquote>
+<p>PID — 进程id
+USER — 进程所有者
+PR — 进程优先级，是内核在调度该进程的优先级priority。 NI会影响PR。
+NI — 进程的nice值。负值表示高优先级，正值表示低优先级。PR 和 NI NI表示进程的Nice值。
+VIRT — 进程使用的虚拟内存总量，单位kb。 VIRT表示进程使用的所有内存大小，包括虚拟使用的swap内存和物理内存，VIRT=SWAP+RES。
+RES — 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA
+SHR — 是当前进程同其它进程共享内存的大小，单位kb，
+S —进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程
+%CPU — 上次更新到现在的CPU时间占用百分比
+%MEM — 进程使用的物理内存百分比
+TIME+ — 进程使用的CPU时间总计，精确到百分之一秒，单位1/100秒
+COMMAND — 进程名称（命令名/命令行）</p>
+</blockquote>
+<p>详解</p>
+<p>VIRT：virtual memory usage 虚拟内存
+1、进程“需要的”虚拟内存大小，包括进程使用的库、代码、数据等
+2、假如进程申请100m的内存，但实际只使用了10m，那么它会增长100m，而不是实际的使用量</p>
+<p>RES：resident memory usage 常驻内存
+1、进程当前使用的内存大小，但不包括swap out
+2、包含其他进程的共享
+3、如果申请100m的内存，实际使用10m，它只增长10m，与VIRT相反
+4、关于库占用内存的情况，它只统计加载的库文件所占内存大小</p>
+<p>SHR：shared memory 共享内存
+1、除了自身进程的共享内存，也包括其他进程的共享内存
+2、虽然进程只使用了几个共享库的函数，但它包含了整个共享库的大小
+3、计算某个进程所占的物理内存大小公式：RES – SHR
+4、swap out后，它将会降下来</p>
+<p>DATA
+1、数据占用的内存。如果top没有显示，按f键可以显示出来。
+2、真正的该程序要求的数据空间，是真正在运行中要使用的。</p>
+<p>在top命令下按以下大写字母，分别按不同的维度进行排序<br>
+M 根据内存使用情况排序<br>
+P 根据CPU使用情况排序<br>
+N 根据进程ID排序<br>
+T 根据进程使用CPU的时间排序</p>
+<p>top 运行中可以通过 top 的内部命令对进程的显示方式进行控制。内部命令如下：
+s – 改变画面更新频率
+l – 关闭或开启第一部分第一行 top 信息的表示
+t – 关闭或开启第一部分第二行 Tasks 和第三行 Cpus 信息的表示
+m – 关闭或开启第一部分第四行 Mem 和 第五行 Swap 信息的表示
+N – 以 PID 的大小的顺序排列表示进程列表
+P – 以 CPU 占用率大小的顺序排列进程列表
+M – 以内存占用率大小的顺序排列进程列表
+h – 显示帮助
+n – 设置在进程列表所显示进程的数量
+q – 退出 top
+s – 改变画面更新周期</p>
+<h2 id="top使用方法">top使用方法</h2>
+<p>使用格式：</p>
+<p>top [-] [d] [p] [q] [c] [C] [S] [s] [n]</p>
+<p>参数说明：</p>
+<p>d：指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。</p>
+<p>p:通过指定监控进程ID来仅仅监控某个进程的状态。</p>
+<p>q:该选项将使top没有任何延迟的进行刷新。如果调用程序有超级用户权限，那么top将以尽可能高的优先级运行。</p>
+<p>S：指定累计模式。</p>
+<p>s：使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。</p>
+<p>i：使top不显示任何闲置或者僵死进程。</p>
+<p>c:显示整个命令行而不只是显示命令名。</p>
+<h2 id="常用命令说明">常用命令说明</h2>
+<p>Ctrl+L：擦除并且重写屏幕</p>
+<p>K：终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号。一般的终止进程可以使用15信号；如果不能正常结束那就使用信号9强制结束该进程。默认值是信号15。在安全模式中此命令被屏蔽。</p>
+<p>i：忽略闲置和僵死进程。这是一个开关式命令。</p>
+<p>q：退出程序</p>
+<p>r:重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。</p>
+<p>S：切换到累计模式。</p>
+<p>s：改变两次刷新之间的延迟时间。系统将提示用户输入新的时间，单位为s。如果有小数，就换算成m s。输入0值则系统将不断刷新，默认值是5 s。需要注意的是如果设置太小的时间，很可能会引起不断刷新，从而根本来不及看清显示的情况，而且系统负载也会大大增加。</p>
+<p>f或者F：从当前显示中添加或者删除项目。</p>
+<p>o或者O：改变显示项目的顺序</p>
+<p>l：切换显示平均负载和启动时间信息。</p>
+<p>m:切换显示内存信息。</p>
+<p>t:切换显示进程和CPU状态信息。</p>
+<p>c:切换显示命令名称和完整命令行。</p>
+<p>M:根据驻留内存大小进行排序。</p>
+<p>P:根据CPU使用百分比大小进行排序。</p>
+<p>T:根据时间/累计时间进行排序。</p>
+<p>W:将当前设置写入~/.toprc文件中。</p>
+<h2 id="查看多核cpu命令">查看多核CPU命令</h2>
+<blockquote>
+<p>mpstat -P ALL 和 sar -P ALL<br>
+说明：sar -P ALL &gt; aaa.txt 重定向输出内容到文件aaa.txt<br>
+mpstat -P ALL<br>
+<img src="/img/linnux_top_20221122b.png" alt=""><br>
+sar -P ALL<br>
+<img src="/img/linnux_top_20221122d.png" alt=""><br>
+输出较多，可grep或者重定向至文件查看</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<h2 id="进程字段排序">进程字段排序</h2>
+<p>默认进入top时，各进程是按照CPU的占用量来排序的，可通过键盘指令来改变排序字段，比如想监控哪个进程占用MEM最多，一般的使用方法如下：<br>
+1.敲击键盘“b”（打开/关闭加亮效果），可以通过敲击“y”键关闭或打开运行态进程的加亮效果。<br>
+2.敲击键盘“x”（打开/关闭排序列的加亮效果），top默认的排序列是“%CPU”，通过”shift+&gt;”或”shift+&lt;”可以向右或左改变排序列。</p>
+<h2 id="改变进程显示字段">改变进程显示字段</h2>
+<p>1.敲击“f”键，top进入另一个视图，在这里可以编排基本视图中的显示字段。这里列出了所有可在top基本视图中显示的进程字段，有”<em>”并且标注为大写字母的字段是可显示的，没有”</em>”并且是小写字母的字段是不显示的。如果要在基本视图中显示“CODE”和“DATA”两个字段，可以通过敲击“r”和“s”键。</p>
+<h2 id="linux查看物理cpu个数核数逻辑cpu个数">Linux查看物理CPU个数、核数、逻辑CPU个数</h2>
+<p>总核数 = 物理CPU个数 X 每颗物理CPU的核数<br>
+总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</p>
+<p>查看物理CPU的数量<br>
+<code>cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</code></p>
+<p>查看单个物理CPU中core的个数(即核数)<br>
+<code>cat /proc/cpuinfo | grep &quot;cpu cores&quot; | uniq</code></p>
+<p>查看逻辑CPU的个数<br>
+<code>cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</code></p>
+<p>查看CPU信息
+<code>cat /proc/cpuinfo | head -20</code></p>
+<p>查看CPU信息（型号）<br>
+<code>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</code></p>
+<p>查看CPU主频<br>
+<code>cat /proc/cpuinfo |grep MHz|uniq</code></p>
+<p>查看内 存信息<br>
+<code>cat /proc/meminfo</code></p>
+<p>Free 命令,free查看总内存，使用空闲情况<br>
+<code>free -m</code></p>
+<p>              total        used        free      shared  buff/cache   available</p>
+<p>Mem:           7666        4275         680           2        2711        3095</p>
+<p>Swap:             0           0           0</p>
+<p>字段说明：</p>
+<ul>
+<li>
+<p>total：总计物理内存的大小</p>
+</li>
+<li>
+<p>used：已使用多大</p>
+</li>
+<li>
+<p>free：可用有多少</p>
+</li>
+<li>
+<p>Shared：多个进程共享的内存总额</p>
+</li>
+<li>
+<p>Buffers/cached：磁盘缓存的大小</p>
+</li>
+</ul>
+<h2 id="vmstat-命令">Vmstat 命令</h2>
+<p>查看CPU使用率、内存情况、IO读写情况</p>
+<p>`$ vmstat</p>
+<p>procs &mdash;&mdash;&mdash;&ndash;memory&mdash;&mdash;&mdash;- &mdash;swap&ndash; &mdash;&ndash;io&mdash;- -system&ndash; &mdash;&mdash;cpu&mdash;&ndash;</p>
+<p> r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st</p>
+<p> 3  0      0 706708   1044 2768928    0    0  3822    80    0    0 11  7 78  4  0</p>
+<p>`</p>
+<p>字段说明：</p>
+<p>Procs（进程）：</p>
+<ul>
+<li>
+<p>r: 运行队列中进程数量，这个值也可以判断是否需要增加CPU。（长期大于1）</p>
+</li>
+<li>
+<p>b: 等待IO的进程数量</p>
+</li>
+</ul>
+<p>Memory（内存）：</p>
+<ul>
+<li>
+<p>swpd: 使用虚拟内存大小</p>
+</li>
+<li>
+<p>free: 空闲物理内存大小</p>
+</li>
+<li>
+<p>buff: 用作缓冲的内存大小</p>
+</li>
+<li>
+<p>cache: 用作缓存的内存大小</p>
+</li>
+</ul>
+<p>Swap：</p>
+<ul>
+<li>
+<p>si: 每秒从交换区写到内存的大小，由磁盘调入内存</p>
+</li>
+<li>
+<p>so: 每秒写入交换区的内存大小，由内存调入磁盘</p>
+</li>
+</ul>
+<p>IO：</p>
+<ul>
+<li>
+<p>bi: 每秒读取的块数</p>
+</li>
+<li>
+<p>bo: 每秒写入的块数</p>
+</li>
+</ul>
+<p>系统：</p>
+<ul>
+<li>
+<p>in: 每秒中断数，包括时钟中断。</p>
+</li>
+<li>
+<p>cs: 每秒上下文切换数。</p>
+</li>
+</ul>
+<p>CPU（以百分比表示）：</p>
+<ul>
+<li>
+<p>us: 用户进程执行时间百分比(user time)</p>
+</li>
+<li>
+<p>sy: 内核系统进程执行时间百分比(system time)</p>
+</li>
+<li>
+<p>wa: IO等待时间百分比</p>
+</li>
+<li>
+<p>id: 空闲时间百分比</p>
+</li>
+</ul>
+<p>参考链接：<br>
+<a href="https://mp.weixin.qq.com/s?__biz=MzIxMTA2ODE1OQ==&amp;mid=2651147056&amp;idx=1&amp;sn=84584798bffc0a6bca99e3cfc108019b&amp;chksm=8cab1ea0bbdc97b6251535c83f6daf1d51077412cb891f99ff435a4776410adc3d21722a85de#rd">https://mp.weixin.qq.com/s?__biz=MzIxMTA2ODE1OQ==&amp;mid=2651147056&amp;idx=1&amp;sn=84584798bffc0a6bca99e3cfc108019b&amp;chksm=8cab1ea0bbdc97b6251535c83f6daf1d51077412cb891f99ff435a4776410adc3d21722a85de#rd</a></p>
+<p><a href="https://www.jianshu.com/p/a38cd22b28ad">https://www.jianshu.com/p/a38cd22b28ad</a></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/js20220904b/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Infortrend普安GS系列存储文件同步，两台存储间文件同步</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/js20230223/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">DELL戴尔2012年至2022年生产的服务器型号列表</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><style>
+     
+    #searchTerm {
+      margin-bottom: 20px;  
+    }
+  </style>
+
+<form class="search"> 
+    <div id="resultsContainer">文章搜索...</div>
+    <input type="text" id="searchTerm" name="searchTerm" autocomplete="off" oninput="initiateSearch()" placeholder="欢迎搜索">
+</form>
+
+
+  <script>
+    function search(jsonData, searchTerm) {
+      let results = [];
+      for (let i = 0; i < jsonData.length; i++) {
+        for (let property in jsonData[i]) {
+          if (jsonData[i].hasOwnProperty(property) && jsonData[i][property].toString().indexOf(searchTerm) > -1) {
+            results.push(jsonData[i]);
+            break;
+          }
+        }
+      }
+      return results;
+    }
+  
+    function displayResults(searchResults) {
+      let container = document.getElementById("resultsContainer");
+      container.innerHTML = "";
+      if (searchResults.length > 0) {
+        for (let i = 0; i < searchResults.length; i++) {
+          let resultDiv = document.createElement("div");
+          let resultTitle = document.createElement("a");
+          resultTitle.innerText = searchResults[i].title;
+          resultTitle.setAttribute('href', searchResults[i].permalink)
+          resultDiv.appendChild(resultTitle);
+          container.appendChild(resultDiv);
+        }
+      } else {
+        let noResultsMessage = document.createElement("p");
+        noResultsMessage.innerText = "没有找到搜索结果。";
+        container.appendChild(noResultsMessage);
+      }
+    }
+  
+    function initiateSearch() {
+  let searchTerm = document.getElementById("searchTerm").value.trim(); 
+  let container = document.getElementById("resultsContainer");
+
+  
+  if (searchTerm === "") {
+    container.innerHTML = "文章搜索";
+    return; 
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', '/index.json', true);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      let jsonData = JSON.parse(xhr.responseText);
+      let searchResults = search(jsonData, searchTerm);
+      displayResults(searchResults);
+    }
+  };
+  xhr.send();
+}
+
+  </script>
+<div class="widget-featured widget">
+        <h4 class="widget__title">精选文章</h4>
+        <div class="widget__content">
+                <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401/">Linux CentOS 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/js20220401b/">Linux Ubuntu 命令摘录备忘</a></li>
+                        <li class="widget__item"><a class="widget__link" href="/posts/rc20220223/">实用网址收录(不定时更新)</a></li>
+                </ul>
+        </div>
+</div>
+
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0/">公众号文章</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E6%91%98%E5%BD%95/">技术摘录</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/">技术笔记</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E9%9A%8F%E5%86%99%E6%91%98%E5%BD%95/">随写摘录</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infortrend/" title="Infortrend">Infortrend</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="Markdown">Markdown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="Vmware">Vmware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows/" title="Windows">Windows</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87/" title="存储设备">存储设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E5%AE%9E%E7%94%A8%E7%BD%91%E7%AB%99/" title="实用网站">实用网站</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%88%B4%E5%B0%94/" title="戴尔">戴尔</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/" title="文章收集">文章收集</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="服务器">服务器</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87/" title="硬件设备">硬件设备</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" title="网站搭建">网站搭建</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" title="虚拟化">虚拟化</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 John Doe.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+
+
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
