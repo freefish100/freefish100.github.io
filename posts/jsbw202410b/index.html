@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zh-cn">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>技术备忘记--infortrend存储设备篇(不定期更新) - 自游鱼</title>
@@ -24,9 +24,9 @@ iSCSI映射步骤：
 1、服务器主机插上FC HBA卡后，会自动有WWN号和FC光模块端口(SCSI host端口)，把存储中卷LUN映射到服务器对应的WWN。存储注意要选择FC的通道。
 (使用ls /sys/class/fc_host 命令列出相应的FC光模块端口，比如是host15,host16) 。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.freezz.cc/posts/jsbw202410b/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-04-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-04-10T00:00:00+00:00" />
+<meta property="og:url" content="http://localhost:1313/posts/jsbw202410b/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-07-10T00:00:00+00:00" />
 
 		<meta itemprop="name" content="技术备忘记--infortrend存储设备篇(不定期更新)">
 <meta itemprop="description" content="Infortrend普安存储设备 目前的型号，支持单只硬盘的最大容量是18T。（此条目更新于2022年7月） 存储中的硬盘使用raid10生成逻辑卷后，会自动创建两个raid1的逻辑磁盘，这是正常的。
@@ -44,8 +44,8 @@ iSCSI映射步骤：
 &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.. 电脑连接存储com口使用的波特率为38400. 有些老款的机器波特率为115200。 GS系列的系统关机顺序：先关闭存储中正在跑的业务(比如虚拟机、数据库等)，然后关闭存储本身的系统(设置&gt;系统&gt;关闭系统)，再关闭电源，如果有扩展柜的，再关闭扩展柜。开机顺序：先开扩展柜（如有），再开存储。 DS系列的关机顺序：管理首页&gt;系统设置&gt;系统&gt;关闭控制器，然后关闭电源。 GS系列添加热备盘：插入新硬盘，设备&gt;存储设备&gt;硬盘，选中新硬盘(硬盘的状态显示为&quot;新硬盘&quot;的，才能添加为热备盘)，点“管理备用硬盘”，按实际需要选择热备盘的类型，比如“全局”或者“本地”。 GS系列加入域：[设置]&ndash;[访问]&ndash;[通道&amp;网络]&ndash;[DNS服务器]&ndash;[添加DNS服务器]，填入DNS服务器IP地址(例如是域服务器的IP地址)，这里最好只填写一个DNS地址，填写多个可能会导致后面“检查域”时出错。然后返回[设置]&ndash;[权限]&ndash;[AD/LDAP]，选择“Windows Active Directory (AD)域”，填写AD服务器的域名，登录域的用户名和密码，其它选项默认，然后点击“检查域”，检查的选项都显示通过后，再点击“保存”。 Linux挂载 iscsi协议 SAN存储：
 1、在存储中做好映射到服务器的操作 (查看服务器主机的iqn号命令：cat /etc/iscsi/initiatorname.iscsi) 2、发现存储： iscsiadm -m discovery -p 192.168.1.51 -t st 其中 192.168.1.51是存储通道的IP。 命令执行后会返回存储通道对应的IP、端口号，以及服务器主机的iqn号 3、连接存储：iscsiadm -m node -T iqn.1994-05.com.redhat:34b1b4c5b2f3 -p 192.168.1.51 -l 其中 192.168.1.51是存储通道的IP，“ iqn.1994-05.com.redhat:34b1b4c5b2f3”是服务器主机的iqn号。如成功连接，会回显successful字样 Linux连接FC SAN存储：
 1、服务器主机插上FC HBA卡后，会自动有WWN号和FC光模块端口(SCSI host端口)，把存储中卷LUN映射到服务器对应的WWN。存储注意要选择FC的通道。
-(使用ls /sys/class/fc_host 命令列出相应的FC光模块端口，比如是host15,host16) 。"><meta itemprop="datePublished" content="2024-04-10T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2024-04-10T00:00:00+00:00" />
+(使用ls /sys/class/fc_host 命令列出相应的FC光模块端口，比如是host15,host16) 。"><meta itemprop="datePublished" content="2024-07-10T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2024-07-10T00:00:00+00:00" />
 <meta itemprop="wordCount" content="108">
 <meta itemprop="keywords" content="infortrend,存储设备," />
 		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="技术备忘记--infortrend存储设备篇(不定期更新)"/>
@@ -75,7 +75,6 @@ iSCSI映射步骤：
 	
 
 	<link rel="shortcut icon" href="/favicon.ico">
-		
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -102,7 +101,7 @@ iSCSI映射步骤：
 			<h1 class="post__title">技术备忘记--infortrend存储设备篇(不定期更新)</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-04-10T00:00:00Z">2024-04-10</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-07-10T00:00:00Z">2024-07-10</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" rel="category">技术笔记</a>
 	</span>
 </div></div>
 		</header>
@@ -193,15 +192,9 @@ iSCSI映射步骤：
 
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/posts/jsbw202410a/" rel="prev">
+		<a class="pager__link" href="/posts/20240426/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;上一篇</span>
-			<p class="pager__title">技术备忘记--戴尔设备篇(不定期更新)</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/posts/jsbw202410c/" rel="next">
-			<span class="pager__subtitle">下一篇&thinsp;»</span>
-			<p class="pager__title">技术备忘--windows篇(不定更新)</p>
+			<p class="pager__title">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</p>
 		</a>
 	</div>
 </nav>
@@ -281,9 +274,9 @@ iSCSI映射步骤：
         <h4 class="widget__title">精选文章</h4>
         <div class="widget__content">
                 <ul class="widget__list">
+                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
                         <li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
                         <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
-                        <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
                         <li class="widget__item"><a class="widget__link" href="/posts/jsbw202410a/">技术备忘记--戴尔设备篇(不定期更新)</a></li>
                         <li class="widget__item"><a class="widget__link" href="/posts/js20220729/">VMware ESXI vCenter 备忘笔记</a></li>
                         <li class="widget__item"><a class="widget__link" href="/posts/rc20220411/">技术文章链接收录</a></li>
@@ -298,11 +291,11 @@ iSCSI映射步骤：
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/20240426/">实践 windows server 服务器通过iSCSI方式 连接 浪潮AS2200G2 存储卷</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/20240417a/">公众号文章收集</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/20240412a/">Hugo网站在文章页面中插入文件链接</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410c/">技术备忘--windows篇(不定更新)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/jsbw202410b/">技术备忘记--infortrend存储设备篇(不定期更新)</a></li>
 		</ul>
 	</div>
 </div>
